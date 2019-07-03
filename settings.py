@@ -11,7 +11,7 @@ specification_url = 'http://hl7.org/fhir/R4/index.html'
 #specification_url = 'http://build.fhir.org'
 
 # In which directory to find the templates. See below for settings that start with `tpl_`: these are the template names.
-tpl_base = 'Sample'
+tpl_base = 'fhir-parser-resources'
 
 # Whether and where to put the generated class models
 write_resources = True
@@ -53,14 +53,14 @@ backbone_class_adds_parent = True          # if True, backbone class names prepe
 # All these files should be copied to `tpl_resource_target`: tuples of (path/to/file, module, array-of-class-names)
 # If the path is None, no file will be copied but the class names will still be recognized and it is assumed the class is present.
 manual_profiles = [
-    ('Sample/fhirabstractbase.py', 'fhirabstractbase', [
+    ('fhir-parser-resources/fhirabstractbase.py', 'fhirabstractbase', [
         'boolean',
         'string', 'base64Binary', 'code', 'id',
         'decimal', 'integer', 'unsignedInt', 'positiveInt',
         'uri', 'oid', 'uuid',
         'FHIRAbstractBase',
     ]),
-    ('Sample/fhirabstractresource.py', 'fhirabstractresource', ['FHIRAbstractResource']),
-    ('Sample/fhirreference.py', 'fhirreference', ['FHIRReference']),
-    ('Sample/fhirdate.py', 'fhirdate', ['date', 'dateTime', 'instant', 'time']),
+    ('fhir-parser-resources/fhirabstractresource.py', 'fhirabstractresource', ['FHIRAbstractResource']),
+    ('fhir-parser-resources/fhirreference.py', 'fhirreference', ['FHIRReference']),
+    ('fhir-parser-resources/fhirdate.py', 'fhirdate', ['date', 'dateTime', 'instant', 'time']),
 ]
