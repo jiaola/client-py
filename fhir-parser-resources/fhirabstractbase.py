@@ -5,6 +5,7 @@
 
 import sys
 import logging
+from dataclasses import field
 
 logger = logging.getLogger(__name__)
 
@@ -355,3 +356,5 @@ class FHIRAbstractBase(object):
         else:
             self._resolved = {refid: resolved}
 
+def empty_list():
+    return field(default_factory=list)
