@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Linkage) on 2019-07-03.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Linkage) on 2019-07-15.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -13,7 +13,6 @@ from .fhirabstractbase import *
 from . import backboneelement
 from . import domainresource
 from . import fhirreference
-
 
 from . import domainresource
 
@@ -32,59 +31,17 @@ class Linkage(domainresource.DomainResource):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.active = None
-#        """ Whether this linkage assertion is active or not.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.author = None
-#        """ Who is responsible for linkages.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.item = None
-#        """ Item to be linked.
-#        List of `LinkageItem` items
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(Linkage, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(Linkage, self).elementProperties()
         js.extend([
-            ("active", "active", bool, {  # #}False, None, {  # #}False),
-            ("author", "author", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("item", "item", LinkageItem, {  # #}True, None, {  # #}True),
+            ("active", "active", bool, False, None, False),
+            ("author", "author", fhirreference.FHIRReference, False, None, False),
+            ("item", "item", LinkageItem, True, None, True),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import backboneelement
-from . import fhirreference
-
 
 from . import backboneelement
 
@@ -103,38 +60,20 @@ class LinkageItem(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.resource = None
-#        """ Resource being linked.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.type = None
-#        """ source | alternate | historical.
-#        Type `str`
-#
-#. """
-#
-
-#        super(LinkageItem, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(LinkageItem, self).elementProperties()
         js.extend([
-            ("resource", "resource", fhirreference.FHIRReference, {  # #}False, None, {  # #}True),
-            ("type", "type", str, {  # #}False, None, {  # #}True),
+            ("resource", "resource", fhirreference.FHIRReference, False, None, True),
+            ("type", "type", str, False, None, True),
         ])
         return js
+
+
+import sys
+try:
+    from . import fhirreference
+except ImportError:
+    fhirreference = sys.modules[__package__ + '.fhirreference']

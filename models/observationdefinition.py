@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ObservationDefinition) on 2019-07-03.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ObservationDefinition) on 2019-07-15.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,7 +16,6 @@ from . import domainresource
 from . import fhirreference
 from . import identifier
 from . import range
-
 
 from . import domainresource
 
@@ -45,147 +44,27 @@ class ObservationDefinition(domainresource.DomainResource):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.abnormalCodedValueSet = None
-#        """ Value set of abnormal coded values for the observations conforming
-        to this ObservationDefinition.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.category = None
-#        """ Category of observation.
-#        List of `CodeableConcept` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.code = None
-#        """ Type of observation (code / type).
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.criticalCodedValueSet = None
-#        """ Value set of critical coded values for the observations conforming
-        to this ObservationDefinition.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.identifier = None
-#        """ Business identifier for this ObservationDefinition instance.
-#        List of `Identifier` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.method = None
-#        """ Method used to produce the observation.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.multipleResultsAllowed = None
-#        """ Multiple results allowed.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.normalCodedValueSet = None
-#        """ Value set of normal coded values for the observations conforming to
-        this ObservationDefinition.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.permittedDataType = None
-#        """ Quantity | CodeableConcept | string | boolean | integer | Range |
-        Ratio | SampledData | time | dateTime | Period.
-#        List of `str` items
-#
-#. """
-#
-#
-#        self.preferredReportName = None
-#        """ Preferred report name.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.qualifiedInterval = None
-#        """ Qualified range for continuous and ordinal observation results.
-#        List of `ObservationDefinitionQualifiedInterval` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.quantitativeDetails = None
-#        """ Characteristics of quantitative results.
-#        Type `ObservationDefinitionQuantitativeDetails`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.validCodedValueSet = None
-#        """ Value set of valid coded values for the observations conforming to
-        this ObservationDefinition.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(ObservationDefinition, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(ObservationDefinition, self).elementProperties()
         js.extend([
-            ("abnormalCodedValueSet", "abnormalCodedValueSet", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("category", "category", codeableconcept.CodeableConcept, {  # #}True, None, {  # #}False),
-            ("code", "code", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}True),
-            ("criticalCodedValueSet", "criticalCodedValueSet", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("identifier", "identifier", identifier.Identifier, {  # #}True, None, {  # #}False),
-            ("method", "method", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}False),
-            ("multipleResultsAllowed", "multipleResultsAllowed", bool, {  # #}False, None, {  # #}False),
-            ("normalCodedValueSet", "normalCodedValueSet", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("permittedDataType", "permittedDataType", str, {  # #}True, None, {  # #}False),
-            ("preferredReportName", "preferredReportName", str, {  # #}False, None, {  # #}False),
-            ("qualifiedInterval", "qualifiedInterval", ObservationDefinitionQualifiedInterval, {  # #}True, None, {  # #}False),
-            ("quantitativeDetails", "quantitativeDetails", ObservationDefinitionQuantitativeDetails, {  # #}False, None, {  # #}False),
-            ("validCodedValueSet", "validCodedValueSet", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
+            ("abnormalCodedValueSet", "abnormalCodedValueSet", fhirreference.FHIRReference, False, None, False),
+            ("category", "category", codeableconcept.CodeableConcept, True, None, False),
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("criticalCodedValueSet", "criticalCodedValueSet", fhirreference.FHIRReference, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("method", "method", codeableconcept.CodeableConcept, False, None, False),
+            ("multipleResultsAllowed", "multipleResultsAllowed", bool, False, None, False),
+            ("normalCodedValueSet", "normalCodedValueSet", fhirreference.FHIRReference, False, None, False),
+            ("permittedDataType", "permittedDataType", str, True, None, False),
+            ("preferredReportName", "preferredReportName", str, False, None, False),
+            ("qualifiedInterval", "qualifiedInterval", ObservationDefinitionQualifiedInterval, True, None, False),
+            ("quantitativeDetails", "quantitativeDetails", ObservationDefinitionQuantitativeDetails, False, None, False),
+            ("validCodedValueSet", "validCodedValueSet", fhirreference.FHIRReference, False, None, False),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import backboneelement
-from . import codeableconcept
-from . import fhirreference
-from . import identifier
-from . import range
-
 
 from . import backboneelement
 
@@ -209,101 +88,22 @@ class ObservationDefinitionQualifiedInterval(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.age = None
-#        """ Applicable age range, if relevant.
-#        Type `Range`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.appliesTo = None
-#        """ Targetted population of the range.
-#        List of `CodeableConcept` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.category = None
-#        """ reference | critical | absolute.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.condition = None
-#        """ Condition associated with the reference range.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.context = None
-#        """ Range context qualifier.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.gender = None
-#        """ male | female | other | unknown.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.gestationalAge = None
-#        """ Applicable gestational age range, if relevant.
-#        Type `Range`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.range = None
-#        """ The interval itself, for continuous or ordinal observations.
-#        Type `Range`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(ObservationDefinitionQualifiedInterval, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(ObservationDefinitionQualifiedInterval, self).elementProperties()
         js.extend([
-            ("age", "age", range.Range, {  # #}False, None, {  # #}False),
-            ("appliesTo", "appliesTo", codeableconcept.CodeableConcept, {  # #}True, None, {  # #}False),
-            ("category", "category", str, {  # #}False, None, {  # #}False),
-            ("condition", "condition", str, {  # #}False, None, {  # #}False),
-            ("context", "context", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}False),
-            ("gender", "gender", str, {  # #}False, None, {  # #}False),
-            ("gestationalAge", "gestationalAge", range.Range, {  # #}False, None, {  # #}False),
-            ("range", "range", range.Range, {  # #}False, None, {  # #}False),
+            ("age", "age", range.Range, False, None, False),
+            ("appliesTo", "appliesTo", codeableconcept.CodeableConcept, True, None, False),
+            ("category", "category", str, False, None, False),
+            ("condition", "condition", str, False, None, False),
+            ("context", "context", codeableconcept.CodeableConcept, False, None, False),
+            ("gender", "gender", str, False, None, False),
+            ("gestationalAge", "gestationalAge", range.Range, False, None, False),
+            ("range", "range", range.Range, False, None, False),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import codeableconcept
-from . import fhirreference
-from . import identifier
-from . import range
-
 
 @dataclass
 class ObservationDefinitionQuantitativeDetails(backboneelement.BackboneElement):
@@ -320,54 +120,34 @@ class ObservationDefinitionQuantitativeDetails(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.conversionFactor = None
-#        """ SI to Customary unit conversion factor.
-#        Type `float`
-#
-#. """
-#
-#
-#        self.customaryUnit = None
-#        """ Customary unit for quantitative results.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.decimalPrecision = None
-#        """ Decimal precision of observation quantitative results.
-#        Type `int`
-#
-#. """
-#
-#
-#        self.unit = None
-#        """ SI unit for quantitative results.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(ObservationDefinitionQuantitativeDetails, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(ObservationDefinitionQuantitativeDetails, self).elementProperties()
         js.extend([
-            ("conversionFactor", "conversionFactor", float, {  # #}False, None, {  # #}False),
-            ("customaryUnit", "customaryUnit", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}False),
-            ("decimalPrecision", "decimalPrecision", int, {  # #}False, None, {  # #}False),
-            ("unit", "unit", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}False),
+            ("conversionFactor", "conversionFactor", float, False, None, False),
+            ("customaryUnit", "customaryUnit", codeableconcept.CodeableConcept, False, None, False),
+            ("decimalPrecision", "decimalPrecision", int, False, None, False),
+            ("unit", "unit", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
+
+
+import sys
+try:
+    from . import codeableconcept
+except ImportError:
+    codeableconcept = sys.modules[__package__ + '.codeableconcept']
+try:
+    from . import fhirreference
+except ImportError:
+    fhirreference = sys.modules[__package__ + '.fhirreference']
+try:
+    from . import identifier
+except ImportError:
+    identifier = sys.modules[__package__ + '.identifier']
+try:
+    from . import range
+except ImportError:
+    range = sys.modules[__package__ + '.range']

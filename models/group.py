@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Group) on 2019-07-03.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Group) on 2019-07-15.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,7 +18,6 @@ from . import identifier
 from . import period
 from . import quantity
 from . import range
-
 
 from . import domainresource
 
@@ -46,120 +45,24 @@ class Group(domainresource.DomainResource):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.active = None
-#        """ Whether this group's record is in active use.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.actual = None
-#        """ Descriptive or actual.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.characteristic = None
-#        """ Include / Exclude group members by Trait.
-#        List of `GroupCharacteristic` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.code = None
-#        """ Kind of Group members.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.identifier = None
-#        """ Unique id.
-#        List of `Identifier` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.managingEntity = None
-#        """ Entity that is the custodian of the Group's definition.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.member = None
-#        """ Who or what is in group.
-#        List of `GroupMember` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.name = None
-#        """ Label for Group.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.quantity = None
-#        """ Number of members.
-#        Type `int`
-#
-#. """
-#
-#
-#        self.type = None
-#        """ person | animal | practitioner | device | medication | substance.
-#        Type `str`
-#
-#. """
-#
-
-#        super(Group, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(Group, self).elementProperties()
         js.extend([
-            ("active", "active", bool, {  # #}False, None, {  # #}False),
-            ("actual", "actual", bool, {  # #}False, None, {  # #}True),
-            ("characteristic", "characteristic", GroupCharacteristic, {  # #}True, None, {  # #}False),
-            ("code", "code", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}False),
-            ("identifier", "identifier", identifier.Identifier, {  # #}True, None, {  # #}False),
-            ("managingEntity", "managingEntity", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("member", "member", GroupMember, {  # #}True, None, {  # #}False),
-            ("name", "name", str, {  # #}False, None, {  # #}False),
-            ("quantity", "quantity", int, {  # #}False, None, {  # #}False),
-            ("type", "type", str, {  # #}False, None, {  # #}True),
+            ("active", "active", bool, False, None, False),
+            ("actual", "actual", bool, False, None, True),
+            ("characteristic", "characteristic", GroupCharacteristic, True, None, False),
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("managingEntity", "managingEntity", fhirreference.FHIRReference, False, None, False),
+            ("member", "member", GroupMember, True, None, False),
+            ("name", "name", str, False, None, False),
+            ("quantity", "quantity", int, False, None, False),
+            ("type", "type", str, False, None, True),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import backboneelement
-from . import codeableconcept
-from . import fhirreference
-from . import identifier
-from . import period
-from . import quantity
-from . import range
-
 
 from . import backboneelement
 
@@ -183,103 +86,22 @@ class GroupCharacteristic(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.code = None
-#        """ Kind of characteristic.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.exclude = None
-#        """ Group includes or excludes.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.period = None
-#        """ Period over which characteristic is tested.
-#        Type `Period`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.valueBoolean = None
-#        """ Value held by characteristic.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.valueCodeableConcept = None
-#        """ Value held by characteristic.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.valueQuantity = None
-#        """ Value held by characteristic.
-#        Type `Quantity`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.valueRange = None
-#        """ Value held by characteristic.
-#        Type `Range`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.valueReference = None
-#        """ Value held by characteristic.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(GroupCharacteristic, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(GroupCharacteristic, self).elementProperties()
         js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}True),
-            ("exclude", "exclude", bool, {  # #}False, None, {  # #}True),
-            ("period", "period", period.Period, {  # #}False, None, {  # #}False),
-            ("valueBoolean", "valueBoolean", bool, {  # #}False, "value", {  # #}True),
-            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, {  # #}False, "value", {  # #}True),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, {  # #}False, "value", {  # #}True),
-            ("valueRange", "valueRange", range.Range, {  # #}False, "value", {  # #}True),
-            ("valueReference", "valueReference", fhirreference.FHIRReference, {  # #}False, "value", {  # #}True),
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("exclude", "exclude", bool, False, None, True),
+            ("period", "period", period.Period, False, None, False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", True),
+            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", True),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
+            ("valueRange", "valueRange", range.Range, False, "value", True),
+            ("valueReference", "valueReference", fhirreference.FHIRReference, False, "value", True),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import codeableconcept
-from . import fhirreference
-from . import identifier
-from . import period
-from . import quantity
-from . import range
-
 
 @dataclass
 class GroupMember(backboneelement.BackboneElement):
@@ -295,46 +117,41 @@ class GroupMember(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.entity = None
-#        """ Reference to the group member.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.inactive = None
-#        """ If member is no longer in group.
-#        Type `bool`
-#
-#. """
-#
-#
-#        self.period = None
-#        """ Period member belonged to the group.
-#        Type `Period`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(GroupMember, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(GroupMember, self).elementProperties()
         js.extend([
-            ("entity", "entity", fhirreference.FHIRReference, {  # #}False, None, {  # #}True),
-            ("inactive", "inactive", bool, {  # #}False, None, {  # #}False),
-            ("period", "period", period.Period, {  # #}False, None, {  # #}False),
+            ("entity", "entity", fhirreference.FHIRReference, False, None, True),
+            ("inactive", "inactive", bool, False, None, False),
+            ("period", "period", period.Period, False, None, False),
         ])
         return js
+
+
+import sys
+try:
+    from . import codeableconcept
+except ImportError:
+    codeableconcept = sys.modules[__package__ + '.codeableconcept']
+try:
+    from . import fhirreference
+except ImportError:
+    fhirreference = sys.modules[__package__ + '.fhirreference']
+try:
+    from . import identifier
+except ImportError:
+    identifier = sys.modules[__package__ + '.identifier']
+try:
+    from . import period
+except ImportError:
+    period = sys.modules[__package__ + '.period']
+try:
+    from . import quantity
+except ImportError:
+    quantity = sys.modules[__package__ + '.quantity']
+try:
+    from . import range
+except ImportError:
+    range = sys.modules[__package__ + '.range']

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-07-03.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-07-15.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,7 +16,6 @@ from . import coding
 from . import contactpoint
 from . import domainresource
 from . import fhirreference
-
 
 from . import domainresource
 
@@ -47,136 +46,26 @@ class MessageHeader(domainresource.DomainResource):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.author = None
-#        """ The source of the decision.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.definition = None
-#        """ Link to the definition for this message.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.destination = None
-#        """ Message destination application(s).
-#        List of `MessageHeaderDestination` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.enterer = None
-#        """ The source of the data entry.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.eventCoding = None
-#        """ Code for the event this message represents or link to event
-        definition.
-#        Type `Coding`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.eventUri = None
-#        """ Code for the event this message represents or link to event
-        definition.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.focus = None
-#        """ The actual content of the message.
-#        List of `FHIRReference` items
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.reason = None
-#        """ Cause of event.
-#        Type `CodeableConcept`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.response = None
-#        """ If this is a reply to prior message.
-#        Type `MessageHeaderResponse`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.responsible = None
-#        """ Final responsibility for event.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.sender = None
-#        """ Real world sender of the message.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.source = None
-#        """ Message source application.
-#        Type `MessageHeaderSource`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(MessageHeader, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(MessageHeader, self).elementProperties()
         js.extend([
-            ("author", "author", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("definition", "definition", str, {  # #}False, None, {  # #}False),
-            ("destination", "destination", MessageHeaderDestination, {  # #}True, None, {  # #}False),
-            ("enterer", "enterer", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("eventCoding", "eventCoding", coding.Coding, {  # #}False, "event", {  # #}True),
-            ("eventUri", "eventUri", str, {  # #}False, "event", {  # #}True),
-            ("focus", "focus", fhirreference.FHIRReference, {  # #}True, None, {  # #}False),
-            ("reason", "reason", codeableconcept.CodeableConcept, {  # #}False, None, {  # #}False),
-            ("response", "response", MessageHeaderResponse, {  # #}False, None, {  # #}False),
-            ("responsible", "responsible", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("sender", "sender", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("source", "source", MessageHeaderSource, {  # #}False, None, {  # #}True),
+            ("author", "author", fhirreference.FHIRReference, False, None, False),
+            ("definition", "definition", str, False, None, False),
+            ("destination", "destination", MessageHeaderDestination, True, None, False),
+            ("enterer", "enterer", fhirreference.FHIRReference, False, None, False),
+            ("eventCoding", "eventCoding", coding.Coding, False, "event", True),
+            ("eventUri", "eventUri", str, False, "event", True),
+            ("focus", "focus", fhirreference.FHIRReference, True, None, False),
+            ("reason", "reason", codeableconcept.CodeableConcept, False, None, False),
+            ("response", "response", MessageHeaderResponse, False, None, False),
+            ("responsible", "responsible", fhirreference.FHIRReference, False, None, False),
+            ("sender", "sender", fhirreference.FHIRReference, False, None, False),
+            ("source", "source", MessageHeaderSource, False, None, True),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import backboneelement
-from . import codeableconcept
-from . import coding
-from . import contactpoint
-from . import fhirreference
-
 
 from . import backboneelement
 
@@ -195,69 +84,18 @@ class MessageHeaderDestination(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.endpoint = None
-#        """ Actual destination address or id.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.name = None
-#        """ Name of system.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.receiver = None
-#        """ Intended "real-world" recipient for the data.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.target = None
-#        """ Particular delivery destination within the destination.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-
-#        super(MessageHeaderDestination, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(MessageHeaderDestination, self).elementProperties()
         js.extend([
-            ("endpoint", "endpoint", str, {  # #}False, None, {  # #}True),
-            ("name", "name", str, {  # #}False, None, {  # #}False),
-            ("receiver", "receiver", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("target", "target", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
+            ("endpoint", "endpoint", str, False, None, True),
+            ("name", "name", str, False, None, False),
+            ("receiver", "receiver", fhirreference.FHIRReference, False, None, False),
+            ("target", "target", fhirreference.FHIRReference, False, None, False),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import codeableconcept
-from . import coding
-from . import contactpoint
-from . import fhirreference
-
 
 @dataclass
 class MessageHeaderResponse(backboneelement.BackboneElement):
@@ -274,61 +112,17 @@ class MessageHeaderResponse(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.code = None
-#        """ ok | transient-error | fatal-error.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.details = None
-#        """ Specific list of hints/warnings/errors.
-#        Type `FHIRReference`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.identifier = None
-#        """ Id of original message.
-#        Type `str`
-#
-#. """
-#
-
-#        super(MessageHeaderResponse, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(MessageHeaderResponse, self).elementProperties()
         js.extend([
-            ("code", "code", str, {  # #}False, None, {  # #}True),
-            ("details", "details", fhirreference.FHIRReference, {  # #}False, None, {  # #}False),
-            ("identifier", "identifier", str, {  # #}False, None, {  # #}True),
+            ("code", "code", str, False, None, True),
+            ("details", "details", fhirreference.FHIRReference, False, None, False),
+            ("identifier", "identifier", str, False, None, True),
         ])
         return js
-
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-
-from . import codeableconcept
-from . import coding
-from . import contactpoint
-from . import fhirreference
-
 
 @dataclass
 class MessageHeaderSource(backboneelement.BackboneElement):
@@ -346,62 +140,35 @@ class MessageHeaderSource(backboneelement.BackboneElement):
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#
-#
-#        self.contact = None
-#        """ Human contact for problems.
-#        Type `ContactPoint`
-#
-# (represented as `dict` in JSON). """
-#
-#
-#        self.endpoint = None
-#        """ Actual message source address or id.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.name = None
-#        """ Name of system.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.software = None
-#        """ Name of software running the system.
-#        Type `str`
-#
-#. """
-#
-#
-#        self.version = None
-#        """ Version of software running.
-#        Type `str`
-#
-#. """
-#
-
-#        super(MessageHeaderSource, self).__init__(jsondict=jsondict, strict=strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
         js = super(MessageHeaderSource, self).elementProperties()
         js.extend([
-            ("contact", "contact", contactpoint.ContactPoint, {  # #}False, None, {  # #}False),
-            ("endpoint", "endpoint", str, {  # #}False, None, {  # #}True),
-            ("name", "name", str, {  # #}False, None, {  # #}False),
-            ("software", "software", str, {  # #}False, None, {  # #}False),
-            ("version", "version", str, {  # #}False, None, {  # #}False),
+            ("contact", "contact", contactpoint.ContactPoint, False, None, False),
+            ("endpoint", "endpoint", str, False, None, True),
+            ("name", "name", str, False, None, False),
+            ("software", "software", str, False, None, False),
+            ("version", "version", str, False, None, False),
         ])
         return js
+
+
+import sys
+try:
+    from . import codeableconcept
+except ImportError:
+    codeableconcept = sys.modules[__package__ + '.codeableconcept']
+try:
+    from . import coding
+except ImportError:
+    coding = sys.modules[__package__ + '.coding']
+try:
+    from . import contactpoint
+except ImportError:
+    contactpoint = sys.modules[__package__ + '.contactpoint']
+try:
+    from . import fhirreference
+except ImportError:
+    fhirreference = sys.modules[__package__ + '.fhirreference']
