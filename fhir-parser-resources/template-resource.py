@@ -5,7 +5,6 @@
 #  {{ info.year }}, SMART Health IT.
 
 {%- set imported = {} %}
-{%- for klass in classes %}
 
 from dataclasses import dataclass, InitVar
 from typing import ClassVar, Optional, List
@@ -13,9 +12,10 @@ from models import fhirabstractbase
 from .fhirabstractbase import *
 
 {% for imp in imports %}{% if imp.module not in imported %}
-from . import {{imp.module}}
+from . import {{ imp.module }}
 {%- endif %}{% endfor %}
 
+{%- for klass in classes %}
 
 {% if klass.superclass in imports and klass.superclass.module not in imported -%}
 from . import {{klass.superclass.module}}
@@ -45,26 +45,9 @@ class {{klass.name}}({% if klass.superclass in imports %}{{klass.superclass.modu
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
 
-    def __post_init__(self, jsondict, strict) -> None:
-        fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
-#    def __init__(self, jsondict=None, strict=True):
-#        """ Initialize all valid properties.
-#
-#        :raises: FHIRValidationError on validation errors, unless strict is False
-#        :param dict jsondict: A JSON dictionary to use for initialization
-#        :param bool strict: If True (the default), invalid variables will raise a TypeError
-#        """
-#    {%- for prop in klass.properties %}
-#
-#        self.{{ prop.name }} = None
-#        """ {{ prop.short|wordwrap(67, wrapstring="\n        ") }}.
-#        {% if prop.is_array %}List of{% else %}Type{% endif %} `{{ prop.class_name }}`{% if prop.is_array %} items{% endif %}
-#        {%- if prop.reference_to_names|length > 0 %} referencing `{{ prop.reference_to_names|join(', ') }}`{% endif %}
-#        {%- if prop.json_class != prop.class_name %} (represented as `{{ prop.json_class }}` in JSON){% endif %}. """
-#    {%- endfor %}
-
-#        super({{ klass.name }}, self).__init__(jsondict=jsondict, strict=strict)
 
 {%- if klass.properties %}
 
@@ -79,9 +62,9 @@ class {{klass.name}}({% if klass.superclass in imports %}{{klass.superclass.modu
         js.extend([
         {%- for prop in klass.properties %}
             ("{{ prop.name }}", "{{ prop.orig_name }}",
-            {%- if prop.module_name %} {{prop.module_name}}.{% else %} {% endif %}{{prop.class_name}}, {  # #}
+            {%- if prop.module_name %} {{prop.module_name}}.{% else %} {% endif %}{{prop.class_name}}, {# #}
             {{- prop.is_array}},
-            {%- if prop.one_of_many %} "{{ prop.one_of_many }}"{% else %} None{% endif %}, {  # #}
+            {%- if prop.one_of_many %} "{{ prop.one_of_many }}"{% else %} None{% endif %}, {# #}
             {{- prop.nonoptional}}),
         {%- endfor %}
         ])
@@ -89,3 +72,13 @@ class {{klass.name}}({% if klass.superclass in imports %}{{klass.superclass.modu
 
 {%- endif %}
 {%- endfor %}
+
+{% if imports|length > 0 and imported|length != imports|length %}
+import sys
+{%- endif %}
+{%- for imp in imports %}{% if imp.module not in imported %}
+try:
+    from . import {{ imp.module }}
+except ImportError:
+    {{ imp.module }} = sys.modules[__package__ + '.{{ imp.module }}']
+{%- endif %}{% endfor %}
