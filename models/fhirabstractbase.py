@@ -5,7 +5,9 @@
 
 import sys
 import logging
-from dataclasses import field
+from dataclasses import field, dataclass, InitVar
+
+from pyparsing import Optional
 
 logger = logging.getLogger(__name__)
 
@@ -43,11 +45,14 @@ class FHIRValidationError(Exception):
         return self.__class__(self.errors, path)
 
 
-class FHIRAbstractBase(object):
+@dataclass
+class FHIRAbstractBase:
     """ Abstract base class for all FHIR elements.
     """
-    
-    def __init__(self, jsondict=None, strict=True):
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    def __post_init__(self, jsondict, strict):
         """ Initializer. If strict is true, raises on errors, otherwise uses
         `logger.warning()`.
         
