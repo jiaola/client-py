@@ -6,8 +6,7 @@
 import sys
 import logging
 from dataclasses import field, dataclass, InitVar
-
-from pyparsing import Optional
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 
