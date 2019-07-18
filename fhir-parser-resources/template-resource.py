@@ -15,7 +15,7 @@ from .fhirabstractbase import *
 from . import {{ imp.module }}
 {%- endif %}{% endfor %}
 
-{%- for klass in classes %}
+{%- for klass in classes[::-1] %}
 
 {% if klass.superclass in imports and klass.superclass.module not in imported -%}
 from . import {{klass.superclass.module}}
