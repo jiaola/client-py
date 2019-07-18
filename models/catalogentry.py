@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CatalogEntry) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CatalogEntry) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,33 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class CatalogEntryRelatedEntry(backboneelement.BackboneElement):
+    """ An item that this catalog entry is related to.
+
+    Used for example, to point to a substance, or to a device used to
+    administer a medication.
+    """
+    resource_type: ClassVar[str] = "CatalogEntryRelatedEntry"
+    item:fhirreference.FHIRReference = None
+    relationtype: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CatalogEntryRelatedEntry, self).elementProperties()
+        js.extend([
+            ("item", "item", fhirreference.FHIRReference, False, None, True),
+            ("relationtype", "relationtype", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -64,33 +91,6 @@ class CatalogEntry(domainresource.DomainResource):
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
             ("validTo", "validTo", fhirdate.FHIRDate, False, None, False),
             ("validityPeriod", "validityPeriod", period.Period, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CatalogEntryRelatedEntry(backboneelement.BackboneElement):
-    """ An item that this catalog entry is related to.
-
-    Used for example, to point to a substance, or to a device used to
-    administer a medication.
-    """
-    resource_type: ClassVar[str] = "CatalogEntryRelatedEntry"
-    item:fhirreference.FHIRReference = None
-    relationtype: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CatalogEntryRelatedEntry, self).elementProperties()
-        js.extend([
-            ("item", "item", fhirreference.FHIRReference, False, None, True),
-            ("relationtype", "relationtype", str, False, None, True),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,93 @@ from . import identifier
 from . import money
 from . import period
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class ChargeItemDefinitionPropertyGroupPriceComponent(backboneelement.BackboneElement):
+    """ Components of total line item price.
+
+    The price for a ChargeItem may be calculated as a base price with
+    surcharges/deductions that apply in certain conditions. A
+    ChargeItemDefinition resource that defines the prices, factors and
+    conditions that apply to a billing code is currently under development. The
+    priceComponent element can be used to offer transparency to the recipient
+    of the Invoice of how the prices have been calculated.
+    """
+    resource_type: ClassVar[str] = "ChargeItemDefinitionPropertyGroupPriceComponent"
+    amount: Optional[money.Money] = None
+    code: Optional[codeableconcept.CodeableConcept] = None
+    factor: Optional[float] = None
+    type: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ChargeItemDefinitionPropertyGroupPriceComponent, self).elementProperties()
+        js.extend([
+            ("amount", "amount", money.Money, False, None, False),
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("factor", "factor", float, False, None, False),
+            ("type", "type", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ChargeItemDefinitionPropertyGroup(backboneelement.BackboneElement):
+    """ Group of properties which are applicable under the same conditions.
+
+    Group of properties which are applicable under the same conditions. If no
+    applicability rules are established for the group, then all properties
+    always apply.
+    """
+    resource_type: ClassVar[str] = "ChargeItemDefinitionPropertyGroup"
+    applicability: Optional[List[ChargeItemDefinitionApplicability]] = empty_list()
+    priceComponent: Optional[List[ChargeItemDefinitionPropertyGroupPriceComponent]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ChargeItemDefinitionPropertyGroup, self).elementProperties()
+        js.extend([
+            ("applicability", "applicability", ChargeItemDefinitionApplicability, True, None, False),
+            ("priceComponent", "priceComponent", ChargeItemDefinitionPropertyGroupPriceComponent, True, None, False),
+        ])
+        return js
+
+@dataclass
+class ChargeItemDefinitionApplicability(backboneelement.BackboneElement):
+    """ Whether or not the billing code is applicable.
+
+    Expressions that describe applicability criteria for the billing code.
+    """
+    resource_type: ClassVar[str] = "ChargeItemDefinitionApplicability"
+    description: Optional[str] = None
+    expression: Optional[str] = None
+    language: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ChargeItemDefinitionApplicability, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("expression", "expression", str, False, None, False),
+            ("language", "language", str, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -91,93 +178,6 @@ class ChargeItemDefinition(domainresource.DomainResource):
             ("url", "url", str, False, None, True),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ChargeItemDefinitionApplicability(backboneelement.BackboneElement):
-    """ Whether or not the billing code is applicable.
-
-    Expressions that describe applicability criteria for the billing code.
-    """
-    resource_type: ClassVar[str] = "ChargeItemDefinitionApplicability"
-    description: Optional[str] = None
-    expression: Optional[str] = None
-    language: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ChargeItemDefinitionApplicability, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("expression", "expression", str, False, None, False),
-            ("language", "language", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ChargeItemDefinitionPropertyGroup(backboneelement.BackboneElement):
-    """ Group of properties which are applicable under the same conditions.
-
-    Group of properties which are applicable under the same conditions. If no
-    applicability rules are established for the group, then all properties
-    always apply.
-    """
-    resource_type: ClassVar[str] = "ChargeItemDefinitionPropertyGroup"
-    applicability: Optional[List[ChargeItemDefinitionApplicability]] = empty_list()
-    priceComponent: Optional[List[ChargeItemDefinitionPropertyGroupPriceComponent]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ChargeItemDefinitionPropertyGroup, self).elementProperties()
-        js.extend([
-            ("applicability", "applicability", ChargeItemDefinitionApplicability, True, None, False),
-            ("priceComponent", "priceComponent", ChargeItemDefinitionPropertyGroupPriceComponent, True, None, False),
-        ])
-        return js
-
-@dataclass
-class ChargeItemDefinitionPropertyGroupPriceComponent(backboneelement.BackboneElement):
-    """ Components of total line item price.
-
-    The price for a ChargeItem may be calculated as a base price with
-    surcharges/deductions that apply in certain conditions. A
-    ChargeItemDefinition resource that defines the prices, factors and
-    conditions that apply to a billing code is currently under development. The
-    priceComponent element can be used to offer transparency to the recipient
-    of the Invoice of how the prices have been calculated.
-    """
-    resource_type: ClassVar[str] = "ChargeItemDefinitionPropertyGroupPriceComponent"
-    amount: Optional[money.Money] = None
-    code: Optional[codeableconcept.CodeableConcept] = None
-    factor: Optional[float] = None
-    type: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ChargeItemDefinitionPropertyGroupPriceComponent, self).elementProperties()
-        js.extend([
-            ("amount", "amount", money.Money, False, None, False),
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("factor", "factor", float, False, None, False),
-            ("type", "type", str, False, None, True),
         ])
         return js
 

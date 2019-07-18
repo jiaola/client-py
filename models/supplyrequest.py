@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,39 @@ from . import period
 from . import quantity
 from . import range
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class SupplyRequestParameter(backboneelement.BackboneElement):
+    """ Ordered item details.
+
+    Specific parameters for the ordered item.  For example, the size of the
+    indicated item.
+    """
+    resource_type: ClassVar[str] = "SupplyRequestParameter"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    valueBoolean: Optional[bool] = None
+    valueCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    valueQuantity: Optional[quantity.Quantity] = None
+    valueRange: Optional[range.Range] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SupplyRequestParameter, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", False),
+            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
+            ("valueRange", "valueRange", range.Range, False, "value", False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -77,39 +110,6 @@ class SupplyRequest(domainresource.DomainResource):
             ("requester", "requester", fhirreference.FHIRReference, False, None, False),
             ("status", "status", str, False, None, False),
             ("supplier", "supplier", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class SupplyRequestParameter(backboneelement.BackboneElement):
-    """ Ordered item details.
-
-    Specific parameters for the ordered item.  For example, the size of the
-    indicated item.
-    """
-    resource_type: ClassVar[str] = "SupplyRequestParameter"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    valueBoolean: Optional[bool] = None
-    valueCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    valueQuantity: Optional[quantity.Quantity] = None
-    valueRange: Optional[range.Range] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SupplyRequestParameter, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("valueBoolean", "valueBoolean", bool, False, "value", False),
-            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
-            ("valueRange", "valueRange", range.Range, False, "value", False),
         ])
         return js
 

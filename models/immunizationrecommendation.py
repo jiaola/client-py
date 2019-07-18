@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,21 +17,18 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 
-from . import domainresource
+from . import backboneelement
 
 @dataclass
-class ImmunizationRecommendation(domainresource.DomainResource):
-    """ Guidance or advice relating to an immunization.
+class ImmunizationRecommendationRecommendationDateCriterion(backboneelement.BackboneElement):
+    """ Dates governing proposed immunization.
 
-    A patient's point-in-time set of recommendations (i.e. forecasting)
-    according to a published schedule with optional supporting justification.
+    Vaccine date recommendations.  For example, earliest date to administer,
+    latest date to administer, etc.
     """
-    resource_type: ClassVar[str] = "ImmunizationRecommendation"
-    authority: Optional[fhirreference.FHIRReference] = None
-    date:fhirdate.FHIRDate = None
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    patient:fhirreference.FHIRReference = None
-    recommendation: List[ ImmunizationRecommendationRecommendation] = empty_list()
+    resource_type: ClassVar[str] = "ImmunizationRecommendationRecommendationDateCriterion"
+    code:codeableconcept.CodeableConcept = None
+    value:fhirdate.FHIRDate = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -40,17 +37,12 @@ class ImmunizationRecommendation(domainresource.DomainResource):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(ImmunizationRecommendation, self).elementProperties()
+        js = super(ImmunizationRecommendationRecommendationDateCriterion, self).elementProperties()
         js.extend([
-            ("authority", "authority", fhirreference.FHIRReference, False, None, False),
-            ("date", "date", fhirdate.FHIRDate, False, None, True),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("patient", "patient", fhirreference.FHIRReference, False, None, True),
-            ("recommendation", "recommendation", ImmunizationRecommendationRecommendation, True, None, True),
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("value", "value", fhirdate.FHIRDate, False, None, True),
         ])
         return js
-
-from . import backboneelement
 
 @dataclass
 class ImmunizationRecommendationRecommendation(backboneelement.BackboneElement):
@@ -98,16 +90,21 @@ class ImmunizationRecommendationRecommendation(backboneelement.BackboneElement):
         ])
         return js
 
-@dataclass
-class ImmunizationRecommendationRecommendationDateCriterion(backboneelement.BackboneElement):
-    """ Dates governing proposed immunization.
+from . import domainresource
 
-    Vaccine date recommendations.  For example, earliest date to administer,
-    latest date to administer, etc.
+@dataclass
+class ImmunizationRecommendation(domainresource.DomainResource):
+    """ Guidance or advice relating to an immunization.
+
+    A patient's point-in-time set of recommendations (i.e. forecasting)
+    according to a published schedule with optional supporting justification.
     """
-    resource_type: ClassVar[str] = "ImmunizationRecommendationRecommendationDateCriterion"
-    code:codeableconcept.CodeableConcept = None
-    value:fhirdate.FHIRDate = None
+    resource_type: ClassVar[str] = "ImmunizationRecommendation"
+    authority: Optional[fhirreference.FHIRReference] = None
+    date:fhirdate.FHIRDate = None
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    patient:fhirreference.FHIRReference = None
+    recommendation: List[ ImmunizationRecommendationRecommendation] = empty_list()
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -116,10 +113,13 @@ class ImmunizationRecommendationRecommendationDateCriterion(backboneelement.Back
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(ImmunizationRecommendationRecommendationDateCriterion, self).elementProperties()
+        js = super(ImmunizationRecommendation, self).elementProperties()
         js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("value", "value", fhirdate.FHIRDate, False, None, True),
+            ("authority", "authority", fhirreference.FHIRReference, False, None, False),
+            ("date", "date", fhirdate.FHIRDate, False, None, True),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("patient", "patient", fhirreference.FHIRReference, False, None, True),
+            ("recommendation", "recommendation", ImmunizationRecommendationRecommendation, True, None, True),
         ])
         return js
 

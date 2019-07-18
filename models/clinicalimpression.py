@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,63 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class ClinicalImpressionInvestigation(backboneelement.BackboneElement):
+    """ One or more sets of investigations (signs, symptoms, etc.).
+
+    One or more sets of investigations (signs, symptoms, etc.). The actual
+    grouping of investigations varies greatly depending on the type and context
+    of the assessment. These investigations may include data generated during
+    the assessment process, or data previously generated and recorded that is
+    pertinent to the outcomes.
+    """
+    resource_type: ClassVar[str] = "ClinicalImpressionInvestigation"
+    code:codeableconcept.CodeableConcept = None
+    item: Optional[List[fhirreference.FHIRReference]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ClinicalImpressionInvestigation, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("item", "item", fhirreference.FHIRReference, True, None, False),
+        ])
+        return js
+
+@dataclass
+class ClinicalImpressionFinding(backboneelement.BackboneElement):
+    """ Possible or likely findings and diagnoses.
+
+    Specific findings or diagnoses that were considered likely or relevant to
+    ongoing treatment.
+    """
+    resource_type: ClassVar[str] = "ClinicalImpressionFinding"
+    basis: Optional[str] = None
+    itemCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    itemReference: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ClinicalImpressionFinding, self).elementProperties()
+        js.extend([
+            ("basis", "basis", str, False, None, False),
+            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, None, False),
+            ("itemReference", "itemReference", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -87,63 +144,6 @@ class ClinicalImpression(domainresource.DomainResource):
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("summary", "summary", str, False, None, False),
             ("supportingInfo", "supportingInfo", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ClinicalImpressionFinding(backboneelement.BackboneElement):
-    """ Possible or likely findings and diagnoses.
-
-    Specific findings or diagnoses that were considered likely or relevant to
-    ongoing treatment.
-    """
-    resource_type: ClassVar[str] = "ClinicalImpressionFinding"
-    basis: Optional[str] = None
-    itemCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    itemReference: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ClinicalImpressionFinding, self).elementProperties()
-        js.extend([
-            ("basis", "basis", str, False, None, False),
-            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, None, False),
-            ("itemReference", "itemReference", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ClinicalImpressionInvestigation(backboneelement.BackboneElement):
-    """ One or more sets of investigations (signs, symptoms, etc.).
-
-    One or more sets of investigations (signs, symptoms, etc.). The actual
-    grouping of investigations varies greatly depending on the type and context
-    of the assessment. These investigations may include data generated during
-    the assessment process, or data previously generated and recorded that is
-    pertinent to the outcomes.
-    """
-    resource_type: ClassVar[str] = "ClinicalImpressionInvestigation"
-    code:codeableconcept.CodeableConcept = None
-    item: Optional[List[fhirreference.FHIRReference]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ClinicalImpressionInvestigation, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("item", "item", fhirreference.FHIRReference, True, None, False),
         ])
         return js
 

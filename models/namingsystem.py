@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,39 @@ from . import domainresource
 from . import fhirdate
 from . import period
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class NamingSystemUniqueId(backboneelement.BackboneElement):
+    """ Unique identifiers used for system.
+
+    Indicates how the system may be identified when referenced in electronic
+    exchange.
+    """
+    resource_type: ClassVar[str] = "NamingSystemUniqueId"
+    comment: Optional[str] = None
+    period: Optional[period.Period] = None
+    preferred: Optional[bool] = None
+    type: str = None
+    value: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(NamingSystemUniqueId, self).elementProperties()
+        js.extend([
+            ("comment", "comment", str, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+            ("preferred", "preferred", bool, False, None, False),
+            ("type", "type", str, False, None, True),
+            ("value", "value", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -65,39 +98,6 @@ class NamingSystem(domainresource.DomainResource):
             ("uniqueId", "uniqueId", NamingSystemUniqueId, True, None, True),
             ("usage", "usage", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class NamingSystemUniqueId(backboneelement.BackboneElement):
-    """ Unique identifiers used for system.
-
-    Indicates how the system may be identified when referenced in electronic
-    exchange.
-    """
-    resource_type: ClassVar[str] = "NamingSystemUniqueId"
-    comment: Optional[str] = None
-    period: Optional[period.Period] = None
-    preferred: Optional[bool] = None
-    type: str = None
-    value: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(NamingSystemUniqueId, self).elementProperties()
-        js.extend([
-            ("comment", "comment", str, False, None, False),
-            ("period", "period", period.Period, False, None, False),
-            ("preferred", "preferred", bool, False, None, False),
-            ("type", "type", str, False, None, True),
-            ("value", "value", str, False, None, True),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,30 @@ from . import fhirreference
 from . import humanname
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class RelatedPersonCommunication(backboneelement.BackboneElement):
+    """ A language which may be used to communicate with about the patient's health.
+    """
+    resource_type: ClassVar[str] = "RelatedPersonCommunication"
+    language:codeableconcept.CodeableConcept = None
+    preferred: Optional[bool] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(RelatedPersonCommunication, self).elementProperties()
+        js.extend([
+            ("language", "language", codeableconcept.CodeableConcept, False, None, True),
+            ("preferred", "preferred", bool, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -68,30 +92,6 @@ class RelatedPerson(domainresource.DomainResource):
             ("photo", "photo", attachment.Attachment, True, None, False),
             ("relationship", "relationship", codeableconcept.CodeableConcept, True, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class RelatedPersonCommunication(backboneelement.BackboneElement):
-    """ A language which may be used to communicate with about the patient's health.
-    """
-    resource_type: ClassVar[str] = "RelatedPersonCommunication"
-    language:codeableconcept.CodeableConcept = None
-    preferred: Optional[bool] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(RelatedPersonCommunication, self).elementProperties()
-        js.extend([
-            ("language", "language", codeableconcept.CodeableConcept, False, None, True),
-            ("preferred", "preferred", bool, False, None, False),
         ])
         return js
 

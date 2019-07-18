@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,44 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import range
+
+from . import backboneelement
+
+@dataclass
+class RiskAssessmentPrediction(backboneelement.BackboneElement):
+    """ Outcome predicted.
+
+    Describes the expected outcome for the subject.
+    """
+    resource_type: ClassVar[str] = "RiskAssessmentPrediction"
+    outcome: Optional[codeableconcept.CodeableConcept] = None
+    probabilityDecimal: Optional[float] = None
+    probabilityRange: Optional[range.Range] = None
+    qualitativeRisk: Optional[codeableconcept.CodeableConcept] = None
+    rationale: Optional[str] = None
+    relativeRisk: Optional[float] = None
+    whenPeriod: Optional[period.Period] = None
+    whenRange: Optional[range.Range] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(RiskAssessmentPrediction, self).elementProperties()
+        js.extend([
+            ("outcome", "outcome", codeableconcept.CodeableConcept, False, None, False),
+            ("probabilityDecimal", "probabilityDecimal", float, False, "probability", False),
+            ("probabilityRange", "probabilityRange", range.Range, False, "probability", False),
+            ("qualitativeRisk", "qualitativeRisk", codeableconcept.CodeableConcept, False, None, False),
+            ("rationale", "rationale", str, False, None, False),
+            ("relativeRisk", "relativeRisk", float, False, None, False),
+            ("whenPeriod", "whenPeriod", period.Period, False, "when", False),
+            ("whenRange", "whenRange", range.Range, False, "when", False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -76,44 +114,6 @@ class RiskAssessment(domainresource.DomainResource):
             ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class RiskAssessmentPrediction(backboneelement.BackboneElement):
-    """ Outcome predicted.
-
-    Describes the expected outcome for the subject.
-    """
-    resource_type: ClassVar[str] = "RiskAssessmentPrediction"
-    outcome: Optional[codeableconcept.CodeableConcept] = None
-    probabilityDecimal: Optional[float] = None
-    probabilityRange: Optional[range.Range] = None
-    qualitativeRisk: Optional[codeableconcept.CodeableConcept] = None
-    rationale: Optional[str] = None
-    relativeRisk: Optional[float] = None
-    whenPeriod: Optional[period.Period] = None
-    whenRange: Optional[range.Range] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(RiskAssessmentPrediction, self).elementProperties()
-        js.extend([
-            ("outcome", "outcome", codeableconcept.CodeableConcept, False, None, False),
-            ("probabilityDecimal", "probabilityDecimal", float, False, "probability", False),
-            ("probabilityRange", "probabilityRange", range.Range, False, "probability", False),
-            ("qualitativeRisk", "qualitativeRisk", codeableconcept.CodeableConcept, False, None, False),
-            ("rationale", "rationale", str, False, None, False),
-            ("relativeRisk", "relativeRisk", float, False, None, False),
-            ("whenPeriod", "whenPeriod", period.Period, False, "when", False),
-            ("whenRange", "whenRange", range.Range, False, "when", False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,93 @@ from . import coding
 from . import contactpoint
 from . import domainresource
 from . import fhirreference
+
+from . import backboneelement
+
+@dataclass
+class MessageHeaderSource(backboneelement.BackboneElement):
+    """ Message source application.
+
+    The source application from which this message originated.
+    """
+    resource_type: ClassVar[str] = "MessageHeaderSource"
+    contact: Optional[contactpoint.ContactPoint] = None
+    endpoint: str = None
+    name: Optional[str] = None
+    software: Optional[str] = None
+    version: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MessageHeaderSource, self).elementProperties()
+        js.extend([
+            ("contact", "contact", contactpoint.ContactPoint, False, None, False),
+            ("endpoint", "endpoint", str, False, None, True),
+            ("name", "name", str, False, None, False),
+            ("software", "software", str, False, None, False),
+            ("version", "version", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MessageHeaderResponse(backboneelement.BackboneElement):
+    """ If this is a reply to prior message.
+
+    Information about the message that this message is a response to.  Only
+    present if this message is a response.
+    """
+    resource_type: ClassVar[str] = "MessageHeaderResponse"
+    code: str = None
+    details: Optional[fhirreference.FHIRReference] = None
+    identifier: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MessageHeaderResponse, self).elementProperties()
+        js.extend([
+            ("code", "code", str, False, None, True),
+            ("details", "details", fhirreference.FHIRReference, False, None, False),
+            ("identifier", "identifier", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class MessageHeaderDestination(backboneelement.BackboneElement):
+    """ Message destination application(s).
+
+    The destination application which the message is intended for.
+    """
+    resource_type: ClassVar[str] = "MessageHeaderDestination"
+    endpoint: str = None
+    name: Optional[str] = None
+    receiver: Optional[fhirreference.FHIRReference] = None
+    target: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MessageHeaderDestination, self).elementProperties()
+        js.extend([
+            ("endpoint", "endpoint", str, False, None, True),
+            ("name", "name", str, False, None, False),
+            ("receiver", "receiver", fhirreference.FHIRReference, False, None, False),
+            ("target", "target", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -64,93 +151,6 @@ class MessageHeader(domainresource.DomainResource):
             ("responsible", "responsible", fhirreference.FHIRReference, False, None, False),
             ("sender", "sender", fhirreference.FHIRReference, False, None, False),
             ("source", "source", MessageHeaderSource, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MessageHeaderDestination(backboneelement.BackboneElement):
-    """ Message destination application(s).
-
-    The destination application which the message is intended for.
-    """
-    resource_type: ClassVar[str] = "MessageHeaderDestination"
-    endpoint: str = None
-    name: Optional[str] = None
-    receiver: Optional[fhirreference.FHIRReference] = None
-    target: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MessageHeaderDestination, self).elementProperties()
-        js.extend([
-            ("endpoint", "endpoint", str, False, None, True),
-            ("name", "name", str, False, None, False),
-            ("receiver", "receiver", fhirreference.FHIRReference, False, None, False),
-            ("target", "target", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MessageHeaderResponse(backboneelement.BackboneElement):
-    """ If this is a reply to prior message.
-
-    Information about the message that this message is a response to.  Only
-    present if this message is a response.
-    """
-    resource_type: ClassVar[str] = "MessageHeaderResponse"
-    code: str = None
-    details: Optional[fhirreference.FHIRReference] = None
-    identifier: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MessageHeaderResponse, self).elementProperties()
-        js.extend([
-            ("code", "code", str, False, None, True),
-            ("details", "details", fhirreference.FHIRReference, False, None, False),
-            ("identifier", "identifier", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class MessageHeaderSource(backboneelement.BackboneElement):
-    """ Message source application.
-
-    The source application from which this message originated.
-    """
-    resource_type: ClassVar[str] = "MessageHeaderSource"
-    contact: Optional[contactpoint.ContactPoint] = None
-    endpoint: str = None
-    name: Optional[str] = None
-    software: Optional[str] = None
-    version: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MessageHeaderSource, self).elementProperties()
-        js.extend([
-            ("contact", "contact", contactpoint.ContactPoint, False, None, False),
-            ("endpoint", "endpoint", str, False, None, True),
-            ("name", "name", str, False, None, False),
-            ("software", "software", str, False, None, False),
-            ("version", "version", str, False, None, False),
         ])
         return js
 

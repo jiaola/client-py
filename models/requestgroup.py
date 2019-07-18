@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -25,34 +25,20 @@ from . import range
 from . import relatedartifact
 from . import timing
 
-from . import domainresource
+from . import backboneelement
 
 @dataclass
-class RequestGroup(domainresource.DomainResource):
-    """ A group of related requests.
+class RequestGroupActionRelatedAction(backboneelement.BackboneElement):
+    """ Relationship to another action.
 
-    A group of related requests that can be used to capture intended activities
-    that have inter-dependencies such as "give this medication after that one".
+    A relationship to another action such as "before" or "30-60 minutes after
+    start of".
     """
-    resource_type: ClassVar[str] = "RequestGroup"
-    action: Optional[List[RequestGroupAction]] = empty_list()
-    author: Optional[fhirreference.FHIRReference] = None
-    authoredOn: Optional[fhirdate.FHIRDate] = None
-    basedOn: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    code: Optional[codeableconcept.CodeableConcept] = None
-    encounter: Optional[fhirreference.FHIRReference] = None
-    groupIdentifier: Optional[identifier.Identifier] = None
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    instantiatesCanonical: Optional[List[str]] = empty_list()
-    instantiatesUri: Optional[List[str]] = empty_list()
-    intent: str = None
-    note: Optional[List[annotation.Annotation]] = empty_list()
-    priority: Optional[str] = None
-    reasonCode: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    replaces: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    status: str = None
-    subject: Optional[fhirreference.FHIRReference] = None
+    resource_type: ClassVar[str] = "RequestGroupActionRelatedAction"
+    actionId: str = None
+    offsetDuration: Optional[duration.Duration] = None
+    offsetRange: Optional[range.Range] = None
+    relationship: str = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -61,30 +47,39 @@ class RequestGroup(domainresource.DomainResource):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(RequestGroup, self).elementProperties()
+        js = super(RequestGroupActionRelatedAction, self).elementProperties()
         js.extend([
-            ("action", "action", RequestGroupAction, True, None, False),
-            ("author", "author", fhirreference.FHIRReference, False, None, False),
-            ("authoredOn", "authoredOn", fhirdate.FHIRDate, False, None, False),
-            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
-            ("groupIdentifier", "groupIdentifier", identifier.Identifier, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
-            ("instantiatesUri", "instantiatesUri", str, True, None, False),
-            ("intent", "intent", str, False, None, True),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("priority", "priority", str, False, None, False),
-            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
-            ("replaces", "replaces", fhirreference.FHIRReference, True, None, False),
-            ("status", "status", str, False, None, True),
-            ("subject", "subject", fhirreference.FHIRReference, False, None, False),
+            ("actionId", "actionId", str, False, None, True),
+            ("offsetDuration", "offsetDuration", duration.Duration, False, "offset", False),
+            ("offsetRange", "offsetRange", range.Range, False, "offset", False),
+            ("relationship", "relationship", str, False, None, True),
         ])
         return js
 
-from . import backboneelement
+@dataclass
+class RequestGroupActionCondition(backboneelement.BackboneElement):
+    """ Whether or not the action is applicable.
+
+    An expression that describes applicability criteria, or start/stop
+    conditions for the action.
+    """
+    resource_type: ClassVar[str] = "RequestGroupActionCondition"
+    expression: Optional[expression.Expression] = None
+    kind: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(RequestGroupActionCondition, self).elementProperties()
+        js.extend([
+            ("expression", "expression", expression.Expression, False, None, False),
+            ("kind", "kind", str, False, None, True),
+        ])
+        return js
 
 @dataclass
 class RequestGroupAction(backboneelement.BackboneElement):
@@ -154,16 +149,34 @@ class RequestGroupAction(backboneelement.BackboneElement):
         ])
         return js
 
-@dataclass
-class RequestGroupActionCondition(backboneelement.BackboneElement):
-    """ Whether or not the action is applicable.
+from . import domainresource
 
-    An expression that describes applicability criteria, or start/stop
-    conditions for the action.
+@dataclass
+class RequestGroup(domainresource.DomainResource):
+    """ A group of related requests.
+
+    A group of related requests that can be used to capture intended activities
+    that have inter-dependencies such as "give this medication after that one".
     """
-    resource_type: ClassVar[str] = "RequestGroupActionCondition"
-    expression: Optional[expression.Expression] = None
-    kind: str = None
+    resource_type: ClassVar[str] = "RequestGroup"
+    action: Optional[List[RequestGroupAction]] = empty_list()
+    author: Optional[fhirreference.FHIRReference] = None
+    authoredOn: Optional[fhirdate.FHIRDate] = None
+    basedOn: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    code: Optional[codeableconcept.CodeableConcept] = None
+    encounter: Optional[fhirreference.FHIRReference] = None
+    groupIdentifier: Optional[identifier.Identifier] = None
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    instantiatesCanonical: Optional[List[str]] = empty_list()
+    instantiatesUri: Optional[List[str]] = empty_list()
+    intent: str = None
+    note: Optional[List[annotation.Annotation]] = empty_list()
+    priority: Optional[str] = None
+    reasonCode: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    replaces: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    status: str = None
+    subject: Optional[fhirreference.FHIRReference] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -172,39 +185,26 @@ class RequestGroupActionCondition(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(RequestGroupActionCondition, self).elementProperties()
+        js = super(RequestGroup, self).elementProperties()
         js.extend([
-            ("expression", "expression", expression.Expression, False, None, False),
-            ("kind", "kind", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class RequestGroupActionRelatedAction(backboneelement.BackboneElement):
-    """ Relationship to another action.
-
-    A relationship to another action such as "before" or "30-60 minutes after
-    start of".
-    """
-    resource_type: ClassVar[str] = "RequestGroupActionRelatedAction"
-    actionId: str = None
-    offsetDuration: Optional[duration.Duration] = None
-    offsetRange: Optional[range.Range] = None
-    relationship: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(RequestGroupActionRelatedAction, self).elementProperties()
-        js.extend([
-            ("actionId", "actionId", str, False, None, True),
-            ("offsetDuration", "offsetDuration", duration.Duration, False, "offset", False),
-            ("offsetRange", "offsetRange", range.Range, False, "offset", False),
-            ("relationship", "relationship", str, False, None, True),
+            ("action", "action", RequestGroupAction, True, None, False),
+            ("author", "author", fhirreference.FHIRReference, False, None, False),
+            ("authoredOn", "authoredOn", fhirdate.FHIRDate, False, None, False),
+            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
+            ("groupIdentifier", "groupIdentifier", identifier.Identifier, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
+            ("instantiatesUri", "instantiatesUri", str, True, None, False),
+            ("intent", "intent", str, False, None, True),
+            ("note", "note", annotation.Annotation, True, None, False),
+            ("priority", "priority", str, False, None, False),
+            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
+            ("replaces", "replaces", fhirreference.FHIRReference, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("subject", "subject", fhirreference.FHIRReference, False, None, False),
         ])
         return js
 

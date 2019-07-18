@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -27,6 +27,60 @@ from . import range
 from . import relatedartifact
 from . import timing
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class ActivityDefinitionParticipant(backboneelement.BackboneElement):
+    """ Who should participate in the action.
+
+    Indicates who should participate in performing the action described.
+    """
+    resource_type: ClassVar[str] = "ActivityDefinitionParticipant"
+    role: Optional[codeableconcept.CodeableConcept] = None
+    type: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ActivityDefinitionParticipant, self).elementProperties()
+        js.extend([
+            ("role", "role", codeableconcept.CodeableConcept, False, None, False),
+            ("type", "type", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ActivityDefinitionDynamicValue(backboneelement.BackboneElement):
+    """ Dynamic aspects of the definition.
+
+    Dynamic values that will be evaluated to produce values for elements of the
+    resulting resource. For example, if the dosage of a medication must be
+    computed based on the patient's weight, a dynamic value would be used to
+    specify an expression that calculated the weight, and the path on the
+    request resource that would contain the result.
+    """
+    resource_type: ClassVar[str] = "ActivityDefinitionDynamicValue"
+    expression:expression.Expression = None
+    path: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ActivityDefinitionDynamicValue, self).elementProperties()
+        js.extend([
+            ("expression", "expression", expression.Expression, False, None, True),
+            ("path", "path", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -156,60 +210,6 @@ class ActivityDefinition(domainresource.DomainResource):
             ("usage", "usage", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ActivityDefinitionDynamicValue(backboneelement.BackboneElement):
-    """ Dynamic aspects of the definition.
-
-    Dynamic values that will be evaluated to produce values for elements of the
-    resulting resource. For example, if the dosage of a medication must be
-    computed based on the patient's weight, a dynamic value would be used to
-    specify an expression that calculated the weight, and the path on the
-    request resource that would contain the result.
-    """
-    resource_type: ClassVar[str] = "ActivityDefinitionDynamicValue"
-    expression:expression.Expression = None
-    path: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ActivityDefinitionDynamicValue, self).elementProperties()
-        js.extend([
-            ("expression", "expression", expression.Expression, False, None, True),
-            ("path", "path", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ActivityDefinitionParticipant(backboneelement.BackboneElement):
-    """ Who should participate in the action.
-
-    Indicates who should participate in performing the action described.
-    """
-    resource_type: ClassVar[str] = "ActivityDefinitionParticipant"
-    role: Optional[codeableconcept.CodeableConcept] = None
-    type: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ActivityDefinitionParticipant, self).elementProperties()
-        js.extend([
-            ("role", "role", codeableconcept.CodeableConcept, False, None, False),
-            ("type", "type", str, False, None, True),
         ])
         return js
 

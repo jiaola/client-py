@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,32 @@ from . import money
 from . import period
 from . import quantity
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class ChargeItemPerformer(backboneelement.BackboneElement):
+    """ Who performed charged service.
+
+    Indicates who or what performed or participated in the charged service.
+    """
+    resource_type: ClassVar[str] = "ChargeItemPerformer"
+    actor:fhirreference.FHIRReference = None
+    function: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ChargeItemPerformer, self).elementProperties()
+        js.extend([
+            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
+            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -105,32 +131,6 @@ class ChargeItem(domainresource.DomainResource):
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("supportingInformation", "supportingInformation", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ChargeItemPerformer(backboneelement.BackboneElement):
-    """ Who performed charged service.
-
-    Indicates who or what performed or participated in the charged service.
-    """
-    resource_type: ClassVar[str] = "ChargeItemPerformer"
-    actor:fhirreference.FHIRReference = None
-    function: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ChargeItemPerformer, self).elementProperties()
-        js.extend([
-            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
-            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

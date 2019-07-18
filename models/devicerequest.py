@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceRequest) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceRequest) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,39 @@ from . import period
 from . import quantity
 from . import range
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class DeviceRequestParameter(backboneelement.BackboneElement):
+    """ Device details.
+
+    Specific parameters for the ordered item.  For example, the prism value for
+    lenses.
+    """
+    resource_type: ClassVar[str] = "DeviceRequestParameter"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    valueBoolean: Optional[bool] = None
+    valueCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    valueQuantity: Optional[quantity.Quantity] = None
+    valueRange: Optional[range.Range] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DeviceRequestParameter, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", False),
+            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
+            ("valueRange", "valueRange", range.Range, False, "value", False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -97,39 +130,6 @@ class DeviceRequest(domainresource.DomainResource):
             ("status", "status", str, False, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("supportingInfo", "supportingInfo", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class DeviceRequestParameter(backboneelement.BackboneElement):
-    """ Device details.
-
-    Specific parameters for the ordered item.  For example, the prism value for
-    lenses.
-    """
-    resource_type: ClassVar[str] = "DeviceRequestParameter"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    valueBoolean: Optional[bool] = None
-    valueCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    valueQuantity: Optional[quantity.Quantity] = None
-    valueRange: Optional[range.Range] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DeviceRequestParameter, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("valueBoolean", "valueBoolean", bool, False, "value", False),
-            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
-            ("valueRange", "valueRange", range.Range, False, "value", False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Measure) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Measure) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,150 @@ from . import identifier
 from . import period
 from . import relatedartifact
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class MeasureSupplementalData(backboneelement.BackboneElement):
+    """ What other data should be reported with the measure.
+
+    The supplemental data criteria for the measure report, specified as either
+    the name of a valid CQL expression within a referenced library, or a valid
+    FHIR Resource Path.
+    """
+    resource_type: ClassVar[str] = "MeasureSupplementalData"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    criteria:expression.Expression = None
+    description: Optional[str] = None
+    usage: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureSupplementalData, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("criteria", "criteria", expression.Expression, False, None, True),
+            ("description", "description", str, False, None, False),
+            ("usage", "usage", codeableconcept.CodeableConcept, True, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureGroupStratifierComponent(backboneelement.BackboneElement):
+    """ Stratifier criteria component for the measure.
+
+    A component of the stratifier criteria for the measure report, specified as
+    either the name of a valid CQL expression defined within a referenced
+    library or a valid FHIR Resource Path.
+    """
+    resource_type: ClassVar[str] = "MeasureGroupStratifierComponent"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    criteria:expression.Expression = None
+    description: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureGroupStratifierComponent, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("criteria", "criteria", expression.Expression, False, None, True),
+            ("description", "description", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureGroupStratifier(backboneelement.BackboneElement):
+    """ Stratifier criteria for the measure.
+
+    The stratifier criteria for the measure report, specified as either the
+    name of a valid CQL expression defined within a referenced library or a
+    valid FHIR Resource Path.
+    """
+    resource_type: ClassVar[str] = "MeasureGroupStratifier"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    component: Optional[List[MeasureGroupStratifierComponent]] = empty_list()
+    criteria: Optional[expression.Expression] = None
+    description: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureGroupStratifier, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("component", "component", MeasureGroupStratifierComponent, True, None, False),
+            ("criteria", "criteria", expression.Expression, False, None, False),
+            ("description", "description", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureGroupPopulation(backboneelement.BackboneElement):
+    """ Population criteria.
+
+    A population criteria for the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureGroupPopulation"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    criteria:expression.Expression = None
+    description: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureGroupPopulation, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("criteria", "criteria", expression.Expression, False, None, True),
+            ("description", "description", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureGroup(backboneelement.BackboneElement):
+    """ Population criteria group.
+
+    A group of population criteria for the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureGroup"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    description: Optional[str] = None
+    population: Optional[List[MeasureGroupPopulation]] = empty_list()
+    stratifier: Optional[List[MeasureGroupStratifier]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureGroup, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("population", "population", MeasureGroupPopulation, True, None, False),
+            ("stratifier", "stratifier", MeasureGroupStratifier, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -125,150 +269,6 @@ class Measure(domainresource.DomainResource):
             ("usage", "usage", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MeasureGroup(backboneelement.BackboneElement):
-    """ Population criteria group.
-
-    A group of population criteria for the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureGroup"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    description: Optional[str] = None
-    population: Optional[List[MeasureGroupPopulation]] = empty_list()
-    stratifier: Optional[List[MeasureGroupStratifier]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureGroup, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("population", "population", MeasureGroupPopulation, True, None, False),
-            ("stratifier", "stratifier", MeasureGroupStratifier, True, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureGroupPopulation(backboneelement.BackboneElement):
-    """ Population criteria.
-
-    A population criteria for the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureGroupPopulation"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    criteria:expression.Expression = None
-    description: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureGroupPopulation, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("criteria", "criteria", expression.Expression, False, None, True),
-            ("description", "description", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureGroupStratifier(backboneelement.BackboneElement):
-    """ Stratifier criteria for the measure.
-
-    The stratifier criteria for the measure report, specified as either the
-    name of a valid CQL expression defined within a referenced library or a
-    valid FHIR Resource Path.
-    """
-    resource_type: ClassVar[str] = "MeasureGroupStratifier"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    component: Optional[List[MeasureGroupStratifierComponent]] = empty_list()
-    criteria: Optional[expression.Expression] = None
-    description: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureGroupStratifier, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("component", "component", MeasureGroupStratifierComponent, True, None, False),
-            ("criteria", "criteria", expression.Expression, False, None, False),
-            ("description", "description", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureGroupStratifierComponent(backboneelement.BackboneElement):
-    """ Stratifier criteria component for the measure.
-
-    A component of the stratifier criteria for the measure report, specified as
-    either the name of a valid CQL expression defined within a referenced
-    library or a valid FHIR Resource Path.
-    """
-    resource_type: ClassVar[str] = "MeasureGroupStratifierComponent"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    criteria:expression.Expression = None
-    description: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureGroupStratifierComponent, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("criteria", "criteria", expression.Expression, False, None, True),
-            ("description", "description", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureSupplementalData(backboneelement.BackboneElement):
-    """ What other data should be reported with the measure.
-
-    The supplemental data criteria for the measure report, specified as either
-    the name of a valid CQL expression within a referenced library, or a valid
-    FHIR Resource Path.
-    """
-    resource_type: ClassVar[str] = "MeasureSupplementalData"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    criteria:expression.Expression = None
-    description: Optional[str] = None
-    usage: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureSupplementalData, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("criteria", "criteria", expression.Expression, False, None, True),
-            ("description", "description", str, False, None, False),
-            ("usage", "usage", codeableconcept.CodeableConcept, True, None, False),
         ])
         return js
 

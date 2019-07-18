@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductIndication) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductIndication) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,33 @@ from . import domainresource
 from . import fhirreference
 from . import population
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class MedicinalProductIndicationOtherTherapy(backboneelement.BackboneElement):
+    """ Information about the use of the medicinal product in relation to other
+    therapies described as part of the indication.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductIndicationOtherTherapy"
+    medicationCodeableConcept:codeableconcept.CodeableConcept = None
+    medicationReference:fhirreference.FHIRReference = None
+    therapyRelationshipType:codeableconcept.CodeableConcept = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicinalProductIndicationOtherTherapy, self).elementProperties()
+        js.extend([
+            ("medicationCodeableConcept", "medicationCodeableConcept", codeableconcept.CodeableConcept, False, "medication", True),
+            ("medicationReference", "medicationReference", fhirreference.FHIRReference, False, "medication", True),
+            ("therapyRelationshipType", "therapyRelationshipType", codeableconcept.CodeableConcept, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -54,33 +81,6 @@ class MedicinalProductIndication(domainresource.DomainResource):
             ("population", "population", population.Population, True, None, False),
             ("subject", "subject", fhirreference.FHIRReference, True, None, False),
             ("undesirableEffect", "undesirableEffect", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicinalProductIndicationOtherTherapy(backboneelement.BackboneElement):
-    """ Information about the use of the medicinal product in relation to other
-    therapies described as part of the indication.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductIndicationOtherTherapy"
-    medicationCodeableConcept:codeableconcept.CodeableConcept = None
-    medicationReference:fhirreference.FHIRReference = None
-    therapyRelationshipType:codeableconcept.CodeableConcept = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicinalProductIndicationOtherTherapy, self).elementProperties()
-        js.extend([
-            ("medicationCodeableConcept", "medicationCodeableConcept", codeableconcept.CodeableConcept, False, "medication", True),
-            ("medicationReference", "medicationReference", fhirreference.FHIRReference, False, "medication", True),
-            ("therapyRelationshipType", "therapyRelationshipType", codeableconcept.CodeableConcept, False, None, True),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,105 @@ from . import domainresource
 from . import fhirdate
 from . import fhirreference
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class ImagingStudySeriesPerformer(backboneelement.BackboneElement):
+    """ Who performed the series.
+
+    Indicates who or what performed the series and how they were involved.
+    """
+    resource_type: ClassVar[str] = "ImagingStudySeriesPerformer"
+    actor:fhirreference.FHIRReference = None
+    function: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImagingStudySeriesPerformer, self).elementProperties()
+        js.extend([
+            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
+            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ImagingStudySeriesInstance(backboneelement.BackboneElement):
+    """ A single SOP instance from the series.
+
+    A single SOP instance within the series, e.g. an image, or presentation
+    state.
+    """
+    resource_type: ClassVar[str] = "ImagingStudySeriesInstance"
+    number: Optional[int] = None
+    sopClass:coding.Coding = None
+    title: Optional[str] = None
+    uid: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImagingStudySeriesInstance, self).elementProperties()
+        js.extend([
+            ("number", "number", int, False, None, False),
+            ("sopClass", "sopClass", coding.Coding, False, None, True),
+            ("title", "title", str, False, None, False),
+            ("uid", "uid", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ImagingStudySeries(backboneelement.BackboneElement):
+    """ Each study has one or more series of instances.
+
+    Each study has one or more series of images or other content.
+    """
+    resource_type: ClassVar[str] = "ImagingStudySeries"
+    bodySite: Optional[coding.Coding] = None
+    description: Optional[str] = None
+    endpoint: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    instance: Optional[List[ImagingStudySeriesInstance]] = empty_list()
+    laterality: Optional[coding.Coding] = None
+    modality:coding.Coding = None
+    number: Optional[int] = None
+    numberOfInstances: Optional[int] = None
+    performer: Optional[List[ImagingStudySeriesPerformer]] = empty_list()
+    specimen: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    started: Optional[fhirdate.FHIRDate] = None
+    uid: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImagingStudySeries, self).elementProperties()
+        js.extend([
+            ("bodySite", "bodySite", coding.Coding, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("endpoint", "endpoint", fhirreference.FHIRReference, True, None, False),
+            ("instance", "instance", ImagingStudySeriesInstance, True, None, False),
+            ("laterality", "laterality", coding.Coding, False, None, False),
+            ("modality", "modality", coding.Coding, False, None, True),
+            ("number", "number", int, False, None, False),
+            ("numberOfInstances", "numberOfInstances", int, False, None, False),
+            ("performer", "performer", ImagingStudySeriesPerformer, True, None, False),
+            ("specimen", "specimen", fhirreference.FHIRReference, True, None, False),
+            ("started", "started", fhirdate.FHIRDate, False, None, False),
+            ("uid", "uid", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -83,105 +182,6 @@ class ImagingStudy(domainresource.DomainResource):
             ("started", "started", fhirdate.FHIRDate, False, None, False),
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ImagingStudySeries(backboneelement.BackboneElement):
-    """ Each study has one or more series of instances.
-
-    Each study has one or more series of images or other content.
-    """
-    resource_type: ClassVar[str] = "ImagingStudySeries"
-    bodySite: Optional[coding.Coding] = None
-    description: Optional[str] = None
-    endpoint: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    instance: Optional[List[ImagingStudySeriesInstance]] = empty_list()
-    laterality: Optional[coding.Coding] = None
-    modality:coding.Coding = None
-    number: Optional[int] = None
-    numberOfInstances: Optional[int] = None
-    performer: Optional[List[ImagingStudySeriesPerformer]] = empty_list()
-    specimen: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    started: Optional[fhirdate.FHIRDate] = None
-    uid: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImagingStudySeries, self).elementProperties()
-        js.extend([
-            ("bodySite", "bodySite", coding.Coding, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("endpoint", "endpoint", fhirreference.FHIRReference, True, None, False),
-            ("instance", "instance", ImagingStudySeriesInstance, True, None, False),
-            ("laterality", "laterality", coding.Coding, False, None, False),
-            ("modality", "modality", coding.Coding, False, None, True),
-            ("number", "number", int, False, None, False),
-            ("numberOfInstances", "numberOfInstances", int, False, None, False),
-            ("performer", "performer", ImagingStudySeriesPerformer, True, None, False),
-            ("specimen", "specimen", fhirreference.FHIRReference, True, None, False),
-            ("started", "started", fhirdate.FHIRDate, False, None, False),
-            ("uid", "uid", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ImagingStudySeriesInstance(backboneelement.BackboneElement):
-    """ A single SOP instance from the series.
-
-    A single SOP instance within the series, e.g. an image, or presentation
-    state.
-    """
-    resource_type: ClassVar[str] = "ImagingStudySeriesInstance"
-    number: Optional[int] = None
-    sopClass:coding.Coding = None
-    title: Optional[str] = None
-    uid: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImagingStudySeriesInstance, self).elementProperties()
-        js.extend([
-            ("number", "number", int, False, None, False),
-            ("sopClass", "sopClass", coding.Coding, False, None, True),
-            ("title", "title", str, False, None, False),
-            ("uid", "uid", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ImagingStudySeriesPerformer(backboneelement.BackboneElement):
-    """ Who performed the series.
-
-    Indicates who or what performed the series and how they were involved.
-    """
-    resource_type: ClassVar[str] = "ImagingStudySeriesPerformer"
-    actor:fhirreference.FHIRReference = None
-    function: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImagingStudySeriesPerformer, self).elementProperties()
-        js.extend([
-            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
-            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

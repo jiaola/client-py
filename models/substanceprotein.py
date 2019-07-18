@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceProtein) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceProtein) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -15,41 +15,6 @@ from . import backboneelement
 from . import codeableconcept
 from . import domainresource
 from . import identifier
-
-from . import domainresource
-
-@dataclass
-class SubstanceProtein(domainresource.DomainResource):
-    """ A SubstanceProtein is defined as a single unit of a linear amino acid
-    sequence, or a combination of subunits that are either covalently linked or
-    have a defined invariant stoichiometric relationship. This includes all
-    synthetic, recombinant and purified SubstanceProteins of defined sequence,
-    whether the use is therapeutic or prophylactic. This set of elements will
-    be used to describe albumins, coagulation factors, cytokines, growth
-    factors, peptide/SubstanceProtein hormones, enzymes, toxins, toxoids,
-    recombinant vaccines, and immunomodulators.
-    """
-    resource_type: ClassVar[str] = "SubstanceProtein"
-    disulfideLinkage: Optional[List[str]] = empty_list()
-    numberOfSubunits: Optional[int] = None
-    sequenceType: Optional[codeableconcept.CodeableConcept] = None
-    subunit: Optional[List[SubstanceProteinSubunit]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SubstanceProtein, self).elementProperties()
-        js.extend([
-            ("disulfideLinkage", "disulfideLinkage", str, True, None, False),
-            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
-            ("sequenceType", "sequenceType", codeableconcept.CodeableConcept, False, None, False),
-            ("subunit", "subunit", SubstanceProteinSubunit, True, None, False),
-        ])
-        return js
 
 from . import backboneelement
 
@@ -91,6 +56,41 @@ class SubstanceProteinSubunit(backboneelement.BackboneElement):
             ("sequence", "sequence", str, False, None, False),
             ("sequenceAttachment", "sequenceAttachment", attachment.Attachment, False, None, False),
             ("subunit", "subunit", int, False, None, False),
+        ])
+        return js
+
+from . import domainresource
+
+@dataclass
+class SubstanceProtein(domainresource.DomainResource):
+    """ A SubstanceProtein is defined as a single unit of a linear amino acid
+    sequence, or a combination of subunits that are either covalently linked or
+    have a defined invariant stoichiometric relationship. This includes all
+    synthetic, recombinant and purified SubstanceProteins of defined sequence,
+    whether the use is therapeutic or prophylactic. This set of elements will
+    be used to describe albumins, coagulation factors, cytokines, growth
+    factors, peptide/SubstanceProtein hormones, enzymes, toxins, toxoids,
+    recombinant vaccines, and immunomodulators.
+    """
+    resource_type: ClassVar[str] = "SubstanceProtein"
+    disulfideLinkage: Optional[List[str]] = empty_list()
+    numberOfSubunits: Optional[int] = None
+    sequenceType: Optional[codeableconcept.CodeableConcept] = None
+    subunit: Optional[List[SubstanceProteinSubunit]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SubstanceProtein, self).elementProperties()
+        js.extend([
+            ("disulfideLinkage", "disulfideLinkage", str, True, None, False),
+            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
+            ("sequenceType", "sequenceType", codeableconcept.CodeableConcept, False, None, False),
+            ("subunit", "subunit", SubstanceProteinSubunit, True, None, False),
         ])
         return js
 

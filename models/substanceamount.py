@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceAmount) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceAmount) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -15,6 +15,30 @@ from . import codeableconcept
 from . import element
 from . import quantity
 from . import range
+
+from . import element
+
+@dataclass
+class SubstanceAmountReferenceRange(element.Element):
+    """ Reference range of possible or expected values.
+    """
+    resource_type: ClassVar[str] = "SubstanceAmountReferenceRange"
+    highLimit: Optional[quantity.Quantity] = None
+    lowLimit: Optional[quantity.Quantity] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SubstanceAmountReferenceRange, self).elementProperties()
+        js.extend([
+            ("highLimit", "highLimit", quantity.Quantity, False, None, False),
+            ("lowLimit", "lowLimit", quantity.Quantity, False, None, False),
+        ])
+        return js
 
 from . import backboneelement
 
@@ -51,30 +75,6 @@ class SubstanceAmount(backboneelement.BackboneElement):
             ("amountText", "amountText", str, False, None, False),
             ("amountType", "amountType", codeableconcept.CodeableConcept, False, None, False),
             ("referenceRange", "referenceRange", SubstanceAmountReferenceRange, False, None, False),
-        ])
-        return js
-
-from . import element
-
-@dataclass
-class SubstanceAmountReferenceRange(element.Element):
-    """ Reference range of possible or expected values.
-    """
-    resource_type: ClassVar[str] = "SubstanceAmountReferenceRange"
-    highLimit: Optional[quantity.Quantity] = None
-    lowLimit: Optional[quantity.Quantity] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SubstanceAmountReferenceRange, self).elementProperties()
-        js.extend([
-            ("highLimit", "highLimit", quantity.Quantity, False, None, False),
-            ("lowLimit", "lowLimit", quantity.Quantity, False, None, False),
         ])
         return js
 

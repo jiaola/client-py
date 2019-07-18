@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,64 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class MedicationDispenseSubstitution(backboneelement.BackboneElement):
+    """ Whether a substitution was performed on the dispense.
+
+    Indicates whether or not substitution was made as part of the dispense.  In
+    some cases, substitution will be expected but does not happen, in other
+    cases substitution is not expected but does happen.  This block explains
+    what substitution did or did not happen and why.  If nothing is specified,
+    substitution was not done.
+    """
+    resource_type: ClassVar[str] = "MedicationDispenseSubstitution"
+    reason: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    responsibleParty: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    type: Optional[codeableconcept.CodeableConcept] = None
+    wasSubstituted: bool = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationDispenseSubstitution, self).elementProperties()
+        js.extend([
+            ("reason", "reason", codeableconcept.CodeableConcept, True, None, False),
+            ("responsibleParty", "responsibleParty", fhirreference.FHIRReference, True, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("wasSubstituted", "wasSubstituted", bool, False, None, True),
+        ])
+        return js
+
+@dataclass
+class MedicationDispensePerformer(backboneelement.BackboneElement):
+    """ Who performed event.
+
+    Indicates who or what performed the event.
+    """
+    resource_type: ClassVar[str] = "MedicationDispensePerformer"
+    actor:fhirreference.FHIRReference = None
+    function: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationDispensePerformer, self).elementProperties()
+        js.extend([
+            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
+            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -95,64 +153,6 @@ class MedicationDispense(domainresource.DomainResource):
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
             ("whenHandedOver", "whenHandedOver", fhirdate.FHIRDate, False, None, False),
             ("whenPrepared", "whenPrepared", fhirdate.FHIRDate, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicationDispensePerformer(backboneelement.BackboneElement):
-    """ Who performed event.
-
-    Indicates who or what performed the event.
-    """
-    resource_type: ClassVar[str] = "MedicationDispensePerformer"
-    actor:fhirreference.FHIRReference = None
-    function: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationDispensePerformer, self).elementProperties()
-        js.extend([
-            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
-            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MedicationDispenseSubstitution(backboneelement.BackboneElement):
-    """ Whether a substitution was performed on the dispense.
-
-    Indicates whether or not substitution was made as part of the dispense.  In
-    some cases, substitution will be expected but does not happen, in other
-    cases substitution is not expected but does happen.  This block explains
-    what substitution did or did not happen and why.  If nothing is specified,
-    substitution was not done.
-    """
-    resource_type: ClassVar[str] = "MedicationDispenseSubstitution"
-    reason: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    responsibleParty: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    type: Optional[codeableconcept.CodeableConcept] = None
-    wasSubstituted: bool = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationDispenseSubstitution, self).elementProperties()
-        js.extend([
-            ("reason", "reason", codeableconcept.CodeableConcept, True, None, False),
-            ("responsibleParty", "responsibleParty", fhirreference.FHIRReference, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-            ("wasSubstituted", "wasSubstituted", bool, False, None, True),
         ])
         return js
 

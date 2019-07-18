@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,60 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import range
+
+from . import backboneelement
+
+@dataclass
+class ProcedurePerformer(backboneelement.BackboneElement):
+    """ The people who performed the procedure.
+
+    Limited to "real" people rather than equipment.
+    """
+    resource_type: ClassVar[str] = "ProcedurePerformer"
+    actor:fhirreference.FHIRReference = None
+    function: Optional[codeableconcept.CodeableConcept] = None
+    onBehalfOf: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ProcedurePerformer, self).elementProperties()
+        js.extend([
+            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
+            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
+            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ProcedureFocalDevice(backboneelement.BackboneElement):
+    """ Manipulated, implanted, or removed device.
+
+    A device that is implanted, removed or otherwise manipulated (calibration,
+    battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as
+    a focal portion of the Procedure.
+    """
+    resource_type: ClassVar[str] = "ProcedureFocalDevice"
+    action: Optional[codeableconcept.CodeableConcept] = None
+    manipulated:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ProcedureFocalDevice, self).elementProperties()
+        js.extend([
+            ("action", "action", codeableconcept.CodeableConcept, False, None, False),
+            ("manipulated", "manipulated", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -106,60 +160,6 @@ class Procedure(domainresource.DomainResource):
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("usedCode", "usedCode", codeableconcept.CodeableConcept, True, None, False),
             ("usedReference", "usedReference", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ProcedureFocalDevice(backboneelement.BackboneElement):
-    """ Manipulated, implanted, or removed device.
-
-    A device that is implanted, removed or otherwise manipulated (calibration,
-    battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as
-    a focal portion of the Procedure.
-    """
-    resource_type: ClassVar[str] = "ProcedureFocalDevice"
-    action: Optional[codeableconcept.CodeableConcept] = None
-    manipulated:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ProcedureFocalDevice, self).elementProperties()
-        js.extend([
-            ("action", "action", codeableconcept.CodeableConcept, False, None, False),
-            ("manipulated", "manipulated", fhirreference.FHIRReference, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ProcedurePerformer(backboneelement.BackboneElement):
-    """ The people who performed the procedure.
-
-    Limited to "real" people rather than equipment.
-    """
-    resource_type: ClassVar[str] = "ProcedurePerformer"
-    actor:fhirreference.FHIRReference = None
-    function: Optional[codeableconcept.CodeableConcept] = None
-    onBehalfOf: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ProcedurePerformer, self).elementProperties()
-        js.extend([
-            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
-            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
-            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
         ])
         return js
 

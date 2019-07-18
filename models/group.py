@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Group) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Group) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,71 @@ from . import identifier
 from . import period
 from . import quantity
 from . import range
+
+from . import backboneelement
+
+@dataclass
+class GroupMember(backboneelement.BackboneElement):
+    """ Who or what is in group.
+
+    Identifies the resource instances that are members of the group.
+    """
+    resource_type: ClassVar[str] = "GroupMember"
+    entity:fhirreference.FHIRReference = None
+    inactive: Optional[bool] = None
+    period: Optional[period.Period] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(GroupMember, self).elementProperties()
+        js.extend([
+            ("entity", "entity", fhirreference.FHIRReference, False, None, True),
+            ("inactive", "inactive", bool, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+        ])
+        return js
+
+@dataclass
+class GroupCharacteristic(backboneelement.BackboneElement):
+    """ Include / Exclude group members by Trait.
+
+    Identifies traits whose presence r absence is shared by members of the
+    group.
+    """
+    resource_type: ClassVar[str] = "GroupCharacteristic"
+    code:codeableconcept.CodeableConcept = None
+    exclude: bool = None
+    period: Optional[period.Period] = None
+    valueBoolean: bool = None
+    valueCodeableConcept:codeableconcept.CodeableConcept = None
+    valueQuantity:quantity.Quantity = None
+    valueRange:range.Range = None
+    valueReference:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(GroupCharacteristic, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("exclude", "exclude", bool, False, None, True),
+            ("period", "period", period.Period, False, None, False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", True),
+            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", True),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
+            ("valueRange", "valueRange", range.Range, False, "value", True),
+            ("valueReference", "valueReference", fhirreference.FHIRReference, False, "value", True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -61,71 +126,6 @@ class Group(domainresource.DomainResource):
             ("name", "name", str, False, None, False),
             ("quantity", "quantity", int, False, None, False),
             ("type", "type", str, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class GroupCharacteristic(backboneelement.BackboneElement):
-    """ Include / Exclude group members by Trait.
-
-    Identifies traits whose presence r absence is shared by members of the
-    group.
-    """
-    resource_type: ClassVar[str] = "GroupCharacteristic"
-    code:codeableconcept.CodeableConcept = None
-    exclude: bool = None
-    period: Optional[period.Period] = None
-    valueBoolean: bool = None
-    valueCodeableConcept:codeableconcept.CodeableConcept = None
-    valueQuantity:quantity.Quantity = None
-    valueRange:range.Range = None
-    valueReference:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(GroupCharacteristic, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("exclude", "exclude", bool, False, None, True),
-            ("period", "period", period.Period, False, None, False),
-            ("valueBoolean", "valueBoolean", bool, False, "value", True),
-            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", True),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
-            ("valueRange", "valueRange", range.Range, False, "value", True),
-            ("valueReference", "valueReference", fhirreference.FHIRReference, False, "value", True),
-        ])
-        return js
-
-@dataclass
-class GroupMember(backboneelement.BackboneElement):
-    """ Who or what is in group.
-
-    Identifies the resource instances that are members of the group.
-    """
-    resource_type: ClassVar[str] = "GroupMember"
-    entity:fhirreference.FHIRReference = None
-    inactive: Optional[bool] = None
-    period: Optional[period.Period] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(GroupMember, self).elementProperties()
-        js.extend([
-            ("entity", "entity", fhirreference.FHIRReference, False, None, True),
-            ("inactive", "inactive", bool, False, None, False),
-            ("period", "period", period.Period, False, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,61 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import relatedartifact
+
+from . import backboneelement
+
+@dataclass
+class ResearchStudyObjective(backboneelement.BackboneElement):
+    """ A goal for the study.
+
+    A goal that the study is aiming to achieve in terms of a scientific
+    question to be answered by the analysis of data collected during the study.
+    """
+    resource_type: ClassVar[str] = "ResearchStudyObjective"
+    name: Optional[str] = None
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ResearchStudyObjective, self).elementProperties()
+        js.extend([
+            ("name", "name", str, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ResearchStudyArm(backboneelement.BackboneElement):
+    """ Defined path through the study for a subject.
+
+    Describes an expected sequence of events for one of the participants of a
+    study.  E.g. Exposure to drug A, wash-out, exposure to drug B, wash-out,
+    follow-up.
+    """
+    resource_type: ClassVar[str] = "ResearchStudyArm"
+    description: Optional[str] = None
+    name: str = None
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ResearchStudyArm, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("name", "name", str, False, None, True),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -92,61 +147,6 @@ class ResearchStudy(domainresource.DomainResource):
             ("sponsor", "sponsor", fhirreference.FHIRReference, False, None, False),
             ("status", "status", str, False, None, True),
             ("title", "title", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ResearchStudyArm(backboneelement.BackboneElement):
-    """ Defined path through the study for a subject.
-
-    Describes an expected sequence of events for one of the participants of a
-    study.  E.g. Exposure to drug A, wash-out, exposure to drug B, wash-out,
-    follow-up.
-    """
-    resource_type: ClassVar[str] = "ResearchStudyArm"
-    description: Optional[str] = None
-    name: str = None
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ResearchStudyArm, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("name", "name", str, False, None, True),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ResearchStudyObjective(backboneelement.BackboneElement):
-    """ A goal for the study.
-
-    A goal that the study is aiming to achieve in terms of a scientific
-    question to be answered by the analysis of data collected during the study.
-    """
-    resource_type: ClassVar[str] = "ResearchStudyObjective"
-    name: Optional[str] = None
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ResearchStudyObjective, self).elementProperties()
-        js.extend([
-            ("name", "name", str, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

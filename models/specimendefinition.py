@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SpecimenDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SpecimenDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,57 +19,20 @@ from . import identifier
 from . import quantity
 from . import range
 
-from . import domainresource
-
-@dataclass
-class SpecimenDefinition(domainresource.DomainResource):
-    """ Kind of specimen.
-
-    A kind of specimen with associated set of requirements.
-    """
-    resource_type: ClassVar[str] = "SpecimenDefinition"
-    collection: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    identifier: Optional[identifier.Identifier] = None
-    patientPreparation: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    timeAspect: Optional[str] = None
-    typeCollected: Optional[codeableconcept.CodeableConcept] = None
-    typeTested: Optional[List[SpecimenDefinitionTypeTested]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SpecimenDefinition, self).elementProperties()
-        js.extend([
-            ("collection", "collection", codeableconcept.CodeableConcept, True, None, False),
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("patientPreparation", "patientPreparation", codeableconcept.CodeableConcept, True, None, False),
-            ("timeAspect", "timeAspect", str, False, None, False),
-            ("typeCollected", "typeCollected", codeableconcept.CodeableConcept, False, None, False),
-            ("typeTested", "typeTested", SpecimenDefinitionTypeTested, True, None, False),
-        ])
-        return js
-
 from . import backboneelement
 
 @dataclass
-class SpecimenDefinitionTypeTested(backboneelement.BackboneElement):
-    """ Specimen in container intended for testing by lab.
+class SpecimenDefinitionTypeTestedHandling(backboneelement.BackboneElement):
+    """ Specimen handling before testing.
 
-    Specimen conditioned in a container as expected by the testing laboratory.
+    Set of instructions for preservation/transport of the specimen at a defined
+    temperature interval, prior the testing process.
     """
-    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTested"
-    container: Optional[SpecimenDefinitionTypeTestedContainer] = None
-    handling: Optional[List[SpecimenDefinitionTypeTestedHandling]] = empty_list()
-    isDerived: Optional[bool] = None
-    preference: str = None
-    rejectionCriterion: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    requirement: Optional[str] = None
-    retentionTime: Optional[duration.Duration] = None
-    type: Optional[codeableconcept.CodeableConcept] = None
+    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedHandling"
+    instruction: Optional[str] = None
+    maxDuration: Optional[duration.Duration] = None
+    temperatureQualifier: Optional[codeableconcept.CodeableConcept] = None
+    temperatureRange: Optional[range.Range] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -78,16 +41,37 @@ class SpecimenDefinitionTypeTested(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(SpecimenDefinitionTypeTested, self).elementProperties()
+        js = super(SpecimenDefinitionTypeTestedHandling, self).elementProperties()
         js.extend([
-            ("container", "container", SpecimenDefinitionTypeTestedContainer, False, None, False),
-            ("handling", "handling", SpecimenDefinitionTypeTestedHandling, True, None, False),
-            ("isDerived", "isDerived", bool, False, None, False),
-            ("preference", "preference", str, False, None, True),
-            ("rejectionCriterion", "rejectionCriterion", codeableconcept.CodeableConcept, True, None, False),
-            ("requirement", "requirement", str, False, None, False),
-            ("retentionTime", "retentionTime", duration.Duration, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("instruction", "instruction", str, False, None, False),
+            ("maxDuration", "maxDuration", duration.Duration, False, None, False),
+            ("temperatureQualifier", "temperatureQualifier", codeableconcept.CodeableConcept, False, None, False),
+            ("temperatureRange", "temperatureRange", range.Range, False, None, False),
+        ])
+        return js
+
+@dataclass
+class SpecimenDefinitionTypeTestedContainerAdditive(backboneelement.BackboneElement):
+    """ Additive associated with container.
+
+    Substance introduced in the kind of container to preserve, maintain or
+    enhance the specimen. Examples: Formalin, Citrate, EDTA.
+    """
+    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedContainerAdditive"
+    additiveCodeableConcept:codeableconcept.CodeableConcept = None
+    additiveReference:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SpecimenDefinitionTypeTestedContainerAdditive, self).elementProperties()
+        js.extend([
+            ("additiveCodeableConcept", "additiveCodeableConcept", codeableconcept.CodeableConcept, False, "additive", True),
+            ("additiveReference", "additiveReference", fhirreference.FHIRReference, False, "additive", True),
         ])
         return js
 
@@ -128,15 +112,20 @@ class SpecimenDefinitionTypeTestedContainer(backboneelement.BackboneElement):
         return js
 
 @dataclass
-class SpecimenDefinitionTypeTestedContainerAdditive(backboneelement.BackboneElement):
-    """ Additive associated with container.
+class SpecimenDefinitionTypeTested(backboneelement.BackboneElement):
+    """ Specimen in container intended for testing by lab.
 
-    Substance introduced in the kind of container to preserve, maintain or
-    enhance the specimen. Examples: Formalin, Citrate, EDTA.
+    Specimen conditioned in a container as expected by the testing laboratory.
     """
-    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedContainerAdditive"
-    additiveCodeableConcept:codeableconcept.CodeableConcept = None
-    additiveReference:fhirreference.FHIRReference = None
+    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTested"
+    container: Optional[SpecimenDefinitionTypeTestedContainer] = None
+    handling: Optional[List[SpecimenDefinitionTypeTestedHandling]] = empty_list()
+    isDerived: Optional[bool] = None
+    preference: str = None
+    rejectionCriterion: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    requirement: Optional[str] = None
+    retentionTime: Optional[duration.Duration] = None
+    type: Optional[codeableconcept.CodeableConcept] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -145,25 +134,34 @@ class SpecimenDefinitionTypeTestedContainerAdditive(backboneelement.BackboneElem
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(SpecimenDefinitionTypeTestedContainerAdditive, self).elementProperties()
+        js = super(SpecimenDefinitionTypeTested, self).elementProperties()
         js.extend([
-            ("additiveCodeableConcept", "additiveCodeableConcept", codeableconcept.CodeableConcept, False, "additive", True),
-            ("additiveReference", "additiveReference", fhirreference.FHIRReference, False, "additive", True),
+            ("container", "container", SpecimenDefinitionTypeTestedContainer, False, None, False),
+            ("handling", "handling", SpecimenDefinitionTypeTestedHandling, True, None, False),
+            ("isDerived", "isDerived", bool, False, None, False),
+            ("preference", "preference", str, False, None, True),
+            ("rejectionCriterion", "rejectionCriterion", codeableconcept.CodeableConcept, True, None, False),
+            ("requirement", "requirement", str, False, None, False),
+            ("retentionTime", "retentionTime", duration.Duration, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 
-@dataclass
-class SpecimenDefinitionTypeTestedHandling(backboneelement.BackboneElement):
-    """ Specimen handling before testing.
+from . import domainresource
 
-    Set of instructions for preservation/transport of the specimen at a defined
-    temperature interval, prior the testing process.
+@dataclass
+class SpecimenDefinition(domainresource.DomainResource):
+    """ Kind of specimen.
+
+    A kind of specimen with associated set of requirements.
     """
-    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedHandling"
-    instruction: Optional[str] = None
-    maxDuration: Optional[duration.Duration] = None
-    temperatureQualifier: Optional[codeableconcept.CodeableConcept] = None
-    temperatureRange: Optional[range.Range] = None
+    resource_type: ClassVar[str] = "SpecimenDefinition"
+    collection: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    identifier: Optional[identifier.Identifier] = None
+    patientPreparation: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    timeAspect: Optional[str] = None
+    typeCollected: Optional[codeableconcept.CodeableConcept] = None
+    typeTested: Optional[List[SpecimenDefinitionTypeTested]] = empty_list()
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -172,12 +170,14 @@ class SpecimenDefinitionTypeTestedHandling(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(SpecimenDefinitionTypeTestedHandling, self).elementProperties()
+        js = super(SpecimenDefinition, self).elementProperties()
         js.extend([
-            ("instruction", "instruction", str, False, None, False),
-            ("maxDuration", "maxDuration", duration.Duration, False, None, False),
-            ("temperatureQualifier", "temperatureQualifier", codeableconcept.CodeableConcept, False, None, False),
-            ("temperatureRange", "temperatureRange", range.Range, False, None, False),
+            ("collection", "collection", codeableconcept.CodeableConcept, True, None, False),
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("patientPreparation", "patientPreparation", codeableconcept.CodeableConcept, True, None, False),
+            ("timeAspect", "timeAspect", str, False, None, False),
+            ("typeCollected", "typeCollected", codeableconcept.CodeableConcept, False, None, False),
+            ("typeTested", "typeTested", SpecimenDefinitionTypeTested, True, None, False),
         ])
         return js
 

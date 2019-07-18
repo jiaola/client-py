@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Immunization) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Immunization) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,123 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class ImmunizationReaction(backboneelement.BackboneElement):
+    """ Details of a reaction that follows immunization.
+
+    Categorical data indicating that an adverse event is associated in time to
+    an immunization.
+    """
+    resource_type: ClassVar[str] = "ImmunizationReaction"
+    date: Optional[fhirdate.FHIRDate] = None
+    detail: Optional[fhirreference.FHIRReference] = None
+    reported: Optional[bool] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImmunizationReaction, self).elementProperties()
+        js.extend([
+            ("date", "date", fhirdate.FHIRDate, False, None, False),
+            ("detail", "detail", fhirreference.FHIRReference, False, None, False),
+            ("reported", "reported", bool, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ImmunizationProtocolApplied(backboneelement.BackboneElement):
+    """ Protocol followed by the provider.
+
+    The protocol (set of recommendations) being followed by the provider who
+    administered the dose.
+    """
+    resource_type: ClassVar[str] = "ImmunizationProtocolApplied"
+    authority: Optional[fhirreference.FHIRReference] = None
+    doseNumberPositiveInt: int = None
+    doseNumberString: str = None
+    series: Optional[str] = None
+    seriesDosesPositiveInt: Optional[int] = None
+    seriesDosesString: Optional[str] = None
+    targetDisease: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImmunizationProtocolApplied, self).elementProperties()
+        js.extend([
+            ("authority", "authority", fhirreference.FHIRReference, False, None, False),
+            ("doseNumberPositiveInt", "doseNumberPositiveInt", int, False, "doseNumber", True),
+            ("doseNumberString", "doseNumberString", str, False, "doseNumber", True),
+            ("series", "series", str, False, None, False),
+            ("seriesDosesPositiveInt", "seriesDosesPositiveInt", int, False, "seriesDoses", False),
+            ("seriesDosesString", "seriesDosesString", str, False, "seriesDoses", False),
+            ("targetDisease", "targetDisease", codeableconcept.CodeableConcept, True, None, False),
+        ])
+        return js
+
+@dataclass
+class ImmunizationPerformer(backboneelement.BackboneElement):
+    """ Who performed event.
+
+    Indicates who performed the immunization event.
+    """
+    resource_type: ClassVar[str] = "ImmunizationPerformer"
+    actor:fhirreference.FHIRReference = None
+    function: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImmunizationPerformer, self).elementProperties()
+        js.extend([
+            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
+            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ImmunizationEducation(backboneelement.BackboneElement):
+    """ Educational material presented to patient.
+
+    Educational material presented to the patient (or guardian) at the time of
+    vaccine administration.
+    """
+    resource_type: ClassVar[str] = "ImmunizationEducation"
+    documentType: Optional[str] = None
+    presentationDate: Optional[fhirdate.FHIRDate] = None
+    publicationDate: Optional[fhirdate.FHIRDate] = None
+    reference: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ImmunizationEducation, self).elementProperties()
+        js.extend([
+            ("documentType", "documentType", str, False, None, False),
+            ("presentationDate", "presentationDate", fhirdate.FHIRDate, False, None, False),
+            ("publicationDate", "publicationDate", fhirdate.FHIRDate, False, None, False),
+            ("reference", "reference", str, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -97,123 +214,6 @@ class Immunization(domainresource.DomainResource):
             ("statusReason", "statusReason", codeableconcept.CodeableConcept, False, None, False),
             ("subpotentReason", "subpotentReason", codeableconcept.CodeableConcept, True, None, False),
             ("vaccineCode", "vaccineCode", codeableconcept.CodeableConcept, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ImmunizationEducation(backboneelement.BackboneElement):
-    """ Educational material presented to patient.
-
-    Educational material presented to the patient (or guardian) at the time of
-    vaccine administration.
-    """
-    resource_type: ClassVar[str] = "ImmunizationEducation"
-    documentType: Optional[str] = None
-    presentationDate: Optional[fhirdate.FHIRDate] = None
-    publicationDate: Optional[fhirdate.FHIRDate] = None
-    reference: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImmunizationEducation, self).elementProperties()
-        js.extend([
-            ("documentType", "documentType", str, False, None, False),
-            ("presentationDate", "presentationDate", fhirdate.FHIRDate, False, None, False),
-            ("publicationDate", "publicationDate", fhirdate.FHIRDate, False, None, False),
-            ("reference", "reference", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ImmunizationPerformer(backboneelement.BackboneElement):
-    """ Who performed event.
-
-    Indicates who performed the immunization event.
-    """
-    resource_type: ClassVar[str] = "ImmunizationPerformer"
-    actor:fhirreference.FHIRReference = None
-    function: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImmunizationPerformer, self).elementProperties()
-        js.extend([
-            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
-            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ImmunizationProtocolApplied(backboneelement.BackboneElement):
-    """ Protocol followed by the provider.
-
-    The protocol (set of recommendations) being followed by the provider who
-    administered the dose.
-    """
-    resource_type: ClassVar[str] = "ImmunizationProtocolApplied"
-    authority: Optional[fhirreference.FHIRReference] = None
-    doseNumberPositiveInt: int = None
-    doseNumberString: str = None
-    series: Optional[str] = None
-    seriesDosesPositiveInt: Optional[int] = None
-    seriesDosesString: Optional[str] = None
-    targetDisease: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImmunizationProtocolApplied, self).elementProperties()
-        js.extend([
-            ("authority", "authority", fhirreference.FHIRReference, False, None, False),
-            ("doseNumberPositiveInt", "doseNumberPositiveInt", int, False, "doseNumber", True),
-            ("doseNumberString", "doseNumberString", str, False, "doseNumber", True),
-            ("series", "series", str, False, None, False),
-            ("seriesDosesPositiveInt", "seriesDosesPositiveInt", int, False, "seriesDoses", False),
-            ("seriesDosesString", "seriesDosesString", str, False, "seriesDoses", False),
-            ("targetDisease", "targetDisease", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-@dataclass
-class ImmunizationReaction(backboneelement.BackboneElement):
-    """ Details of a reaction that follows immunization.
-
-    Categorical data indicating that an adverse event is associated in time to
-    an immunization.
-    """
-    resource_type: ClassVar[str] = "ImmunizationReaction"
-    date: Optional[fhirdate.FHIRDate] = None
-    detail: Optional[fhirreference.FHIRReference] = None
-    reported: Optional[bool] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ImmunizationReaction, self).elementProperties()
-        js.extend([
-            ("date", "date", fhirdate.FHIRDate, False, None, False),
-            ("detail", "detail", fhirreference.FHIRReference, False, None, False),
-            ("reported", "reported", bool, False, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,43 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import range
+
+from . import backboneelement
+
+@dataclass
+class AllergyIntoleranceReaction(backboneelement.BackboneElement):
+    """ Adverse Reaction Events linked to exposure to substance.
+
+    Details about each adverse reaction event linked to exposure to the
+    identified substance.
+    """
+    resource_type: ClassVar[str] = "AllergyIntoleranceReaction"
+    description: Optional[str] = None
+    exposureRoute: Optional[codeableconcept.CodeableConcept] = None
+    manifestation: List[codeableconcept.CodeableConcept] = empty_list()
+    note: Optional[List[annotation.Annotation]] = empty_list()
+    onset: Optional[fhirdate.FHIRDate] = None
+    severity: Optional[str] = None
+    substance: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(AllergyIntoleranceReaction, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("exposureRoute", "exposureRoute", codeableconcept.CodeableConcept, False, None, False),
+            ("manifestation", "manifestation", codeableconcept.CodeableConcept, True, None, True),
+            ("note", "note", annotation.Annotation, True, None, False),
+            ("onset", "onset", fhirdate.FHIRDate, False, None, False),
+            ("severity", "severity", str, False, None, False),
+            ("substance", "substance", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -81,43 +118,6 @@ class AllergyIntolerance(domainresource.DomainResource):
             ("recorder", "recorder", fhirreference.FHIRReference, False, None, False),
             ("type", "type", str, False, None, False),
             ("verificationStatus", "verificationStatus", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class AllergyIntoleranceReaction(backboneelement.BackboneElement):
-    """ Adverse Reaction Events linked to exposure to substance.
-
-    Details about each adverse reaction event linked to exposure to the
-    identified substance.
-    """
-    resource_type: ClassVar[str] = "AllergyIntoleranceReaction"
-    description: Optional[str] = None
-    exposureRoute: Optional[codeableconcept.CodeableConcept] = None
-    manifestation: List[codeableconcept.CodeableConcept] = empty_list()
-    note: Optional[List[annotation.Annotation]] = empty_list()
-    onset: Optional[fhirdate.FHIRDate] = None
-    severity: Optional[str] = None
-    substance: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(AllergyIntoleranceReaction, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("exposureRoute", "exposureRoute", codeableconcept.CodeableConcept, False, None, False),
-            ("manifestation", "manifestation", codeableconcept.CodeableConcept, True, None, True),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("onset", "onset", fhirdate.FHIRDate, False, None, False),
-            ("severity", "severity", str, False, None, False),
-            ("substance", "substance", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

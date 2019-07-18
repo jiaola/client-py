@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,32 @@ from . import domainresource
 from . import fhirdate
 from . import fhirreference
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class DocumentManifestRelated(backboneelement.BackboneElement):
+    """ Related things.
+
+    Related identifiers or resources associated with the DocumentManifest.
+    """
+    resource_type: ClassVar[str] = "DocumentManifestRelated"
+    identifier: Optional[identifier.Identifier] = None
+    ref: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DocumentManifestRelated, self).elementProperties()
+        js.extend([
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("ref", "ref", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -61,32 +87,6 @@ class DocumentManifest(domainresource.DomainResource):
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class DocumentManifestRelated(backboneelement.BackboneElement):
-    """ Related things.
-
-    Related identifiers or resources associated with the DocumentManifest.
-    """
-    resource_type: ClassVar[str] = "DocumentManifestRelated"
-    identifier: Optional[identifier.Identifier] = None
-    ref: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DocumentManifestRelated, self).elementProperties()
-        js.extend([
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("ref", "ref", fhirreference.FHIRReference, False, None, False),
         ])
         return js
 

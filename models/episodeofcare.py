@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,58 @@ from . import domainresource
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class EpisodeOfCareStatusHistory(backboneelement.BackboneElement):
+    """ Past list of status codes (the current status may be included to cover the
+    start date of the status).
+
+    The history of statuses that the EpisodeOfCare has been through (without
+    requiring processing the history of the resource).
+    """
+    resource_type: ClassVar[str] = "EpisodeOfCareStatusHistory"
+    period:period.Period = None
+    status: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EpisodeOfCareStatusHistory, self).elementProperties()
+        js.extend([
+            ("period", "period", period.Period, False, None, True),
+            ("status", "status", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class EpisodeOfCareDiagnosis(backboneelement.BackboneElement):
+    """ The list of diagnosis relevant to this episode of care.
+    """
+    resource_type: ClassVar[str] = "EpisodeOfCareDiagnosis"
+    condition:fhirreference.FHIRReference = None
+    rank: Optional[int] = None
+    role: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EpisodeOfCareDiagnosis, self).elementProperties()
+        js.extend([
+            ("condition", "condition", fhirreference.FHIRReference, False, None, True),
+            ("rank", "rank", int, False, None, False),
+            ("role", "role", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -65,58 +117,6 @@ class EpisodeOfCare(domainresource.DomainResource):
             ("statusHistory", "statusHistory", EpisodeOfCareStatusHistory, True, None, False),
             ("team", "team", fhirreference.FHIRReference, True, None, False),
             ("type", "type", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class EpisodeOfCareDiagnosis(backboneelement.BackboneElement):
-    """ The list of diagnosis relevant to this episode of care.
-    """
-    resource_type: ClassVar[str] = "EpisodeOfCareDiagnosis"
-    condition:fhirreference.FHIRReference = None
-    rank: Optional[int] = None
-    role: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EpisodeOfCareDiagnosis, self).elementProperties()
-        js.extend([
-            ("condition", "condition", fhirreference.FHIRReference, False, None, True),
-            ("rank", "rank", int, False, None, False),
-            ("role", "role", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class EpisodeOfCareStatusHistory(backboneelement.BackboneElement):
-    """ Past list of status codes (the current status may be included to cover the
-    start date of the status).
-
-    The history of statuses that the EpisodeOfCare has been through (without
-    requiring processing the history of the resource).
-    """
-    resource_type: ClassVar[str] = "EpisodeOfCareStatusHistory"
-    period:period.Period = None
-    status: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EpisodeOfCareStatusHistory, self).elementProperties()
-        js.extend([
-            ("period", "period", period.Period, False, None, True),
-            ("status", "status", str, False, None, True),
         ])
         return js
 

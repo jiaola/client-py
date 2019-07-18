@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,63 @@ from . import domainresource
 from . import fhirdate
 from . import identifier
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class MessageDefinitionFocus(backboneelement.BackboneElement):
+    """ Resource(s) that are the subject of the event.
+
+    Identifies the resource (or resources) that are being addressed by the
+    event.  For example, the Encounter for an admit message or two Account
+    records for a merge.
+    """
+    resource_type: ClassVar[str] = "MessageDefinitionFocus"
+    code: str = None
+    max: Optional[str] = None
+    min: int = None
+    profile: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MessageDefinitionFocus, self).elementProperties()
+        js.extend([
+            ("code", "code", str, False, None, True),
+            ("max", "max", str, False, None, False),
+            ("min", "min", int, False, None, True),
+            ("profile", "profile", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MessageDefinitionAllowedResponse(backboneelement.BackboneElement):
+    """ Responses to this message.
+
+    Indicates what types of messages may be sent as an application-level
+    response to this message.
+    """
+    resource_type: ClassVar[str] = "MessageDefinitionAllowedResponse"
+    message: str = None
+    situation: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MessageDefinitionAllowedResponse, self).elementProperties()
+        js.extend([
+            ("message", "message", str, False, None, True),
+            ("situation", "situation", str, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -91,63 +148,6 @@ class MessageDefinition(domainresource.DomainResource):
             ("url", "url", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MessageDefinitionAllowedResponse(backboneelement.BackboneElement):
-    """ Responses to this message.
-
-    Indicates what types of messages may be sent as an application-level
-    response to this message.
-    """
-    resource_type: ClassVar[str] = "MessageDefinitionAllowedResponse"
-    message: str = None
-    situation: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MessageDefinitionAllowedResponse, self).elementProperties()
-        js.extend([
-            ("message", "message", str, False, None, True),
-            ("situation", "situation", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MessageDefinitionFocus(backboneelement.BackboneElement):
-    """ Resource(s) that are the subject of the event.
-
-    Identifies the resource (or resources) that are being addressed by the
-    event.  For example, the Encounter for an admit message or two Account
-    records for a merge.
-    """
-    resource_type: ClassVar[str] = "MessageDefinitionFocus"
-    code: str = None
-    max: Optional[str] = None
-    min: int = None
-    profile: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MessageDefinitionFocus, self).elementProperties()
-        js.extend([
-            ("code", "code", str, False, None, True),
-            ("max", "max", str, False, None, False),
-            ("min", "min", int, False, None, True),
-            ("profile", "profile", str, False, None, False),
         ])
         return js
 

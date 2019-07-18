@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Dosage) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Dosage) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,40 @@ from . import quantity
 from . import range
 from . import ratio
 from . import timing
+
+from . import element
+
+@dataclass
+class DosageDoseAndRate(element.Element):
+    """ Amount of medication administered.
+
+    The amount of medication administered.
+    """
+    resource_type: ClassVar[str] = "DosageDoseAndRate"
+    doseQuantity: Optional[quantity.Quantity] = None
+    doseRange: Optional[range.Range] = None
+    rateQuantity: Optional[quantity.Quantity] = None
+    rateRange: Optional[range.Range] = None
+    rateRatio: Optional[ratio.Ratio] = None
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DosageDoseAndRate, self).elementProperties()
+        js.extend([
+            ("doseQuantity", "doseQuantity", quantity.Quantity, False, "dose", False),
+            ("doseRange", "doseRange", range.Range, False, "dose", False),
+            ("rateQuantity", "rateQuantity", quantity.Quantity, False, "rate", False),
+            ("rateRange", "rateRange", range.Range, False, "rate", False),
+            ("rateRatio", "rateRatio", ratio.Ratio, False, "rate", False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import backboneelement
 
@@ -66,40 +100,6 @@ class Dosage(backboneelement.BackboneElement):
             ("site", "site", codeableconcept.CodeableConcept, False, None, False),
             ("text", "text", str, False, None, False),
             ("timing", "timing", timing.Timing, False, None, False),
-        ])
-        return js
-
-from . import element
-
-@dataclass
-class DosageDoseAndRate(element.Element):
-    """ Amount of medication administered.
-
-    The amount of medication administered.
-    """
-    resource_type: ClassVar[str] = "DosageDoseAndRate"
-    doseQuantity: Optional[quantity.Quantity] = None
-    doseRange: Optional[range.Range] = None
-    rateQuantity: Optional[quantity.Quantity] = None
-    rateRange: Optional[range.Range] = None
-    rateRatio: Optional[ratio.Ratio] = None
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DosageDoseAndRate, self).elementProperties()
-        js.extend([
-            ("doseQuantity", "doseQuantity", quantity.Quantity, False, "dose", False),
-            ("doseRange", "doseRange", range.Range, False, "dose", False),
-            ("rateQuantity", "rateQuantity", quantity.Quantity, False, "rate", False),
-            ("rateRange", "rateRange", range.Range, False, "rate", False),
-            ("rateRatio", "rateRatio", ratio.Ratio, False, "rate", False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

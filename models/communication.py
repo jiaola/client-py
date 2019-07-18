@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,34 @@ from . import domainresource
 from . import fhirdate
 from . import fhirreference
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class CommunicationPayload(backboneelement.BackboneElement):
+    """ Message payload.
+
+    Text, attachment(s), or resource(s) that was communicated to the recipient.
+    """
+    resource_type: ClassVar[str] = "CommunicationPayload"
+    contentAttachment:attachment.Attachment = None
+    contentReference:fhirreference.FHIRReference = None
+    contentString: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CommunicationPayload, self).elementProperties()
+        js.extend([
+            ("contentAttachment", "contentAttachment", attachment.Attachment, False, "content", True),
+            ("contentReference", "contentReference", fhirreference.FHIRReference, False, "content", True),
+            ("contentString", "contentString", str, False, "content", True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -86,34 +114,6 @@ class Communication(domainresource.DomainResource):
             ("statusReason", "statusReason", codeableconcept.CodeableConcept, False, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
             ("topic", "topic", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CommunicationPayload(backboneelement.BackboneElement):
-    """ Message payload.
-
-    Text, attachment(s), or resource(s) that was communicated to the recipient.
-    """
-    resource_type: ClassVar[str] = "CommunicationPayload"
-    contentAttachment:attachment.Attachment = None
-    contentReference:fhirreference.FHIRReference = None
-    contentString: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CommunicationPayload, self).elementProperties()
-        js.extend([
-            ("contentAttachment", "contentAttachment", attachment.Attachment, False, "content", True),
-            ("contentReference", "contentReference", fhirreference.FHIRReference, False, "content", True),
-            ("contentString", "contentString", str, False, "content", True),
         ])
         return js
 

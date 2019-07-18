@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Observation) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Observation) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -23,6 +23,97 @@ from . import range
 from . import ratio
 from . import sampleddata
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class ObservationReferenceRange(backboneelement.BackboneElement):
+    """ Provides guide for interpretation.
+
+    Guidance on how to interpret the value by comparison to a normal or
+    recommended range.  Multiple reference ranges are interpreted as an "OR".
+    In other words, to represent two distinct target populations, two
+    `referenceRange` elements would be used.
+    """
+    resource_type: ClassVar[str] = "ObservationReferenceRange"
+    age: Optional[range.Range] = None
+    appliesTo: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    high: Optional[quantity.Quantity] = None
+    low: Optional[quantity.Quantity] = None
+    text: Optional[str] = None
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ObservationReferenceRange, self).elementProperties()
+        js.extend([
+            ("age", "age", range.Range, False, None, False),
+            ("appliesTo", "appliesTo", codeableconcept.CodeableConcept, True, None, False),
+            ("high", "high", quantity.Quantity, False, None, False),
+            ("low", "low", quantity.Quantity, False, None, False),
+            ("text", "text", str, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ObservationComponent(backboneelement.BackboneElement):
+    """ Component results.
+
+    Some observations have multiple component observations.  These component
+    observations are expressed as separate code value pairs that share the same
+    attributes.  Examples include systolic and diastolic component observations
+    for blood pressure measurement and multiple component observations for
+    genetics observations.
+    """
+    resource_type: ClassVar[str] = "ObservationComponent"
+    code:codeableconcept.CodeableConcept = None
+    dataAbsentReason: Optional[codeableconcept.CodeableConcept] = None
+    interpretation: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    referenceRange: Optional[List[ObservationReferenceRange]] = empty_list()
+    valueBoolean: Optional[bool] = None
+    valueCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    valueDateTime: Optional[fhirdate.FHIRDate] = None
+    valueInteger: Optional[int] = None
+    valuePeriod: Optional[period.Period] = None
+    valueQuantity: Optional[quantity.Quantity] = None
+    valueRange: Optional[range.Range] = None
+    valueRatio: Optional[ratio.Ratio] = None
+    valueSampledData: Optional[sampleddata.SampledData] = None
+    valueString: Optional[str] = None
+    valueTime: Optional[fhirdate.FHIRDate] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ObservationComponent, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("dataAbsentReason", "dataAbsentReason", codeableconcept.CodeableConcept, False, None, False),
+            ("interpretation", "interpretation", codeableconcept.CodeableConcept, True, None, False),
+            ("referenceRange", "referenceRange", ObservationReferenceRange, True, None, False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", False),
+            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
+            ("valueDateTime", "valueDateTime", fhirdate.FHIRDate, False, "value", False),
+            ("valueInteger", "valueInteger", int, False, "value", False),
+            ("valuePeriod", "valuePeriod", period.Period, False, "value", False),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
+            ("valueRange", "valueRange", range.Range, False, "value", False),
+            ("valueRatio", "valueRatio", ratio.Ratio, False, "value", False),
+            ("valueSampledData", "valueSampledData", sampleddata.SampledData, False, "value", False),
+            ("valueString", "valueString", str, False, "value", False),
+            ("valueTime", "valueTime", fhirdate.FHIRDate, False, "value", False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -118,97 +209,6 @@ class Observation(domainresource.DomainResource):
             ("valueSampledData", "valueSampledData", sampleddata.SampledData, False, "value", False),
             ("valueString", "valueString", str, False, "value", False),
             ("valueTime", "valueTime", fhirdate.FHIRDate, False, "value", False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ObservationComponent(backboneelement.BackboneElement):
-    """ Component results.
-
-    Some observations have multiple component observations.  These component
-    observations are expressed as separate code value pairs that share the same
-    attributes.  Examples include systolic and diastolic component observations
-    for blood pressure measurement and multiple component observations for
-    genetics observations.
-    """
-    resource_type: ClassVar[str] = "ObservationComponent"
-    code:codeableconcept.CodeableConcept = None
-    dataAbsentReason: Optional[codeableconcept.CodeableConcept] = None
-    interpretation: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    referenceRange: Optional[List[ObservationReferenceRange]] = empty_list()
-    valueBoolean: Optional[bool] = None
-    valueCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    valueDateTime: Optional[fhirdate.FHIRDate] = None
-    valueInteger: Optional[int] = None
-    valuePeriod: Optional[period.Period] = None
-    valueQuantity: Optional[quantity.Quantity] = None
-    valueRange: Optional[range.Range] = None
-    valueRatio: Optional[ratio.Ratio] = None
-    valueSampledData: Optional[sampleddata.SampledData] = None
-    valueString: Optional[str] = None
-    valueTime: Optional[fhirdate.FHIRDate] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ObservationComponent, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("dataAbsentReason", "dataAbsentReason", codeableconcept.CodeableConcept, False, None, False),
-            ("interpretation", "interpretation", codeableconcept.CodeableConcept, True, None, False),
-            ("referenceRange", "referenceRange", ObservationReferenceRange, True, None, False),
-            ("valueBoolean", "valueBoolean", bool, False, "value", False),
-            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
-            ("valueDateTime", "valueDateTime", fhirdate.FHIRDate, False, "value", False),
-            ("valueInteger", "valueInteger", int, False, "value", False),
-            ("valuePeriod", "valuePeriod", period.Period, False, "value", False),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
-            ("valueRange", "valueRange", range.Range, False, "value", False),
-            ("valueRatio", "valueRatio", ratio.Ratio, False, "value", False),
-            ("valueSampledData", "valueSampledData", sampleddata.SampledData, False, "value", False),
-            ("valueString", "valueString", str, False, "value", False),
-            ("valueTime", "valueTime", fhirdate.FHIRDate, False, "value", False),
-        ])
-        return js
-
-@dataclass
-class ObservationReferenceRange(backboneelement.BackboneElement):
-    """ Provides guide for interpretation.
-
-    Guidance on how to interpret the value by comparison to a normal or
-    recommended range.  Multiple reference ranges are interpreted as an "OR".
-    In other words, to represent two distinct target populations, two
-    `referenceRange` elements would be used.
-    """
-    resource_type: ClassVar[str] = "ObservationReferenceRange"
-    age: Optional[range.Range] = None
-    appliesTo: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    high: Optional[quantity.Quantity] = None
-    low: Optional[quantity.Quantity] = None
-    text: Optional[str] = None
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ObservationReferenceRange, self).elementProperties()
-        js.extend([
-            ("age", "age", range.Range, False, None, False),
-            ("appliesTo", "appliesTo", codeableconcept.CodeableConcept, True, None, False),
-            ("high", "high", quantity.Quantity, False, None, False),
-            ("low", "low", quantity.Quantity, False, None, False),
-            ("text", "text", str, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

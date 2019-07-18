@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,84 +19,7 @@ from . import fhirreference
 from . import identifier
 from . import quantity
 
-from . import domainresource
-
-@dataclass
-class QuestionnaireResponse(domainresource.DomainResource):
-    """ A structured set of questions and their answers.
-
-    A structured set of questions and their answers. The questions are ordered
-    and grouped into coherent subsets, corresponding to the structure of the
-    grouping of the questionnaire being responded to.
-    """
-    resource_type: ClassVar[str] = "QuestionnaireResponse"
-    author: Optional[fhirreference.FHIRReference] = None
-    authored: Optional[fhirdate.FHIRDate] = None
-    basedOn: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    encounter: Optional[fhirreference.FHIRReference] = None
-    identifier: Optional[identifier.Identifier] = None
-    item: Optional[List[QuestionnaireResponseItem]] = empty_list()
-    partOf: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    questionnaire: Optional[str] = None
-    source: Optional[fhirreference.FHIRReference] = None
-    status: str = None
-    subject: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(QuestionnaireResponse, self).elementProperties()
-        js.extend([
-            ("author", "author", fhirreference.FHIRReference, False, None, False),
-            ("authored", "authored", fhirdate.FHIRDate, False, None, False),
-            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
-            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("item", "item", QuestionnaireResponseItem, True, None, False),
-            ("partOf", "partOf", fhirreference.FHIRReference, True, None, False),
-            ("questionnaire", "questionnaire", str, False, None, False),
-            ("source", "source", fhirreference.FHIRReference, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("subject", "subject", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
 from . import backboneelement
-
-@dataclass
-class QuestionnaireResponseItem(backboneelement.BackboneElement):
-    """ Groups and questions.
-
-    A group or question item from the original questionnaire for which answers
-    are provided.
-    """
-    resource_type: ClassVar[str] = "QuestionnaireResponseItem"
-    answer: Optional[List[QuestionnaireResponseItemAnswer]] = empty_list()
-    definition: Optional[str] = None
-    item: Optional[List[QuestionnaireResponseItem]] = empty_list()
-    linkId: str = None
-    text: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(QuestionnaireResponseItem, self).elementProperties()
-        js.extend([
-            ("answer", "answer", QuestionnaireResponseItemAnswer, True, None, False),
-            ("definition", "definition", str, False, None, False),
-            ("item", "item", QuestionnaireResponseItem, True, None, False),
-            ("linkId", "linkId", str, False, None, True),
-            ("text", "text", str, False, None, False),
-        ])
-        return js
 
 @dataclass
 class QuestionnaireResponseItemAnswer(backboneelement.BackboneElement):
@@ -141,6 +64,83 @@ class QuestionnaireResponseItemAnswer(backboneelement.BackboneElement):
             ("valueString", "valueString", str, False, "value", False),
             ("valueTime", "valueTime", fhirdate.FHIRDate, False, "value", False),
             ("valueUri", "valueUri", str, False, "value", False),
+        ])
+        return js
+
+@dataclass
+class QuestionnaireResponseItem(backboneelement.BackboneElement):
+    """ Groups and questions.
+
+    A group or question item from the original questionnaire for which answers
+    are provided.
+    """
+    resource_type: ClassVar[str] = "QuestionnaireResponseItem"
+    answer: Optional[List[QuestionnaireResponseItemAnswer]] = empty_list()
+    definition: Optional[str] = None
+    item: Optional[List[QuestionnaireResponseItem]] = empty_list()
+    linkId: str = None
+    text: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(QuestionnaireResponseItem, self).elementProperties()
+        js.extend([
+            ("answer", "answer", QuestionnaireResponseItemAnswer, True, None, False),
+            ("definition", "definition", str, False, None, False),
+            ("item", "item", QuestionnaireResponseItem, True, None, False),
+            ("linkId", "linkId", str, False, None, True),
+            ("text", "text", str, False, None, False),
+        ])
+        return js
+
+from . import domainresource
+
+@dataclass
+class QuestionnaireResponse(domainresource.DomainResource):
+    """ A structured set of questions and their answers.
+
+    A structured set of questions and their answers. The questions are ordered
+    and grouped into coherent subsets, corresponding to the structure of the
+    grouping of the questionnaire being responded to.
+    """
+    resource_type: ClassVar[str] = "QuestionnaireResponse"
+    author: Optional[fhirreference.FHIRReference] = None
+    authored: Optional[fhirdate.FHIRDate] = None
+    basedOn: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    encounter: Optional[fhirreference.FHIRReference] = None
+    identifier: Optional[identifier.Identifier] = None
+    item: Optional[List[QuestionnaireResponseItem]] = empty_list()
+    partOf: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    questionnaire: Optional[str] = None
+    source: Optional[fhirreference.FHIRReference] = None
+    status: str = None
+    subject: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(QuestionnaireResponse, self).elementProperties()
+        js.extend([
+            ("author", "author", fhirreference.FHIRReference, False, None, False),
+            ("authored", "authored", fhirdate.FHIRDate, False, None, False),
+            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
+            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("item", "item", QuestionnaireResponseItem, True, None, False),
+            ("partOf", "partOf", fhirreference.FHIRReference, True, None, False),
+            ("questionnaire", "questionnaire", str, False, None, False),
+            ("source", "source", fhirreference.FHIRReference, False, None, False),
+            ("status", "status", str, False, None, True),
+            ("subject", "subject", fhirreference.FHIRReference, False, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Parameters) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Parameters) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -43,32 +43,6 @@ from . import signature
 from . import timing
 from . import triggerdefinition
 from . import usagecontext
-
-from . import resource
-
-@dataclass
-class Parameters(resource.Resource):
-    """ Operation Request or Response.
-
-    This resource is a non-persisted resource used to pass information into and
-    back from an [operation](operations.html). It has no other use, and there
-    is no RESTful endpoint associated with it.
-    """
-    resource_type: ClassVar[str] = "Parameters"
-    parameter: Optional[List[ParametersParameter]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(Parameters, self).elementProperties()
-        js.extend([
-            ("parameter", "parameter", ParametersParameter, True, None, False),
-        ])
-        return js
 
 from . import backboneelement
 
@@ -193,6 +167,32 @@ class ParametersParameter(backboneelement.BackboneElement):
             ("valueUrl", "valueUrl", str, False, "value", False),
             ("valueUsageContext", "valueUsageContext", usagecontext.UsageContext, False, "value", False),
             ("valueUuid", "valueUuid", str, False, "value", False),
+        ])
+        return js
+
+from . import resource
+
+@dataclass
+class Parameters(resource.Resource):
+    """ Operation Request or Response.
+
+    This resource is a non-persisted resource used to pass information into and
+    back from an [operation](operations.html). It has no other use, and there
+    is no RESTful endpoint associated with it.
+    """
+    resource_type: ClassVar[str] = "Parameters"
+    parameter: Optional[List[ParametersParameter]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(Parameters, self).elementProperties()
+        js.extend([
+            ("parameter", "parameter", ParametersParameter, True, None, False),
         ])
         return js
 

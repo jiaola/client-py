@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,37 @@ from . import domainresource
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class CareTeamParticipant(backboneelement.BackboneElement):
+    """ Members of the team.
+
+    Identifies all people and organizations who are expected to be involved in
+    the care team.
+    """
+    resource_type: ClassVar[str] = "CareTeamParticipant"
+    member: Optional[fhirreference.FHIRReference] = None
+    onBehalfOf: Optional[fhirreference.FHIRReference] = None
+    period: Optional[period.Period] = None
+    role: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CareTeamParticipant, self).elementProperties()
+        js.extend([
+            ("member", "member", fhirreference.FHIRReference, False, None, False),
+            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+            ("role", "role", codeableconcept.CodeableConcept, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -66,37 +97,6 @@ class CareTeam(domainresource.DomainResource):
             ("status", "status", str, False, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CareTeamParticipant(backboneelement.BackboneElement):
-    """ Members of the team.
-
-    Identifies all people and organizations who are expected to be involved in
-    the care team.
-    """
-    resource_type: ClassVar[str] = "CareTeamParticipant"
-    member: Optional[fhirreference.FHIRReference] = None
-    onBehalfOf: Optional[fhirreference.FHIRReference] = None
-    period: Optional[period.Period] = None
-    role: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CareTeamParticipant, self).elementProperties()
-        js.extend([
-            ("member", "member", fhirreference.FHIRReference, False, None, False),
-            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
-            ("period", "period", period.Period, False, None, False),
-            ("role", "role", codeableconcept.CodeableConcept, True, None, False),
         ])
         return js
 

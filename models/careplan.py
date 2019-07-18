@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,102 @@ from . import identifier
 from . import period
 from . import quantity
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class CarePlanActivityDetail(backboneelement.BackboneElement):
+    """ In-line definition of activity.
+
+    A simple summary of a planned activity suitable for a general care plan
+    system (e.g. form driven) that doesn't know about specific resources such
+    as procedure etc.
+    """
+    resource_type: ClassVar[str] = "CarePlanActivityDetail"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    dailyAmount: Optional[quantity.Quantity] = None
+    description: Optional[str] = None
+    doNotPerform: Optional[bool] = None
+    goal: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    instantiatesCanonical: Optional[List[str]] = empty_list()
+    instantiatesUri: Optional[List[str]] = empty_list()
+    kind: Optional[str] = None
+    location: Optional[fhirreference.FHIRReference] = None
+    performer: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    productCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    productReference: Optional[fhirreference.FHIRReference] = None
+    quantity: Optional[quantity.Quantity] = None
+    reasonCode: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    scheduledPeriod: Optional[period.Period] = None
+    scheduledString: Optional[str] = None
+    scheduledTiming: Optional[timing.Timing] = None
+    status: str = None
+    statusReason: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CarePlanActivityDetail, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("dailyAmount", "dailyAmount", quantity.Quantity, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("doNotPerform", "doNotPerform", bool, False, None, False),
+            ("goal", "goal", fhirreference.FHIRReference, True, None, False),
+            ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
+            ("instantiatesUri", "instantiatesUri", str, True, None, False),
+            ("kind", "kind", str, False, None, False),
+            ("location", "location", fhirreference.FHIRReference, False, None, False),
+            ("performer", "performer", fhirreference.FHIRReference, True, None, False),
+            ("productCodeableConcept", "productCodeableConcept", codeableconcept.CodeableConcept, False, "product", False),
+            ("productReference", "productReference", fhirreference.FHIRReference, False, "product", False),
+            ("quantity", "quantity", quantity.Quantity, False, None, False),
+            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
+            ("scheduledPeriod", "scheduledPeriod", period.Period, False, "scheduled", False),
+            ("scheduledString", "scheduledString", str, False, "scheduled", False),
+            ("scheduledTiming", "scheduledTiming", timing.Timing, False, "scheduled", False),
+            ("status", "status", str, False, None, True),
+            ("statusReason", "statusReason", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class CarePlanActivity(backboneelement.BackboneElement):
+    """ Action to occur as part of plan.
+
+    Identifies a planned action to occur as part of the plan.  For example, a
+    medication to be used, lab tests to perform, self-monitoring, education,
+    etc.
+    """
+    resource_type: ClassVar[str] = "CarePlanActivity"
+    detail: Optional[CarePlanActivityDetail] = None
+    outcomeCodeableConcept: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    outcomeReference: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    progress: Optional[List[annotation.Annotation]] = empty_list()
+    reference: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CarePlanActivity, self).elementProperties()
+        js.extend([
+            ("detail", "detail", CarePlanActivityDetail, False, None, False),
+            ("outcomeCodeableConcept", "outcomeCodeableConcept", codeableconcept.CodeableConcept, True, None, False),
+            ("outcomeReference", "outcomeReference", fhirreference.FHIRReference, True, None, False),
+            ("progress", "progress", annotation.Annotation, True, None, False),
+            ("reference", "reference", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -88,102 +184,6 @@ class CarePlan(domainresource.DomainResource):
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("supportingInfo", "supportingInfo", fhirreference.FHIRReference, True, None, False),
             ("title", "title", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CarePlanActivity(backboneelement.BackboneElement):
-    """ Action to occur as part of plan.
-
-    Identifies a planned action to occur as part of the plan.  For example, a
-    medication to be used, lab tests to perform, self-monitoring, education,
-    etc.
-    """
-    resource_type: ClassVar[str] = "CarePlanActivity"
-    detail: Optional[CarePlanActivityDetail] = None
-    outcomeCodeableConcept: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    outcomeReference: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    progress: Optional[List[annotation.Annotation]] = empty_list()
-    reference: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CarePlanActivity, self).elementProperties()
-        js.extend([
-            ("detail", "detail", CarePlanActivityDetail, False, None, False),
-            ("outcomeCodeableConcept", "outcomeCodeableConcept", codeableconcept.CodeableConcept, True, None, False),
-            ("outcomeReference", "outcomeReference", fhirreference.FHIRReference, True, None, False),
-            ("progress", "progress", annotation.Annotation, True, None, False),
-            ("reference", "reference", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
-@dataclass
-class CarePlanActivityDetail(backboneelement.BackboneElement):
-    """ In-line definition of activity.
-
-    A simple summary of a planned activity suitable for a general care plan
-    system (e.g. form driven) that doesn't know about specific resources such
-    as procedure etc.
-    """
-    resource_type: ClassVar[str] = "CarePlanActivityDetail"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    dailyAmount: Optional[quantity.Quantity] = None
-    description: Optional[str] = None
-    doNotPerform: Optional[bool] = None
-    goal: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    instantiatesCanonical: Optional[List[str]] = empty_list()
-    instantiatesUri: Optional[List[str]] = empty_list()
-    kind: Optional[str] = None
-    location: Optional[fhirreference.FHIRReference] = None
-    performer: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    productCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    productReference: Optional[fhirreference.FHIRReference] = None
-    quantity: Optional[quantity.Quantity] = None
-    reasonCode: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    scheduledPeriod: Optional[period.Period] = None
-    scheduledString: Optional[str] = None
-    scheduledTiming: Optional[timing.Timing] = None
-    status: str = None
-    statusReason: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CarePlanActivityDetail, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("dailyAmount", "dailyAmount", quantity.Quantity, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("doNotPerform", "doNotPerform", bool, False, None, False),
-            ("goal", "goal", fhirreference.FHIRReference, True, None, False),
-            ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
-            ("instantiatesUri", "instantiatesUri", str, True, None, False),
-            ("kind", "kind", str, False, None, False),
-            ("location", "location", fhirreference.FHIRReference, False, None, False),
-            ("performer", "performer", fhirreference.FHIRReference, True, None, False),
-            ("productCodeableConcept", "productCodeableConcept", codeableconcept.CodeableConcept, False, "product", False),
-            ("productReference", "productReference", fhirreference.FHIRReference, False, "product", False),
-            ("quantity", "quantity", quantity.Quantity, False, None, False),
-            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
-            ("scheduledPeriod", "scheduledPeriod", period.Period, False, "scheduled", False),
-            ("scheduledString", "scheduledString", str, False, "scheduled", False),
-            ("scheduledTiming", "scheduledTiming", timing.Timing, False, "scheduled", False),
-            ("status", "status", str, False, None, True),
-            ("statusReason", "statusReason", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

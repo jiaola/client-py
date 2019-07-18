@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,34 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class DiagnosticReportMedia(backboneelement.BackboneElement):
+    """ Key images associated with this report.
+
+    A list of key images associated with this report. The images are generally
+    created during the diagnostic process, and may be directly of the patient,
+    or of treated specimens (i.e. slides of interest).
+    """
+    resource_type: ClassVar[str] = "DiagnosticReportMedia"
+    comment: Optional[str] = None
+    link:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DiagnosticReportMedia, self).elementProperties()
+        js.extend([
+            ("comment", "comment", str, False, None, False),
+            ("link", "link", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -81,34 +109,6 @@ class DiagnosticReport(domainresource.DomainResource):
             ("specimen", "specimen", fhirreference.FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class DiagnosticReportMedia(backboneelement.BackboneElement):
-    """ Key images associated with this report.
-
-    A list of key images associated with this report. The images are generally
-    created during the diagnostic process, and may be directly of the patient,
-    or of treated specimens (i.e. slides of interest).
-    """
-    resource_type: ClassVar[str] = "DiagnosticReportMedia"
-    comment: Optional[str] = None
-    link:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DiagnosticReportMedia, self).elementProperties()
-        js.extend([
-            ("comment", "comment", str, False, None, False),
-            ("link", "link", fhirreference.FHIRReference, False, None, True),
         ])
         return js
 

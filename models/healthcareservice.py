@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,86 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class HealthcareServiceNotAvailable(backboneelement.BackboneElement):
+    """ Not available during this time due to provided reason.
+
+    The HealthcareService is not available during this period of time due to
+    the provided reason.
+    """
+    resource_type: ClassVar[str] = "HealthcareServiceNotAvailable"
+    description: str = None
+    during: Optional[period.Period] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(HealthcareServiceNotAvailable, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, True),
+            ("during", "during", period.Period, False, None, False),
+        ])
+        return js
+
+@dataclass
+class HealthcareServiceEligibility(backboneelement.BackboneElement):
+    """ Specific eligibility requirements required to use the service.
+
+    Does this service have specific eligibility requirements that need to be
+    met in order to use the service?
+    """
+    resource_type: ClassVar[str] = "HealthcareServiceEligibility"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    comment: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(HealthcareServiceEligibility, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("comment", "comment", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class HealthcareServiceAvailableTime(backboneelement.BackboneElement):
+    """ Times the Service Site is available.
+
+    A collection of times that the Service Site is available.
+    """
+    resource_type: ClassVar[str] = "HealthcareServiceAvailableTime"
+    allDay: Optional[bool] = None
+    availableEndTime: Optional[fhirdate.FHIRDate] = None
+    availableStartTime: Optional[fhirdate.FHIRDate] = None
+    daysOfWeek: Optional[List[str]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(HealthcareServiceAvailableTime, self).elementProperties()
+        js.extend([
+            ("allDay", "allDay", bool, False, None, False),
+            ("availableEndTime", "availableEndTime", fhirdate.FHIRDate, False, None, False),
+            ("availableStartTime", "availableStartTime", fhirdate.FHIRDate, False, None, False),
+            ("daysOfWeek", "daysOfWeek", str, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -85,86 +165,6 @@ class HealthcareService(domainresource.DomainResource):
             ("specialty", "specialty", codeableconcept.CodeableConcept, True, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
             ("type", "type", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class HealthcareServiceAvailableTime(backboneelement.BackboneElement):
-    """ Times the Service Site is available.
-
-    A collection of times that the Service Site is available.
-    """
-    resource_type: ClassVar[str] = "HealthcareServiceAvailableTime"
-    allDay: Optional[bool] = None
-    availableEndTime: Optional[fhirdate.FHIRDate] = None
-    availableStartTime: Optional[fhirdate.FHIRDate] = None
-    daysOfWeek: Optional[List[str]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(HealthcareServiceAvailableTime, self).elementProperties()
-        js.extend([
-            ("allDay", "allDay", bool, False, None, False),
-            ("availableEndTime", "availableEndTime", fhirdate.FHIRDate, False, None, False),
-            ("availableStartTime", "availableStartTime", fhirdate.FHIRDate, False, None, False),
-            ("daysOfWeek", "daysOfWeek", str, True, None, False),
-        ])
-        return js
-
-@dataclass
-class HealthcareServiceEligibility(backboneelement.BackboneElement):
-    """ Specific eligibility requirements required to use the service.
-
-    Does this service have specific eligibility requirements that need to be
-    met in order to use the service?
-    """
-    resource_type: ClassVar[str] = "HealthcareServiceEligibility"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    comment: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(HealthcareServiceEligibility, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("comment", "comment", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class HealthcareServiceNotAvailable(backboneelement.BackboneElement):
-    """ Not available during this time due to provided reason.
-
-    The HealthcareService is not available during this period of time due to
-    the provided reason.
-    """
-    resource_type: ClassVar[str] = "HealthcareServiceNotAvailable"
-    description: str = None
-    during: Optional[period.Period] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(HealthcareServiceNotAvailable, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, True),
-            ("during", "during", period.Period, False, None, False),
         ])
         return js
 

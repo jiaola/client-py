@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductAuthorization) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductAuthorization) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,64 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class MedicinalProductAuthorizationProcedure(backboneelement.BackboneElement):
+    """ The regulatory procedure for granting or amending a marketing authorization.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductAuthorizationProcedure"
+    application: Optional[List[MedicinalProductAuthorizationProcedure]] = empty_list()
+    dateDateTime: Optional[fhirdate.FHIRDate] = None
+    datePeriod: Optional[period.Period] = None
+    identifier: Optional[identifier.Identifier] = None
+    type:codeableconcept.CodeableConcept = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicinalProductAuthorizationProcedure, self).elementProperties()
+        js.extend([
+            ("application", "application", MedicinalProductAuthorizationProcedure, True, None, False),
+            ("dateDateTime", "dateDateTime", fhirdate.FHIRDate, False, "date", False),
+            ("datePeriod", "datePeriod", period.Period, False, "date", False),
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, True),
+        ])
+        return js
+
+@dataclass
+class MedicinalProductAuthorizationJurisdictionalAuthorization(backboneelement.BackboneElement):
+    """ Authorization in areas within a country.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductAuthorizationJurisdictionalAuthorization"
+    country: Optional[codeableconcept.CodeableConcept] = None
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    jurisdiction: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    legalStatusOfSupply: Optional[codeableconcept.CodeableConcept] = None
+    validityPeriod: Optional[period.Period] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicinalProductAuthorizationJurisdictionalAuthorization, self).elementProperties()
+        js.extend([
+            ("country", "country", codeableconcept.CodeableConcept, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("jurisdiction", "jurisdiction", codeableconcept.CodeableConcept, True, None, False),
+            ("legalStatusOfSupply", "legalStatusOfSupply", codeableconcept.CodeableConcept, False, None, False),
+            ("validityPeriod", "validityPeriod", period.Period, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -67,64 +125,6 @@ class MedicinalProductAuthorization(domainresource.DomainResource):
             ("statusDate", "statusDate", fhirdate.FHIRDate, False, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
             ("validityPeriod", "validityPeriod", period.Period, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicinalProductAuthorizationJurisdictionalAuthorization(backboneelement.BackboneElement):
-    """ Authorization in areas within a country.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductAuthorizationJurisdictionalAuthorization"
-    country: Optional[codeableconcept.CodeableConcept] = None
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    jurisdiction: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    legalStatusOfSupply: Optional[codeableconcept.CodeableConcept] = None
-    validityPeriod: Optional[period.Period] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicinalProductAuthorizationJurisdictionalAuthorization, self).elementProperties()
-        js.extend([
-            ("country", "country", codeableconcept.CodeableConcept, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("jurisdiction", "jurisdiction", codeableconcept.CodeableConcept, True, None, False),
-            ("legalStatusOfSupply", "legalStatusOfSupply", codeableconcept.CodeableConcept, False, None, False),
-            ("validityPeriod", "validityPeriod", period.Period, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MedicinalProductAuthorizationProcedure(backboneelement.BackboneElement):
-    """ The regulatory procedure for granting or amending a marketing authorization.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductAuthorizationProcedure"
-    application: Optional[List[MedicinalProductAuthorizationProcedure]] = empty_list()
-    dateDateTime: Optional[fhirdate.FHIRDate] = None
-    datePeriod: Optional[period.Period] = None
-    identifier: Optional[identifier.Identifier] = None
-    type:codeableconcept.CodeableConcept = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicinalProductAuthorizationProcedure, self).elementProperties()
-        js.extend([
-            ("application", "application", MedicinalProductAuthorizationProcedure, True, None, False),
-            ("dateDateTime", "dateDateTime", fhirdate.FHIRDate, False, "date", False),
-            ("datePeriod", "datePeriod", period.Period, False, "date", False),
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, True),
         ])
         return js
 

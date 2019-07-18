@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Subscription) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Subscription) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -14,6 +14,37 @@ from . import backboneelement
 from . import contactpoint
 from . import domainresource
 from . import fhirdate
+
+from . import backboneelement
+
+@dataclass
+class SubscriptionChannel(backboneelement.BackboneElement):
+    """ The channel on which to report matches to the criteria.
+
+    Details where to send notifications when resources are received that meet
+    the criteria.
+    """
+    resource_type: ClassVar[str] = "SubscriptionChannel"
+    endpoint: Optional[str] = None
+    header: Optional[List[str]] = empty_list()
+    payload: Optional[str] = None
+    type: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SubscriptionChannel, self).elementProperties()
+        js.extend([
+            ("endpoint", "endpoint", str, False, None, False),
+            ("header", "header", str, True, None, False),
+            ("payload", "payload", str, False, None, False),
+            ("type", "type", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -52,37 +83,6 @@ class Subscription(domainresource.DomainResource):
             ("error", "error", str, False, None, False),
             ("reason", "reason", str, False, None, True),
             ("status", "status", str, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class SubscriptionChannel(backboneelement.BackboneElement):
-    """ The channel on which to report matches to the criteria.
-
-    Details where to send notifications when resources are received that meet
-    the criteria.
-    """
-    resource_type: ClassVar[str] = "SubscriptionChannel"
-    endpoint: Optional[str] = None
-    header: Optional[List[str]] = empty_list()
-    payload: Optional[str] = None
-    type: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SubscriptionChannel, self).elementProperties()
-        js.extend([
-            ("endpoint", "endpoint", str, False, None, False),
-            ("header", "header", str, True, None, False),
-            ("payload", "payload", str, False, None, False),
-            ("type", "type", str, False, None, True),
         ])
         return js
 

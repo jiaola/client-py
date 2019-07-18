@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EvidenceVariable) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EvidenceVariable) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -26,6 +26,59 @@ from . import relatedartifact
 from . import timing
 from . import triggerdefinition
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class EvidenceVariableCharacteristic(backboneelement.BackboneElement):
+    """ What defines the members of the evidence element.
+
+    A characteristic that defines the members of the evidence element. Multiple
+    characteristics are applied with "and" semantics.
+    """
+    resource_type: ClassVar[str] = "EvidenceVariableCharacteristic"
+    definitionCanonical: str = None
+    definitionCodeableConcept:codeableconcept.CodeableConcept = None
+    definitionDataRequirement:datarequirement.DataRequirement = None
+    definitionExpression:expression.Expression = None
+    definitionReference:fhirreference.FHIRReference = None
+    definitionTriggerDefinition:triggerdefinition.TriggerDefinition = None
+    description: Optional[str] = None
+    exclude: Optional[bool] = None
+    groupMeasure: Optional[str] = None
+    participantEffectiveDateTime: Optional[fhirdate.FHIRDate] = None
+    participantEffectiveDuration: Optional[duration.Duration] = None
+    participantEffectivePeriod: Optional[period.Period] = None
+    participantEffectiveTiming: Optional[timing.Timing] = None
+    timeFromStart: Optional[duration.Duration] = None
+    usageContext: Optional[List[usagecontext.UsageContext]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EvidenceVariableCharacteristic, self).elementProperties()
+        js.extend([
+            ("definitionCanonical", "definitionCanonical", str, False, "definition", True),
+            ("definitionCodeableConcept", "definitionCodeableConcept", codeableconcept.CodeableConcept, False, "definition", True),
+            ("definitionDataRequirement", "definitionDataRequirement", datarequirement.DataRequirement, False, "definition", True),
+            ("definitionExpression", "definitionExpression", expression.Expression, False, "definition", True),
+            ("definitionReference", "definitionReference", fhirreference.FHIRReference, False, "definition", True),
+            ("definitionTriggerDefinition", "definitionTriggerDefinition", triggerdefinition.TriggerDefinition, False, "definition", True),
+            ("description", "description", str, False, None, False),
+            ("exclude", "exclude", bool, False, None, False),
+            ("groupMeasure", "groupMeasure", str, False, None, False),
+            ("participantEffectiveDateTime", "participantEffectiveDateTime", fhirdate.FHIRDate, False, "participantEffective", False),
+            ("participantEffectiveDuration", "participantEffectiveDuration", duration.Duration, False, "participantEffective", False),
+            ("participantEffectivePeriod", "participantEffectivePeriod", period.Period, False, "participantEffective", False),
+            ("participantEffectiveTiming", "participantEffectiveTiming", timing.Timing, False, "participantEffective", False),
+            ("timeFromStart", "timeFromStart", duration.Duration, False, None, False),
+            ("usageContext", "usageContext", usagecontext.UsageContext, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -101,59 +154,6 @@ class EvidenceVariable(domainresource.DomainResource):
             ("url", "url", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class EvidenceVariableCharacteristic(backboneelement.BackboneElement):
-    """ What defines the members of the evidence element.
-
-    A characteristic that defines the members of the evidence element. Multiple
-    characteristics are applied with "and" semantics.
-    """
-    resource_type: ClassVar[str] = "EvidenceVariableCharacteristic"
-    definitionCanonical: str = None
-    definitionCodeableConcept:codeableconcept.CodeableConcept = None
-    definitionDataRequirement:datarequirement.DataRequirement = None
-    definitionExpression:expression.Expression = None
-    definitionReference:fhirreference.FHIRReference = None
-    definitionTriggerDefinition:triggerdefinition.TriggerDefinition = None
-    description: Optional[str] = None
-    exclude: Optional[bool] = None
-    groupMeasure: Optional[str] = None
-    participantEffectiveDateTime: Optional[fhirdate.FHIRDate] = None
-    participantEffectiveDuration: Optional[duration.Duration] = None
-    participantEffectivePeriod: Optional[period.Period] = None
-    participantEffectiveTiming: Optional[timing.Timing] = None
-    timeFromStart: Optional[duration.Duration] = None
-    usageContext: Optional[List[usagecontext.UsageContext]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EvidenceVariableCharacteristic, self).elementProperties()
-        js.extend([
-            ("definitionCanonical", "definitionCanonical", str, False, "definition", True),
-            ("definitionCodeableConcept", "definitionCodeableConcept", codeableconcept.CodeableConcept, False, "definition", True),
-            ("definitionDataRequirement", "definitionDataRequirement", datarequirement.DataRequirement, False, "definition", True),
-            ("definitionExpression", "definitionExpression", expression.Expression, False, "definition", True),
-            ("definitionReference", "definitionReference", fhirreference.FHIRReference, False, "definition", True),
-            ("definitionTriggerDefinition", "definitionTriggerDefinition", triggerdefinition.TriggerDefinition, False, "definition", True),
-            ("description", "description", str, False, None, False),
-            ("exclude", "exclude", bool, False, None, False),
-            ("groupMeasure", "groupMeasure", str, False, None, False),
-            ("participantEffectiveDateTime", "participantEffectiveDateTime", fhirdate.FHIRDate, False, "participantEffective", False),
-            ("participantEffectiveDuration", "participantEffectiveDuration", duration.Duration, False, "participantEffective", False),
-            ("participantEffectivePeriod", "participantEffectivePeriod", period.Period, False, "participantEffective", False),
-            ("participantEffectiveTiming", "participantEffectiveTiming", timing.Timing, False, "participantEffective", False),
-            ("timeFromStart", "timeFromStart", duration.Duration, False, None, False),
-            ("usageContext", "usageContext", usagecontext.UsageContext, True, None, False),
         ])
         return js
 

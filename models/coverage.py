@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Coverage) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Coverage) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,89 @@ from . import identifier
 from . import money
 from . import period
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class CoverageCostToBeneficiaryException(backboneelement.BackboneElement):
+    """ Exceptions for patient payments.
+
+    A suite of codes indicating exceptions or reductions to patient costs and
+    their effective periods.
+    """
+    resource_type: ClassVar[str] = "CoverageCostToBeneficiaryException"
+    period: Optional[period.Period] = None
+    type:codeableconcept.CodeableConcept = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageCostToBeneficiaryException, self).elementProperties()
+        js.extend([
+            ("period", "period", period.Period, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, True),
+        ])
+        return js
+
+@dataclass
+class CoverageCostToBeneficiary(backboneelement.BackboneElement):
+    """ Patient payments for services/products.
+
+    A suite of codes indicating the cost category and associated amount which
+    have been detailed in the policy and may have been  included on the health
+    card.
+    """
+    resource_type: ClassVar[str] = "CoverageCostToBeneficiary"
+    exception: Optional[List[CoverageCostToBeneficiaryException]] = empty_list()
+    type: Optional[codeableconcept.CodeableConcept] = None
+    valueMoney:money.Money = None
+    valueQuantity:quantity.Quantity = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageCostToBeneficiary, self).elementProperties()
+        js.extend([
+            ("exception", "exception", CoverageCostToBeneficiaryException, True, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("valueMoney", "valueMoney", money.Money, False, "value", True),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
+        ])
+        return js
+
+@dataclass
+class CoverageClass(backboneelement.BackboneElement):
+    """ Additional coverage classifications.
+
+    A suite of underwriter specific classifiers.
+    """
+    resource_type: ClassVar[str] = "CoverageClass"
+    name: Optional[str] = None
+    type:codeableconcept.CodeableConcept = None
+    value: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageClass, self).elementProperties()
+        js.extend([
+            ("name", "name", str, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, True),
+            ("value", "value", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -73,89 +156,6 @@ class Coverage(domainresource.DomainResource):
             ("subscriber", "subscriber", fhirreference.FHIRReference, False, None, False),
             ("subscriberId", "subscriberId", str, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CoverageClass(backboneelement.BackboneElement):
-    """ Additional coverage classifications.
-
-    A suite of underwriter specific classifiers.
-    """
-    resource_type: ClassVar[str] = "CoverageClass"
-    name: Optional[str] = None
-    type:codeableconcept.CodeableConcept = None
-    value: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageClass, self).elementProperties()
-        js.extend([
-            ("name", "name", str, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, True),
-            ("value", "value", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class CoverageCostToBeneficiary(backboneelement.BackboneElement):
-    """ Patient payments for services/products.
-
-    A suite of codes indicating the cost category and associated amount which
-    have been detailed in the policy and may have been  included on the health
-    card.
-    """
-    resource_type: ClassVar[str] = "CoverageCostToBeneficiary"
-    exception: Optional[List[CoverageCostToBeneficiaryException]] = empty_list()
-    type: Optional[codeableconcept.CodeableConcept] = None
-    valueMoney:money.Money = None
-    valueQuantity:quantity.Quantity = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageCostToBeneficiary, self).elementProperties()
-        js.extend([
-            ("exception", "exception", CoverageCostToBeneficiaryException, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-            ("valueMoney", "valueMoney", money.Money, False, "value", True),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
-        ])
-        return js
-
-@dataclass
-class CoverageCostToBeneficiaryException(backboneelement.BackboneElement):
-    """ Exceptions for patient payments.
-
-    A suite of codes indicating exceptions or reductions to patient costs and
-    their effective periods.
-    """
-    resource_type: ClassVar[str] = "CoverageCostToBeneficiaryException"
-    period: Optional[period.Period] = None
-    type:codeableconcept.CodeableConcept = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageCostToBeneficiaryException, self).elementProperties()
-        js.extend([
-            ("period", "period", period.Period, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, True),
         ])
         return js
 

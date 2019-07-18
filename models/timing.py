@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Timing) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Timing) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,38 +17,6 @@ from . import element
 from . import fhirdate
 from . import period
 from . import range
-
-from . import backboneelement
-
-@dataclass
-class Timing(backboneelement.BackboneElement):
-    """ A timing schedule that specifies an event that may occur multiple times.
-
-    Specifies an event that may occur multiple times. Timing schedules are used
-    to record when things are planned, expected or requested to occur. The most
-    common usage is in dosage instructions for medications. They are also used
-    when planning care of various kinds, and may be used for reporting the
-    schedule to which past regular activities were carried out.
-    """
-    resource_type: ClassVar[str] = "Timing"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    event: Optional[List[fhirdate.FHIRDate]] = empty_list()
-    repeat: Optional[TimingRepeat] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(Timing, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("event", "event", fhirdate.FHIRDate, True, None, False),
-            ("repeat", "repeat", TimingRepeat, False, None, False),
-        ])
-        return js
 
 from . import element
 
@@ -103,6 +71,38 @@ class TimingRepeat(element.Element):
             ("periodUnit", "periodUnit", str, False, None, False),
             ("timeOfDay", "timeOfDay", fhirdate.FHIRDate, True, None, False),
             ("when", "when", str, True, None, False),
+        ])
+        return js
+
+from . import backboneelement
+
+@dataclass
+class Timing(backboneelement.BackboneElement):
+    """ A timing schedule that specifies an event that may occur multiple times.
+
+    Specifies an event that may occur multiple times. Timing schedules are used
+    to record when things are planned, expected or requested to occur. The most
+    common usage is in dosage instructions for medications. They are also used
+    when planning care of various kinds, and may be used for reporting the
+    schedule to which past regular activities were carried out.
+    """
+    resource_type: ClassVar[str] = "Timing"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    event: Optional[List[fhirdate.FHIRDate]] = empty_list()
+    repeat: Optional[TimingRepeat] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(Timing, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("event", "event", fhirdate.FHIRDate, True, None, False),
+            ("repeat", "repeat", TimingRepeat, False, None, False),
         ])
         return js
 

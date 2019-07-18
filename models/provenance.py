@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Provenance) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Provenance) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,61 @@ from . import fhirdate
 from . import fhirreference
 from . import period
 from . import signature
+
+from . import backboneelement
+
+@dataclass
+class ProvenanceEntity(backboneelement.BackboneElement):
+    """ An entity used in this activity.
+    """
+    resource_type: ClassVar[str] = "ProvenanceEntity"
+    agent: Optional[List[ProvenanceAgent]] = empty_list()
+    role: str = None
+    what:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ProvenanceEntity, self).elementProperties()
+        js.extend([
+            ("agent", "agent", ProvenanceAgent, True, None, False),
+            ("role", "role", str, False, None, True),
+            ("what", "what", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ProvenanceAgent(backboneelement.BackboneElement):
+    """ Actor involved.
+
+    An actor taking a role in an activity  for which it can be assigned some
+    degree of responsibility for the activity taking place.
+    """
+    resource_type: ClassVar[str] = "ProvenanceAgent"
+    onBehalfOf: Optional[fhirreference.FHIRReference] = None
+    role: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    type: Optional[codeableconcept.CodeableConcept] = None
+    who:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ProvenanceAgent, self).elementProperties()
+        js.extend([
+            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
+            ("role", "role", codeableconcept.CodeableConcept, True, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("who", "who", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -68,61 +123,6 @@ class Provenance(domainresource.DomainResource):
             ("recorded", "recorded", fhirdate.FHIRDate, False, None, True),
             ("signature", "signature", signature.Signature, True, None, False),
             ("target", "target", fhirreference.FHIRReference, True, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ProvenanceAgent(backboneelement.BackboneElement):
-    """ Actor involved.
-
-    An actor taking a role in an activity  for which it can be assigned some
-    degree of responsibility for the activity taking place.
-    """
-    resource_type: ClassVar[str] = "ProvenanceAgent"
-    onBehalfOf: Optional[fhirreference.FHIRReference] = None
-    role: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    type: Optional[codeableconcept.CodeableConcept] = None
-    who:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ProvenanceAgent, self).elementProperties()
-        js.extend([
-            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
-            ("role", "role", codeableconcept.CodeableConcept, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-            ("who", "who", fhirreference.FHIRReference, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ProvenanceEntity(backboneelement.BackboneElement):
-    """ An entity used in this activity.
-    """
-    resource_type: ClassVar[str] = "ProvenanceEntity"
-    agent: Optional[List[ProvenanceAgent]] = empty_list()
-    role: str = None
-    what:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ProvenanceEntity, self).elementProperties()
-        js.extend([
-            ("agent", "agent", ProvenanceAgent, True, None, False),
-            ("role", "role", str, False, None, True),
-            ("what", "what", fhirreference.FHIRReference, False, None, True),
         ])
         return js
 

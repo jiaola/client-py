@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,34 @@ from . import identifier
 from . import period
 from . import quantity
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class SupplyDeliverySuppliedItem(backboneelement.BackboneElement):
+    """ The item that is delivered or supplied.
+
+    The item that is being delivered or has been supplied.
+    """
+    resource_type: ClassVar[str] = "SupplyDeliverySuppliedItem"
+    itemCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    itemReference: Optional[fhirreference.FHIRReference] = None
+    quantity: Optional[quantity.Quantity] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SupplyDeliverySuppliedItem, self).elementProperties()
+        js.extend([
+            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", False),
+            ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", False),
+            ("quantity", "quantity", quantity.Quantity, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -65,34 +93,6 @@ class SupplyDelivery(domainresource.DomainResource):
             ("suppliedItem", "suppliedItem", SupplyDeliverySuppliedItem, False, None, False),
             ("supplier", "supplier", fhirreference.FHIRReference, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class SupplyDeliverySuppliedItem(backboneelement.BackboneElement):
-    """ The item that is delivered or supplied.
-
-    The item that is being delivered or has been supplied.
-    """
-    resource_type: ClassVar[str] = "SupplyDeliverySuppliedItem"
-    itemCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    itemReference: Optional[fhirreference.FHIRReference] = None
-    quantity: Optional[quantity.Quantity] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SupplyDeliverySuppliedItem, self).elementProperties()
-        js.extend([
-            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", False),
-            ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", False),
-            ("quantity", "quantity", quantity.Quantity, False, None, False),
         ])
         return js
 

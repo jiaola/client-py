@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Organization) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Organization) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,34 @@ from . import domainresource
 from . import fhirreference
 from . import humanname
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class OrganizationContact(backboneelement.BackboneElement):
+    """ Contact for the organization for a certain purpose.
+    """
+    resource_type: ClassVar[str] = "OrganizationContact"
+    address: Optional[address.Address] = None
+    name: Optional[humanname.HumanName] = None
+    purpose: Optional[codeableconcept.CodeableConcept] = None
+    telecom: Optional[List[contactpoint.ContactPoint]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(OrganizationContact, self).elementProperties()
+        js.extend([
+            ("address", "address", address.Address, False, None, False),
+            ("name", "name", humanname.HumanName, False, None, False),
+            ("purpose", "purpose", codeableconcept.CodeableConcept, False, None, False),
+            ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -61,34 +89,6 @@ class Organization(domainresource.DomainResource):
             ("partOf", "partOf", fhirreference.FHIRReference, False, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
             ("type", "type", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class OrganizationContact(backboneelement.BackboneElement):
-    """ Contact for the organization for a certain purpose.
-    """
-    resource_type: ClassVar[str] = "OrganizationContact"
-    address: Optional[address.Address] = None
-    name: Optional[humanname.HumanName] = None
-    purpose: Optional[codeableconcept.CodeableConcept] = None
-    telecom: Optional[List[contactpoint.ContactPoint]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(OrganizationContact, self).elementProperties()
-        js.extend([
-            ("address", "address", address.Address, False, None, False),
-            ("name", "name", humanname.HumanName, False, None, False),
-            ("purpose", "purpose", codeableconcept.CodeableConcept, False, None, False),
-            ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Patient) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Patient) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,87 @@ from . import fhirreference
 from . import humanname
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class PatientLink(backboneelement.BackboneElement):
+    """ Link to another patient resource that concerns the same actual person.
+
+    Link to another patient resource that concerns the same actual patient.
+    """
+    resource_type: ClassVar[str] = "PatientLink"
+    other:fhirreference.FHIRReference = None
+    type: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PatientLink, self).elementProperties()
+        js.extend([
+            ("other", "other", fhirreference.FHIRReference, False, None, True),
+            ("type", "type", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class PatientContact(backboneelement.BackboneElement):
+    """ A contact party (e.g. guardian, partner, friend) for the patient.
+    """
+    resource_type: ClassVar[str] = "PatientContact"
+    address: Optional[address.Address] = None
+    gender: Optional[str] = None
+    name: Optional[humanname.HumanName] = None
+    organization: Optional[fhirreference.FHIRReference] = None
+    period: Optional[period.Period] = None
+    relationship: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    telecom: Optional[List[contactpoint.ContactPoint]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PatientContact, self).elementProperties()
+        js.extend([
+            ("address", "address", address.Address, False, None, False),
+            ("gender", "gender", str, False, None, False),
+            ("name", "name", humanname.HumanName, False, None, False),
+            ("organization", "organization", fhirreference.FHIRReference, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+            ("relationship", "relationship", codeableconcept.CodeableConcept, True, None, False),
+            ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
+        ])
+        return js
+
+@dataclass
+class PatientCommunication(backboneelement.BackboneElement):
+    """ A language which may be used to communicate with the patient about his or
+    her health.
+    """
+    resource_type: ClassVar[str] = "PatientCommunication"
+    language:codeableconcept.CodeableConcept = None
+    preferred: Optional[bool] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PatientCommunication, self).elementProperties()
+        js.extend([
+            ("language", "language", codeableconcept.CodeableConcept, False, None, True),
+            ("preferred", "preferred", bool, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -78,87 +159,6 @@ class Patient(domainresource.DomainResource):
             ("name", "name", humanname.HumanName, True, None, False),
             ("photo", "photo", attachment.Attachment, True, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class PatientCommunication(backboneelement.BackboneElement):
-    """ A language which may be used to communicate with the patient about his or
-    her health.
-    """
-    resource_type: ClassVar[str] = "PatientCommunication"
-    language:codeableconcept.CodeableConcept = None
-    preferred: Optional[bool] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PatientCommunication, self).elementProperties()
-        js.extend([
-            ("language", "language", codeableconcept.CodeableConcept, False, None, True),
-            ("preferred", "preferred", bool, False, None, False),
-        ])
-        return js
-
-@dataclass
-class PatientContact(backboneelement.BackboneElement):
-    """ A contact party (e.g. guardian, partner, friend) for the patient.
-    """
-    resource_type: ClassVar[str] = "PatientContact"
-    address: Optional[address.Address] = None
-    gender: Optional[str] = None
-    name: Optional[humanname.HumanName] = None
-    organization: Optional[fhirreference.FHIRReference] = None
-    period: Optional[period.Period] = None
-    relationship: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    telecom: Optional[List[contactpoint.ContactPoint]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PatientContact, self).elementProperties()
-        js.extend([
-            ("address", "address", address.Address, False, None, False),
-            ("gender", "gender", str, False, None, False),
-            ("name", "name", humanname.HumanName, False, None, False),
-            ("organization", "organization", fhirreference.FHIRReference, False, None, False),
-            ("period", "period", period.Period, False, None, False),
-            ("relationship", "relationship", codeableconcept.CodeableConcept, True, None, False),
-            ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
-        ])
-        return js
-
-@dataclass
-class PatientLink(backboneelement.BackboneElement):
-    """ Link to another patient resource that concerns the same actual person.
-
-    Link to another patient resource that concerns the same actual patient.
-    """
-    resource_type: ClassVar[str] = "PatientLink"
-    other:fhirreference.FHIRReference = None
-    type: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PatientLink, self).elementProperties()
-        js.extend([
-            ("other", "other", fhirreference.FHIRReference, False, None, True),
-            ("type", "type", str, False, None, True),
         ])
         return js
 

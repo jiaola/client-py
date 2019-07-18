@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -15,6 +15,34 @@ from . import contactdetail
 from . import domainresource
 from . import fhirdate
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class CompartmentDefinitionResource(backboneelement.BackboneElement):
+    """ How a resource is related to the compartment.
+
+    Information about how a resource is related to the compartment.
+    """
+    resource_type: ClassVar[str] = "CompartmentDefinitionResource"
+    code: str = None
+    documentation: Optional[str] = None
+    param: Optional[List[str]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CompartmentDefinitionResource, self).elementProperties()
+        js.extend([
+            ("code", "code", str, False, None, True),
+            ("documentation", "documentation", str, False, None, False),
+            ("param", "param", str, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -64,34 +92,6 @@ class CompartmentDefinition(domainresource.DomainResource):
             ("url", "url", str, False, None, True),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CompartmentDefinitionResource(backboneelement.BackboneElement):
-    """ How a resource is related to the compartment.
-
-    Information about how a resource is related to the compartment.
-    """
-    resource_type: ClassVar[str] = "CompartmentDefinitionResource"
-    code: str = None
-    documentation: Optional[str] = None
-    param: Optional[List[str]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CompartmentDefinitionResource, self).elementProperties()
-        js.extend([
-            ("code", "code", str, False, None, True),
-            ("documentation", "documentation", str, False, None, False),
-            ("param", "param", str, True, None, False),
         ])
         return js
 

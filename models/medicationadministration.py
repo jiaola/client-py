@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,68 @@ from . import identifier
 from . import period
 from . import quantity
 from . import ratio
+
+from . import backboneelement
+
+@dataclass
+class MedicationAdministrationPerformer(backboneelement.BackboneElement):
+    """ Who performed the medication administration and what they did.
+
+    Indicates who or what performed the medication administration and how they
+    were involved.
+    """
+    resource_type: ClassVar[str] = "MedicationAdministrationPerformer"
+    actor:fhirreference.FHIRReference = None
+    function: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationAdministrationPerformer, self).elementProperties()
+        js.extend([
+            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
+            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MedicationAdministrationDosage(backboneelement.BackboneElement):
+    """ Details of how medication was taken.
+
+    Describes the medication dosage information details e.g. dose, rate, site,
+    route, etc.
+    """
+    resource_type: ClassVar[str] = "MedicationAdministrationDosage"
+    dose: Optional[quantity.Quantity] = None
+    method: Optional[codeableconcept.CodeableConcept] = None
+    rateQuantity: Optional[quantity.Quantity] = None
+    rateRatio: Optional[ratio.Ratio] = None
+    route: Optional[codeableconcept.CodeableConcept] = None
+    site: Optional[codeableconcept.CodeableConcept] = None
+    text: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationAdministrationDosage, self).elementProperties()
+        js.extend([
+            ("dose", "dose", quantity.Quantity, False, None, False),
+            ("method", "method", codeableconcept.CodeableConcept, False, None, False),
+            ("rateQuantity", "rateQuantity", quantity.Quantity, False, "rate", False),
+            ("rateRatio", "rateRatio", ratio.Ratio, False, "rate", False),
+            ("route", "route", codeableconcept.CodeableConcept, False, None, False),
+            ("site", "site", codeableconcept.CodeableConcept, False, None, False),
+            ("text", "text", str, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -86,68 +148,6 @@ class MedicationAdministration(domainresource.DomainResource):
             ("statusReason", "statusReason", codeableconcept.CodeableConcept, True, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("supportingInformation", "supportingInformation", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicationAdministrationDosage(backboneelement.BackboneElement):
-    """ Details of how medication was taken.
-
-    Describes the medication dosage information details e.g. dose, rate, site,
-    route, etc.
-    """
-    resource_type: ClassVar[str] = "MedicationAdministrationDosage"
-    dose: Optional[quantity.Quantity] = None
-    method: Optional[codeableconcept.CodeableConcept] = None
-    rateQuantity: Optional[quantity.Quantity] = None
-    rateRatio: Optional[ratio.Ratio] = None
-    route: Optional[codeableconcept.CodeableConcept] = None
-    site: Optional[codeableconcept.CodeableConcept] = None
-    text: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationAdministrationDosage, self).elementProperties()
-        js.extend([
-            ("dose", "dose", quantity.Quantity, False, None, False),
-            ("method", "method", codeableconcept.CodeableConcept, False, None, False),
-            ("rateQuantity", "rateQuantity", quantity.Quantity, False, "rate", False),
-            ("rateRatio", "rateRatio", ratio.Ratio, False, "rate", False),
-            ("route", "route", codeableconcept.CodeableConcept, False, None, False),
-            ("site", "site", codeableconcept.CodeableConcept, False, None, False),
-            ("text", "text", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MedicationAdministrationPerformer(backboneelement.BackboneElement):
-    """ Who performed the medication administration and what they did.
-
-    Indicates who or what performed the medication administration and how they
-    were involved.
-    """
-    resource_type: ClassVar[str] = "MedicationAdministrationPerformer"
-    actor:fhirreference.FHIRReference = None
-    function: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationAdministrationPerformer, self).elementProperties()
-        js.extend([
-            ("actor", "actor", fhirreference.FHIRReference, False, None, True),
-            ("function", "function", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

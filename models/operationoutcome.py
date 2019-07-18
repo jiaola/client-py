@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -13,31 +13,6 @@ from .fhirabstractbase import *
 from . import backboneelement
 from . import codeableconcept
 from . import domainresource
-
-from . import domainresource
-
-@dataclass
-class OperationOutcome(domainresource.DomainResource):
-    """ Information about the success/failure of an action.
-
-    A collection of error, warning, or information messages that result from a
-    system action.
-    """
-    resource_type: ClassVar[str] = "OperationOutcome"
-    issue: List[ OperationOutcomeIssue] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(OperationOutcome, self).elementProperties()
-        js.extend([
-            ("issue", "issue", OperationOutcomeIssue, True, None, True),
-        ])
-        return js
 
 from . import backboneelement
 
@@ -71,6 +46,31 @@ class OperationOutcomeIssue(backboneelement.BackboneElement):
             ("expression", "expression", str, True, None, False),
             ("location", "location", str, True, None, False),
             ("severity", "severity", str, False, None, True),
+        ])
+        return js
+
+from . import domainresource
+
+@dataclass
+class OperationOutcome(domainresource.DomainResource):
+    """ Information about the success/failure of an action.
+
+    A collection of error, warning, or information messages that result from a
+    system action.
+    """
+    resource_type: ClassVar[str] = "OperationOutcome"
+    issue: List[ OperationOutcomeIssue] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(OperationOutcome, self).elementProperties()
+        js.extend([
+            ("issue", "issue", OperationOutcomeIssue, True, None, True),
         ])
         return js
 

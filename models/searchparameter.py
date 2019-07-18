@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,32 @@ from . import contactdetail
 from . import domainresource
 from . import fhirdate
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class SearchParameterComponent(backboneelement.BackboneElement):
+    """ For Composite resources to define the parts.
+
+    Used to define the parts of a composite search parameter.
+    """
+    resource_type: ClassVar[str] = "SearchParameterComponent"
+    definition: str = None
+    expression: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SearchParameterComponent, self).elementProperties()
+        js.extend([
+            ("definition", "definition", str, False, None, True),
+            ("expression", "expression", str, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -89,32 +115,6 @@ class SearchParameter(domainresource.DomainResource):
             ("version", "version", str, False, None, False),
             ("xpath", "xpath", str, False, None, False),
             ("xpathUsage", "xpathUsage", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class SearchParameterComponent(backboneelement.BackboneElement):
-    """ For Composite resources to define the parts.
-
-    Used to define the parts of a composite search parameter.
-    """
-    resource_type: ClassVar[str] = "SearchParameterComponent"
-    definition: str = None
-    expression: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SearchParameterComponent, self).elementProperties()
-        js.extend([
-            ("definition", "definition", str, False, None, True),
-            ("expression", "expression", str, False, None, True),
         ])
         return js
 

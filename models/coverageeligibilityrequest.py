@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,127 @@ from . import identifier
 from . import money
 from . import period
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class CoverageEligibilityRequestSupportingInfo(backboneelement.BackboneElement):
+    """ Supporting information.
+
+    Additional information codes regarding exceptions, special considerations,
+    the condition, situation, prior or concurrent issues.
+    """
+    resource_type: ClassVar[str] = "CoverageEligibilityRequestSupportingInfo"
+    appliesToAll: Optional[bool] = None
+    information:fhirreference.FHIRReference = None
+    sequence: int = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageEligibilityRequestSupportingInfo, self).elementProperties()
+        js.extend([
+            ("appliesToAll", "appliesToAll", bool, False, None, False),
+            ("information", "information", fhirreference.FHIRReference, False, None, True),
+            ("sequence", "sequence", int, False, None, True),
+        ])
+        return js
+
+@dataclass
+class CoverageEligibilityRequestItemDiagnosis(backboneelement.BackboneElement):
+    """ Applicable diagnosis.
+
+    Patient diagnosis for which care is sought.
+    """
+    resource_type: ClassVar[str] = "CoverageEligibilityRequestItemDiagnosis"
+    diagnosisCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    diagnosisReference: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageEligibilityRequestItemDiagnosis, self).elementProperties()
+        js.extend([
+            ("diagnosisCodeableConcept", "diagnosisCodeableConcept", codeableconcept.CodeableConcept, False, "diagnosis", False),
+            ("diagnosisReference", "diagnosisReference", fhirreference.FHIRReference, False, "diagnosis", False),
+        ])
+        return js
+
+@dataclass
+class CoverageEligibilityRequestItem(backboneelement.BackboneElement):
+    """ Item to be evaluated for eligibiity.
+
+    Service categories or billable services for which benefit details and/or an
+    authorization prior to service delivery may be required by the payor.
+    """
+    resource_type: ClassVar[str] = "CoverageEligibilityRequestItem"
+    category: Optional[codeableconcept.CodeableConcept] = None
+    detail: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    diagnosis: Optional[List[CoverageEligibilityRequestItemDiagnosis]] = empty_list()
+    facility: Optional[fhirreference.FHIRReference] = None
+    modifier: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    productOrService: Optional[codeableconcept.CodeableConcept] = None
+    provider: Optional[fhirreference.FHIRReference] = None
+    quantity: Optional[quantity.Quantity] = None
+    supportingInfoSequence: Optional[List[int]] = empty_list()
+    unitPrice: Optional[money.Money] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageEligibilityRequestItem, self).elementProperties()
+        js.extend([
+            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
+            ("detail", "detail", fhirreference.FHIRReference, True, None, False),
+            ("diagnosis", "diagnosis", CoverageEligibilityRequestItemDiagnosis, True, None, False),
+            ("facility", "facility", fhirreference.FHIRReference, False, None, False),
+            ("modifier", "modifier", codeableconcept.CodeableConcept, True, None, False),
+            ("productOrService", "productOrService", codeableconcept.CodeableConcept, False, None, False),
+            ("provider", "provider", fhirreference.FHIRReference, False, None, False),
+            ("quantity", "quantity", quantity.Quantity, False, None, False),
+            ("supportingInfoSequence", "supportingInfoSequence", int, True, None, False),
+            ("unitPrice", "unitPrice", money.Money, False, None, False),
+        ])
+        return js
+
+@dataclass
+class CoverageEligibilityRequestInsurance(backboneelement.BackboneElement):
+    """ Patient insurance information.
+
+    Financial instruments for reimbursement for the health care products and
+    services.
+    """
+    resource_type: ClassVar[str] = "CoverageEligibilityRequestInsurance"
+    businessArrangement: Optional[str] = None
+    coverage:fhirreference.FHIRReference = None
+    focal: Optional[bool] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(CoverageEligibilityRequestInsurance, self).elementProperties()
+        js.extend([
+            ("businessArrangement", "businessArrangement", str, False, None, False),
+            ("coverage", "coverage", fhirreference.FHIRReference, False, None, True),
+            ("focal", "focal", bool, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -73,127 +194,6 @@ class CoverageEligibilityRequest(domainresource.DomainResource):
             ("servicedPeriod", "servicedPeriod", period.Period, False, "serviced", False),
             ("status", "status", str, False, None, True),
             ("supportingInfo", "supportingInfo", CoverageEligibilityRequestSupportingInfo, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class CoverageEligibilityRequestInsurance(backboneelement.BackboneElement):
-    """ Patient insurance information.
-
-    Financial instruments for reimbursement for the health care products and
-    services.
-    """
-    resource_type: ClassVar[str] = "CoverageEligibilityRequestInsurance"
-    businessArrangement: Optional[str] = None
-    coverage:fhirreference.FHIRReference = None
-    focal: Optional[bool] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageEligibilityRequestInsurance, self).elementProperties()
-        js.extend([
-            ("businessArrangement", "businessArrangement", str, False, None, False),
-            ("coverage", "coverage", fhirreference.FHIRReference, False, None, True),
-            ("focal", "focal", bool, False, None, False),
-        ])
-        return js
-
-@dataclass
-class CoverageEligibilityRequestItem(backboneelement.BackboneElement):
-    """ Item to be evaluated for eligibiity.
-
-    Service categories or billable services for which benefit details and/or an
-    authorization prior to service delivery may be required by the payor.
-    """
-    resource_type: ClassVar[str] = "CoverageEligibilityRequestItem"
-    category: Optional[codeableconcept.CodeableConcept] = None
-    detail: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    diagnosis: Optional[List[CoverageEligibilityRequestItemDiagnosis]] = empty_list()
-    facility: Optional[fhirreference.FHIRReference] = None
-    modifier: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    productOrService: Optional[codeableconcept.CodeableConcept] = None
-    provider: Optional[fhirreference.FHIRReference] = None
-    quantity: Optional[quantity.Quantity] = None
-    supportingInfoSequence: Optional[List[int]] = empty_list()
-    unitPrice: Optional[money.Money] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageEligibilityRequestItem, self).elementProperties()
-        js.extend([
-            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
-            ("detail", "detail", fhirreference.FHIRReference, True, None, False),
-            ("diagnosis", "diagnosis", CoverageEligibilityRequestItemDiagnosis, True, None, False),
-            ("facility", "facility", fhirreference.FHIRReference, False, None, False),
-            ("modifier", "modifier", codeableconcept.CodeableConcept, True, None, False),
-            ("productOrService", "productOrService", codeableconcept.CodeableConcept, False, None, False),
-            ("provider", "provider", fhirreference.FHIRReference, False, None, False),
-            ("quantity", "quantity", quantity.Quantity, False, None, False),
-            ("supportingInfoSequence", "supportingInfoSequence", int, True, None, False),
-            ("unitPrice", "unitPrice", money.Money, False, None, False),
-        ])
-        return js
-
-@dataclass
-class CoverageEligibilityRequestItemDiagnosis(backboneelement.BackboneElement):
-    """ Applicable diagnosis.
-
-    Patient diagnosis for which care is sought.
-    """
-    resource_type: ClassVar[str] = "CoverageEligibilityRequestItemDiagnosis"
-    diagnosisCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    diagnosisReference: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageEligibilityRequestItemDiagnosis, self).elementProperties()
-        js.extend([
-            ("diagnosisCodeableConcept", "diagnosisCodeableConcept", codeableconcept.CodeableConcept, False, "diagnosis", False),
-            ("diagnosisReference", "diagnosisReference", fhirreference.FHIRReference, False, "diagnosis", False),
-        ])
-        return js
-
-@dataclass
-class CoverageEligibilityRequestSupportingInfo(backboneelement.BackboneElement):
-    """ Supporting information.
-
-    Additional information codes regarding exceptions, special considerations,
-    the condition, situation, prior or concurrent issues.
-    """
-    resource_type: ClassVar[str] = "CoverageEligibilityRequestSupportingInfo"
-    appliesToAll: Optional[bool] = None
-    information:fhirreference.FHIRReference = None
-    sequence: int = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(CoverageEligibilityRequestSupportingInfo, self).elementProperties()
-        js.extend([
-            ("appliesToAll", "appliesToAll", bool, False, None, False),
-            ("information", "information", fhirreference.FHIRReference, False, None, True),
-            ("sequence", "sequence", int, False, None, True),
         ])
         return js
 

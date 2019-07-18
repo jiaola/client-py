@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Medication) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Medication) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,60 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import ratio
+
+from . import backboneelement
+
+@dataclass
+class MedicationIngredient(backboneelement.BackboneElement):
+    """ Active or inactive ingredient.
+
+    Identifies a particular constituent of interest in the product.
+    """
+    resource_type: ClassVar[str] = "MedicationIngredient"
+    isActive: Optional[bool] = None
+    itemCodeableConcept:codeableconcept.CodeableConcept = None
+    itemReference:fhirreference.FHIRReference = None
+    strength: Optional[ratio.Ratio] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationIngredient, self).elementProperties()
+        js.extend([
+            ("isActive", "isActive", bool, False, None, False),
+            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", True),
+            ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", True),
+            ("strength", "strength", ratio.Ratio, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MedicationBatch(backboneelement.BackboneElement):
+    """ Details about packaged medications.
+
+    Information that only applies to packages (not products).
+    """
+    resource_type: ClassVar[str] = "MedicationBatch"
+    expirationDate: Optional[fhirdate.FHIRDate] = None
+    lotNumber: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationBatch, self).elementProperties()
+        js.extend([
+            ("expirationDate", "expirationDate", fhirdate.FHIRDate, False, None, False),
+            ("lotNumber", "lotNumber", str, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -55,60 +109,6 @@ class Medication(domainresource.DomainResource):
             ("ingredient", "ingredient", MedicationIngredient, True, None, False),
             ("manufacturer", "manufacturer", fhirreference.FHIRReference, False, None, False),
             ("status", "status", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicationBatch(backboneelement.BackboneElement):
-    """ Details about packaged medications.
-
-    Information that only applies to packages (not products).
-    """
-    resource_type: ClassVar[str] = "MedicationBatch"
-    expirationDate: Optional[fhirdate.FHIRDate] = None
-    lotNumber: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationBatch, self).elementProperties()
-        js.extend([
-            ("expirationDate", "expirationDate", fhirdate.FHIRDate, False, None, False),
-            ("lotNumber", "lotNumber", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MedicationIngredient(backboneelement.BackboneElement):
-    """ Active or inactive ingredient.
-
-    Identifies a particular constituent of interest in the product.
-    """
-    resource_type: ClassVar[str] = "MedicationIngredient"
-    isActive: Optional[bool] = None
-    itemCodeableConcept:codeableconcept.CodeableConcept = None
-    itemReference:fhirreference.FHIRReference = None
-    strength: Optional[ratio.Ratio] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationIngredient, self).elementProperties()
-        js.extend([
-            ("isActive", "isActive", bool, False, None, False),
-            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", True),
-            ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", True),
-            ("strength", "strength", ratio.Ratio, False, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,92 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class DocumentReferenceRelatesTo(backboneelement.BackboneElement):
+    """ Relationships to other documents.
+
+    Relationships that this document has with other document references that
+    already exist.
+    """
+    resource_type: ClassVar[str] = "DocumentReferenceRelatesTo"
+    code: str = None
+    target:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DocumentReferenceRelatesTo, self).elementProperties()
+        js.extend([
+            ("code", "code", str, False, None, True),
+            ("target", "target", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
+
+@dataclass
+class DocumentReferenceContext(backboneelement.BackboneElement):
+    """ Clinical context of document.
+
+    The clinical context in which the document was prepared.
+    """
+    resource_type: ClassVar[str] = "DocumentReferenceContext"
+    encounter: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    event: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    facilityType: Optional[codeableconcept.CodeableConcept] = None
+    period: Optional[period.Period] = None
+    practiceSetting: Optional[codeableconcept.CodeableConcept] = None
+    related: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    sourcePatientInfo: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DocumentReferenceContext, self).elementProperties()
+        js.extend([
+            ("encounter", "encounter", fhirreference.FHIRReference, True, None, False),
+            ("event", "event", codeableconcept.CodeableConcept, True, None, False),
+            ("facilityType", "facilityType", codeableconcept.CodeableConcept, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+            ("practiceSetting", "practiceSetting", codeableconcept.CodeableConcept, False, None, False),
+            ("related", "related", fhirreference.FHIRReference, True, None, False),
+            ("sourcePatientInfo", "sourcePatientInfo", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
+
+@dataclass
+class DocumentReferenceContent(backboneelement.BackboneElement):
+    """ Document referenced.
+
+    The document and format referenced. There may be multiple content element
+    repetitions, each with a different format.
+    """
+    resource_type: ClassVar[str] = "DocumentReferenceContent"
+    attachment:attachment.Attachment = None
+    format: Optional[coding.Coding] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DocumentReferenceContent, self).elementProperties()
+        js.extend([
+            ("attachment", "attachment", attachment.Attachment, False, None, True),
+            ("format", "format", coding.Coding, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -75,92 +161,6 @@ class DocumentReference(domainresource.DomainResource):
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class DocumentReferenceContent(backboneelement.BackboneElement):
-    """ Document referenced.
-
-    The document and format referenced. There may be multiple content element
-    repetitions, each with a different format.
-    """
-    resource_type: ClassVar[str] = "DocumentReferenceContent"
-    attachment:attachment.Attachment = None
-    format: Optional[coding.Coding] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DocumentReferenceContent, self).elementProperties()
-        js.extend([
-            ("attachment", "attachment", attachment.Attachment, False, None, True),
-            ("format", "format", coding.Coding, False, None, False),
-        ])
-        return js
-
-@dataclass
-class DocumentReferenceContext(backboneelement.BackboneElement):
-    """ Clinical context of document.
-
-    The clinical context in which the document was prepared.
-    """
-    resource_type: ClassVar[str] = "DocumentReferenceContext"
-    encounter: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    event: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    facilityType: Optional[codeableconcept.CodeableConcept] = None
-    period: Optional[period.Period] = None
-    practiceSetting: Optional[codeableconcept.CodeableConcept] = None
-    related: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    sourcePatientInfo: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DocumentReferenceContext, self).elementProperties()
-        js.extend([
-            ("encounter", "encounter", fhirreference.FHIRReference, True, None, False),
-            ("event", "event", codeableconcept.CodeableConcept, True, None, False),
-            ("facilityType", "facilityType", codeableconcept.CodeableConcept, False, None, False),
-            ("period", "period", period.Period, False, None, False),
-            ("practiceSetting", "practiceSetting", codeableconcept.CodeableConcept, False, None, False),
-            ("related", "related", fhirreference.FHIRReference, True, None, False),
-            ("sourcePatientInfo", "sourcePatientInfo", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
-@dataclass
-class DocumentReferenceRelatesTo(backboneelement.BackboneElement):
-    """ Relationships to other documents.
-
-    Relationships that this document has with other document references that
-    already exist.
-    """
-    resource_type: ClassVar[str] = "DocumentReferenceRelatesTo"
-    code: str = None
-    target:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DocumentReferenceRelatesTo, self).elementProperties()
-        js.extend([
-            ("code", "code", str, False, None, True),
-            ("target", "target", fhirreference.FHIRReference, False, None, True),
         ])
         return js
 

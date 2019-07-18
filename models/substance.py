@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Substance) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Substance) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,61 @@ from . import fhirreference
 from . import identifier
 from . import quantity
 from . import ratio
+
+from . import backboneelement
+
+@dataclass
+class SubstanceInstance(backboneelement.BackboneElement):
+    """ If this describes a specific package/container of the substance.
+
+    Substance may be used to describe a kind of substance, or a specific
+    package/container of the substance: an instance.
+    """
+    resource_type: ClassVar[str] = "SubstanceInstance"
+    expiry: Optional[fhirdate.FHIRDate] = None
+    identifier: Optional[identifier.Identifier] = None
+    quantity: Optional[quantity.Quantity] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SubstanceInstance, self).elementProperties()
+        js.extend([
+            ("expiry", "expiry", fhirdate.FHIRDate, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("quantity", "quantity", quantity.Quantity, False, None, False),
+        ])
+        return js
+
+@dataclass
+class SubstanceIngredient(backboneelement.BackboneElement):
+    """ Composition information about the substance.
+
+    A substance can be composed of other substances.
+    """
+    resource_type: ClassVar[str] = "SubstanceIngredient"
+    quantity: Optional[ratio.Ratio] = None
+    substanceCodeableConcept:codeableconcept.CodeableConcept = None
+    substanceReference:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SubstanceIngredient, self).elementProperties()
+        js.extend([
+            ("quantity", "quantity", ratio.Ratio, False, None, False),
+            ("substanceCodeableConcept", "substanceCodeableConcept", codeableconcept.CodeableConcept, False, "substance", True),
+            ("substanceReference", "substanceReference", fhirreference.FHIRReference, False, "substance", True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -50,61 +105,6 @@ class Substance(domainresource.DomainResource):
             ("ingredient", "ingredient", SubstanceIngredient, True, None, False),
             ("instance", "instance", SubstanceInstance, True, None, False),
             ("status", "status", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class SubstanceIngredient(backboneelement.BackboneElement):
-    """ Composition information about the substance.
-
-    A substance can be composed of other substances.
-    """
-    resource_type: ClassVar[str] = "SubstanceIngredient"
-    quantity: Optional[ratio.Ratio] = None
-    substanceCodeableConcept:codeableconcept.CodeableConcept = None
-    substanceReference:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SubstanceIngredient, self).elementProperties()
-        js.extend([
-            ("quantity", "quantity", ratio.Ratio, False, None, False),
-            ("substanceCodeableConcept", "substanceCodeableConcept", codeableconcept.CodeableConcept, False, "substance", True),
-            ("substanceReference", "substanceReference", fhirreference.FHIRReference, False, "substance", True),
-        ])
-        return js
-
-@dataclass
-class SubstanceInstance(backboneelement.BackboneElement):
-    """ If this describes a specific package/container of the substance.
-
-    Substance may be used to describe a kind of substance, or a specific
-    package/container of the substance: an instance.
-    """
-    resource_type: ClassVar[str] = "SubstanceInstance"
-    expiry: Optional[fhirdate.FHIRDate] = None
-    identifier: Optional[identifier.Identifier] = None
-    quantity: Optional[quantity.Quantity] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SubstanceInstance, self).elementProperties()
-        js.extend([
-            ("expiry", "expiry", fhirdate.FHIRDate, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("quantity", "quantity", quantity.Quantity, False, None, False),
         ])
         return js
 

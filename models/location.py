@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Location) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Location) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,61 @@ from . import domainresource
 from . import fhirdate
 from . import fhirreference
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class LocationPosition(backboneelement.BackboneElement):
+    """ The absolute geographic location.
+
+    The absolute geographic location of the Location, expressed using the WGS84
+    datum (This is the same co-ordinate system used in KML).
+    """
+    resource_type: ClassVar[str] = "LocationPosition"
+    altitude: Optional[float] = None
+    latitude: float = None
+    longitude: float = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(LocationPosition, self).elementProperties()
+        js.extend([
+            ("altitude", "altitude", float, False, None, False),
+            ("latitude", "latitude", float, False, None, True),
+            ("longitude", "longitude", float, False, None, True),
+        ])
+        return js
+
+@dataclass
+class LocationHoursOfOperation(backboneelement.BackboneElement):
+    """ What days/times during a week is this location usually open.
+    """
+    resource_type: ClassVar[str] = "LocationHoursOfOperation"
+    allDay: Optional[bool] = None
+    closingTime: Optional[fhirdate.FHIRDate] = None
+    daysOfWeek: Optional[List[str]] = empty_list()
+    openingTime: Optional[fhirdate.FHIRDate] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(LocationHoursOfOperation, self).elementProperties()
+        js.extend([
+            ("allDay", "allDay", bool, False, None, False),
+            ("closingTime", "closingTime", fhirdate.FHIRDate, False, None, False),
+            ("daysOfWeek", "daysOfWeek", str, True, None, False),
+            ("openingTime", "openingTime", fhirdate.FHIRDate, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -75,61 +130,6 @@ class Location(domainresource.DomainResource):
             ("status", "status", str, False, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
             ("type", "type", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class LocationHoursOfOperation(backboneelement.BackboneElement):
-    """ What days/times during a week is this location usually open.
-    """
-    resource_type: ClassVar[str] = "LocationHoursOfOperation"
-    allDay: Optional[bool] = None
-    closingTime: Optional[fhirdate.FHIRDate] = None
-    daysOfWeek: Optional[List[str]] = empty_list()
-    openingTime: Optional[fhirdate.FHIRDate] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(LocationHoursOfOperation, self).elementProperties()
-        js.extend([
-            ("allDay", "allDay", bool, False, None, False),
-            ("closingTime", "closingTime", fhirdate.FHIRDate, False, None, False),
-            ("daysOfWeek", "daysOfWeek", str, True, None, False),
-            ("openingTime", "openingTime", fhirdate.FHIRDate, False, None, False),
-        ])
-        return js
-
-@dataclass
-class LocationPosition(backboneelement.BackboneElement):
-    """ The absolute geographic location.
-
-    The absolute geographic location of the Location, expressed using the WGS84
-    datum (This is the same co-ordinate system used in KML).
-    """
-    resource_type: ClassVar[str] = "LocationPosition"
-    altitude: Optional[float] = None
-    latitude: float = None
-    longitude: float = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(LocationPosition, self).elementProperties()
-        js.extend([
-            ("altitude", "altitude", float, False, None, False),
-            ("latitude", "latitude", float, False, None, True),
-            ("longitude", "longitude", float, False, None, True),
         ])
         return js
 

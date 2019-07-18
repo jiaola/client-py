@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -18,6 +18,171 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class MeasureReportGroupStratifierStratumPopulation(backboneelement.BackboneElement):
+    """ Population results in this stratum.
+
+    The populations that make up the stratum, one for each type of population
+    appropriate to the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratumPopulation"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    count: Optional[int] = None
+    subjectResults: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupStratifierStratumPopulation, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("count", "count", int, False, None, False),
+            ("subjectResults", "subjectResults", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureReportGroupStratifierStratumComponent(backboneelement.BackboneElement):
+    """ Stratifier component values.
+
+    A stratifier component value.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratumComponent"
+    code:codeableconcept.CodeableConcept = None
+    value:codeableconcept.CodeableConcept = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupStratifierStratumComponent, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("value", "value", codeableconcept.CodeableConcept, False, None, True),
+        ])
+        return js
+
+@dataclass
+class MeasureReportGroupStratifierStratum(backboneelement.BackboneElement):
+    """ Stratum results, one for each unique value, or set of values, in the
+    stratifier, or stratifier components.
+
+    This element contains the results for a single stratum within the
+    stratifier. For example, when stratifying on administrative gender, there
+    will be four strata, one for each possible gender value.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratum"
+    component: Optional[List[MeasureReportGroupStratifierStratumComponent]] = empty_list()
+    measureScore: Optional[quantity.Quantity] = None
+    population: Optional[List[MeasureReportGroupStratifierStratumPopulation]] = empty_list()
+    value: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupStratifierStratum, self).elementProperties()
+        js.extend([
+            ("component", "component", MeasureReportGroupStratifierStratumComponent, True, None, False),
+            ("measureScore", "measureScore", quantity.Quantity, False, None, False),
+            ("population", "population", MeasureReportGroupStratifierStratumPopulation, True, None, False),
+            ("value", "value", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureReportGroupStratifier(backboneelement.BackboneElement):
+    """ Stratification results.
+
+    When a measure includes multiple stratifiers, there will be a stratifier
+    group for each stratifier defined by the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupStratifier"
+    code: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    stratum: Optional[List[MeasureReportGroupStratifierStratum]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupStratifier, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, True, None, False),
+            ("stratum", "stratum", MeasureReportGroupStratifierStratum, True, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureReportGroupPopulation(backboneelement.BackboneElement):
+    """ The populations in the group.
+
+    The populations that make up the population group, one for each type of
+    population appropriate for the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupPopulation"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    count: Optional[int] = None
+    subjectResults: Optional[fhirreference.FHIRReference] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupPopulation, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("count", "count", int, False, None, False),
+            ("subjectResults", "subjectResults", fhirreference.FHIRReference, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MeasureReportGroup(backboneelement.BackboneElement):
+    """ Measure results for each group.
+
+    The results of the calculation, one for each population group in the
+    measure.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroup"
+    code: Optional[codeableconcept.CodeableConcept] = None
+    measureScore: Optional[quantity.Quantity] = None
+    population: Optional[List[MeasureReportGroupPopulation]] = empty_list()
+    stratifier: Optional[List[MeasureReportGroupStratifier]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MeasureReportGroup, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("measureScore", "measureScore", quantity.Quantity, False, None, False),
+            ("population", "population", MeasureReportGroupPopulation, True, None, False),
+            ("stratifier", "stratifier", MeasureReportGroupStratifier, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -62,171 +227,6 @@ class MeasureReport(domainresource.DomainResource):
             ("status", "status", str, False, None, True),
             ("subject", "subject", fhirreference.FHIRReference, False, None, False),
             ("type", "type", str, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MeasureReportGroup(backboneelement.BackboneElement):
-    """ Measure results for each group.
-
-    The results of the calculation, one for each population group in the
-    measure.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroup"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    measureScore: Optional[quantity.Quantity] = None
-    population: Optional[List[MeasureReportGroupPopulation]] = empty_list()
-    stratifier: Optional[List[MeasureReportGroupStratifier]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureReportGroup, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("measureScore", "measureScore", quantity.Quantity, False, None, False),
-            ("population", "population", MeasureReportGroupPopulation, True, None, False),
-            ("stratifier", "stratifier", MeasureReportGroupStratifier, True, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureReportGroupPopulation(backboneelement.BackboneElement):
-    """ The populations in the group.
-
-    The populations that make up the population group, one for each type of
-    population appropriate for the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupPopulation"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    count: Optional[int] = None
-    subjectResults: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupPopulation, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("count", "count", int, False, None, False),
-            ("subjectResults", "subjectResults", fhirreference.FHIRReference, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureReportGroupStratifier(backboneelement.BackboneElement):
-    """ Stratification results.
-
-    When a measure includes multiple stratifiers, there will be a stratifier
-    group for each stratifier defined by the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupStratifier"
-    code: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    stratum: Optional[List[MeasureReportGroupStratifierStratum]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupStratifier, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, True, None, False),
-            ("stratum", "stratum", MeasureReportGroupStratifierStratum, True, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureReportGroupStratifierStratum(backboneelement.BackboneElement):
-    """ Stratum results, one for each unique value, or set of values, in the
-    stratifier, or stratifier components.
-
-    This element contains the results for a single stratum within the
-    stratifier. For example, when stratifying on administrative gender, there
-    will be four strata, one for each possible gender value.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratum"
-    component: Optional[List[MeasureReportGroupStratifierStratumComponent]] = empty_list()
-    measureScore: Optional[quantity.Quantity] = None
-    population: Optional[List[MeasureReportGroupStratifierStratumPopulation]] = empty_list()
-    value: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupStratifierStratum, self).elementProperties()
-        js.extend([
-            ("component", "component", MeasureReportGroupStratifierStratumComponent, True, None, False),
-            ("measureScore", "measureScore", quantity.Quantity, False, None, False),
-            ("population", "population", MeasureReportGroupStratifierStratumPopulation, True, None, False),
-            ("value", "value", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MeasureReportGroupStratifierStratumComponent(backboneelement.BackboneElement):
-    """ Stratifier component values.
-
-    A stratifier component value.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratumComponent"
-    code:codeableconcept.CodeableConcept = None
-    value:codeableconcept.CodeableConcept = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupStratifierStratumComponent, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("value", "value", codeableconcept.CodeableConcept, False, None, True),
-        ])
-        return js
-
-@dataclass
-class MeasureReportGroupStratifierStratumPopulation(backboneelement.BackboneElement):
-    """ Population results in this stratum.
-
-    The populations that make up the stratum, one for each type of population
-    appropriate to the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratumPopulation"
-    code: Optional[codeableconcept.CodeableConcept] = None
-    count: Optional[int] = None
-    subjectResults: Optional[fhirreference.FHIRReference] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupStratifierStratumPopulation, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("count", "count", int, False, None, False),
-            ("subjectResults", "subjectResults", fhirreference.FHIRReference, False, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -44,110 +44,20 @@ from . import timing
 from . import triggerdefinition
 from . import usagecontext
 
-from . import domainresource
-
-@dataclass
-class StructureMap(domainresource.DomainResource):
-    """ A Map of relationships between 2 structures that can be used to transform
-    data.
-    """
-    resource_type: ClassVar[str] = "StructureMap"
-    contact: Optional[List[contactdetail.ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: Optional[fhirdate.FHIRDate] = None
-    description: Optional[str] = None
-    experimental: Optional[bool] = None
-    group: List[ StructureMapGroup] = empty_list()
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    import_fhir: Optional[List[str]] = empty_list()
-    jurisdiction: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    name: str = None
-    publisher: Optional[str] = None
-    purpose: Optional[str] = None
-    status: str = None
-    structure: Optional[List[StructureMapStructure]] = empty_list()
-    title: Optional[str] = None
-    url: str = None
-    useContext: Optional[List[usagecontext.UsageContext]] = empty_list()
-    version: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(StructureMap, self).elementProperties()
-        js.extend([
-            ("contact", "contact", contactdetail.ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", fhirdate.FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("group", "group", StructureMapGroup, True, None, True),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("import_fhir", "import", str, True, None, False),
-            ("jurisdiction", "jurisdiction", codeableconcept.CodeableConcept, True, None, False),
-            ("name", "name", str, False, None, True),
-            ("publisher", "publisher", str, False, None, False),
-            ("purpose", "purpose", str, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("structure", "structure", StructureMapStructure, True, None, False),
-            ("title", "title", str, False, None, False),
-            ("url", "url", str, False, None, True),
-            ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
-            ("version", "version", str, False, None, False),
-        ])
-        return js
-
 from . import backboneelement
 
 @dataclass
-class StructureMapGroup(backboneelement.BackboneElement):
-    """ Named sections for reader convenience.
+class StructureMapStructure(backboneelement.BackboneElement):
+    """ Structure Definition used by this map.
 
-    Organizes the mapping into manageable chunks for human review/ease of
-    maintenance.
+    A structure definition used by this map. The structure definition may
+    describe instances that are converted, or the instances that are produced.
     """
-    resource_type: ClassVar[str] = "StructureMapGroup"
-    documentation: Optional[str] = None
-    extends: Optional[str] = None
-    input: List[ StructureMapGroupInput] = empty_list()
-    name: str = None
-    rule: List[ StructureMapGroupRule] = empty_list()
-    typeMode: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(StructureMapGroup, self).elementProperties()
-        js.extend([
-            ("documentation", "documentation", str, False, None, False),
-            ("extends", "extends", str, False, None, False),
-            ("input", "input", StructureMapGroupInput, True, None, True),
-            ("name", "name", str, False, None, True),
-            ("rule", "rule", StructureMapGroupRule, True, None, True),
-            ("typeMode", "typeMode", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class StructureMapGroupInput(backboneelement.BackboneElement):
-    """ Named instance provided when invoking the map.
-
-    A name assigned to an instance of data. The instance must be provided when
-    the mapping is invoked.
-    """
-    resource_type: ClassVar[str] = "StructureMapGroupInput"
+    resource_type: ClassVar[str] = "StructureMapStructure"
+    alias: Optional[str] = None
     documentation: Optional[str] = None
     mode: str = None
-    name: str = None
-    type: Optional[str] = None
+    url: str = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -156,26 +66,25 @@ class StructureMapGroupInput(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(StructureMapGroupInput, self).elementProperties()
+        js = super(StructureMapStructure, self).elementProperties()
         js.extend([
+            ("alias", "alias", str, False, None, False),
             ("documentation", "documentation", str, False, None, False),
             ("mode", "mode", str, False, None, True),
-            ("name", "name", str, False, None, True),
-            ("type", "type", str, False, None, False),
+            ("url", "url", str, False, None, True),
         ])
         return js
 
 @dataclass
-class StructureMapGroupRule(backboneelement.BackboneElement):
-    """ Transform Rule from source to target.
+class StructureMapGroupRuleTargetParameter(backboneelement.BackboneElement):
+    """ Parameters to the transform.
     """
-    resource_type: ClassVar[str] = "StructureMapGroupRule"
-    dependent: Optional[List[StructureMapGroupRuleDependent]] = empty_list()
-    documentation: Optional[str] = None
-    name: str = None
-    rule: Optional[List[StructureMapGroupRule]] = empty_list()
-    source: List[ StructureMapGroupRuleSource] = empty_list()
-    target: Optional[List[StructureMapGroupRuleTarget]] = empty_list()
+    resource_type: ClassVar[str] = "StructureMapGroupRuleTargetParameter"
+    valueBoolean: bool = None
+    valueDecimal: float = None
+    valueId: str = None
+    valueInteger: int = None
+    valueString: str = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -184,24 +93,29 @@ class StructureMapGroupRule(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(StructureMapGroupRule, self).elementProperties()
+        js = super(StructureMapGroupRuleTargetParameter, self).elementProperties()
         js.extend([
-            ("dependent", "dependent", StructureMapGroupRuleDependent, True, None, False),
-            ("documentation", "documentation", str, False, None, False),
-            ("name", "name", str, False, None, True),
-            ("rule", "rule", StructureMapGroupRule, True, None, False),
-            ("source", "source", StructureMapGroupRuleSource, True, None, True),
-            ("target", "target", StructureMapGroupRuleTarget, True, None, False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", True),
+            ("valueDecimal", "valueDecimal", float, False, "value", True),
+            ("valueId", "valueId", str, False, "value", True),
+            ("valueInteger", "valueInteger", int, False, "value", True),
+            ("valueString", "valueString", str, False, "value", True),
         ])
         return js
 
 @dataclass
-class StructureMapGroupRuleDependent(backboneelement.BackboneElement):
-    """ Which other rules to apply in the context of this rule.
+class StructureMapGroupRuleTarget(backboneelement.BackboneElement):
+    """ Content to create because of this mapping rule.
     """
-    resource_type: ClassVar[str] = "StructureMapGroupRuleDependent"
-    name: str = None
-    variable: List[ str] = empty_list()
+    resource_type: ClassVar[str] = "StructureMapGroupRuleTarget"
+    context: Optional[str] = None
+    contextType: Optional[str] = None
+    element: Optional[str] = None
+    listMode: Optional[List[str]] = empty_list()
+    listRuleId: Optional[str] = None
+    parameter: Optional[List[StructureMapGroupRuleTargetParameter]] = empty_list()
+    transform: Optional[str] = None
+    variable: Optional[str] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -210,10 +124,16 @@ class StructureMapGroupRuleDependent(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(StructureMapGroupRuleDependent, self).elementProperties()
+        js = super(StructureMapGroupRuleTarget, self).elementProperties()
         js.extend([
-            ("name", "name", str, False, None, True),
-            ("variable", "variable", str, True, None, True),
+            ("context", "context", str, False, None, False),
+            ("contextType", "contextType", str, False, None, False),
+            ("element", "element", str, False, None, False),
+            ("listMode", "listMode", str, True, None, False),
+            ("listRuleId", "listRuleId", str, False, None, False),
+            ("parameter", "parameter", StructureMapGroupRuleTargetParameter, True, None, False),
+            ("transform", "transform", str, False, None, False),
+            ("variable", "variable", str, False, None, False),
         ])
         return js
 
@@ -354,18 +274,12 @@ class StructureMapGroupRuleSource(backboneelement.BackboneElement):
         return js
 
 @dataclass
-class StructureMapGroupRuleTarget(backboneelement.BackboneElement):
-    """ Content to create because of this mapping rule.
+class StructureMapGroupRuleDependent(backboneelement.BackboneElement):
+    """ Which other rules to apply in the context of this rule.
     """
-    resource_type: ClassVar[str] = "StructureMapGroupRuleTarget"
-    context: Optional[str] = None
-    contextType: Optional[str] = None
-    element: Optional[str] = None
-    listMode: Optional[List[str]] = empty_list()
-    listRuleId: Optional[str] = None
-    parameter: Optional[List[StructureMapGroupRuleTargetParameter]] = empty_list()
-    transform: Optional[str] = None
-    variable: Optional[str] = None
+    resource_type: ClassVar[str] = "StructureMapGroupRuleDependent"
+    name: str = None
+    variable: List[ str] = empty_list()
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -374,29 +288,24 @@ class StructureMapGroupRuleTarget(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(StructureMapGroupRuleTarget, self).elementProperties()
+        js = super(StructureMapGroupRuleDependent, self).elementProperties()
         js.extend([
-            ("context", "context", str, False, None, False),
-            ("contextType", "contextType", str, False, None, False),
-            ("element", "element", str, False, None, False),
-            ("listMode", "listMode", str, True, None, False),
-            ("listRuleId", "listRuleId", str, False, None, False),
-            ("parameter", "parameter", StructureMapGroupRuleTargetParameter, True, None, False),
-            ("transform", "transform", str, False, None, False),
-            ("variable", "variable", str, False, None, False),
+            ("name", "name", str, False, None, True),
+            ("variable", "variable", str, True, None, True),
         ])
         return js
 
 @dataclass
-class StructureMapGroupRuleTargetParameter(backboneelement.BackboneElement):
-    """ Parameters to the transform.
+class StructureMapGroupRule(backboneelement.BackboneElement):
+    """ Transform Rule from source to target.
     """
-    resource_type: ClassVar[str] = "StructureMapGroupRuleTargetParameter"
-    valueBoolean: bool = None
-    valueDecimal: float = None
-    valueId: str = None
-    valueInteger: int = None
-    valueString: str = None
+    resource_type: ClassVar[str] = "StructureMapGroupRule"
+    dependent: Optional[List[StructureMapGroupRuleDependent]] = empty_list()
+    documentation: Optional[str] = None
+    name: str = None
+    rule: Optional[List[StructureMapGroupRule]] = empty_list()
+    source: List[ StructureMapGroupRuleSource] = empty_list()
+    target: Optional[List[StructureMapGroupRuleTarget]] = empty_list()
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -405,28 +314,29 @@ class StructureMapGroupRuleTargetParameter(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(StructureMapGroupRuleTargetParameter, self).elementProperties()
+        js = super(StructureMapGroupRule, self).elementProperties()
         js.extend([
-            ("valueBoolean", "valueBoolean", bool, False, "value", True),
-            ("valueDecimal", "valueDecimal", float, False, "value", True),
-            ("valueId", "valueId", str, False, "value", True),
-            ("valueInteger", "valueInteger", int, False, "value", True),
-            ("valueString", "valueString", str, False, "value", True),
+            ("dependent", "dependent", StructureMapGroupRuleDependent, True, None, False),
+            ("documentation", "documentation", str, False, None, False),
+            ("name", "name", str, False, None, True),
+            ("rule", "rule", StructureMapGroupRule, True, None, False),
+            ("source", "source", StructureMapGroupRuleSource, True, None, True),
+            ("target", "target", StructureMapGroupRuleTarget, True, None, False),
         ])
         return js
 
 @dataclass
-class StructureMapStructure(backboneelement.BackboneElement):
-    """ Structure Definition used by this map.
+class StructureMapGroupInput(backboneelement.BackboneElement):
+    """ Named instance provided when invoking the map.
 
-    A structure definition used by this map. The structure definition may
-    describe instances that are converted, or the instances that are produced.
+    A name assigned to an instance of data. The instance must be provided when
+    the mapping is invoked.
     """
-    resource_type: ClassVar[str] = "StructureMapStructure"
-    alias: Optional[str] = None
+    resource_type: ClassVar[str] = "StructureMapGroupInput"
     documentation: Optional[str] = None
     mode: str = None
-    url: str = None
+    name: str = None
+    type: Optional[str] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -435,12 +345,102 @@ class StructureMapStructure(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(StructureMapStructure, self).elementProperties()
+        js = super(StructureMapGroupInput, self).elementProperties()
         js.extend([
-            ("alias", "alias", str, False, None, False),
             ("documentation", "documentation", str, False, None, False),
             ("mode", "mode", str, False, None, True),
+            ("name", "name", str, False, None, True),
+            ("type", "type", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class StructureMapGroup(backboneelement.BackboneElement):
+    """ Named sections for reader convenience.
+
+    Organizes the mapping into manageable chunks for human review/ease of
+    maintenance.
+    """
+    resource_type: ClassVar[str] = "StructureMapGroup"
+    documentation: Optional[str] = None
+    extends: Optional[str] = None
+    input: List[ StructureMapGroupInput] = empty_list()
+    name: str = None
+    rule: List[ StructureMapGroupRule] = empty_list()
+    typeMode: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(StructureMapGroup, self).elementProperties()
+        js.extend([
+            ("documentation", "documentation", str, False, None, False),
+            ("extends", "extends", str, False, None, False),
+            ("input", "input", StructureMapGroupInput, True, None, True),
+            ("name", "name", str, False, None, True),
+            ("rule", "rule", StructureMapGroupRule, True, None, True),
+            ("typeMode", "typeMode", str, False, None, True),
+        ])
+        return js
+
+from . import domainresource
+
+@dataclass
+class StructureMap(domainresource.DomainResource):
+    """ A Map of relationships between 2 structures that can be used to transform
+    data.
+    """
+    resource_type: ClassVar[str] = "StructureMap"
+    contact: Optional[List[contactdetail.ContactDetail]] = empty_list()
+    copyright: Optional[str] = None
+    date: Optional[fhirdate.FHIRDate] = None
+    description: Optional[str] = None
+    experimental: Optional[bool] = None
+    group: List[ StructureMapGroup] = empty_list()
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    import_fhir: Optional[List[str]] = empty_list()
+    jurisdiction: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    name: str = None
+    publisher: Optional[str] = None
+    purpose: Optional[str] = None
+    status: str = None
+    structure: Optional[List[StructureMapStructure]] = empty_list()
+    title: Optional[str] = None
+    url: str = None
+    useContext: Optional[List[usagecontext.UsageContext]] = empty_list()
+    version: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(StructureMap, self).elementProperties()
+        js.extend([
+            ("contact", "contact", contactdetail.ContactDetail, True, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("date", "date", fhirdate.FHIRDate, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("experimental", "experimental", bool, False, None, False),
+            ("group", "group", StructureMapGroup, True, None, True),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("import_fhir", "import", str, True, None, False),
+            ("jurisdiction", "jurisdiction", codeableconcept.CodeableConcept, True, None, False),
+            ("name", "name", str, False, None, True),
+            ("publisher", "publisher", str, False, None, False),
+            ("purpose", "purpose", str, False, None, False),
+            ("status", "status", str, False, None, True),
+            ("structure", "structure", StructureMapStructure, True, None, False),
+            ("title", "title", str, False, None, False),
             ("url", "url", str, False, None, True),
+            ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
+            ("version", "version", str, False, None, False),
         ])
         return js
 

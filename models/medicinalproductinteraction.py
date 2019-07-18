@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -14,6 +14,30 @@ from . import backboneelement
 from . import codeableconcept
 from . import domainresource
 from . import fhirreference
+
+from . import backboneelement
+
+@dataclass
+class MedicinalProductInteractionInteractant(backboneelement.BackboneElement):
+    """ The specific medication, food or laboratory test that interacts.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductInteractionInteractant"
+    itemCodeableConcept:codeableconcept.CodeableConcept = None
+    itemReference:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicinalProductInteractionInteractant, self).elementProperties()
+        js.extend([
+            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", True),
+            ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -49,30 +73,6 @@ class MedicinalProductInteraction(domainresource.DomainResource):
             ("management", "management", codeableconcept.CodeableConcept, False, None, False),
             ("subject", "subject", fhirreference.FHIRReference, True, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicinalProductInteractionInteractant(backboneelement.BackboneElement):
-    """ The specific medication, food or laboratory test that interacts.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductInteractionInteractant"
-    itemCodeableConcept:codeableconcept.CodeableConcept = None
-    itemReference:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicinalProductInteractionInteractant, self).elementProperties()
-        js.extend([
-            ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", True),
-            ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", True),
         ])
         return js
 

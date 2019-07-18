@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -17,6 +17,33 @@ from . import fhirdate
 from . import fhirreference
 from . import identifier
 from . import timing
+
+from . import backboneelement
+
+@dataclass
+class DeviceMetricCalibration(backboneelement.BackboneElement):
+    """ Describes the calibrations that have been performed or that are required to
+    be performed.
+    """
+    resource_type: ClassVar[str] = "DeviceMetricCalibration"
+    state: Optional[str] = None
+    time: Optional[fhirdate.FHIRDate] = None
+    type: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(DeviceMetricCalibration, self).elementProperties()
+        js.extend([
+            ("state", "state", str, False, None, False),
+            ("time", "time", fhirdate.FHIRDate, False, None, False),
+            ("type", "type", str, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -58,33 +85,6 @@ class DeviceMetric(domainresource.DomainResource):
             ("source", "source", fhirreference.FHIRReference, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, True),
             ("unit", "unit", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class DeviceMetricCalibration(backboneelement.BackboneElement):
-    """ Describes the calibrations that have been performed or that are required to
-    be performed.
-    """
-    resource_type: ClassVar[str] = "DeviceMetricCalibration"
-    state: Optional[str] = None
-    time: Optional[fhirdate.FHIRDate] = None
-    type: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(DeviceMetricCalibration, self).elementProperties()
-        js.extend([
-            ("state", "state", str, False, None, False),
-            ("time", "time", fhirdate.FHIRDate, False, None, False),
-            ("type", "type", str, False, None, False),
         ])
         return js
 

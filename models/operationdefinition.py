@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,126 @@ from . import contactdetail
 from . import domainresource
 from . import fhirdate
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class OperationDefinitionParameterReferencedFrom(backboneelement.BackboneElement):
+    """ References to this parameter.
+
+    Identifies other resource parameters within the operation invocation that
+    are expected to resolve to this resource.
+    """
+    resource_type: ClassVar[str] = "OperationDefinitionParameterReferencedFrom"
+    source: str = None
+    sourceId: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(OperationDefinitionParameterReferencedFrom, self).elementProperties()
+        js.extend([
+            ("source", "source", str, False, None, True),
+            ("sourceId", "sourceId", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class OperationDefinitionParameterBinding(backboneelement.BackboneElement):
+    """ ValueSet details if this is coded.
+
+    Binds to a value set if this parameter is coded (code, Coding,
+    CodeableConcept).
+    """
+    resource_type: ClassVar[str] = "OperationDefinitionParameterBinding"
+    strength: str = None
+    valueSet: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(OperationDefinitionParameterBinding, self).elementProperties()
+        js.extend([
+            ("strength", "strength", str, False, None, True),
+            ("valueSet", "valueSet", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class OperationDefinitionParameter(backboneelement.BackboneElement):
+    """ Parameters for the operation/query.
+
+    The parameters for the operation/query.
+    """
+    resource_type: ClassVar[str] = "OperationDefinitionParameter"
+    binding: Optional[OperationDefinitionParameterBinding] = None
+    documentation: Optional[str] = None
+    max: str = None
+    min: int = None
+    name: str = None
+    part: Optional[List[OperationDefinitionParameter]] = empty_list()
+    referencedFrom: Optional[List[OperationDefinitionParameterReferencedFrom]] = empty_list()
+    searchType: Optional[str] = None
+    targetProfile: Optional[List[str]] = empty_list()
+    type: Optional[str] = None
+    use: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(OperationDefinitionParameter, self).elementProperties()
+        js.extend([
+            ("binding", "binding", OperationDefinitionParameterBinding, False, None, False),
+            ("documentation", "documentation", str, False, None, False),
+            ("max", "max", str, False, None, True),
+            ("min", "min", int, False, None, True),
+            ("name", "name", str, False, None, True),
+            ("part", "part", OperationDefinitionParameter, True, None, False),
+            ("referencedFrom", "referencedFrom", OperationDefinitionParameterReferencedFrom, True, None, False),
+            ("searchType", "searchType", str, False, None, False),
+            ("targetProfile", "targetProfile", str, True, None, False),
+            ("type", "type", str, False, None, False),
+            ("use", "use", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class OperationDefinitionOverload(backboneelement.BackboneElement):
+    """ Define overloaded variants for when  generating code.
+
+    Defines an appropriate combination of parameters to use when invoking this
+    operation, to help code generators when generating overloaded parameter
+    sets for this operation.
+    """
+    resource_type: ClassVar[str] = "OperationDefinitionOverload"
+    comment: Optional[str] = None
+    parameterName: Optional[List[str]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(OperationDefinitionOverload, self).elementProperties()
+        js.extend([
+            ("comment", "comment", str, False, None, False),
+            ("parameterName", "parameterName", str, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -89,126 +209,6 @@ class OperationDefinition(domainresource.DomainResource):
             ("url", "url", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class OperationDefinitionOverload(backboneelement.BackboneElement):
-    """ Define overloaded variants for when  generating code.
-
-    Defines an appropriate combination of parameters to use when invoking this
-    operation, to help code generators when generating overloaded parameter
-    sets for this operation.
-    """
-    resource_type: ClassVar[str] = "OperationDefinitionOverload"
-    comment: Optional[str] = None
-    parameterName: Optional[List[str]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(OperationDefinitionOverload, self).elementProperties()
-        js.extend([
-            ("comment", "comment", str, False, None, False),
-            ("parameterName", "parameterName", str, True, None, False),
-        ])
-        return js
-
-@dataclass
-class OperationDefinitionParameter(backboneelement.BackboneElement):
-    """ Parameters for the operation/query.
-
-    The parameters for the operation/query.
-    """
-    resource_type: ClassVar[str] = "OperationDefinitionParameter"
-    binding: Optional[OperationDefinitionParameterBinding] = None
-    documentation: Optional[str] = None
-    max: str = None
-    min: int = None
-    name: str = None
-    part: Optional[List[OperationDefinitionParameter]] = empty_list()
-    referencedFrom: Optional[List[OperationDefinitionParameterReferencedFrom]] = empty_list()
-    searchType: Optional[str] = None
-    targetProfile: Optional[List[str]] = empty_list()
-    type: Optional[str] = None
-    use: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(OperationDefinitionParameter, self).elementProperties()
-        js.extend([
-            ("binding", "binding", OperationDefinitionParameterBinding, False, None, False),
-            ("documentation", "documentation", str, False, None, False),
-            ("max", "max", str, False, None, True),
-            ("min", "min", int, False, None, True),
-            ("name", "name", str, False, None, True),
-            ("part", "part", OperationDefinitionParameter, True, None, False),
-            ("referencedFrom", "referencedFrom", OperationDefinitionParameterReferencedFrom, True, None, False),
-            ("searchType", "searchType", str, False, None, False),
-            ("targetProfile", "targetProfile", str, True, None, False),
-            ("type", "type", str, False, None, False),
-            ("use", "use", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class OperationDefinitionParameterBinding(backboneelement.BackboneElement):
-    """ ValueSet details if this is coded.
-
-    Binds to a value set if this parameter is coded (code, Coding,
-    CodeableConcept).
-    """
-    resource_type: ClassVar[str] = "OperationDefinitionParameterBinding"
-    strength: str = None
-    valueSet: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(OperationDefinitionParameterBinding, self).elementProperties()
-        js.extend([
-            ("strength", "strength", str, False, None, True),
-            ("valueSet", "valueSet", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class OperationDefinitionParameterReferencedFrom(backboneelement.BackboneElement):
-    """ References to this parameter.
-
-    Identifies other resource parameters within the operation invocation that
-    are expected to resolve to this resource.
-    """
-    resource_type: ClassVar[str] = "OperationDefinitionParameterReferencedFrom"
-    source: str = None
-    sourceId: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(OperationDefinitionParameterReferencedFrom, self).elementProperties()
-        js.extend([
-            ("source", "source", str, False, None, True),
-            ("sourceId", "sourceId", str, False, None, False),
         ])
         return js
 

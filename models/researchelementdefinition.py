@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -24,6 +24,71 @@ from . import period
 from . import relatedartifact
 from . import timing
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class ResearchElementDefinitionCharacteristic(backboneelement.BackboneElement):
+    """ What defines the members of the research element.
+
+    A characteristic that defines the members of the research element. Multiple
+    characteristics are applied with "and" semantics.
+    """
+    resource_type: ClassVar[str] = "ResearchElementDefinitionCharacteristic"
+    definitionCanonical: str = None
+    definitionCodeableConcept:codeableconcept.CodeableConcept = None
+    definitionDataRequirement:datarequirement.DataRequirement = None
+    definitionExpression:expression.Expression = None
+    exclude: Optional[bool] = None
+    participantEffectiveDateTime: Optional[fhirdate.FHIRDate] = None
+    participantEffectiveDescription: Optional[str] = None
+    participantEffectiveDuration: Optional[duration.Duration] = None
+    participantEffectiveGroupMeasure: Optional[str] = None
+    participantEffectivePeriod: Optional[period.Period] = None
+    participantEffectiveTimeFromStart: Optional[duration.Duration] = None
+    participantEffectiveTiming: Optional[timing.Timing] = None
+    studyEffectiveDateTime: Optional[fhirdate.FHIRDate] = None
+    studyEffectiveDescription: Optional[str] = None
+    studyEffectiveDuration: Optional[duration.Duration] = None
+    studyEffectiveGroupMeasure: Optional[str] = None
+    studyEffectivePeriod: Optional[period.Period] = None
+    studyEffectiveTimeFromStart: Optional[duration.Duration] = None
+    studyEffectiveTiming: Optional[timing.Timing] = None
+    unitOfMeasure: Optional[codeableconcept.CodeableConcept] = None
+    usageContext: Optional[List[usagecontext.UsageContext]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ResearchElementDefinitionCharacteristic, self).elementProperties()
+        js.extend([
+            ("definitionCanonical", "definitionCanonical", str, False, "definition", True),
+            ("definitionCodeableConcept", "definitionCodeableConcept", codeableconcept.CodeableConcept, False, "definition", True),
+            ("definitionDataRequirement", "definitionDataRequirement", datarequirement.DataRequirement, False, "definition", True),
+            ("definitionExpression", "definitionExpression", expression.Expression, False, "definition", True),
+            ("exclude", "exclude", bool, False, None, False),
+            ("participantEffectiveDateTime", "participantEffectiveDateTime", fhirdate.FHIRDate, False, "participantEffective", False),
+            ("participantEffectiveDescription", "participantEffectiveDescription", str, False, None, False),
+            ("participantEffectiveDuration", "participantEffectiveDuration", duration.Duration, False, "participantEffective", False),
+            ("participantEffectiveGroupMeasure", "participantEffectiveGroupMeasure", str, False, None, False),
+            ("participantEffectivePeriod", "participantEffectivePeriod", period.Period, False, "participantEffective", False),
+            ("participantEffectiveTimeFromStart", "participantEffectiveTimeFromStart", duration.Duration, False, None, False),
+            ("participantEffectiveTiming", "participantEffectiveTiming", timing.Timing, False, "participantEffective", False),
+            ("studyEffectiveDateTime", "studyEffectiveDateTime", fhirdate.FHIRDate, False, "studyEffective", False),
+            ("studyEffectiveDescription", "studyEffectiveDescription", str, False, None, False),
+            ("studyEffectiveDuration", "studyEffectiveDuration", duration.Duration, False, "studyEffective", False),
+            ("studyEffectiveGroupMeasure", "studyEffectiveGroupMeasure", str, False, None, False),
+            ("studyEffectivePeriod", "studyEffectivePeriod", period.Period, False, "studyEffective", False),
+            ("studyEffectiveTimeFromStart", "studyEffectiveTimeFromStart", duration.Duration, False, None, False),
+            ("studyEffectiveTiming", "studyEffectiveTiming", timing.Timing, False, "studyEffective", False),
+            ("unitOfMeasure", "unitOfMeasure", codeableconcept.CodeableConcept, False, None, False),
+            ("usageContext", "usageContext", usagecontext.UsageContext, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -113,71 +178,6 @@ class ResearchElementDefinition(domainresource.DomainResource):
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("variableType", "variableType", str, False, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ResearchElementDefinitionCharacteristic(backboneelement.BackboneElement):
-    """ What defines the members of the research element.
-
-    A characteristic that defines the members of the research element. Multiple
-    characteristics are applied with "and" semantics.
-    """
-    resource_type: ClassVar[str] = "ResearchElementDefinitionCharacteristic"
-    definitionCanonical: str = None
-    definitionCodeableConcept:codeableconcept.CodeableConcept = None
-    definitionDataRequirement:datarequirement.DataRequirement = None
-    definitionExpression:expression.Expression = None
-    exclude: Optional[bool] = None
-    participantEffectiveDateTime: Optional[fhirdate.FHIRDate] = None
-    participantEffectiveDescription: Optional[str] = None
-    participantEffectiveDuration: Optional[duration.Duration] = None
-    participantEffectiveGroupMeasure: Optional[str] = None
-    participantEffectivePeriod: Optional[period.Period] = None
-    participantEffectiveTimeFromStart: Optional[duration.Duration] = None
-    participantEffectiveTiming: Optional[timing.Timing] = None
-    studyEffectiveDateTime: Optional[fhirdate.FHIRDate] = None
-    studyEffectiveDescription: Optional[str] = None
-    studyEffectiveDuration: Optional[duration.Duration] = None
-    studyEffectiveGroupMeasure: Optional[str] = None
-    studyEffectivePeriod: Optional[period.Period] = None
-    studyEffectiveTimeFromStart: Optional[duration.Duration] = None
-    studyEffectiveTiming: Optional[timing.Timing] = None
-    unitOfMeasure: Optional[codeableconcept.CodeableConcept] = None
-    usageContext: Optional[List[usagecontext.UsageContext]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ResearchElementDefinitionCharacteristic, self).elementProperties()
-        js.extend([
-            ("definitionCanonical", "definitionCanonical", str, False, "definition", True),
-            ("definitionCodeableConcept", "definitionCodeableConcept", codeableconcept.CodeableConcept, False, "definition", True),
-            ("definitionDataRequirement", "definitionDataRequirement", datarequirement.DataRequirement, False, "definition", True),
-            ("definitionExpression", "definitionExpression", expression.Expression, False, "definition", True),
-            ("exclude", "exclude", bool, False, None, False),
-            ("participantEffectiveDateTime", "participantEffectiveDateTime", fhirdate.FHIRDate, False, "participantEffective", False),
-            ("participantEffectiveDescription", "participantEffectiveDescription", str, False, None, False),
-            ("participantEffectiveDuration", "participantEffectiveDuration", duration.Duration, False, "participantEffective", False),
-            ("participantEffectiveGroupMeasure", "participantEffectiveGroupMeasure", str, False, None, False),
-            ("participantEffectivePeriod", "participantEffectivePeriod", period.Period, False, "participantEffective", False),
-            ("participantEffectiveTimeFromStart", "participantEffectiveTimeFromStart", duration.Duration, False, None, False),
-            ("participantEffectiveTiming", "participantEffectiveTiming", timing.Timing, False, "participantEffective", False),
-            ("studyEffectiveDateTime", "studyEffectiveDateTime", fhirdate.FHIRDate, False, "studyEffective", False),
-            ("studyEffectiveDescription", "studyEffectiveDescription", str, False, None, False),
-            ("studyEffectiveDuration", "studyEffectiveDuration", duration.Duration, False, "studyEffective", False),
-            ("studyEffectiveGroupMeasure", "studyEffectiveGroupMeasure", str, False, None, False),
-            ("studyEffectivePeriod", "studyEffectivePeriod", period.Period, False, "studyEffective", False),
-            ("studyEffectiveTimeFromStart", "studyEffectiveTimeFromStart", duration.Duration, False, None, False),
-            ("studyEffectiveTiming", "studyEffectiveTiming", timing.Timing, False, "studyEffective", False),
-            ("unitOfMeasure", "unitOfMeasure", codeableconcept.CodeableConcept, False, None, False),
-            ("usageContext", "usageContext", usagecontext.UsageContext, True, None, False),
         ])
         return js
 

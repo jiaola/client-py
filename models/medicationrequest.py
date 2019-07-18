@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,101 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import quantity
+
+from . import backboneelement
+
+@dataclass
+class MedicationRequestSubstitution(backboneelement.BackboneElement):
+    """ Any restrictions on medication substitution.
+
+    Indicates whether or not substitution can or should be part of the
+    dispense. In some cases, substitution must happen, in other cases
+    substitution must not happen. This block explains the prescriber's intent.
+    If nothing is specified substitution may be done.
+    """
+    resource_type: ClassVar[str] = "MedicationRequestSubstitution"
+    allowedBoolean: bool = None
+    allowedCodeableConcept:codeableconcept.CodeableConcept = None
+    reason: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationRequestSubstitution, self).elementProperties()
+        js.extend([
+            ("allowedBoolean", "allowedBoolean", bool, False, "allowed", True),
+            ("allowedCodeableConcept", "allowedCodeableConcept", codeableconcept.CodeableConcept, False, "allowed", True),
+            ("reason", "reason", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MedicationRequestDispenseRequestInitialFill(backboneelement.BackboneElement):
+    """ First fill details.
+
+    Indicates the quantity or duration for the first dispense of the
+    medication.
+    """
+    resource_type: ClassVar[str] = "MedicationRequestDispenseRequestInitialFill"
+    duration: Optional[duration.Duration] = None
+    quantity: Optional[quantity.Quantity] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationRequestDispenseRequestInitialFill, self).elementProperties()
+        js.extend([
+            ("duration", "duration", duration.Duration, False, None, False),
+            ("quantity", "quantity", quantity.Quantity, False, None, False),
+        ])
+        return js
+
+@dataclass
+class MedicationRequestDispenseRequest(backboneelement.BackboneElement):
+    """ Medication supply authorization.
+
+    Indicates the specific details for the dispense or medication supply part
+    of a medication request (also known as a Medication Prescription or
+    Medication Order).  Note that this information is not always sent with the
+    order.  There may be in some settings (e.g. hospitals) institutional or
+    system support for completing the dispense details in the pharmacy
+    department.
+    """
+    resource_type: ClassVar[str] = "MedicationRequestDispenseRequest"
+    dispenseInterval: Optional[duration.Duration] = None
+    expectedSupplyDuration: Optional[duration.Duration] = None
+    initialFill: Optional[MedicationRequestDispenseRequestInitialFill] = None
+    numberOfRepeatsAllowed: Optional[int] = None
+    performer: Optional[fhirreference.FHIRReference] = None
+    quantity: Optional[quantity.Quantity] = None
+    validityPeriod: Optional[period.Period] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicationRequestDispenseRequest, self).elementProperties()
+        js.extend([
+            ("dispenseInterval", "dispenseInterval", duration.Duration, False, None, False),
+            ("expectedSupplyDuration", "expectedSupplyDuration", duration.Duration, False, None, False),
+            ("initialFill", "initialFill", MedicationRequestDispenseRequestInitialFill, False, None, False),
+            ("numberOfRepeatsAllowed", "numberOfRepeatsAllowed", int, False, None, False),
+            ("performer", "performer", fhirreference.FHIRReference, False, None, False),
+            ("quantity", "quantity", quantity.Quantity, False, None, False),
+            ("validityPeriod", "validityPeriod", period.Period, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -114,101 +209,6 @@ class MedicationRequest(domainresource.DomainResource):
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("substitution", "substitution", MedicationRequestSubstitution, False, None, False),
             ("supportingInformation", "supportingInformation", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class MedicationRequestDispenseRequest(backboneelement.BackboneElement):
-    """ Medication supply authorization.
-
-    Indicates the specific details for the dispense or medication supply part
-    of a medication request (also known as a Medication Prescription or
-    Medication Order).  Note that this information is not always sent with the
-    order.  There may be in some settings (e.g. hospitals) institutional or
-    system support for completing the dispense details in the pharmacy
-    department.
-    """
-    resource_type: ClassVar[str] = "MedicationRequestDispenseRequest"
-    dispenseInterval: Optional[duration.Duration] = None
-    expectedSupplyDuration: Optional[duration.Duration] = None
-    initialFill: Optional[MedicationRequestDispenseRequestInitialFill] = None
-    numberOfRepeatsAllowed: Optional[int] = None
-    performer: Optional[fhirreference.FHIRReference] = None
-    quantity: Optional[quantity.Quantity] = None
-    validityPeriod: Optional[period.Period] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationRequestDispenseRequest, self).elementProperties()
-        js.extend([
-            ("dispenseInterval", "dispenseInterval", duration.Duration, False, None, False),
-            ("expectedSupplyDuration", "expectedSupplyDuration", duration.Duration, False, None, False),
-            ("initialFill", "initialFill", MedicationRequestDispenseRequestInitialFill, False, None, False),
-            ("numberOfRepeatsAllowed", "numberOfRepeatsAllowed", int, False, None, False),
-            ("performer", "performer", fhirreference.FHIRReference, False, None, False),
-            ("quantity", "quantity", quantity.Quantity, False, None, False),
-            ("validityPeriod", "validityPeriod", period.Period, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MedicationRequestDispenseRequestInitialFill(backboneelement.BackboneElement):
-    """ First fill details.
-
-    Indicates the quantity or duration for the first dispense of the
-    medication.
-    """
-    resource_type: ClassVar[str] = "MedicationRequestDispenseRequestInitialFill"
-    duration: Optional[duration.Duration] = None
-    quantity: Optional[quantity.Quantity] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationRequestDispenseRequestInitialFill, self).elementProperties()
-        js.extend([
-            ("duration", "duration", duration.Duration, False, None, False),
-            ("quantity", "quantity", quantity.Quantity, False, None, False),
-        ])
-        return js
-
-@dataclass
-class MedicationRequestSubstitution(backboneelement.BackboneElement):
-    """ Any restrictions on medication substitution.
-
-    Indicates whether or not substitution can or should be part of the
-    dispense. In some cases, substitution must happen, in other cases
-    substitution must not happen. This block explains the prescriber's intent.
-    If nothing is specified substitution may be done.
-    """
-    resource_type: ClassVar[str] = "MedicationRequestSubstitution"
-    allowedBoolean: bool = None
-    allowedCodeableConcept:codeableconcept.CodeableConcept = None
-    reason: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicationRequestSubstitution, self).elementProperties()
-        js.extend([
-            ("allowedBoolean", "allowedBoolean", bool, False, "allowed", True),
-            ("allowedCodeableConcept", "allowedCodeableConcept", codeableconcept.CodeableConcept, False, "allowed", True),
-            ("reason", "reason", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

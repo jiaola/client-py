@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,175 @@ from . import identifier
 from . import period
 from . import relatedartifact
 from . import usagecontext
+
+from . import backboneelement
+
+@dataclass
+class EffectEvidenceSynthesisSampleSize(backboneelement.BackboneElement):
+    """ What sample size was involved?.
+
+    A description of the size of the sample involved in the synthesis.
+    """
+    resource_type: ClassVar[str] = "EffectEvidenceSynthesisSampleSize"
+    description: Optional[str] = None
+    numberOfParticipants: Optional[int] = None
+    numberOfStudies: Optional[int] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EffectEvidenceSynthesisSampleSize, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("numberOfParticipants", "numberOfParticipants", int, False, None, False),
+            ("numberOfStudies", "numberOfStudies", int, False, None, False),
+        ])
+        return js
+
+@dataclass
+class EffectEvidenceSynthesisResultsByExposure(backboneelement.BackboneElement):
+    """ What was the result per exposure?.
+
+    A description of the results for each exposure considered in the effect
+    estimate.
+    """
+    resource_type: ClassVar[str] = "EffectEvidenceSynthesisResultsByExposure"
+    description: Optional[str] = None
+    exposureState: Optional[str] = None
+    riskEvidenceSynthesis:fhirreference.FHIRReference = None
+    variantState: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EffectEvidenceSynthesisResultsByExposure, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("exposureState", "exposureState", str, False, None, False),
+            ("riskEvidenceSynthesis", "riskEvidenceSynthesis", fhirreference.FHIRReference, False, None, True),
+            ("variantState", "variantState", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class EffectEvidenceSynthesisEffectEstimatePrecisionEstimate(backboneelement.BackboneElement):
+    """ How precise the estimate is.
+
+    A description of the precision of the estimate for the effect.
+    """
+    resource_type: ClassVar[str] = "EffectEvidenceSynthesisEffectEstimatePrecisionEstimate"
+    from_fhir: Optional[float] = None
+    level: Optional[float] = None
+    to: Optional[float] = None
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EffectEvidenceSynthesisEffectEstimatePrecisionEstimate, self).elementProperties()
+        js.extend([
+            ("from_fhir", "from", float, False, None, False),
+            ("level", "level", float, False, None, False),
+            ("to", "to", float, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class EffectEvidenceSynthesisEffectEstimate(backboneelement.BackboneElement):
+    """ What was the estimated effect.
+
+    The estimated effect of the exposure variant.
+    """
+    resource_type: ClassVar[str] = "EffectEvidenceSynthesisEffectEstimate"
+    description: Optional[str] = None
+    precisionEstimate: Optional[List[EffectEvidenceSynthesisEffectEstimatePrecisionEstimate]] = empty_list()
+    type: Optional[codeableconcept.CodeableConcept] = None
+    unitOfMeasure: Optional[codeableconcept.CodeableConcept] = None
+    value: Optional[float] = None
+    variantState: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EffectEvidenceSynthesisEffectEstimate, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("precisionEstimate", "precisionEstimate", EffectEvidenceSynthesisEffectEstimatePrecisionEstimate, True, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("unitOfMeasure", "unitOfMeasure", codeableconcept.CodeableConcept, False, None, False),
+            ("value", "value", float, False, None, False),
+            ("variantState", "variantState", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class EffectEvidenceSynthesisCertaintyCertaintySubcomponent(backboneelement.BackboneElement):
+    """ A component that contributes to the overall certainty.
+
+    A description of a component of the overall certainty.
+    """
+    resource_type: ClassVar[str] = "EffectEvidenceSynthesisCertaintyCertaintySubcomponent"
+    note: Optional[List[annotation.Annotation]] = empty_list()
+    rating: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EffectEvidenceSynthesisCertaintyCertaintySubcomponent, self).elementProperties()
+        js.extend([
+            ("note", "note", annotation.Annotation, True, None, False),
+            ("rating", "rating", codeableconcept.CodeableConcept, True, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class EffectEvidenceSynthesisCertainty(backboneelement.BackboneElement):
+    """ How certain is the effect.
+
+    A description of the certainty of the effect estimate.
+    """
+    resource_type: ClassVar[str] = "EffectEvidenceSynthesisCertainty"
+    certaintySubcomponent: Optional[List[EffectEvidenceSynthesisCertaintyCertaintySubcomponent]] = empty_list()
+    note: Optional[List[annotation.Annotation]] = empty_list()
+    rating: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(EffectEvidenceSynthesisCertainty, self).elementProperties()
+        js.extend([
+            ("certaintySubcomponent", "certaintySubcomponent", EffectEvidenceSynthesisCertaintyCertaintySubcomponent, True, None, False),
+            ("note", "note", annotation.Annotation, True, None, False),
+            ("rating", "rating", codeableconcept.CodeableConcept, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -109,175 +278,6 @@ class EffectEvidenceSynthesis(domainresource.DomainResource):
             ("url", "url", str, False, None, False),
             ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class EffectEvidenceSynthesisCertainty(backboneelement.BackboneElement):
-    """ How certain is the effect.
-
-    A description of the certainty of the effect estimate.
-    """
-    resource_type: ClassVar[str] = "EffectEvidenceSynthesisCertainty"
-    certaintySubcomponent: Optional[List[EffectEvidenceSynthesisCertaintyCertaintySubcomponent]] = empty_list()
-    note: Optional[List[annotation.Annotation]] = empty_list()
-    rating: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EffectEvidenceSynthesisCertainty, self).elementProperties()
-        js.extend([
-            ("certaintySubcomponent", "certaintySubcomponent", EffectEvidenceSynthesisCertaintyCertaintySubcomponent, True, None, False),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("rating", "rating", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-@dataclass
-class EffectEvidenceSynthesisCertaintyCertaintySubcomponent(backboneelement.BackboneElement):
-    """ A component that contributes to the overall certainty.
-
-    A description of a component of the overall certainty.
-    """
-    resource_type: ClassVar[str] = "EffectEvidenceSynthesisCertaintyCertaintySubcomponent"
-    note: Optional[List[annotation.Annotation]] = empty_list()
-    rating: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EffectEvidenceSynthesisCertaintyCertaintySubcomponent, self).elementProperties()
-        js.extend([
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("rating", "rating", codeableconcept.CodeableConcept, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class EffectEvidenceSynthesisEffectEstimate(backboneelement.BackboneElement):
-    """ What was the estimated effect.
-
-    The estimated effect of the exposure variant.
-    """
-    resource_type: ClassVar[str] = "EffectEvidenceSynthesisEffectEstimate"
-    description: Optional[str] = None
-    precisionEstimate: Optional[List[EffectEvidenceSynthesisEffectEstimatePrecisionEstimate]] = empty_list()
-    type: Optional[codeableconcept.CodeableConcept] = None
-    unitOfMeasure: Optional[codeableconcept.CodeableConcept] = None
-    value: Optional[float] = None
-    variantState: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EffectEvidenceSynthesisEffectEstimate, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("precisionEstimate", "precisionEstimate", EffectEvidenceSynthesisEffectEstimatePrecisionEstimate, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-            ("unitOfMeasure", "unitOfMeasure", codeableconcept.CodeableConcept, False, None, False),
-            ("value", "value", float, False, None, False),
-            ("variantState", "variantState", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class EffectEvidenceSynthesisEffectEstimatePrecisionEstimate(backboneelement.BackboneElement):
-    """ How precise the estimate is.
-
-    A description of the precision of the estimate for the effect.
-    """
-    resource_type: ClassVar[str] = "EffectEvidenceSynthesisEffectEstimatePrecisionEstimate"
-    from_fhir: Optional[float] = None
-    level: Optional[float] = None
-    to: Optional[float] = None
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EffectEvidenceSynthesisEffectEstimatePrecisionEstimate, self).elementProperties()
-        js.extend([
-            ("from_fhir", "from", float, False, None, False),
-            ("level", "level", float, False, None, False),
-            ("to", "to", float, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class EffectEvidenceSynthesisResultsByExposure(backboneelement.BackboneElement):
-    """ What was the result per exposure?.
-
-    A description of the results for each exposure considered in the effect
-    estimate.
-    """
-    resource_type: ClassVar[str] = "EffectEvidenceSynthesisResultsByExposure"
-    description: Optional[str] = None
-    exposureState: Optional[str] = None
-    riskEvidenceSynthesis:fhirreference.FHIRReference = None
-    variantState: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EffectEvidenceSynthesisResultsByExposure, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("exposureState", "exposureState", str, False, None, False),
-            ("riskEvidenceSynthesis", "riskEvidenceSynthesis", fhirreference.FHIRReference, False, None, True),
-            ("variantState", "variantState", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-@dataclass
-class EffectEvidenceSynthesisSampleSize(backboneelement.BackboneElement):
-    """ What sample size was involved?.
-
-    A description of the size of the sample involved in the synthesis.
-    """
-    resource_type: ClassVar[str] = "EffectEvidenceSynthesisSampleSize"
-    description: Optional[str] = None
-    numberOfParticipants: Optional[int] = None
-    numberOfStudies: Optional[int] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(EffectEvidenceSynthesisSampleSize, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("numberOfParticipants", "numberOfParticipants", int, False, None, False),
-            ("numberOfStudies", "numberOfStudies", int, False, None, False),
         ])
         return js
 

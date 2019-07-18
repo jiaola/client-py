@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,50 +19,17 @@ from . import identifier
 from . import quantity
 from . import ratio
 
-from . import domainresource
-
-@dataclass
-class MedicinalProductPharmaceutical(domainresource.DomainResource):
-    """ A pharmaceutical product described in terms of its composition and dose
-    form.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductPharmaceutical"
-    administrableDoseForm:codeableconcept.CodeableConcept = None
-    characteristics: Optional[List[MedicinalProductPharmaceuticalCharacteristics]] = empty_list()
-    device: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    ingredient: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    routeOfAdministration: List[ MedicinalProductPharmaceuticalRouteOfAdministration] = empty_list()
-    unitOfPresentation: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(MedicinalProductPharmaceutical, self).elementProperties()
-        js.extend([
-            ("administrableDoseForm", "administrableDoseForm", codeableconcept.CodeableConcept, False, None, True),
-            ("characteristics", "characteristics", MedicinalProductPharmaceuticalCharacteristics, True, None, False),
-            ("device", "device", fhirreference.FHIRReference, True, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("ingredient", "ingredient", fhirreference.FHIRReference, True, None, False),
-            ("routeOfAdministration", "routeOfAdministration", MedicinalProductPharmaceuticalRouteOfAdministration, True, None, True),
-            ("unitOfPresentation", "unitOfPresentation", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
 from . import backboneelement
 
 @dataclass
-class MedicinalProductPharmaceuticalCharacteristics(backboneelement.BackboneElement):
-    """ Characteristics e.g. a products onset of action.
+class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod(backboneelement.BackboneElement):
+    """ A species specific time during which consumption of animal product is not
+    appropriate.
     """
-    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalCharacteristics"
-    code:codeableconcept.CodeableConcept = None
-    status: Optional[codeableconcept.CodeableConcept] = None
+    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod"
+    supportingInformation: Optional[str] = None
+    tissue:codeableconcept.CodeableConcept = None
+    value:quantity.Quantity = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -71,10 +38,33 @@ class MedicinalProductPharmaceuticalCharacteristics(backboneelement.BackboneElem
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(MedicinalProductPharmaceuticalCharacteristics, self).elementProperties()
+        js = super(MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod, self).elementProperties()
+        js.extend([
+            ("supportingInformation", "supportingInformation", str, False, None, False),
+            ("tissue", "tissue", codeableconcept.CodeableConcept, False, None, True),
+            ("value", "value", quantity.Quantity, False, None, True),
+        ])
+        return js
+
+@dataclass
+class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies(backboneelement.BackboneElement):
+    """ A species for which this route applies.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies"
+    code:codeableconcept.CodeableConcept = None
+    withdrawalPeriod: Optional[List[MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies, self).elementProperties()
         js.extend([
             ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("status", "status", codeableconcept.CodeableConcept, False, None, False),
+            ("withdrawalPeriod", "withdrawalPeriod", MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod, True, None, False),
         ])
         return js
 
@@ -112,12 +102,12 @@ class MedicinalProductPharmaceuticalRouteOfAdministration(backboneelement.Backbo
         return js
 
 @dataclass
-class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies(backboneelement.BackboneElement):
-    """ A species for which this route applies.
+class MedicinalProductPharmaceuticalCharacteristics(backboneelement.BackboneElement):
+    """ Characteristics e.g. a products onset of action.
     """
-    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies"
+    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalCharacteristics"
     code:codeableconcept.CodeableConcept = None
-    withdrawalPeriod: Optional[List[MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod]] = empty_list()
+    status: Optional[codeableconcept.CodeableConcept] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -126,22 +116,28 @@ class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies(backbonee
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies, self).elementProperties()
+        js = super(MedicinalProductPharmaceuticalCharacteristics, self).elementProperties()
         js.extend([
             ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("withdrawalPeriod", "withdrawalPeriod", MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod, True, None, False),
+            ("status", "status", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 
+from . import domainresource
+
 @dataclass
-class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod(backboneelement.BackboneElement):
-    """ A species specific time during which consumption of animal product is not
-    appropriate.
+class MedicinalProductPharmaceutical(domainresource.DomainResource):
+    """ A pharmaceutical product described in terms of its composition and dose
+    form.
     """
-    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod"
-    supportingInformation: Optional[str] = None
-    tissue:codeableconcept.CodeableConcept = None
-    value:quantity.Quantity = None
+    resource_type: ClassVar[str] = "MedicinalProductPharmaceutical"
+    administrableDoseForm:codeableconcept.CodeableConcept = None
+    characteristics: Optional[List[MedicinalProductPharmaceuticalCharacteristics]] = empty_list()
+    device: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    ingredient: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    routeOfAdministration: List[ MedicinalProductPharmaceuticalRouteOfAdministration] = empty_list()
+    unitOfPresentation: Optional[codeableconcept.CodeableConcept] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -150,11 +146,15 @@ class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawal
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod, self).elementProperties()
+        js = super(MedicinalProductPharmaceutical, self).elementProperties()
         js.extend([
-            ("supportingInformation", "supportingInformation", str, False, None, False),
-            ("tissue", "tissue", codeableconcept.CodeableConcept, False, None, True),
-            ("value", "value", quantity.Quantity, False, None, True),
+            ("administrableDoseForm", "administrableDoseForm", codeableconcept.CodeableConcept, False, None, True),
+            ("characteristics", "characteristics", MedicinalProductPharmaceuticalCharacteristics, True, None, False),
+            ("device", "device", fhirreference.FHIRReference, True, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("ingredient", "ingredient", fhirreference.FHIRReference, True, None, False),
+            ("routeOfAdministration", "routeOfAdministration", MedicinalProductPharmaceuticalRouteOfAdministration, True, None, True),
+            ("unitOfPresentation", "unitOfPresentation", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

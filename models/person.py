@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Person) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Person) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,6 +19,30 @@ from . import fhirdate
 from . import fhirreference
 from . import humanname
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class PersonLink(backboneelement.BackboneElement):
+    """ Link to a resource that concerns the same actual person.
+    """
+    resource_type: ClassVar[str] = "PersonLink"
+    assurance: Optional[str] = None
+    target:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PersonLink, self).elementProperties()
+        js.extend([
+            ("assurance", "assurance", str, False, None, False),
+            ("target", "target", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -60,30 +84,6 @@ class Person(domainresource.DomainResource):
             ("name", "name", humanname.HumanName, True, None, False),
             ("photo", "photo", attachment.Attachment, False, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class PersonLink(backboneelement.BackboneElement):
-    """ Link to a resource that concerns the same actual person.
-    """
-    resource_type: ClassVar[str] = "PersonLink"
-    assurance: Optional[str] = None
-    target:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PersonLink, self).elementProperties()
-        js.extend([
-            ("assurance", "assurance", str, False, None, False),
-            ("target", "target", fhirreference.FHIRReference, False, None, True),
         ])
         return js
 

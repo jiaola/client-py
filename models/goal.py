@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Goal) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Goal) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,48 @@ from . import identifier
 from . import quantity
 from . import range
 from . import ratio
+
+from . import backboneelement
+
+@dataclass
+class GoalTarget(backboneelement.BackboneElement):
+    """ Target outcome for the goal.
+
+    Indicates what should be done by when.
+    """
+    resource_type: ClassVar[str] = "GoalTarget"
+    detailBoolean: Optional[bool] = None
+    detailCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    detailInteger: Optional[int] = None
+    detailQuantity: Optional[quantity.Quantity] = None
+    detailRange: Optional[range.Range] = None
+    detailRatio: Optional[ratio.Ratio] = None
+    detailString: Optional[str] = None
+    dueDate: Optional[fhirdate.FHIRDate] = None
+    dueDuration: Optional[duration.Duration] = None
+    measure: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(GoalTarget, self).elementProperties()
+        js.extend([
+            ("detailBoolean", "detailBoolean", bool, False, "detail", False),
+            ("detailCodeableConcept", "detailCodeableConcept", codeableconcept.CodeableConcept, False, "detail", False),
+            ("detailInteger", "detailInteger", int, False, "detail", False),
+            ("detailQuantity", "detailQuantity", quantity.Quantity, False, "detail", False),
+            ("detailRange", "detailRange", range.Range, False, "detail", False),
+            ("detailRatio", "detailRatio", ratio.Ratio, False, "detail", False),
+            ("detailString", "detailString", str, False, "detail", False),
+            ("dueDate", "dueDate", fhirdate.FHIRDate, False, "due", False),
+            ("dueDuration", "dueDuration", duration.Duration, False, "due", False),
+            ("measure", "measure", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -78,48 +120,6 @@ class Goal(domainresource.DomainResource):
             ("statusReason", "statusReason", str, False, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("target", "target", GoalTarget, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class GoalTarget(backboneelement.BackboneElement):
-    """ Target outcome for the goal.
-
-    Indicates what should be done by when.
-    """
-    resource_type: ClassVar[str] = "GoalTarget"
-    detailBoolean: Optional[bool] = None
-    detailCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    detailInteger: Optional[int] = None
-    detailQuantity: Optional[quantity.Quantity] = None
-    detailRange: Optional[range.Range] = None
-    detailRatio: Optional[ratio.Ratio] = None
-    detailString: Optional[str] = None
-    dueDate: Optional[fhirdate.FHIRDate] = None
-    dueDuration: Optional[duration.Duration] = None
-    measure: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(GoalTarget, self).elementProperties()
-        js.extend([
-            ("detailBoolean", "detailBoolean", bool, False, "detail", False),
-            ("detailCodeableConcept", "detailCodeableConcept", codeableconcept.CodeableConcept, False, "detail", False),
-            ("detailInteger", "detailInteger", int, False, "detail", False),
-            ("detailQuantity", "detailQuantity", quantity.Quantity, False, "detail", False),
-            ("detailRange", "detailRange", range.Range, False, "detail", False),
-            ("detailRatio", "detailRatio", ratio.Ratio, False, "detail", False),
-            ("detailString", "detailString", str, False, "detail", False),
-            ("dueDate", "dueDate", fhirdate.FHIRDate, False, "due", False),
-            ("dueDuration", "dueDuration", duration.Duration, False, "due", False),
-            ("measure", "measure", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

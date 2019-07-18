@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,47 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import range
+
+from . import backboneelement
+
+@dataclass
+class FamilyMemberHistoryCondition(backboneelement.BackboneElement):
+    """ Condition that the related person had.
+
+    The significant Conditions (or condition) that the family member had. This
+    is a repeating section to allow a system to represent more than one
+    condition per resource, though there is nothing stopping multiple resources
+    - one per condition.
+    """
+    resource_type: ClassVar[str] = "FamilyMemberHistoryCondition"
+    code:codeableconcept.CodeableConcept = None
+    contributedToDeath: Optional[bool] = None
+    note: Optional[List[annotation.Annotation]] = empty_list()
+    onsetAge: Optional[age.Age] = None
+    onsetPeriod: Optional[period.Period] = None
+    onsetRange: Optional[range.Range] = None
+    onsetString: Optional[str] = None
+    outcome: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(FamilyMemberHistoryCondition, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("contributedToDeath", "contributedToDeath", bool, False, None, False),
+            ("note", "note", annotation.Annotation, True, None, False),
+            ("onsetAge", "onsetAge", age.Age, False, "onset", False),
+            ("onsetPeriod", "onsetPeriod", period.Period, False, "onset", False),
+            ("onsetRange", "onsetRange", range.Range, False, "onset", False),
+            ("onsetString", "onsetString", str, False, "onset", False),
+            ("outcome", "outcome", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -93,47 +134,6 @@ class FamilyMemberHistory(domainresource.DomainResource):
             ("relationship", "relationship", codeableconcept.CodeableConcept, False, None, True),
             ("sex", "sex", codeableconcept.CodeableConcept, False, None, False),
             ("status", "status", str, False, None, True),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class FamilyMemberHistoryCondition(backboneelement.BackboneElement):
-    """ Condition that the related person had.
-
-    The significant Conditions (or condition) that the family member had. This
-    is a repeating section to allow a system to represent more than one
-    condition per resource, though there is nothing stopping multiple resources
-    - one per condition.
-    """
-    resource_type: ClassVar[str] = "FamilyMemberHistoryCondition"
-    code:codeableconcept.CodeableConcept = None
-    contributedToDeath: Optional[bool] = None
-    note: Optional[List[annotation.Annotation]] = empty_list()
-    onsetAge: Optional[age.Age] = None
-    onsetPeriod: Optional[period.Period] = None
-    onsetRange: Optional[range.Range] = None
-    onsetString: Optional[str] = None
-    outcome: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(FamilyMemberHistoryCondition, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("contributedToDeath", "contributedToDeath", bool, False, None, False),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("onsetAge", "onsetAge", age.Age, False, "onset", False),
-            ("onsetPeriod", "onsetPeriod", period.Period, False, "onset", False),
-            ("onsetRange", "onsetRange", range.Range, False, "onset", False),
-            ("onsetString", "onsetString", str, False, "onset", False),
-            ("outcome", "outcome", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

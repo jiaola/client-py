@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,6 +16,58 @@ from . import domainresource
 from . import fhirdate
 from . import fhirreference
 from . import identifier
+
+from . import backboneelement
+
+@dataclass
+class AdverseEventSuspectEntityCausality(backboneelement.BackboneElement):
+    """ Information on the possible cause of the event.
+    """
+    resource_type: ClassVar[str] = "AdverseEventSuspectEntityCausality"
+    assessment: Optional[codeableconcept.CodeableConcept] = None
+    author: Optional[fhirreference.FHIRReference] = None
+    method: Optional[codeableconcept.CodeableConcept] = None
+    productRelatedness: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(AdverseEventSuspectEntityCausality, self).elementProperties()
+        js.extend([
+            ("assessment", "assessment", codeableconcept.CodeableConcept, False, None, False),
+            ("author", "author", fhirreference.FHIRReference, False, None, False),
+            ("method", "method", codeableconcept.CodeableConcept, False, None, False),
+            ("productRelatedness", "productRelatedness", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class AdverseEventSuspectEntity(backboneelement.BackboneElement):
+    """ The suspected agent causing the adverse event.
+
+    Describes the entity that is suspected to have caused the adverse event.
+    """
+    resource_type: ClassVar[str] = "AdverseEventSuspectEntity"
+    causality: Optional[List[AdverseEventSuspectEntityCausality]] = empty_list()
+    instance:fhirreference.FHIRReference = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(AdverseEventSuspectEntity, self).elementProperties()
+        js.extend([
+            ("causality", "causality", AdverseEventSuspectEntityCausality, True, None, False),
+            ("instance", "instance", fhirreference.FHIRReference, False, None, True),
+        ])
+        return js
 
 from . import domainresource
 
@@ -80,58 +132,6 @@ class AdverseEvent(domainresource.DomainResource):
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("subjectMedicalHistory", "subjectMedicalHistory", fhirreference.FHIRReference, True, None, False),
             ("suspectEntity", "suspectEntity", AdverseEventSuspectEntity, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class AdverseEventSuspectEntity(backboneelement.BackboneElement):
-    """ The suspected agent causing the adverse event.
-
-    Describes the entity that is suspected to have caused the adverse event.
-    """
-    resource_type: ClassVar[str] = "AdverseEventSuspectEntity"
-    causality: Optional[List[AdverseEventSuspectEntityCausality]] = empty_list()
-    instance:fhirreference.FHIRReference = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(AdverseEventSuspectEntity, self).elementProperties()
-        js.extend([
-            ("causality", "causality", AdverseEventSuspectEntityCausality, True, None, False),
-            ("instance", "instance", fhirreference.FHIRReference, False, None, True),
-        ])
-        return js
-
-@dataclass
-class AdverseEventSuspectEntityCausality(backboneelement.BackboneElement):
-    """ Information on the possible cause of the event.
-    """
-    resource_type: ClassVar[str] = "AdverseEventSuspectEntityCausality"
-    assessment: Optional[codeableconcept.CodeableConcept] = None
-    author: Optional[fhirreference.FHIRReference] = None
-    method: Optional[codeableconcept.CodeableConcept] = None
-    productRelatedness: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(AdverseEventSuspectEntityCausality, self).elementProperties()
-        js.extend([
-            ("assessment", "assessment", codeableconcept.CodeableConcept, False, None, False),
-            ("author", "author", fhirreference.FHIRReference, False, None, False),
-            ("method", "method", codeableconcept.CodeableConcept, False, None, False),
-            ("productRelatedness", "productRelatedness", str, False, None, False),
         ])
         return js
 

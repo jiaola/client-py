@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -29,51 +29,20 @@ from . import timing
 from . import triggerdefinition
 from . import usagecontext
 
-from . import domainresource
+from . import backboneelement
 
 @dataclass
-class PlanDefinition(domainresource.DomainResource):
-    """ The definition of a plan for a series of actions, independent of any
-    specific patient or context.
+class PlanDefinitionGoalTarget(backboneelement.BackboneElement):
+    """ Target outcome for the goal.
 
-    This resource allows for the definition of various types of plans as a
-    sharable, consumable, and executable artifact. The resource is general
-    enough to support the description of a broad range of clinical artifacts
-    such as clinical decision support rules, order sets and protocols.
+    Indicates what should be done and within what timeframe.
     """
-    resource_type: ClassVar[str] = "PlanDefinition"
-    action: Optional[List[PlanDefinitionAction]] = empty_list()
-    approvalDate: Optional[fhirdate.FHIRDate] = None
-    author: Optional[List[contactdetail.ContactDetail]] = empty_list()
-    contact: Optional[List[contactdetail.ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: Optional[fhirdate.FHIRDate] = None
-    description: Optional[str] = None
-    editor: Optional[List[contactdetail.ContactDetail]] = empty_list()
-    effectivePeriod: Optional[period.Period] = None
-    endorser: Optional[List[contactdetail.ContactDetail]] = empty_list()
-    experimental: Optional[bool] = None
-    goal: Optional[List[PlanDefinitionGoal]] = empty_list()
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    jurisdiction: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    lastReviewDate: Optional[fhirdate.FHIRDate] = None
-    library: Optional[List[str]] = empty_list()
-    name: Optional[str] = None
-    publisher: Optional[str] = None
-    purpose: Optional[str] = None
-    relatedArtifact: Optional[List[relatedartifact.RelatedArtifact]] = empty_list()
-    reviewer: Optional[List[contactdetail.ContactDetail]] = empty_list()
-    status: str = None
-    subjectCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    subjectReference: Optional[fhirreference.FHIRReference] = None
-    subtitle: Optional[str] = None
-    title: Optional[str] = None
-    topic: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    type: Optional[codeableconcept.CodeableConcept] = None
-    url: Optional[str] = None
-    usage: Optional[str] = None
-    useContext: Optional[List[usagecontext.UsageContext]] = empty_list()
-    version: Optional[str] = None
+    resource_type: ClassVar[str] = "PlanDefinitionGoalTarget"
+    detailCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    detailQuantity: Optional[quantity.Quantity] = None
+    detailRange: Optional[range.Range] = None
+    due: Optional[duration.Duration] = None
+    measure: Optional[codeableconcept.CodeableConcept] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -82,44 +51,158 @@ class PlanDefinition(domainresource.DomainResource):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(PlanDefinition, self).elementProperties()
+        js = super(PlanDefinitionGoalTarget, self).elementProperties()
         js.extend([
-            ("action", "action", PlanDefinitionAction, True, None, False),
-            ("approvalDate", "approvalDate", fhirdate.FHIRDate, False, None, False),
-            ("author", "author", contactdetail.ContactDetail, True, None, False),
-            ("contact", "contact", contactdetail.ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", fhirdate.FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("editor", "editor", contactdetail.ContactDetail, True, None, False),
-            ("effectivePeriod", "effectivePeriod", period.Period, False, None, False),
-            ("endorser", "endorser", contactdetail.ContactDetail, True, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("goal", "goal", PlanDefinitionGoal, True, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("jurisdiction", "jurisdiction", codeableconcept.CodeableConcept, True, None, False),
-            ("lastReviewDate", "lastReviewDate", fhirdate.FHIRDate, False, None, False),
-            ("library", "library", str, True, None, False),
-            ("name", "name", str, False, None, False),
-            ("publisher", "publisher", str, False, None, False),
-            ("purpose", "purpose", str, False, None, False),
-            ("relatedArtifact", "relatedArtifact", relatedartifact.RelatedArtifact, True, None, False),
-            ("reviewer", "reviewer", contactdetail.ContactDetail, True, None, False),
-            ("status", "status", str, False, None, True),
-            ("subjectCodeableConcept", "subjectCodeableConcept", codeableconcept.CodeableConcept, False, "subject", False),
-            ("subjectReference", "subjectReference", fhirreference.FHIRReference, False, "subject", False),
-            ("subtitle", "subtitle", str, False, None, False),
-            ("title", "title", str, False, None, False),
-            ("topic", "topic", codeableconcept.CodeableConcept, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-            ("url", "url", str, False, None, False),
-            ("usage", "usage", str, False, None, False),
-            ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
-            ("version", "version", str, False, None, False),
+            ("detailCodeableConcept", "detailCodeableConcept", codeableconcept.CodeableConcept, False, "detail", False),
+            ("detailQuantity", "detailQuantity", quantity.Quantity, False, "detail", False),
+            ("detailRange", "detailRange", range.Range, False, "detail", False),
+            ("due", "due", duration.Duration, False, None, False),
+            ("measure", "measure", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 
-from . import backboneelement
+@dataclass
+class PlanDefinitionGoal(backboneelement.BackboneElement):
+    """ What the plan is trying to accomplish.
+
+    Goals that describe what the activities within the plan are intended to
+    achieve. For example, weight loss, restoring an activity of daily living,
+    obtaining herd immunity via immunization, meeting a process improvement
+    objective, etc.
+    """
+    resource_type: ClassVar[str] = "PlanDefinitionGoal"
+    addresses: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    category: Optional[codeableconcept.CodeableConcept] = None
+    description:codeableconcept.CodeableConcept = None
+    documentation: Optional[List[relatedartifact.RelatedArtifact]] = empty_list()
+    priority: Optional[codeableconcept.CodeableConcept] = None
+    start: Optional[codeableconcept.CodeableConcept] = None
+    target: Optional[List[PlanDefinitionGoalTarget]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PlanDefinitionGoal, self).elementProperties()
+        js.extend([
+            ("addresses", "addresses", codeableconcept.CodeableConcept, True, None, False),
+            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
+            ("description", "description", codeableconcept.CodeableConcept, False, None, True),
+            ("documentation", "documentation", relatedartifact.RelatedArtifact, True, None, False),
+            ("priority", "priority", codeableconcept.CodeableConcept, False, None, False),
+            ("start", "start", codeableconcept.CodeableConcept, False, None, False),
+            ("target", "target", PlanDefinitionGoalTarget, True, None, False),
+        ])
+        return js
+
+@dataclass
+class PlanDefinitionActionRelatedAction(backboneelement.BackboneElement):
+    """ Relationship to another action.
+
+    A relationship to another action such as "before" or "30-60 minutes after
+    start of".
+    """
+    resource_type: ClassVar[str] = "PlanDefinitionActionRelatedAction"
+    actionId: str = None
+    offsetDuration: Optional[duration.Duration] = None
+    offsetRange: Optional[range.Range] = None
+    relationship: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PlanDefinitionActionRelatedAction, self).elementProperties()
+        js.extend([
+            ("actionId", "actionId", str, False, None, True),
+            ("offsetDuration", "offsetDuration", duration.Duration, False, "offset", False),
+            ("offsetRange", "offsetRange", range.Range, False, "offset", False),
+            ("relationship", "relationship", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class PlanDefinitionActionParticipant(backboneelement.BackboneElement):
+    """ Who should participate in the action.
+
+    Indicates who should participate in performing the action described.
+    """
+    resource_type: ClassVar[str] = "PlanDefinitionActionParticipant"
+    role: Optional[codeableconcept.CodeableConcept] = None
+    type: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PlanDefinitionActionParticipant, self).elementProperties()
+        js.extend([
+            ("role", "role", codeableconcept.CodeableConcept, False, None, False),
+            ("type", "type", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class PlanDefinitionActionDynamicValue(backboneelement.BackboneElement):
+    """ Dynamic aspects of the definition.
+
+    Customizations that should be applied to the statically defined resource.
+    For example, if the dosage of a medication must be computed based on the
+    patient's weight, a customization would be used to specify an expression
+    that calculated the weight, and the path on the resource that would contain
+    the result.
+    """
+    resource_type: ClassVar[str] = "PlanDefinitionActionDynamicValue"
+    expression: Optional[expression.Expression] = None
+    path: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PlanDefinitionActionDynamicValue, self).elementProperties()
+        js.extend([
+            ("expression", "expression", expression.Expression, False, None, False),
+            ("path", "path", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class PlanDefinitionActionCondition(backboneelement.BackboneElement):
+    """ Whether or not the action is applicable.
+
+    An expression that describes applicability criteria or start/stop
+    conditions for the action.
+    """
+    resource_type: ClassVar[str] = "PlanDefinitionActionCondition"
+    expression: Optional[expression.Expression] = None
+    kind: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PlanDefinitionActionCondition, self).elementProperties()
+        js.extend([
+            ("expression", "expression", expression.Expression, False, None, False),
+            ("kind", "kind", str, False, None, True),
+        ])
+        return js
 
 @dataclass
 class PlanDefinitionAction(backboneelement.BackboneElement):
@@ -209,16 +292,51 @@ class PlanDefinitionAction(backboneelement.BackboneElement):
         ])
         return js
 
-@dataclass
-class PlanDefinitionActionCondition(backboneelement.BackboneElement):
-    """ Whether or not the action is applicable.
+from . import domainresource
 
-    An expression that describes applicability criteria or start/stop
-    conditions for the action.
+@dataclass
+class PlanDefinition(domainresource.DomainResource):
+    """ The definition of a plan for a series of actions, independent of any
+    specific patient or context.
+
+    This resource allows for the definition of various types of plans as a
+    sharable, consumable, and executable artifact. The resource is general
+    enough to support the description of a broad range of clinical artifacts
+    such as clinical decision support rules, order sets and protocols.
     """
-    resource_type: ClassVar[str] = "PlanDefinitionActionCondition"
-    expression: Optional[expression.Expression] = None
-    kind: str = None
+    resource_type: ClassVar[str] = "PlanDefinition"
+    action: Optional[List[PlanDefinitionAction]] = empty_list()
+    approvalDate: Optional[fhirdate.FHIRDate] = None
+    author: Optional[List[contactdetail.ContactDetail]] = empty_list()
+    contact: Optional[List[contactdetail.ContactDetail]] = empty_list()
+    copyright: Optional[str] = None
+    date: Optional[fhirdate.FHIRDate] = None
+    description: Optional[str] = None
+    editor: Optional[List[contactdetail.ContactDetail]] = empty_list()
+    effectivePeriod: Optional[period.Period] = None
+    endorser: Optional[List[contactdetail.ContactDetail]] = empty_list()
+    experimental: Optional[bool] = None
+    goal: Optional[List[PlanDefinitionGoal]] = empty_list()
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    jurisdiction: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    lastReviewDate: Optional[fhirdate.FHIRDate] = None
+    library: Optional[List[str]] = empty_list()
+    name: Optional[str] = None
+    publisher: Optional[str] = None
+    purpose: Optional[str] = None
+    relatedArtifact: Optional[List[relatedartifact.RelatedArtifact]] = empty_list()
+    reviewer: Optional[List[contactdetail.ContactDetail]] = empty_list()
+    status: str = None
+    subjectCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
+    subjectReference: Optional[fhirreference.FHIRReference] = None
+    subtitle: Optional[str] = None
+    title: Optional[str] = None
+    topic: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    type: Optional[codeableconcept.CodeableConcept] = None
+    url: Optional[str] = None
+    usage: Optional[str] = None
+    useContext: Optional[List[usagecontext.UsageContext]] = empty_list()
+    version: Optional[str] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -227,158 +345,40 @@ class PlanDefinitionActionCondition(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(PlanDefinitionActionCondition, self).elementProperties()
+        js = super(PlanDefinition, self).elementProperties()
         js.extend([
-            ("expression", "expression", expression.Expression, False, None, False),
-            ("kind", "kind", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class PlanDefinitionActionDynamicValue(backboneelement.BackboneElement):
-    """ Dynamic aspects of the definition.
-
-    Customizations that should be applied to the statically defined resource.
-    For example, if the dosage of a medication must be computed based on the
-    patient's weight, a customization would be used to specify an expression
-    that calculated the weight, and the path on the resource that would contain
-    the result.
-    """
-    resource_type: ClassVar[str] = "PlanDefinitionActionDynamicValue"
-    expression: Optional[expression.Expression] = None
-    path: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PlanDefinitionActionDynamicValue, self).elementProperties()
-        js.extend([
-            ("expression", "expression", expression.Expression, False, None, False),
-            ("path", "path", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class PlanDefinitionActionParticipant(backboneelement.BackboneElement):
-    """ Who should participate in the action.
-
-    Indicates who should participate in performing the action described.
-    """
-    resource_type: ClassVar[str] = "PlanDefinitionActionParticipant"
-    role: Optional[codeableconcept.CodeableConcept] = None
-    type: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PlanDefinitionActionParticipant, self).elementProperties()
-        js.extend([
-            ("role", "role", codeableconcept.CodeableConcept, False, None, False),
-            ("type", "type", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class PlanDefinitionActionRelatedAction(backboneelement.BackboneElement):
-    """ Relationship to another action.
-
-    A relationship to another action such as "before" or "30-60 minutes after
-    start of".
-    """
-    resource_type: ClassVar[str] = "PlanDefinitionActionRelatedAction"
-    actionId: str = None
-    offsetDuration: Optional[duration.Duration] = None
-    offsetRange: Optional[range.Range] = None
-    relationship: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PlanDefinitionActionRelatedAction, self).elementProperties()
-        js.extend([
-            ("actionId", "actionId", str, False, None, True),
-            ("offsetDuration", "offsetDuration", duration.Duration, False, "offset", False),
-            ("offsetRange", "offsetRange", range.Range, False, "offset", False),
-            ("relationship", "relationship", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class PlanDefinitionGoal(backboneelement.BackboneElement):
-    """ What the plan is trying to accomplish.
-
-    Goals that describe what the activities within the plan are intended to
-    achieve. For example, weight loss, restoring an activity of daily living,
-    obtaining herd immunity via immunization, meeting a process improvement
-    objective, etc.
-    """
-    resource_type: ClassVar[str] = "PlanDefinitionGoal"
-    addresses: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    category: Optional[codeableconcept.CodeableConcept] = None
-    description:codeableconcept.CodeableConcept = None
-    documentation: Optional[List[relatedartifact.RelatedArtifact]] = empty_list()
-    priority: Optional[codeableconcept.CodeableConcept] = None
-    start: Optional[codeableconcept.CodeableConcept] = None
-    target: Optional[List[PlanDefinitionGoalTarget]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PlanDefinitionGoal, self).elementProperties()
-        js.extend([
-            ("addresses", "addresses", codeableconcept.CodeableConcept, True, None, False),
-            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
-            ("description", "description", codeableconcept.CodeableConcept, False, None, True),
-            ("documentation", "documentation", relatedartifact.RelatedArtifact, True, None, False),
-            ("priority", "priority", codeableconcept.CodeableConcept, False, None, False),
-            ("start", "start", codeableconcept.CodeableConcept, False, None, False),
-            ("target", "target", PlanDefinitionGoalTarget, True, None, False),
-        ])
-        return js
-
-@dataclass
-class PlanDefinitionGoalTarget(backboneelement.BackboneElement):
-    """ Target outcome for the goal.
-
-    Indicates what should be done and within what timeframe.
-    """
-    resource_type: ClassVar[str] = "PlanDefinitionGoalTarget"
-    detailCodeableConcept: Optional[codeableconcept.CodeableConcept] = None
-    detailQuantity: Optional[quantity.Quantity] = None
-    detailRange: Optional[range.Range] = None
-    due: Optional[duration.Duration] = None
-    measure: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PlanDefinitionGoalTarget, self).elementProperties()
-        js.extend([
-            ("detailCodeableConcept", "detailCodeableConcept", codeableconcept.CodeableConcept, False, "detail", False),
-            ("detailQuantity", "detailQuantity", quantity.Quantity, False, "detail", False),
-            ("detailRange", "detailRange", range.Range, False, "detail", False),
-            ("due", "due", duration.Duration, False, None, False),
-            ("measure", "measure", codeableconcept.CodeableConcept, False, None, False),
+            ("action", "action", PlanDefinitionAction, True, None, False),
+            ("approvalDate", "approvalDate", fhirdate.FHIRDate, False, None, False),
+            ("author", "author", contactdetail.ContactDetail, True, None, False),
+            ("contact", "contact", contactdetail.ContactDetail, True, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("date", "date", fhirdate.FHIRDate, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("editor", "editor", contactdetail.ContactDetail, True, None, False),
+            ("effectivePeriod", "effectivePeriod", period.Period, False, None, False),
+            ("endorser", "endorser", contactdetail.ContactDetail, True, None, False),
+            ("experimental", "experimental", bool, False, None, False),
+            ("goal", "goal", PlanDefinitionGoal, True, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("jurisdiction", "jurisdiction", codeableconcept.CodeableConcept, True, None, False),
+            ("lastReviewDate", "lastReviewDate", fhirdate.FHIRDate, False, None, False),
+            ("library", "library", str, True, None, False),
+            ("name", "name", str, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("purpose", "purpose", str, False, None, False),
+            ("relatedArtifact", "relatedArtifact", relatedartifact.RelatedArtifact, True, None, False),
+            ("reviewer", "reviewer", contactdetail.ContactDetail, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("subjectCodeableConcept", "subjectCodeableConcept", codeableconcept.CodeableConcept, False, "subject", False),
+            ("subjectReference", "subjectReference", fhirreference.FHIRReference, False, "subject", False),
+            ("subtitle", "subtitle", str, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("topic", "topic", codeableconcept.CodeableConcept, True, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("url", "url", str, False, None, False),
+            ("usage", "usage", str, False, None, False),
+            ("useContext", "useContext", usagecontext.UsageContext, True, None, False),
+            ("version", "version", str, False, None, False),
         ])
         return js
 

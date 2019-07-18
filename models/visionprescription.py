@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -19,24 +19,17 @@ from . import fhirreference
 from . import identifier
 from . import quantity
 
-from . import domainresource
+from . import backboneelement
 
 @dataclass
-class VisionPrescription(domainresource.DomainResource):
-    """ Prescription for vision correction products for a patient.
+class VisionPrescriptionLensSpecificationPrism(backboneelement.BackboneElement):
+    """ Eye alignment compensation.
 
-    An authorization for the provision of glasses and/or contact lenses to a
-    patient.
+    Allows for adjustment on two axis.
     """
-    resource_type: ClassVar[str] = "VisionPrescription"
-    created:fhirdate.FHIRDate = None
-    dateWritten:fhirdate.FHIRDate = None
-    encounter: Optional[fhirreference.FHIRReference] = None
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    lensSpecification: List[ VisionPrescriptionLensSpecification] = empty_list()
-    patient:fhirreference.FHIRReference = None
-    prescriber:fhirreference.FHIRReference = None
-    status: str = None
+    resource_type: ClassVar[str] = "VisionPrescriptionLensSpecificationPrism"
+    amount: float = None
+    base: str = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -45,20 +38,12 @@ class VisionPrescription(domainresource.DomainResource):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(VisionPrescription, self).elementProperties()
+        js = super(VisionPrescriptionLensSpecificationPrism, self).elementProperties()
         js.extend([
-            ("created", "created", fhirdate.FHIRDate, False, None, True),
-            ("dateWritten", "dateWritten", fhirdate.FHIRDate, False, None, True),
-            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("lensSpecification", "lensSpecification", VisionPrescriptionLensSpecification, True, None, True),
-            ("patient", "patient", fhirreference.FHIRReference, False, None, True),
-            ("prescriber", "prescriber", fhirreference.FHIRReference, False, None, True),
-            ("status", "status", str, False, None, True),
+            ("amount", "amount", float, False, None, True),
+            ("base", "base", str, False, None, True),
         ])
         return js
-
-from . import backboneelement
 
 @dataclass
 class VisionPrescriptionLensSpecification(backboneelement.BackboneElement):
@@ -109,15 +94,24 @@ class VisionPrescriptionLensSpecification(backboneelement.BackboneElement):
         ])
         return js
 
-@dataclass
-class VisionPrescriptionLensSpecificationPrism(backboneelement.BackboneElement):
-    """ Eye alignment compensation.
+from . import domainresource
 
-    Allows for adjustment on two axis.
+@dataclass
+class VisionPrescription(domainresource.DomainResource):
+    """ Prescription for vision correction products for a patient.
+
+    An authorization for the provision of glasses and/or contact lenses to a
+    patient.
     """
-    resource_type: ClassVar[str] = "VisionPrescriptionLensSpecificationPrism"
-    amount: float = None
-    base: str = None
+    resource_type: ClassVar[str] = "VisionPrescription"
+    created:fhirdate.FHIRDate = None
+    dateWritten:fhirdate.FHIRDate = None
+    encounter: Optional[fhirreference.FHIRReference] = None
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    lensSpecification: List[ VisionPrescriptionLensSpecification] = empty_list()
+    patient:fhirreference.FHIRReference = None
+    prescriber:fhirreference.FHIRReference = None
+    status: str = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -126,10 +120,16 @@ class VisionPrescriptionLensSpecificationPrism(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(VisionPrescriptionLensSpecificationPrism, self).elementProperties()
+        js = super(VisionPrescription, self).elementProperties()
         js.extend([
-            ("amount", "amount", float, False, None, True),
-            ("base", "base", str, False, None, True),
+            ("created", "created", fhirdate.FHIRDate, False, None, True),
+            ("dateWritten", "dateWritten", fhirdate.FHIRDate, False, None, True),
+            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("lensSpecification", "lensSpecification", VisionPrescriptionLensSpecification, True, None, True),
+            ("patient", "patient", fhirreference.FHIRReference, False, None, True),
+            ("prescriber", "prescriber", fhirreference.FHIRReference, False, None, True),
+            ("status", "status", str, False, None, True),
         ])
         return js
 

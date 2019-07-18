@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Condition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Condition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -20,6 +20,61 @@ from . import fhirreference
 from . import identifier
 from . import period
 from . import range
+
+from . import backboneelement
+
+@dataclass
+class ConditionStage(backboneelement.BackboneElement):
+    """ Stage/grade, usually assessed formally.
+
+    Clinical stage or grade of a condition. May include formal severity
+    assessments.
+    """
+    resource_type: ClassVar[str] = "ConditionStage"
+    assessment: Optional[List[fhirreference.FHIRReference]] = empty_list()
+    summary: Optional[codeableconcept.CodeableConcept] = None
+    type: Optional[codeableconcept.CodeableConcept] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ConditionStage, self).elementProperties()
+        js.extend([
+            ("assessment", "assessment", fhirreference.FHIRReference, True, None, False),
+            ("summary", "summary", codeableconcept.CodeableConcept, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ConditionEvidence(backboneelement.BackboneElement):
+    """ Supporting evidence.
+
+    Supporting evidence / manifestations that are the basis of the Condition's
+    verification status, such as evidence that confirmed or refuted the
+    condition.
+    """
+    resource_type: ClassVar[str] = "ConditionEvidence"
+    code: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
+    detail: Optional[List[fhirreference.FHIRReference]] = empty_list()
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ConditionEvidence, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, True, None, False),
+            ("detail", "detail", fhirreference.FHIRReference, True, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -91,61 +146,6 @@ class Condition(domainresource.DomainResource):
             ("stage", "stage", ConditionStage, True, None, False),
             ("subject", "subject", fhirreference.FHIRReference, False, None, True),
             ("verificationStatus", "verificationStatus", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class ConditionEvidence(backboneelement.BackboneElement):
-    """ Supporting evidence.
-
-    Supporting evidence / manifestations that are the basis of the Condition's
-    verification status, such as evidence that confirmed or refuted the
-    condition.
-    """
-    resource_type: ClassVar[str] = "ConditionEvidence"
-    code: Optional[List[codeableconcept.CodeableConcept]] = empty_list()
-    detail: Optional[List[fhirreference.FHIRReference]] = empty_list()
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ConditionEvidence, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, True, None, False),
-            ("detail", "detail", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-@dataclass
-class ConditionStage(backboneelement.BackboneElement):
-    """ Stage/grade, usually assessed formally.
-
-    Clinical stage or grade of a condition. May include formal severity
-    assessments.
-    """
-    resource_type: ClassVar[str] = "ConditionStage"
-    assessment: Optional[List[fhirreference.FHIRReference]] = empty_list()
-    summary: Optional[codeableconcept.CodeableConcept] = None
-    type: Optional[codeableconcept.CodeableConcept] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ConditionStage, self).elementProperties()
-        js.extend([
-            ("assessment", "assessment", fhirreference.FHIRReference, True, None, False),
-            ("summary", "summary", codeableconcept.CodeableConcept, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
         ])
         return js
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -16,21 +16,16 @@ from . import codeableconcept
 from . import domainresource
 from . import identifier
 
-from . import domainresource
+from . import backboneelement
 
 @dataclass
-class SubstanceNucleicAcid(domainresource.DomainResource):
-    """ Nucleic acids are defined by three distinct elements: the base, sugar and
-    linkage. Individual substance/moiety IDs will be created for each of these
-    elements. The nucleotide sequence will be always entered in the 5’-3’
-    direction.
+class SubstanceNucleicAcidSubunitSugar(backboneelement.BackboneElement):
+    """ 5.3.6.8.1 Sugar ID (Mandatory).
     """
-    resource_type: ClassVar[str] = "SubstanceNucleicAcid"
-    areaOfHybridisation: Optional[str] = None
-    numberOfSubunits: Optional[int] = None
-    oligoNucleotideType: Optional[codeableconcept.CodeableConcept] = None
-    sequenceType: Optional[codeableconcept.CodeableConcept] = None
-    subunit: Optional[List[SubstanceNucleicAcidSubunit]] = empty_list()
+    resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunitSugar"
+    identifier: Optional[identifier.Identifier] = None
+    name: Optional[str] = None
+    residueSite: Optional[str] = None
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -39,17 +34,39 @@ class SubstanceNucleicAcid(domainresource.DomainResource):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(SubstanceNucleicAcid, self).elementProperties()
+        js = super(SubstanceNucleicAcidSubunitSugar, self).elementProperties()
         js.extend([
-            ("areaOfHybridisation", "areaOfHybridisation", str, False, None, False),
-            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
-            ("oligoNucleotideType", "oligoNucleotideType", codeableconcept.CodeableConcept, False, None, False),
-            ("sequenceType", "sequenceType", codeableconcept.CodeableConcept, False, None, False),
-            ("subunit", "subunit", SubstanceNucleicAcidSubunit, True, None, False),
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("residueSite", "residueSite", str, False, None, False),
         ])
         return js
 
-from . import backboneelement
+@dataclass
+class SubstanceNucleicAcidSubunitLinkage(backboneelement.BackboneElement):
+    """ The linkages between sugar residues will also be captured.
+    """
+    resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunitLinkage"
+    connectivity: Optional[str] = None
+    identifier: Optional[identifier.Identifier] = None
+    name: Optional[str] = None
+    residueSite: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(SubstanceNucleicAcidSubunitLinkage, self).elementProperties()
+        js.extend([
+            ("connectivity", "connectivity", str, False, None, False),
+            ("identifier", "identifier", identifier.Identifier, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("residueSite", "residueSite", str, False, None, False),
+        ])
+        return js
 
 @dataclass
 class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
@@ -87,15 +104,21 @@ class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
         ])
         return js
 
+from . import domainresource
+
 @dataclass
-class SubstanceNucleicAcidSubunitLinkage(backboneelement.BackboneElement):
-    """ The linkages between sugar residues will also be captured.
+class SubstanceNucleicAcid(domainresource.DomainResource):
+    """ Nucleic acids are defined by three distinct elements: the base, sugar and
+    linkage. Individual substance/moiety IDs will be created for each of these
+    elements. The nucleotide sequence will be always entered in the 5’-3’
+    direction.
     """
-    resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunitLinkage"
-    connectivity: Optional[str] = None
-    identifier: Optional[identifier.Identifier] = None
-    name: Optional[str] = None
-    residueSite: Optional[str] = None
+    resource_type: ClassVar[str] = "SubstanceNucleicAcid"
+    areaOfHybridisation: Optional[str] = None
+    numberOfSubunits: Optional[int] = None
+    oligoNucleotideType: Optional[codeableconcept.CodeableConcept] = None
+    sequenceType: Optional[codeableconcept.CodeableConcept] = None
+    subunit: Optional[List[SubstanceNucleicAcidSubunit]] = empty_list()
 
     jsondict: InitVar[Optional[dict]] = None
     strict: InitVar[bool] = True
@@ -104,36 +127,13 @@ class SubstanceNucleicAcidSubunitLinkage(backboneelement.BackboneElement):
     #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
     def elementProperties(self):
-        js = super(SubstanceNucleicAcidSubunitLinkage, self).elementProperties()
+        js = super(SubstanceNucleicAcid, self).elementProperties()
         js.extend([
-            ("connectivity", "connectivity", str, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("name", "name", str, False, None, False),
-            ("residueSite", "residueSite", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class SubstanceNucleicAcidSubunitSugar(backboneelement.BackboneElement):
-    """ 5.3.6.8.1 Sugar ID (Mandatory).
-    """
-    resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunitSugar"
-    identifier: Optional[identifier.Identifier] = None
-    name: Optional[str] = None
-    residueSite: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(SubstanceNucleicAcidSubunitSugar, self).elementProperties()
-        js.extend([
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("name", "name", str, False, None, False),
-            ("residueSite", "residueSite", str, False, None, False),
+            ("areaOfHybridisation", "areaOfHybridisation", str, False, None, False),
+            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
+            ("oligoNucleotideType", "oligoNucleotideType", codeableconcept.CodeableConcept, False, None, False),
+            ("sequenceType", "sequenceType", codeableconcept.CodeableConcept, False, None, False),
+            ("subunit", "subunit", SubstanceNucleicAcidSubunit, True, None, False),
         ])
         return js
 

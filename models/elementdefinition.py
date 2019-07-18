@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -43,6 +43,346 @@ from . import signature
 from . import timing
 from . import triggerdefinition
 from . import usagecontext
+
+from . import element
+
+@dataclass
+class ElementDefinitionType(element.Element):
+    """ Data type and Profile for this element.
+
+    The data type or resource that the value of this element is permitted to
+    be.
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionType"
+    aggregation: Optional[List[str]] = empty_list()
+    code: str = None
+    profile: Optional[List[str]] = empty_list()
+    targetProfile: Optional[List[str]] = empty_list()
+    versioning: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionType, self).elementProperties()
+        js.extend([
+            ("aggregation", "aggregation", str, True, None, False),
+            ("code", "code", str, False, None, True),
+            ("profile", "profile", str, True, None, False),
+            ("targetProfile", "targetProfile", str, True, None, False),
+            ("versioning", "versioning", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionSlicingDiscriminator(element.Element):
+    """ Element values that are used to distinguish the slices.
+
+    Designates which child elements are used to discriminate between the slices
+    when processing an instance. If one or more discriminators are provided,
+    the value of the child elements in the instance data SHALL completely
+    distinguish which slice the element in the resource matches based on the
+    allowed values for those elements in each of the slices.
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionSlicingDiscriminator"
+    path: str = None
+    type: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionSlicingDiscriminator, self).elementProperties()
+        js.extend([
+            ("path", "path", str, False, None, True),
+            ("type", "type", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionSlicing(element.Element):
+    """ This element is sliced - slices follow.
+
+    Indicates that the element is sliced into a set of alternative definitions
+    (i.e. in a structure definition, there are multiple different constraints
+    on a single element in the base resource). Slicing can be used in any
+    resource that has cardinality ..* on the base resource, or any resource
+    with a choice of types. The set of slices is any elements that come after
+    this in the element sequence that have the same path, until a shorter path
+    occurs (the shorter path terminates the set).
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionSlicing"
+    description: Optional[str] = None
+    discriminator: Optional[List[ElementDefinitionSlicingDiscriminator]] = empty_list()
+    ordered: Optional[bool] = None
+    rules: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionSlicing, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("discriminator", "discriminator", ElementDefinitionSlicingDiscriminator, True, None, False),
+            ("ordered", "ordered", bool, False, None, False),
+            ("rules", "rules", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionMapping(element.Element):
+    """ Map element to another set of definitions.
+
+    Identifies a concept from an external specification that roughly
+    corresponds to this element.
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionMapping"
+    comment: Optional[str] = None
+    identity: str = None
+    language: Optional[str] = None
+    map: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionMapping, self).elementProperties()
+        js.extend([
+            ("comment", "comment", str, False, None, False),
+            ("identity", "identity", str, False, None, True),
+            ("language", "language", str, False, None, False),
+            ("map", "map", str, False, None, True),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionExample(element.Element):
+    """ Example value (as defined for type).
+
+    A sample value for this element demonstrating the type of information that
+    would typically be found in the element.
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionExample"
+    label: str = None
+    valueAddress:address.Address = None
+    valueAge:age.Age = None
+    valueAnnotation:annotation.Annotation = None
+    valueAttachment:attachment.Attachment = None
+    valueBase64Binary: str = None
+    valueBoolean: bool = None
+    valueCanonical: str = None
+    valueCode: str = None
+    valueCodeableConcept:codeableconcept.CodeableConcept = None
+    valueCoding:coding.Coding = None
+    valueContactDetail:contactdetail.ContactDetail = None
+    valueContactPoint:contactpoint.ContactPoint = None
+    valueContributor:contributor.Contributor = None
+    valueCount:count.Count = None
+    valueDataRequirement:datarequirement.DataRequirement = None
+    valueDate:fhirdate.FHIRDate = None
+    valueDateTime:fhirdate.FHIRDate = None
+    valueDecimal: float = None
+    valueDistance:distance.Distance = None
+    valueDosage:dosage.Dosage = None
+    valueDuration:duration.Duration = None
+    valueExpression:expression.Expression = None
+    valueHumanName:humanname.HumanName = None
+    valueId: str = None
+    valueIdentifier:identifier.Identifier = None
+    valueInstant:fhirdate.FHIRDate = None
+    valueInteger: int = None
+    valueMarkdown: str = None
+    valueMoney:money.Money = None
+    valueOid: str = None
+    valueParameterDefinition:parameterdefinition.ParameterDefinition = None
+    valuePeriod:period.Period = None
+    valuePositiveInt: int = None
+    valueQuantity:quantity.Quantity = None
+    valueRange:range.Range = None
+    valueRatio:ratio.Ratio = None
+    valueReference:fhirreference.FHIRReference = None
+    valueRelatedArtifact:relatedartifact.RelatedArtifact = None
+    valueSampledData:sampleddata.SampledData = None
+    valueSignature:signature.Signature = None
+    valueString: str = None
+    valueTime:fhirdate.FHIRDate = None
+    valueTiming:timing.Timing = None
+    valueTriggerDefinition:triggerdefinition.TriggerDefinition = None
+    valueUnsignedInt: int = None
+    valueUri: str = None
+    valueUrl: str = None
+    valueUsageContext:usagecontext.UsageContext = None
+    valueUuid: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionExample, self).elementProperties()
+        js.extend([
+            ("label", "label", str, False, None, True),
+            ("valueAddress", "valueAddress", address.Address, False, "value", True),
+            ("valueAge", "valueAge", age.Age, False, "value", True),
+            ("valueAnnotation", "valueAnnotation", annotation.Annotation, False, "value", True),
+            ("valueAttachment", "valueAttachment", attachment.Attachment, False, "value", True),
+            ("valueBase64Binary", "valueBase64Binary", str, False, "value", True),
+            ("valueBoolean", "valueBoolean", bool, False, "value", True),
+            ("valueCanonical", "valueCanonical", str, False, "value", True),
+            ("valueCode", "valueCode", str, False, "value", True),
+            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", True),
+            ("valueCoding", "valueCoding", coding.Coding, False, "value", True),
+            ("valueContactDetail", "valueContactDetail", contactdetail.ContactDetail, False, "value", True),
+            ("valueContactPoint", "valueContactPoint", contactpoint.ContactPoint, False, "value", True),
+            ("valueContributor", "valueContributor", contributor.Contributor, False, "value", True),
+            ("valueCount", "valueCount", count.Count, False, "value", True),
+            ("valueDataRequirement", "valueDataRequirement", datarequirement.DataRequirement, False, "value", True),
+            ("valueDate", "valueDate", fhirdate.FHIRDate, False, "value", True),
+            ("valueDateTime", "valueDateTime", fhirdate.FHIRDate, False, "value", True),
+            ("valueDecimal", "valueDecimal", float, False, "value", True),
+            ("valueDistance", "valueDistance", distance.Distance, False, "value", True),
+            ("valueDosage", "valueDosage", dosage.Dosage, False, "value", True),
+            ("valueDuration", "valueDuration", duration.Duration, False, "value", True),
+            ("valueExpression", "valueExpression", expression.Expression, False, "value", True),
+            ("valueHumanName", "valueHumanName", humanname.HumanName, False, "value", True),
+            ("valueId", "valueId", str, False, "value", True),
+            ("valueIdentifier", "valueIdentifier", identifier.Identifier, False, "value", True),
+            ("valueInstant", "valueInstant", fhirdate.FHIRDate, False, "value", True),
+            ("valueInteger", "valueInteger", int, False, "value", True),
+            ("valueMarkdown", "valueMarkdown", str, False, "value", True),
+            ("valueMoney", "valueMoney", money.Money, False, "value", True),
+            ("valueOid", "valueOid", str, False, "value", True),
+            ("valueParameterDefinition", "valueParameterDefinition", parameterdefinition.ParameterDefinition, False, "value", True),
+            ("valuePeriod", "valuePeriod", period.Period, False, "value", True),
+            ("valuePositiveInt", "valuePositiveInt", int, False, "value", True),
+            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
+            ("valueRange", "valueRange", range.Range, False, "value", True),
+            ("valueRatio", "valueRatio", ratio.Ratio, False, "value", True),
+            ("valueReference", "valueReference", fhirreference.FHIRReference, False, "value", True),
+            ("valueRelatedArtifact", "valueRelatedArtifact", relatedartifact.RelatedArtifact, False, "value", True),
+            ("valueSampledData", "valueSampledData", sampleddata.SampledData, False, "value", True),
+            ("valueSignature", "valueSignature", signature.Signature, False, "value", True),
+            ("valueString", "valueString", str, False, "value", True),
+            ("valueTime", "valueTime", fhirdate.FHIRDate, False, "value", True),
+            ("valueTiming", "valueTiming", timing.Timing, False, "value", True),
+            ("valueTriggerDefinition", "valueTriggerDefinition", triggerdefinition.TriggerDefinition, False, "value", True),
+            ("valueUnsignedInt", "valueUnsignedInt", int, False, "value", True),
+            ("valueUri", "valueUri", str, False, "value", True),
+            ("valueUrl", "valueUrl", str, False, "value", True),
+            ("valueUsageContext", "valueUsageContext", usagecontext.UsageContext, False, "value", True),
+            ("valueUuid", "valueUuid", str, False, "value", True),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionConstraint(element.Element):
+    """ Condition that must evaluate to true.
+
+    Formal constraints such as co-occurrence and other constraints that can be
+    computationally evaluated within the context of the instance.
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionConstraint"
+    expression: Optional[str] = None
+    human: str = None
+    key: str = None
+    requirements: Optional[str] = None
+    severity: str = None
+    source: Optional[str] = None
+    xpath: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionConstraint, self).elementProperties()
+        js.extend([
+            ("expression", "expression", str, False, None, False),
+            ("human", "human", str, False, None, True),
+            ("key", "key", str, False, None, True),
+            ("requirements", "requirements", str, False, None, False),
+            ("severity", "severity", str, False, None, True),
+            ("source", "source", str, False, None, False),
+            ("xpath", "xpath", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionBinding(element.Element):
+    """ ValueSet details if this is coded.
+
+    Binds to a value set if this element is coded (code, Coding,
+    CodeableConcept, Quantity), or the data types (string, uri).
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionBinding"
+    description: Optional[str] = None
+    strength: str = None
+    valueSet: Optional[str] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionBinding, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("strength", "strength", str, False, None, True),
+            ("valueSet", "valueSet", str, False, None, False),
+        ])
+        return js
+
+@dataclass
+class ElementDefinitionBase(element.Element):
+    """ Base definition information for tools.
+
+    Information about the base definition of the element, provided to make it
+    unnecessary for tools to trace the deviation of the element through the
+    derived and related profiles. When the element definition is not the
+    original definition of an element - i.g. either in a constraint on another
+    type, or for elements from a super type in a snap shot - then the
+    information in provided in the element definition may be different to the
+    base definition. On the original definition of the element, it will be
+    same.
+    """
+    resource_type: ClassVar[str] = "ElementDefinitionBase"
+    max: str = None
+    min: int = None
+    path: str = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(ElementDefinitionBase, self).elementProperties()
+        js.extend([
+            ("max", "max", str, False, None, True),
+            ("min", "min", int, False, None, True),
+            ("path", "path", str, False, None, True),
+        ])
+        return js
 
 from . import backboneelement
 
@@ -452,346 +792,6 @@ class ElementDefinition(backboneelement.BackboneElement):
             ("sliceName", "sliceName", str, False, None, False),
             ("slicing", "slicing", ElementDefinitionSlicing, False, None, False),
             ("type", "type", ElementDefinitionType, True, None, False),
-        ])
-        return js
-
-from . import element
-
-@dataclass
-class ElementDefinitionBase(element.Element):
-    """ Base definition information for tools.
-
-    Information about the base definition of the element, provided to make it
-    unnecessary for tools to trace the deviation of the element through the
-    derived and related profiles. When the element definition is not the
-    original definition of an element - i.g. either in a constraint on another
-    type, or for elements from a super type in a snap shot - then the
-    information in provided in the element definition may be different to the
-    base definition. On the original definition of the element, it will be
-    same.
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionBase"
-    max: str = None
-    min: int = None
-    path: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionBase, self).elementProperties()
-        js.extend([
-            ("max", "max", str, False, None, True),
-            ("min", "min", int, False, None, True),
-            ("path", "path", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionBinding(element.Element):
-    """ ValueSet details if this is coded.
-
-    Binds to a value set if this element is coded (code, Coding,
-    CodeableConcept, Quantity), or the data types (string, uri).
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionBinding"
-    description: Optional[str] = None
-    strength: str = None
-    valueSet: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionBinding, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("strength", "strength", str, False, None, True),
-            ("valueSet", "valueSet", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionConstraint(element.Element):
-    """ Condition that must evaluate to true.
-
-    Formal constraints such as co-occurrence and other constraints that can be
-    computationally evaluated within the context of the instance.
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionConstraint"
-    expression: Optional[str] = None
-    human: str = None
-    key: str = None
-    requirements: Optional[str] = None
-    severity: str = None
-    source: Optional[str] = None
-    xpath: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionConstraint, self).elementProperties()
-        js.extend([
-            ("expression", "expression", str, False, None, False),
-            ("human", "human", str, False, None, True),
-            ("key", "key", str, False, None, True),
-            ("requirements", "requirements", str, False, None, False),
-            ("severity", "severity", str, False, None, True),
-            ("source", "source", str, False, None, False),
-            ("xpath", "xpath", str, False, None, False),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionExample(element.Element):
-    """ Example value (as defined for type).
-
-    A sample value for this element demonstrating the type of information that
-    would typically be found in the element.
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionExample"
-    label: str = None
-    valueAddress:address.Address = None
-    valueAge:age.Age = None
-    valueAnnotation:annotation.Annotation = None
-    valueAttachment:attachment.Attachment = None
-    valueBase64Binary: str = None
-    valueBoolean: bool = None
-    valueCanonical: str = None
-    valueCode: str = None
-    valueCodeableConcept:codeableconcept.CodeableConcept = None
-    valueCoding:coding.Coding = None
-    valueContactDetail:contactdetail.ContactDetail = None
-    valueContactPoint:contactpoint.ContactPoint = None
-    valueContributor:contributor.Contributor = None
-    valueCount:count.Count = None
-    valueDataRequirement:datarequirement.DataRequirement = None
-    valueDate:fhirdate.FHIRDate = None
-    valueDateTime:fhirdate.FHIRDate = None
-    valueDecimal: float = None
-    valueDistance:distance.Distance = None
-    valueDosage:dosage.Dosage = None
-    valueDuration:duration.Duration = None
-    valueExpression:expression.Expression = None
-    valueHumanName:humanname.HumanName = None
-    valueId: str = None
-    valueIdentifier:identifier.Identifier = None
-    valueInstant:fhirdate.FHIRDate = None
-    valueInteger: int = None
-    valueMarkdown: str = None
-    valueMoney:money.Money = None
-    valueOid: str = None
-    valueParameterDefinition:parameterdefinition.ParameterDefinition = None
-    valuePeriod:period.Period = None
-    valuePositiveInt: int = None
-    valueQuantity:quantity.Quantity = None
-    valueRange:range.Range = None
-    valueRatio:ratio.Ratio = None
-    valueReference:fhirreference.FHIRReference = None
-    valueRelatedArtifact:relatedartifact.RelatedArtifact = None
-    valueSampledData:sampleddata.SampledData = None
-    valueSignature:signature.Signature = None
-    valueString: str = None
-    valueTime:fhirdate.FHIRDate = None
-    valueTiming:timing.Timing = None
-    valueTriggerDefinition:triggerdefinition.TriggerDefinition = None
-    valueUnsignedInt: int = None
-    valueUri: str = None
-    valueUrl: str = None
-    valueUsageContext:usagecontext.UsageContext = None
-    valueUuid: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionExample, self).elementProperties()
-        js.extend([
-            ("label", "label", str, False, None, True),
-            ("valueAddress", "valueAddress", address.Address, False, "value", True),
-            ("valueAge", "valueAge", age.Age, False, "value", True),
-            ("valueAnnotation", "valueAnnotation", annotation.Annotation, False, "value", True),
-            ("valueAttachment", "valueAttachment", attachment.Attachment, False, "value", True),
-            ("valueBase64Binary", "valueBase64Binary", str, False, "value", True),
-            ("valueBoolean", "valueBoolean", bool, False, "value", True),
-            ("valueCanonical", "valueCanonical", str, False, "value", True),
-            ("valueCode", "valueCode", str, False, "value", True),
-            ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", True),
-            ("valueCoding", "valueCoding", coding.Coding, False, "value", True),
-            ("valueContactDetail", "valueContactDetail", contactdetail.ContactDetail, False, "value", True),
-            ("valueContactPoint", "valueContactPoint", contactpoint.ContactPoint, False, "value", True),
-            ("valueContributor", "valueContributor", contributor.Contributor, False, "value", True),
-            ("valueCount", "valueCount", count.Count, False, "value", True),
-            ("valueDataRequirement", "valueDataRequirement", datarequirement.DataRequirement, False, "value", True),
-            ("valueDate", "valueDate", fhirdate.FHIRDate, False, "value", True),
-            ("valueDateTime", "valueDateTime", fhirdate.FHIRDate, False, "value", True),
-            ("valueDecimal", "valueDecimal", float, False, "value", True),
-            ("valueDistance", "valueDistance", distance.Distance, False, "value", True),
-            ("valueDosage", "valueDosage", dosage.Dosage, False, "value", True),
-            ("valueDuration", "valueDuration", duration.Duration, False, "value", True),
-            ("valueExpression", "valueExpression", expression.Expression, False, "value", True),
-            ("valueHumanName", "valueHumanName", humanname.HumanName, False, "value", True),
-            ("valueId", "valueId", str, False, "value", True),
-            ("valueIdentifier", "valueIdentifier", identifier.Identifier, False, "value", True),
-            ("valueInstant", "valueInstant", fhirdate.FHIRDate, False, "value", True),
-            ("valueInteger", "valueInteger", int, False, "value", True),
-            ("valueMarkdown", "valueMarkdown", str, False, "value", True),
-            ("valueMoney", "valueMoney", money.Money, False, "value", True),
-            ("valueOid", "valueOid", str, False, "value", True),
-            ("valueParameterDefinition", "valueParameterDefinition", parameterdefinition.ParameterDefinition, False, "value", True),
-            ("valuePeriod", "valuePeriod", period.Period, False, "value", True),
-            ("valuePositiveInt", "valuePositiveInt", int, False, "value", True),
-            ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
-            ("valueRange", "valueRange", range.Range, False, "value", True),
-            ("valueRatio", "valueRatio", ratio.Ratio, False, "value", True),
-            ("valueReference", "valueReference", fhirreference.FHIRReference, False, "value", True),
-            ("valueRelatedArtifact", "valueRelatedArtifact", relatedartifact.RelatedArtifact, False, "value", True),
-            ("valueSampledData", "valueSampledData", sampleddata.SampledData, False, "value", True),
-            ("valueSignature", "valueSignature", signature.Signature, False, "value", True),
-            ("valueString", "valueString", str, False, "value", True),
-            ("valueTime", "valueTime", fhirdate.FHIRDate, False, "value", True),
-            ("valueTiming", "valueTiming", timing.Timing, False, "value", True),
-            ("valueTriggerDefinition", "valueTriggerDefinition", triggerdefinition.TriggerDefinition, False, "value", True),
-            ("valueUnsignedInt", "valueUnsignedInt", int, False, "value", True),
-            ("valueUri", "valueUri", str, False, "value", True),
-            ("valueUrl", "valueUrl", str, False, "value", True),
-            ("valueUsageContext", "valueUsageContext", usagecontext.UsageContext, False, "value", True),
-            ("valueUuid", "valueUuid", str, False, "value", True),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionMapping(element.Element):
-    """ Map element to another set of definitions.
-
-    Identifies a concept from an external specification that roughly
-    corresponds to this element.
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionMapping"
-    comment: Optional[str] = None
-    identity: str = None
-    language: Optional[str] = None
-    map: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionMapping, self).elementProperties()
-        js.extend([
-            ("comment", "comment", str, False, None, False),
-            ("identity", "identity", str, False, None, True),
-            ("language", "language", str, False, None, False),
-            ("map", "map", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionSlicing(element.Element):
-    """ This element is sliced - slices follow.
-
-    Indicates that the element is sliced into a set of alternative definitions
-    (i.e. in a structure definition, there are multiple different constraints
-    on a single element in the base resource). Slicing can be used in any
-    resource that has cardinality ..* on the base resource, or any resource
-    with a choice of types. The set of slices is any elements that come after
-    this in the element sequence that have the same path, until a shorter path
-    occurs (the shorter path terminates the set).
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionSlicing"
-    description: Optional[str] = None
-    discriminator: Optional[List[ElementDefinitionSlicingDiscriminator]] = empty_list()
-    ordered: Optional[bool] = None
-    rules: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionSlicing, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("discriminator", "discriminator", ElementDefinitionSlicingDiscriminator, True, None, False),
-            ("ordered", "ordered", bool, False, None, False),
-            ("rules", "rules", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionSlicingDiscriminator(element.Element):
-    """ Element values that are used to distinguish the slices.
-
-    Designates which child elements are used to discriminate between the slices
-    when processing an instance. If one or more discriminators are provided,
-    the value of the child elements in the instance data SHALL completely
-    distinguish which slice the element in the resource matches based on the
-    allowed values for those elements in each of the slices.
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionSlicingDiscriminator"
-    path: str = None
-    type: str = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionSlicingDiscriminator, self).elementProperties()
-        js.extend([
-            ("path", "path", str, False, None, True),
-            ("type", "type", str, False, None, True),
-        ])
-        return js
-
-@dataclass
-class ElementDefinitionType(element.Element):
-    """ Data type and Profile for this element.
-
-    The data type or resource that the value of this element is permitted to
-    be.
-    """
-    resource_type: ClassVar[str] = "ElementDefinitionType"
-    aggregation: Optional[List[str]] = empty_list()
-    code: str = None
-    profile: Optional[List[str]] = empty_list()
-    targetProfile: Optional[List[str]] = empty_list()
-    versioning: Optional[str] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(ElementDefinitionType, self).elementProperties()
-        js.extend([
-            ("aggregation", "aggregation", str, True, None, False),
-            ("code", "code", str, False, None, True),
-            ("profile", "profile", str, True, None, False),
-            ("targetProfile", "targetProfile", str, True, None, False),
-            ("versioning", "versioning", str, False, None, False),
         ])
         return js
 

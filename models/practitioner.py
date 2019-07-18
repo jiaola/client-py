@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2019-07-15.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2019-07-18.
 #  2019, SMART Health IT.
 
 from dataclasses import dataclass, InitVar
@@ -21,6 +21,39 @@ from . import fhirreference
 from . import humanname
 from . import identifier
 from . import period
+
+from . import backboneelement
+
+@dataclass
+class PractitionerQualification(backboneelement.BackboneElement):
+    """ Certification, licenses, or training pertaining to the provision of care.
+
+    The official certifications, training, and licenses that authorize or
+    otherwise pertain to the provision of care by the practitioner.  For
+    example, a medical license issued by a medical board authorizing the
+    practitioner to practice medicine within a certian locality.
+    """
+    resource_type: ClassVar[str] = "PractitionerQualification"
+    code:codeableconcept.CodeableConcept = None
+    identifier: Optional[List[identifier.Identifier]] = empty_list()
+    issuer: Optional[fhirreference.FHIRReference] = None
+    period: Optional[period.Period] = None
+
+    jsondict: InitVar[Optional[dict]] = None
+    strict: InitVar[bool] = True
+
+    #def __post_init__(self, jsondict, strict) -> None:
+    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
+
+    def elementProperties(self):
+        js = super(PractitionerQualification, self).elementProperties()
+        js.extend([
+            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("issuer", "issuer", fhirreference.FHIRReference, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+        ])
+        return js
 
 from . import domainresource
 
@@ -63,39 +96,6 @@ class Practitioner(domainresource.DomainResource):
             ("photo", "photo", attachment.Attachment, True, None, False),
             ("qualification", "qualification", PractitionerQualification, True, None, False),
             ("telecom", "telecom", contactpoint.ContactPoint, True, None, False),
-        ])
-        return js
-
-from . import backboneelement
-
-@dataclass
-class PractitionerQualification(backboneelement.BackboneElement):
-    """ Certification, licenses, or training pertaining to the provision of care.
-
-    The official certifications, training, and licenses that authorize or
-    otherwise pertain to the provision of care by the practitioner.  For
-    example, a medical license issued by a medical board authorizing the
-    practitioner to practice medicine within a certian locality.
-    """
-    resource_type: ClassVar[str] = "PractitionerQualification"
-    code:codeableconcept.CodeableConcept = None
-    identifier: Optional[List[identifier.Identifier]] = empty_list()
-    issuer: Optional[fhirreference.FHIRReference] = None
-    period: Optional[period.Period] = None
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
-
-    def elementProperties(self):
-        js = super(PractitionerQualification, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("issuer", "issuer", fhirreference.FHIRReference, False, None, False),
-            ("period", "period", period.Period, False, None, False),
         ])
         return js
 
