@@ -1,267 +1,113 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ServiceRequest) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ServiceRequest) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .annotation import Annotation
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .fhirdate import FHIRDate
+from .fhirreference import FHIRReference
+from .identifier import Identifier
+from .period import Period
+from .quantity import Quantity
+from .range import Range
+from .ratio import Ratio
+from .timing import Timing
 
 
-from . import domainresource
-
-class ServiceRequest(domainresource.DomainResource):
+@dataclass
+class ServiceRequest(DomainResource):
     """ A request for a service to be performed.
-    
+
     A record of a request for service such as diagnostic investigations,
     treatments, or operations to be performed.
     """
-    
-    resource_type = "ServiceRequest"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.asNeededBoolean = None
-        """ Preconditions for service.
-        Type `bool`. """
-        
-        self.asNeededCodeableConcept = None
-        """ Preconditions for service.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.authoredOn = None
-        """ Date request signed.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.basedOn = None
-        """ What request fulfills.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.bodySite = None
-        """ Location on Body.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.category = None
-        """ Classification of service.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.code = None
-        """ What is being requested/ordered.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.doNotPerform = None
-        """ True if service/procedure should not be performed.
-        Type `bool`. """
-        
-        self.encounter = None
-        """ Encounter in which the request was created.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.identifier = None
-        """ Identifiers assigned to this order.
-        List of `Identifier` items (represented as `dict` in JSON). """
-        
-        self.instantiatesCanonical = None
-        """ Instantiates FHIR protocol or definition.
-        List of `str` items. """
-        
-        self.instantiatesUri = None
-        """ Instantiates external protocol or definition.
-        List of `str` items. """
-        
-        self.insurance = None
-        """ Associated insurance coverage.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.intent = None
-        """ proposal | plan | order +.
-        Type `str`. """
-        
-        self.locationCode = None
-        """ Requested location.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.locationReference = None
-        """ Requested location.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.note = None
-        """ Comments.
-        List of `Annotation` items (represented as `dict` in JSON). """
-        
-        self.occurrenceDateTime = None
-        """ When service should occur.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.occurrencePeriod = None
-        """ When service should occur.
-        Type `Period` (represented as `dict` in JSON). """
-        
-        self.occurrenceTiming = None
-        """ When service should occur.
-        Type `Timing` (represented as `dict` in JSON). """
-        
-        self.orderDetail = None
-        """ Additional order information.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.patientInstruction = None
-        """ Patient or consumer-oriented instructions.
-        Type `str`. """
-        
-        self.performer = None
-        """ Requested performer.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.performerType = None
-        """ Performer role.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.priority = None
-        """ routine | urgent | asap | stat.
-        Type `str`. """
-        
-        self.quantityQuantity = None
-        """ Service amount.
-        Type `Quantity` (represented as `dict` in JSON). """
-        
-        self.quantityRange = None
-        """ Service amount.
-        Type `Range` (represented as `dict` in JSON). """
-        
-        self.quantityRatio = None
-        """ Service amount.
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.reasonCode = None
-        """ Explanation/Justification for procedure or service.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.reasonReference = None
-        """ Explanation/Justification for service or service.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.relevantHistory = None
-        """ Request provenance.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.replaces = None
-        """ What request replaces.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.requester = None
-        """ Who/what is requesting service.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.requisition = None
-        """ Composite Request ID.
-        Type `Identifier` (represented as `dict` in JSON). """
-        
-        self.specimen = None
-        """ Procedure Samples.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.status = None
-        """ draft | active | suspended | completed | entered-in-error |
-        cancelled.
-        Type `str`. """
-        
-        self.subject = None
-        """ Individual or Entity the service is ordered for.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.supportingInfo = None
-        """ Additional clinical information.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        super(ServiceRequest, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "ServiceRequest"
+    asNeededBoolean: Optional[bool] = None
+    asNeededCodeableConcept: Optional[CodeableConcept] = None
+    authoredOn: Optional[FHIRDate] = None
+    basedOn: Optional[List[FHIRReference]] = empty_list()
+    bodySite: Optional[List[CodeableConcept]] = empty_list()
+    category: Optional[List[CodeableConcept]] = empty_list()
+    code: Optional[CodeableConcept] = None
+    doNotPerform: Optional[bool] = None
+    encounter: Optional[FHIRReference] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    instantiatesCanonical: Optional[List[str]] = empty_list()
+    instantiatesUri: Optional[List[str]] = empty_list()
+    insurance: Optional[List[FHIRReference]] = empty_list()
+    intent: str = None
+    locationCode: Optional[List[CodeableConcept]] = empty_list()
+    locationReference: Optional[List[FHIRReference]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
+    occurrenceDateTime: Optional[FHIRDate] = None
+    occurrencePeriod: Optional[Period] = None
+    occurrenceTiming: Optional[Timing] = None
+    orderDetail: Optional[List[CodeableConcept]] = empty_list()
+    patientInstruction: Optional[str] = None
+    performer: Optional[List[FHIRReference]] = empty_list()
+    performerType: Optional[CodeableConcept] = None
+    priority: Optional[str] = None
+    quantityQuantity: Optional[Quantity] = None
+    quantityRange: Optional[Range] = None
+    quantityRatio: Optional[Ratio] = None
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    relevantHistory: Optional[List[FHIRReference]] = empty_list()
+    replaces: Optional[List[FHIRReference]] = empty_list()
+    requester: Optional[FHIRReference] = None
+    requisition: Optional[Identifier] = None
+    specimen: Optional[List[FHIRReference]] = empty_list()
+    status: str = None
+    subject: FHIRReference = None
+    supportingInfo: Optional[List[FHIRReference]] = empty_list()
+
     def elementProperties(self):
         js = super(ServiceRequest, self).elementProperties()
         js.extend([
             ("asNeededBoolean", "asNeededBoolean", bool, False, "asNeeded", False),
-            ("asNeededCodeableConcept", "asNeededCodeableConcept", codeableconcept.CodeableConcept, False, "asNeeded", False),
-            ("authoredOn", "authoredOn", fhirdate.FHIRDate, False, None, False),
-            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
-            ("bodySite", "bodySite", codeableconcept.CodeableConcept, True, None, False),
-            ("category", "category", codeableconcept.CodeableConcept, True, None, False),
-            ("code", "code", codeableconcept.CodeableConcept, False, None, False),
+            ("asNeededCodeableConcept", "asNeededCodeableConcept", CodeableConcept, False, "asNeeded", False),
+            ("authoredOn", "authoredOn", FHIRDate, False, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("bodySite", "bodySite", CodeableConcept, True, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
             ("doNotPerform", "doNotPerform", bool, False, None, False),
-            ("encounter", "encounter", fhirreference.FHIRReference, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
             ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
             ("instantiatesUri", "instantiatesUri", str, True, None, False),
-            ("insurance", "insurance", fhirreference.FHIRReference, True, None, False),
+            ("insurance", "insurance", FHIRReference, True, None, False),
             ("intent", "intent", str, False, None, True),
-            ("locationCode", "locationCode", codeableconcept.CodeableConcept, True, None, False),
-            ("locationReference", "locationReference", fhirreference.FHIRReference, True, None, False),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("occurrenceDateTime", "occurrenceDateTime", fhirdate.FHIRDate, False, "occurrence", False),
-            ("occurrencePeriod", "occurrencePeriod", period.Period, False, "occurrence", False),
-            ("occurrenceTiming", "occurrenceTiming", timing.Timing, False, "occurrence", False),
-            ("orderDetail", "orderDetail", codeableconcept.CodeableConcept, True, None, False),
+            ("locationCode", "locationCode", CodeableConcept, True, None, False),
+            ("locationReference", "locationReference", FHIRReference, True, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("occurrenceDateTime", "occurrenceDateTime", FHIRDate, False, "occurrence", False),
+            ("occurrencePeriod", "occurrencePeriod", Period, False, "occurrence", False),
+            ("occurrenceTiming", "occurrenceTiming", Timing, False, "occurrence", False),
+            ("orderDetail", "orderDetail", CodeableConcept, True, None, False),
             ("patientInstruction", "patientInstruction", str, False, None, False),
-            ("performer", "performer", fhirreference.FHIRReference, True, None, False),
-            ("performerType", "performerType", codeableconcept.CodeableConcept, False, None, False),
+            ("performer", "performer", FHIRReference, True, None, False),
+            ("performerType", "performerType", CodeableConcept, False, None, False),
             ("priority", "priority", str, False, None, False),
-            ("quantityQuantity", "quantityQuantity", quantity.Quantity, False, "quantity", False),
-            ("quantityRange", "quantityRange", range.Range, False, "quantity", False),
-            ("quantityRatio", "quantityRatio", ratio.Ratio, False, "quantity", False),
-            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
-            ("relevantHistory", "relevantHistory", fhirreference.FHIRReference, True, None, False),
-            ("replaces", "replaces", fhirreference.FHIRReference, True, None, False),
-            ("requester", "requester", fhirreference.FHIRReference, False, None, False),
-            ("requisition", "requisition", identifier.Identifier, False, None, False),
-            ("specimen", "specimen", fhirreference.FHIRReference, True, None, False),
+            ("quantityQuantity", "quantityQuantity", Quantity, False, "quantity", False),
+            ("quantityRange", "quantityRange", Range, False, "quantity", False),
+            ("quantityRatio", "quantityRatio", Ratio, False, "quantity", False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("relevantHistory", "relevantHistory", FHIRReference, True, None, False),
+            ("replaces", "replaces", FHIRReference, True, None, False),
+            ("requester", "requester", FHIRReference, False, None, False),
+            ("requisition", "requisition", Identifier, False, None, False),
+            ("specimen", "specimen", FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", fhirreference.FHIRReference, False, None, True),
-            ("supportingInfo", "supportingInfo", fhirreference.FHIRReference, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, True),
+            ("supportingInfo", "supportingInfo", FHIRReference, True, None, False),
         ])
         return js
-
-
-import sys
-try:
-    from . import annotation
-except ImportError:
-    annotation = sys.modules[__package__ + '.annotation']
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import fhirdate
-except ImportError:
-    fhirdate = sys.modules[__package__ + '.fhirdate']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']
-try:
-    from . import period
-except ImportError:
-    period = sys.modules[__package__ + '.period']
-try:
-    from . import quantity
-except ImportError:
-    quantity = sys.modules[__package__ + '.quantity']
-try:
-    from . import range
-except ImportError:
-    range = sys.modules[__package__ + '.range']
-try:
-    from . import ratio
-except ImportError:
-    ratio = sys.modules[__package__ + '.ratio']
-try:
-    from . import timing
-except ImportError:
-    timing = sys.modules[__package__ + '.timing']

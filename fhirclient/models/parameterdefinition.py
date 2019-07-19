@@ -1,61 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .element import Element
 
 
-from . import element
-
-class ParameterDefinition(element.Element):
+@dataclass
+class ParameterDefinition(Element):
     """ Definition of a parameter to a module.
-    
+
     The parameters to the module. This collection specifies both the input and
     output parameters. Input parameters are provided by the caller as part of
     the $evaluate operation. Output parameters are included in the
     GuidanceResponse.
     """
-    
-    resource_type = "ParameterDefinition"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.documentation = None
-        """ A brief description of the parameter.
-        Type `str`. """
-        
-        self.max = None
-        """ Maximum cardinality (a number of *).
-        Type `str`. """
-        
-        self.min = None
-        """ Minimum cardinality.
-        Type `int`. """
-        
-        self.name = None
-        """ Name used to access the parameter value.
-        Type `str`. """
-        
-        self.profile = None
-        """ What profile the value is expected to be.
-        Type `str`. """
-        
-        self.type = None
-        """ What type of value.
-        Type `str`. """
-        
-        self.use = None
-        """ in | out.
-        Type `str`. """
-        
-        super(ParameterDefinition, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "ParameterDefinition"
+    documentation: Optional[str] = None
+    max: Optional[str] = None
+    min: Optional[int] = None
+    name: Optional[str] = None
+    profile: Optional[str] = None
+    type: str = None
+    use: str = None
+
     def elementProperties(self):
         js = super(ParameterDefinition, self).elementProperties()
         js.extend([
@@ -68,5 +41,3 @@ class ParameterDefinition(element.Element):
             ("use", "use", str, False, None, True),
         ])
         return js
-
-

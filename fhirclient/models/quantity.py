@@ -1,52 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MoneyQuantity) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MoneyQuantity) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .element import Element
 
 
-from . import element
-
-class Quantity(element.Element):
+@dataclass
+class Quantity(Element):
     """ A measured or measurable amount.
-    
+
     A measured amount (or an amount that can potentially be measured). Note
     that measured amounts include amounts that are not precisely quantified,
     including amounts involving arbitrary units and floating currencies.
     """
-    
-    resource_type = "Quantity"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.code = None
-        """ Coded form of the unit.
-        Type `str`. """
-        
-        self.comparator = None
-        """ < | <= | >= | > - how to understand the value.
-        Type `str`. """
-        
-        self.system = None
-        """ System that defines coded unit form.
-        Type `str`. """
-        
-        self.unit = None
-        """ Unit representation.
-        Type `str`. """
-        
-        self.value = None
-        """ Numerical value (with implicit precision).
-        Type `float`. """
-        
-        super(Quantity, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "Quantity"
+    code: Optional[str] = None
+    comparator: Optional[str] = None
+    system: Optional[str] = None
+    unit: Optional[str] = None
+    value: Optional[float] = None
+
     def elementProperties(self):
         js = super(Quantity, self).elementProperties()
         js.extend([
@@ -57,5 +36,3 @@ class Quantity(element.Element):
             ("value", "value", float, False, None, False),
         ])
         return js
-
-

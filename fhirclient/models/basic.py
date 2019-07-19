@@ -1,78 +1,42 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Basic) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Basic) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .fhirdate import FHIRDate
+from .fhirreference import FHIRReference
+from .identifier import Identifier
 
 
-from . import domainresource
-
-class Basic(domainresource.DomainResource):
+@dataclass
+class Basic(DomainResource):
     """ Resource for non-supported content.
-    
+
     Basic is used for handling concepts not yet defined in FHIR, narrative-only
     resources that don't map to an existing resource, and custom resources not
     appropriate for inclusion in the FHIR specification.
     """
-    
-    resource_type = "Basic"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.author = None
-        """ Who created.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.code = None
-        """ Kind of Resource.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.created = None
-        """ When created.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.identifier = None
-        """ Business identifier.
-        List of `Identifier` items (represented as `dict` in JSON). """
-        
-        self.subject = None
-        """ Identifies the focus of this resource.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        super(Basic, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "Basic"
+    author: Optional[FHIRReference] = None
+    code: CodeableConcept = None
+    created: Optional[FHIRDate] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    subject: Optional[FHIRReference] = None
+
     def elementProperties(self):
         js = super(Basic, self).elementProperties()
         js.extend([
-            ("author", "author", fhirreference.FHIRReference, False, None, False),
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("created", "created", fhirdate.FHIRDate, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("subject", "subject", fhirreference.FHIRReference, False, None, False),
+            ("author", "author", FHIRReference, False, None, False),
+            ("code", "code", CodeableConcept, False, None, True),
+            ("created", "created", FHIRDate, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
         ])
         return js
-
-
-import sys
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import fhirdate
-except ImportError:
-    fhirdate = sys.modules[__package__ + '.fhirdate']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']

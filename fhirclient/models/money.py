@@ -1,36 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Money) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Money) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .element import Element
 
 
-from . import element
-
-class Money(element.Element):
+@dataclass
+class Money(Element):
     """ An amount of economic utility in some recognized currency.
     """
-    
-    resource_type = "Money"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.currency = None
-        """ ISO 4217 Currency Code.
-        Type `str`. """
-        
-        self.value = None
-        """ Numerical value (with implicit precision).
-        Type `float`. """
-        
-        super(Money, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "Money"
+    currency: Optional[str] = None
+    value: Optional[float] = None
+
     def elementProperties(self):
         js = super(Money, self).elementProperties()
         js.extend([
@@ -38,5 +26,3 @@ class Money(element.Element):
             ("value", "value", float, False, None, False),
         ])
         return js
-
-

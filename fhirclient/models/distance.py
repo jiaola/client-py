@@ -1,26 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Distance) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Distance) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .quantity import Quantity
 
 
-from . import quantity
-
-class Distance(quantity.Quantity):
+@dataclass
+class Distance(Quantity):
     """ A length - a value with a unit that is a physical distance.
     """
-    
-    resource_type = "Distance"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        super(Distance, self).__init__(jsondict=jsondict, strict=strict)
-
-
+    resource_type: ClassVar[str] = "Distance"

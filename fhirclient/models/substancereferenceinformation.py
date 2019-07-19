@@ -1,48 +1,125 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceReferenceInformation) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceReferenceInformation) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .backboneelement import BackboneElement
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .fhirreference import FHIRReference
+from .identifier import Identifier
+from .quantity import Quantity
+from .range import Range
 
 
-from . import domainresource
-
-class SubstanceReferenceInformation(domainresource.DomainResource):
+@dataclass
+class SubstanceReferenceInformationTarget(BackboneElement):
     """ Todo.
     """
-    
-    resource_type = "SubstanceReferenceInformation"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.classification = None
-        """ Todo.
-        List of `SubstanceReferenceInformationClassification` items (represented as `dict` in JSON). """
-        
-        self.comment = None
-        """ Todo.
-        Type `str`. """
-        
-        self.gene = None
-        """ Todo.
-        List of `SubstanceReferenceInformationGene` items (represented as `dict` in JSON). """
-        
-        self.geneElement = None
-        """ Todo.
-        List of `SubstanceReferenceInformationGeneElement` items (represented as `dict` in JSON). """
-        
-        self.target = None
-        """ Todo.
-        List of `SubstanceReferenceInformationTarget` items (represented as `dict` in JSON). """
-        
-        super(SubstanceReferenceInformation, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "SubstanceReferenceInformationTarget"
+    amountQuantity: Optional[Quantity] = None
+    amountRange: Optional[Range] = None
+    amountString: Optional[str] = None
+    amountType: Optional[CodeableConcept] = None
+    interaction: Optional[CodeableConcept] = None
+    organism: Optional[CodeableConcept] = None
+    organismType: Optional[CodeableConcept] = None
+    source: Optional[List[FHIRReference]] = empty_list()
+    target: Optional[Identifier] = None
+    type: Optional[CodeableConcept] = None
+
+    def elementProperties(self):
+        js = super(SubstanceReferenceInformationTarget, self).elementProperties()
+        js.extend([
+            ("amountQuantity", "amountQuantity", Quantity, False, "amount", False),
+            ("amountRange", "amountRange", Range, False, "amount", False),
+            ("amountString", "amountString", str, False, "amount", False),
+            ("amountType", "amountType", CodeableConcept, False, None, False),
+            ("interaction", "interaction", CodeableConcept, False, None, False),
+            ("organism", "organism", CodeableConcept, False, None, False),
+            ("organismType", "organismType", CodeableConcept, False, None, False),
+            ("source", "source", FHIRReference, True, None, False),
+            ("target", "target", Identifier, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class SubstanceReferenceInformationGeneElement(BackboneElement):
+    """ Todo.
+    """
+    resource_type: ClassVar[str] = "SubstanceReferenceInformationGeneElement"
+    element: Optional[Identifier] = None
+    source: Optional[List[FHIRReference]] = empty_list()
+    type: Optional[CodeableConcept] = None
+
+    def elementProperties(self):
+        js = super(SubstanceReferenceInformationGeneElement, self).elementProperties()
+        js.extend([
+            ("element", "element", Identifier, False, None, False),
+            ("source", "source", FHIRReference, True, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class SubstanceReferenceInformationGene(BackboneElement):
+    """ Todo.
+    """
+    resource_type: ClassVar[str] = "SubstanceReferenceInformationGene"
+    gene: Optional[CodeableConcept] = None
+    geneSequenceOrigin: Optional[CodeableConcept] = None
+    source: Optional[List[FHIRReference]] = empty_list()
+
+    def elementProperties(self):
+        js = super(SubstanceReferenceInformationGene, self).elementProperties()
+        js.extend([
+            ("gene", "gene", CodeableConcept, False, None, False),
+            ("geneSequenceOrigin", "geneSequenceOrigin", CodeableConcept, False, None, False),
+            ("source", "source", FHIRReference, True, None, False),
+        ])
+        return js
+
+
+@dataclass
+class SubstanceReferenceInformationClassification(BackboneElement):
+    """ Todo.
+    """
+    resource_type: ClassVar[str] = "SubstanceReferenceInformationClassification"
+    classification: Optional[CodeableConcept] = None
+    domain: Optional[CodeableConcept] = None
+    source: Optional[List[FHIRReference]] = empty_list()
+    subtype: Optional[List[CodeableConcept]] = empty_list()
+
+    def elementProperties(self):
+        js = super(SubstanceReferenceInformationClassification, self).elementProperties()
+        js.extend([
+            ("classification", "classification", CodeableConcept, False, None, False),
+            ("domain", "domain", CodeableConcept, False, None, False),
+            ("source", "source", FHIRReference, True, None, False),
+            ("subtype", "subtype", CodeableConcept, True, None, False),
+        ])
+        return js
+
+
+@dataclass
+class SubstanceReferenceInformation(DomainResource):
+    """ Todo.
+    """
+    resource_type: ClassVar[str] = "SubstanceReferenceInformation"
+    classification: Optional[List[SubstanceReferenceInformationClassification]] = empty_list()
+    comment: Optional[str] = None
+    gene: Optional[List[SubstanceReferenceInformationGene]] = empty_list()
+    geneElement: Optional[List[SubstanceReferenceInformationGeneElement]] = empty_list()
+    target: Optional[List[SubstanceReferenceInformationTarget]] = empty_list()
+
     def elementProperties(self):
         js = super(SubstanceReferenceInformation, self).elementProperties()
         js.extend([
@@ -53,220 +130,3 @@ class SubstanceReferenceInformation(domainresource.DomainResource):
             ("target", "target", SubstanceReferenceInformationTarget, True, None, False),
         ])
         return js
-
-
-from . import backboneelement
-
-class SubstanceReferenceInformationClassification(backboneelement.BackboneElement):
-    """ Todo.
-    """
-    
-    resource_type = "SubstanceReferenceInformationClassification"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.classification = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.domain = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.source = None
-        """ Todo.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.subtype = None
-        """ Todo.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        super(SubstanceReferenceInformationClassification, self).__init__(jsondict=jsondict, strict=strict)
-    
-    def elementProperties(self):
-        js = super(SubstanceReferenceInformationClassification, self).elementProperties()
-        js.extend([
-            ("classification", "classification", codeableconcept.CodeableConcept, False, None, False),
-            ("domain", "domain", codeableconcept.CodeableConcept, False, None, False),
-            ("source", "source", fhirreference.FHIRReference, True, None, False),
-            ("subtype", "subtype", codeableconcept.CodeableConcept, True, None, False),
-        ])
-        return js
-
-
-class SubstanceReferenceInformationGene(backboneelement.BackboneElement):
-    """ Todo.
-    """
-    
-    resource_type = "SubstanceReferenceInformationGene"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.gene = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.geneSequenceOrigin = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.source = None
-        """ Todo.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        super(SubstanceReferenceInformationGene, self).__init__(jsondict=jsondict, strict=strict)
-    
-    def elementProperties(self):
-        js = super(SubstanceReferenceInformationGene, self).elementProperties()
-        js.extend([
-            ("gene", "gene", codeableconcept.CodeableConcept, False, None, False),
-            ("geneSequenceOrigin", "geneSequenceOrigin", codeableconcept.CodeableConcept, False, None, False),
-            ("source", "source", fhirreference.FHIRReference, True, None, False),
-        ])
-        return js
-
-
-class SubstanceReferenceInformationGeneElement(backboneelement.BackboneElement):
-    """ Todo.
-    """
-    
-    resource_type = "SubstanceReferenceInformationGeneElement"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.element = None
-        """ Todo.
-        Type `Identifier` (represented as `dict` in JSON). """
-        
-        self.source = None
-        """ Todo.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.type = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        super(SubstanceReferenceInformationGeneElement, self).__init__(jsondict=jsondict, strict=strict)
-    
-    def elementProperties(self):
-        js = super(SubstanceReferenceInformationGeneElement, self).elementProperties()
-        js.extend([
-            ("element", "element", identifier.Identifier, False, None, False),
-            ("source", "source", fhirreference.FHIRReference, True, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-class SubstanceReferenceInformationTarget(backboneelement.BackboneElement):
-    """ Todo.
-    """
-    
-    resource_type = "SubstanceReferenceInformationTarget"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.amountQuantity = None
-        """ Todo.
-        Type `Quantity` (represented as `dict` in JSON). """
-        
-        self.amountRange = None
-        """ Todo.
-        Type `Range` (represented as `dict` in JSON). """
-        
-        self.amountString = None
-        """ Todo.
-        Type `str`. """
-        
-        self.amountType = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.interaction = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.organism = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.organismType = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.source = None
-        """ Todo.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.target = None
-        """ Todo.
-        Type `Identifier` (represented as `dict` in JSON). """
-        
-        self.type = None
-        """ Todo.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        super(SubstanceReferenceInformationTarget, self).__init__(jsondict=jsondict, strict=strict)
-    
-    def elementProperties(self):
-        js = super(SubstanceReferenceInformationTarget, self).elementProperties()
-        js.extend([
-            ("amountQuantity", "amountQuantity", quantity.Quantity, False, "amount", False),
-            ("amountRange", "amountRange", range.Range, False, "amount", False),
-            ("amountString", "amountString", str, False, "amount", False),
-            ("amountType", "amountType", codeableconcept.CodeableConcept, False, None, False),
-            ("interaction", "interaction", codeableconcept.CodeableConcept, False, None, False),
-            ("organism", "organism", codeableconcept.CodeableConcept, False, None, False),
-            ("organismType", "organismType", codeableconcept.CodeableConcept, False, None, False),
-            ("source", "source", fhirreference.FHIRReference, True, None, False),
-            ("target", "target", identifier.Identifier, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-import sys
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']
-try:
-    from . import quantity
-except ImportError:
-    quantity = sys.modules[__package__ + '.quantity']
-try:
-    from . import range
-except ImportError:
-    range = sys.modules[__package__ + '.range']

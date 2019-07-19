@@ -1,50 +1,32 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Ratio) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Ratio) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .element import Element
+from .quantity import Quantity
 
 
-from . import element
-
-class Ratio(element.Element):
+@dataclass
+class Ratio(Element):
     """ A ratio of two Quantity values - a numerator and a denominator.
-    
+
     A relationship of two Quantity values - expressed as a numerator and a
     denominator.
     """
-    
-    resource_type = "Ratio"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.denominator = None
-        """ Denominator value.
-        Type `Quantity` (represented as `dict` in JSON). """
-        
-        self.numerator = None
-        """ Numerator value.
-        Type `Quantity` (represented as `dict` in JSON). """
-        
-        super(Ratio, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "Ratio"
+    denominator: Optional[Quantity] = None
+    numerator: Optional[Quantity] = None
+
     def elementProperties(self):
         js = super(Ratio, self).elementProperties()
         js.extend([
-            ("denominator", "denominator", quantity.Quantity, False, None, False),
-            ("numerator", "numerator", quantity.Quantity, False, None, False),
+            ("denominator", "denominator", Quantity, False, None, False),
+            ("numerator", "numerator", Quantity, False, None, False),
         ])
         return js
-
-
-import sys
-try:
-    from . import quantity
-except ImportError:
-    quantity = sys.modules[__package__ + '.quantity']

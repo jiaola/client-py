@@ -1,139 +1,64 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .annotation import Annotation
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .fhirdate import FHIRDate
+from .fhirreference import FHIRReference
+from .identifier import Identifier
+from .period import Period
+from .timing import Timing
 
 
-from . import domainresource
-
-class DeviceUseStatement(domainresource.DomainResource):
+@dataclass
+class DeviceUseStatement(DomainResource):
     """ Record of use of a device.
-    
+
     A record of a device being used by a patient where the record is the result
     of a report from the patient or another clinician.
     """
-    
-    resource_type = "DeviceUseStatement"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.basedOn = None
-        """ Fulfills plan, proposal or order.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.bodySite = None
-        """ Target body site.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.derivedFrom = None
-        """ Supporting information.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.device = None
-        """ Reference to device used.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.identifier = None
-        """ External identifier for this record.
-        List of `Identifier` items (represented as `dict` in JSON). """
-        
-        self.note = None
-        """ Addition details (comments, instructions).
-        List of `Annotation` items (represented as `dict` in JSON). """
-        
-        self.reasonCode = None
-        """ Why device was used.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.reasonReference = None
-        """ Why was DeviceUseStatement performed?.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.recordedOn = None
-        """ When statement was recorded.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.source = None
-        """ Who made the statement.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.status = None
-        """ active | completed | entered-in-error +.
-        Type `str`. """
-        
-        self.subject = None
-        """ Patient using device.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.timingDateTime = None
-        """ How often  the device was used.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.timingPeriod = None
-        """ How often  the device was used.
-        Type `Period` (represented as `dict` in JSON). """
-        
-        self.timingTiming = None
-        """ How often  the device was used.
-        Type `Timing` (represented as `dict` in JSON). """
-        
-        super(DeviceUseStatement, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "DeviceUseStatement"
+    basedOn: Optional[List[FHIRReference]] = empty_list()
+    bodySite: Optional[CodeableConcept] = None
+    derivedFrom: Optional[List[FHIRReference]] = empty_list()
+    device: FHIRReference = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    recordedOn: Optional[FHIRDate] = None
+    source: Optional[FHIRReference] = None
+    status: str = None
+    subject: FHIRReference = None
+    timingDateTime: Optional[FHIRDate] = None
+    timingPeriod: Optional[Period] = None
+    timingTiming: Optional[Timing] = None
+
     def elementProperties(self):
         js = super(DeviceUseStatement, self).elementProperties()
         js.extend([
-            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
-            ("bodySite", "bodySite", codeableconcept.CodeableConcept, False, None, False),
-            ("derivedFrom", "derivedFrom", fhirreference.FHIRReference, True, None, False),
-            ("device", "device", fhirreference.FHIRReference, False, None, True),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
-            ("recordedOn", "recordedOn", fhirdate.FHIRDate, False, None, False),
-            ("source", "source", fhirreference.FHIRReference, False, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("bodySite", "bodySite", CodeableConcept, False, None, False),
+            ("derivedFrom", "derivedFrom", FHIRReference, True, None, False),
+            ("device", "device", FHIRReference, False, None, True),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("recordedOn", "recordedOn", FHIRDate, False, None, False),
+            ("source", "source", FHIRReference, False, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", fhirreference.FHIRReference, False, None, True),
-            ("timingDateTime", "timingDateTime", fhirdate.FHIRDate, False, "timing", False),
-            ("timingPeriod", "timingPeriod", period.Period, False, "timing", False),
-            ("timingTiming", "timingTiming", timing.Timing, False, "timing", False),
+            ("subject", "subject", FHIRReference, False, None, True),
+            ("timingDateTime", "timingDateTime", FHIRDate, False, "timing", False),
+            ("timingPeriod", "timingPeriod", Period, False, "timing", False),
+            ("timingTiming", "timingTiming", Timing, False, "timing", False),
         ])
         return js
-
-
-import sys
-try:
-    from . import annotation
-except ImportError:
-    annotation = sys.modules[__package__ + '.annotation']
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import fhirdate
-except ImportError:
-    fhirdate = sys.modules[__package__ + '.fhirdate']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']
-try:
-    from . import period
-except ImportError:
-    period = sys.modules[__package__ + '.period']
-try:
-    from . import timing
-except ImportError:
-    timing = sys.modules[__package__ + '.timing']

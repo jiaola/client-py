@@ -5,64 +5,51 @@
 #  {{ info.year }}, SMART Health IT.
 
 {%- set imported = {} %}
-
-from dataclasses import dataclass, InitVar
+import sys
+from dataclasses import dataclass
 from typing import ClassVar, Optional, List
-from models import fhirabstractbase
-from .fhirabstractbase import *
-
-{% for imp in imports %}{% if imp.module not in imported %}
-from . import {{ imp.module }}
-{%- endif %}{% endfor %}
+from .fhirabstractbase import empty_list
+{% set special = 'Identifier' != classes[-1].name and 'Extension' != classes[-1].name and 'Element' != classes[-1].name %}{%- if special %}{% for imp in imports %}{% if imp.module not in imported %}
+from .{{ imp.module }} import {{ imp.name }}{% set _ = imported.update({imp.module: True}) %}
+{%- endif %}{% endfor %}{%- endif %}
 
 {%- for klass in classes[::-1] %}
-
 {% if klass.superclass in imports and klass.superclass.module not in imported -%}
-from . import {{klass.superclass.module}}
+from .{{ klass.superclass.module }} import {{ klass.superclass.name }}
 {% set _ = imported.update({klass.superclass.module: True}) %}
-{% endif -%}
+{% endif %}
 
 @dataclass
-class {{klass.name}}({% if klass.superclass in imports %}{{klass.superclass.module}}.{% endif -%}
-{{klass.superclass.name | default('object')}}):
+class {{klass.name}}({{klass.superclass.name | default('object')}}):
     """ {{ klass.short|wordwrap(width=75, wrapstring="\n    ") }}.
 {%- if klass.formal %}
 
     {{ klass.formal|wordwrap(width=75, wrapstring="\n    ") }}
 {%- endif %}
     """
-
 {%- if klass.resource_type %}
     resource_type: ClassVar[str] = "{{ klass.resource_type }}"
 {%- endif %}
 
 
 {%- for prop in klass.properties %}
-    {{prop.name}}:{%- if prop.is_array %}{%- if prop.nonoptional %} List[{%- if prop.module_name %}{{prop.module_name}}.{% else %} {% endif %}{{prop.class_name}}]{% else %} Optional[List[{%- if prop.module_name %}{{prop.module_name}}.{% else %}{% endif %}{{prop.class_name}}]]{%- endif %} = empty_list(){% else %}{%- if prop.nonoptional %} {%- if prop.module_name %}{{prop.module_name}}.{% else %} {% endif %}{{prop.class_name}}{% else %} Optional[{%- if prop.module_name %}{{prop.module_name}}.{% else %}{% endif %}{{prop.class_name}}]{%- endif %} = None{% endif %}
+{%- if special %}{% set pname = prop.class_name %}{% else %}{% set pname = '"' + prop.class_name + '"' %}{% endif %}
+    {{prop.name}}:{%- if prop.is_array %}{%- if prop.nonoptional %} List[{{pname}}]{% else %} Optional[List[{{pname}}]]{%- endif %} = empty_list(){% else %}{%- if prop.nonoptional %} {{pname}}{% else %} Optional[{{pname}}]{%- endif %} = None{% endif %}
 
 {%- endfor %}
-
-    jsondict: InitVar[Optional[dict]] = None
-    strict: InitVar[bool] = True
-
-    #def __post_init__(self, jsondict, strict) -> None:
-    #    fhirabstractbase.FHIRAbstractBase(jsondict, strict)
 
 
 {%- if klass.properties %}
 
     def elementProperties(self):
-        js = super({{klass.name}}, self).elementProperties()
-        {%- if 'element' == klass.module and 'Element' == klass.name %}
+        {%- if not special %}
         {%- for imp in imports %}{% if imp.module not in imported %}
-        from . import {{imp.module}}
-        {%- set _ = imported.update({imp.module: True}) %}
-        {%- endif %}{% endfor %}
-        {%- endif %}
+        from .{{imp.module}} import {{imp.name}}{%- endif %}{% endfor %}
+        {% endif %}
+        js = super({{klass.name}}, self).elementProperties()
         js.extend([
         {%- for prop in klass.properties %}
-            ("{{ prop.name }}", "{{ prop.orig_name }}",
-            {%- if prop.module_name %} {{prop.module_name}}.{% else %} {% endif %}{{prop.class_name}}, {# #}
+            ("{{ prop.name }}", "{{ prop.orig_name }}", {{prop.class_name}}, {# #}
             {{- prop.is_array}},
             {%- if prop.one_of_many %} "{{ prop.one_of_many }}"{% else %} None{% endif %}, {# #}
             {{- prop.nonoptional}}),
@@ -72,13 +59,3 @@ class {{klass.name}}({% if klass.superclass in imports %}{{klass.superclass.modu
 
 {%- endif %}
 {%- endfor %}
-
-{% if imports|length > 0 and imported|length != imports|length %}
-import sys
-{%- endif %}
-{%- for imp in imports %}{% if imp.module not in imported %}
-try:
-    from . import {{ imp.module }}
-except ImportError:
-    {{ imp.module }} = sys.modules[__package__ + '.{{ imp.module }}']
-{%- endif %}{% endfor %}

@@ -1,90 +1,45 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Schedule) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Schedule) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .fhirreference import FHIRReference
+from .identifier import Identifier
+from .period import Period
 
 
-from . import domainresource
-
-class Schedule(domainresource.DomainResource):
+@dataclass
+class Schedule(DomainResource):
     """ A container for slots of time that may be available for booking
     appointments.
     """
-    
-    resource_type = "Schedule"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.active = None
-        """ Whether this schedule is in active use.
-        Type `bool`. """
-        
-        self.actor = None
-        """ Resource(s) that availability information is being provided for.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.comment = None
-        """ Comments on availability.
-        Type `str`. """
-        
-        self.identifier = None
-        """ External Ids for this item.
-        List of `Identifier` items (represented as `dict` in JSON). """
-        
-        self.planningHorizon = None
-        """ Period of time covered by schedule.
-        Type `Period` (represented as `dict` in JSON). """
-        
-        self.serviceCategory = None
-        """ High-level category.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.serviceType = None
-        """ Specific service.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.specialty = None
-        """ Type of specialty needed.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        super(Schedule, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "Schedule"
+    active: Optional[bool] = None
+    actor: List[FHIRReference] = empty_list()
+    comment: Optional[str] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    planningHorizon: Optional[Period] = None
+    serviceCategory: Optional[List[CodeableConcept]] = empty_list()
+    serviceType: Optional[List[CodeableConcept]] = empty_list()
+    specialty: Optional[List[CodeableConcept]] = empty_list()
+
     def elementProperties(self):
         js = super(Schedule, self).elementProperties()
         js.extend([
             ("active", "active", bool, False, None, False),
-            ("actor", "actor", fhirreference.FHIRReference, True, None, True),
+            ("actor", "actor", FHIRReference, True, None, True),
             ("comment", "comment", str, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("planningHorizon", "planningHorizon", period.Period, False, None, False),
-            ("serviceCategory", "serviceCategory", codeableconcept.CodeableConcept, True, None, False),
-            ("serviceType", "serviceType", codeableconcept.CodeableConcept, True, None, False),
-            ("specialty", "specialty", codeableconcept.CodeableConcept, True, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("planningHorizon", "planningHorizon", Period, False, None, False),
+            ("serviceCategory", "serviceCategory", CodeableConcept, True, None, False),
+            ("serviceType", "serviceType", CodeableConcept, True, None, False),
+            ("specialty", "specialty", CodeableConcept, True, None, False),
         ])
         return js
-
-
-import sys
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']
-try:
-    from . import period
-except ImportError:
-    period = sys.modules[__package__ + '.period']

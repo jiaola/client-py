@@ -1,273 +1,130 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .backboneelement import BackboneElement
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .fhirreference import FHIRReference
+from .identifier import Identifier
+from .ratio import Ratio
 
 
-from . import domainresource
-
-class MedicinalProductIngredient(domainresource.DomainResource):
-    """ An ingredient of a manufactured item or pharmaceutical product.
+@dataclass
+class MedicinalProductIngredientSubstance(BackboneElement):
+    """ The ingredient substance.
     """
-    
-    resource_type = "MedicinalProductIngredient"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.allergenicIndicator = None
-        """ If the ingredient is a known or suspected allergen.
-        Type `bool`. """
-        
-        self.identifier = None
-        """ Identifier for the ingredient.
-        Type `Identifier` (represented as `dict` in JSON). """
-        
-        self.manufacturer = None
-        """ Manufacturer of this Ingredient.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.role = None
-        """ Ingredient role e.g. Active ingredient, excipient.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.specifiedSubstance = None
-        """ A specified substance that comprises this ingredient.
-        List of `MedicinalProductIngredientSpecifiedSubstance` items (represented as `dict` in JSON). """
-        
-        self.substance = None
-        """ The ingredient substance.
-        Type `MedicinalProductIngredientSubstance` (represented as `dict` in JSON). """
-        
-        super(MedicinalProductIngredient, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "MedicinalProductIngredientSubstance"
+    code: CodeableConcept = None
+    strength: Optional[List[MedicinalProductIngredientSpecifiedSubstanceStrength]] = empty_list()
+
     def elementProperties(self):
-        js = super(MedicinalProductIngredient, self).elementProperties()
+        js = super(MedicinalProductIngredientSubstance, self).elementProperties()
         js.extend([
-            ("allergenicIndicator", "allergenicIndicator", bool, False, None, False),
-            ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("manufacturer", "manufacturer", fhirreference.FHIRReference, True, None, False),
-            ("role", "role", codeableconcept.CodeableConcept, False, None, True),
-            ("specifiedSubstance", "specifiedSubstance", MedicinalProductIngredientSpecifiedSubstance, True, None, False),
-            ("substance", "substance", MedicinalProductIngredientSubstance, False, None, False),
-        ])
-        return js
-
-
-from . import backboneelement
-
-class MedicinalProductIngredientSpecifiedSubstance(backboneelement.BackboneElement):
-    """ A specified substance that comprises this ingredient.
-    """
-    
-    resource_type = "MedicinalProductIngredientSpecifiedSubstance"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.code = None
-        """ The specified substance.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.confidentiality = None
-        """ Confidentiality level of the specified substance as the ingredient.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.group = None
-        """ The group of specified substance, e.g. group 1 to 4.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.strength = None
-        """ Quantity of the substance or specified substance present in the
-        manufactured item or pharmaceutical product.
-        List of `MedicinalProductIngredientSpecifiedSubstanceStrength` items (represented as `dict` in JSON). """
-        
-        super(MedicinalProductIngredientSpecifiedSubstance, self).__init__(jsondict=jsondict, strict=strict)
-    
-    def elementProperties(self):
-        js = super(MedicinalProductIngredientSpecifiedSubstance, self).elementProperties()
-        js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
-            ("confidentiality", "confidentiality", codeableconcept.CodeableConcept, False, None, False),
-            ("group", "group", codeableconcept.CodeableConcept, False, None, True),
+            ("code", "code", CodeableConcept, False, None, True),
             ("strength", "strength", MedicinalProductIngredientSpecifiedSubstanceStrength, True, None, False),
         ])
         return js
 
 
-class MedicinalProductIngredientSpecifiedSubstanceStrength(backboneelement.BackboneElement):
+@dataclass
+class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength(BackboneElement):
+    """ Strength expressed in terms of a reference substance.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength"
+    country: Optional[List[CodeableConcept]] = empty_list()
+    measurementPoint: Optional[str] = None
+    strength: Ratio = None
+    strengthLowLimit: Optional[Ratio] = None
+    substance: Optional[CodeableConcept] = None
+
+    def elementProperties(self):
+        js = super(MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength, self).elementProperties()
+        js.extend([
+            ("country", "country", CodeableConcept, True, None, False),
+            ("measurementPoint", "measurementPoint", str, False, None, False),
+            ("strength", "strength", Ratio, False, None, True),
+            ("strengthLowLimit", "strengthLowLimit", Ratio, False, None, False),
+            ("substance", "substance", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class MedicinalProductIngredientSpecifiedSubstanceStrength(BackboneElement):
     """ Quantity of the substance or specified substance present in the
     manufactured item or pharmaceutical product.
     """
-    
-    resource_type = "MedicinalProductIngredientSpecifiedSubstanceStrength"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.concentration = None
-        """ The strength per unitary volume (or mass).
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.concentrationLowLimit = None
-        """ A lower limit for the strength per unitary volume (or mass), for
-        when there is a range. The concentration attribute then becomes the
-        upper limit.
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.country = None
-        """ The country or countries for which the strength range applies.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.measurementPoint = None
-        """ For when strength is measured at a particular point or distance.
-        Type `str`. """
-        
-        self.presentation = None
-        """ The quantity of substance in the unit of presentation, or in the
-        volume (or mass) of the single pharmaceutical product or
-        manufactured item.
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.presentationLowLimit = None
-        """ A lower limit for the quantity of substance in the unit of
-        presentation. For use when there is a range of strengths, this is
-        the lower limit, with the presentation attribute becoming the upper
-        limit.
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.referenceStrength = None
-        """ Strength expressed in terms of a reference substance.
-        List of `MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength` items (represented as `dict` in JSON). """
-        
-        super(MedicinalProductIngredientSpecifiedSubstanceStrength, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "MedicinalProductIngredientSpecifiedSubstanceStrength"
+    concentration: Optional[Ratio] = None
+    concentrationLowLimit: Optional[Ratio] = None
+    country: Optional[List[CodeableConcept]] = empty_list()
+    measurementPoint: Optional[str] = None
+    presentation: Ratio = None
+    presentationLowLimit: Optional[Ratio] = None
+    referenceStrength: Optional[List[MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength]] = empty_list()
+
     def elementProperties(self):
         js = super(MedicinalProductIngredientSpecifiedSubstanceStrength, self).elementProperties()
         js.extend([
-            ("concentration", "concentration", ratio.Ratio, False, None, False),
-            ("concentrationLowLimit", "concentrationLowLimit", ratio.Ratio, False, None, False),
-            ("country", "country", codeableconcept.CodeableConcept, True, None, False),
+            ("concentration", "concentration", Ratio, False, None, False),
+            ("concentrationLowLimit", "concentrationLowLimit", Ratio, False, None, False),
+            ("country", "country", CodeableConcept, True, None, False),
             ("measurementPoint", "measurementPoint", str, False, None, False),
-            ("presentation", "presentation", ratio.Ratio, False, None, True),
-            ("presentationLowLimit", "presentationLowLimit", ratio.Ratio, False, None, False),
+            ("presentation", "presentation", Ratio, False, None, True),
+            ("presentationLowLimit", "presentationLowLimit", Ratio, False, None, False),
             ("referenceStrength", "referenceStrength", MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength, True, None, False),
         ])
         return js
 
 
-class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength(backboneelement.BackboneElement):
-    """ Strength expressed in terms of a reference substance.
+@dataclass
+class MedicinalProductIngredientSpecifiedSubstance(BackboneElement):
+    """ A specified substance that comprises this ingredient.
     """
-    
-    resource_type = "MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.country = None
-        """ The country or countries for which the strength range applies.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.measurementPoint = None
-        """ For when strength is measured at a particular point or distance.
-        Type `str`. """
-        
-        self.strength = None
-        """ Strength expressed in terms of a reference substance.
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.strengthLowLimit = None
-        """ Strength expressed in terms of a reference substance.
-        Type `Ratio` (represented as `dict` in JSON). """
-        
-        self.substance = None
-        """ Relevant reference substance.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        super(MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength, self).__init__(jsondict=jsondict, strict=strict)
-    
-    def elementProperties(self):
-        js = super(MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength, self).elementProperties()
-        js.extend([
-            ("country", "country", codeableconcept.CodeableConcept, True, None, False),
-            ("measurementPoint", "measurementPoint", str, False, None, False),
-            ("strength", "strength", ratio.Ratio, False, None, True),
-            ("strengthLowLimit", "strengthLowLimit", ratio.Ratio, False, None, False),
-            ("substance", "substance", codeableconcept.CodeableConcept, False, None, False),
-        ])
-        return js
+    resource_type: ClassVar[str] = "MedicinalProductIngredientSpecifiedSubstance"
+    code: CodeableConcept = None
+    confidentiality: Optional[CodeableConcept] = None
+    group: CodeableConcept = None
+    strength: Optional[List[MedicinalProductIngredientSpecifiedSubstanceStrength]] = empty_list()
 
-
-class MedicinalProductIngredientSubstance(backboneelement.BackboneElement):
-    """ The ingredient substance.
-    """
-    
-    resource_type = "MedicinalProductIngredientSubstance"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.code = None
-        """ The ingredient substance.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.strength = None
-        """ Quantity of the substance or specified substance present in the
-        manufactured item or pharmaceutical product.
-        List of `MedicinalProductIngredientSpecifiedSubstanceStrength` items (represented as `dict` in JSON). """
-        
-        super(MedicinalProductIngredientSubstance, self).__init__(jsondict=jsondict, strict=strict)
-    
     def elementProperties(self):
-        js = super(MedicinalProductIngredientSubstance, self).elementProperties()
+        js = super(MedicinalProductIngredientSpecifiedSubstance, self).elementProperties()
         js.extend([
-            ("code", "code", codeableconcept.CodeableConcept, False, None, True),
+            ("code", "code", CodeableConcept, False, None, True),
+            ("confidentiality", "confidentiality", CodeableConcept, False, None, False),
+            ("group", "group", CodeableConcept, False, None, True),
             ("strength", "strength", MedicinalProductIngredientSpecifiedSubstanceStrength, True, None, False),
         ])
         return js
 
 
-import sys
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']
-try:
-    from . import ratio
-except ImportError:
-    ratio = sys.modules[__package__ + '.ratio']
+@dataclass
+class MedicinalProductIngredient(DomainResource):
+    """ An ingredient of a manufactured item or pharmaceutical product.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductIngredient"
+    allergenicIndicator: Optional[bool] = None
+    identifier: Optional[Identifier] = None
+    manufacturer: Optional[List[FHIRReference]] = empty_list()
+    role: CodeableConcept = None
+    specifiedSubstance: Optional[List[MedicinalProductIngredientSpecifiedSubstance]] = empty_list()
+    substance: Optional[MedicinalProductIngredientSubstance] = None
+
+    def elementProperties(self):
+        js = super(MedicinalProductIngredient, self).elementProperties()
+        js.extend([
+            ("allergenicIndicator", "allergenicIndicator", bool, False, None, False),
+            ("identifier", "identifier", Identifier, False, None, False),
+            ("manufacturer", "manufacturer", FHIRReference, True, None, False),
+            ("role", "role", CodeableConcept, False, None, True),
+            ("specifiedSubstance", "specifiedSubstance", MedicinalProductIngredientSpecifiedSubstance, True, None, False),
+            ("substance", "substance", MedicinalProductIngredientSubstance, False, None, False),
+        ])
+        return js

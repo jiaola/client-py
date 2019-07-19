@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-18.
 #  2019, SMART Health IT.
 
 
@@ -9,7 +9,7 @@ import os
 import io
 import unittest
 import json
-from . import devicedefinition
+import devicedefinition
 from .fhirdate import FHIRDate
 
 

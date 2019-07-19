@@ -1,15 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2019-05-07.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2019-07-18.
 #  2019, SMART Health IT.
+import sys
+from dataclasses import dataclass
+from typing import ClassVar, Optional, List
+from .fhirabstractbase import empty_list
+
+from .annotation import Annotation
+from .codeableconcept import CodeableConcept
+from .domainresource import DomainResource
+from .dosage import Dosage
+from .fhirdate import FHIRDate
+from .fhirreference import FHIRReference
+from .identifier import Identifier
+from .period import Period
 
 
-from . import domainresource
-
-class MedicationStatement(domainresource.DomainResource):
+@dataclass
+class MedicationStatement(DomainResource):
     """ Record of medication being taken by a patient.
-    
+
     A record of a medication that is being consumed by a patient.   A
     MedicationStatement may indicate that the patient may be taking the
     medication now or has taken the medication in the past or will be taking
@@ -35,150 +47,48 @@ class MedicationStatement(domainresource.DomainResource):
     other party maintains.  Medication administration is more formal and is not
     missing detailed information.
     """
-    
-    resource_type = "MedicationStatement"
-    
-    def __init__(self, jsondict=None, strict=True):
-        """ Initialize all valid properties.
-        
-        :raises: FHIRValidationError on validation errors, unless strict is False
-        :param dict jsondict: A JSON dictionary to use for initialization
-        :param bool strict: If True (the default), invalid variables will raise a TypeError
-        """
-        
-        self.basedOn = None
-        """ Fulfils plan, proposal or order.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.category = None
-        """ Type of medication usage.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.context = None
-        """ Encounter / Episode associated with MedicationStatement.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.dateAsserted = None
-        """ When the statement was asserted?.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.derivedFrom = None
-        """ Additional supporting information.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.dosage = None
-        """ Details of how medication is/was taken or should be taken.
-        List of `Dosage` items (represented as `dict` in JSON). """
-        
-        self.effectiveDateTime = None
-        """ The date/time or interval when the medication is/was/will be taken.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.effectivePeriod = None
-        """ The date/time or interval when the medication is/was/will be taken.
-        Type `Period` (represented as `dict` in JSON). """
-        
-        self.identifier = None
-        """ External identifier.
-        List of `Identifier` items (represented as `dict` in JSON). """
-        
-        self.informationSource = None
-        """ Person or organization that provided the information about the
-        taking of this medication.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.medicationCodeableConcept = None
-        """ What medication was taken.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.medicationReference = None
-        """ What medication was taken.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.note = None
-        """ Further information about the statement.
-        List of `Annotation` items (represented as `dict` in JSON). """
-        
-        self.partOf = None
-        """ Part of referenced event.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.reasonCode = None
-        """ Reason for why the medication is being/was taken.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.reasonReference = None
-        """ Condition or observation that supports why the medication is
-        being/was taken.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.status = None
-        """ active | completed | entered-in-error | intended | stopped | on-
-        hold | unknown | not-taken.
-        Type `str`. """
-        
-        self.statusReason = None
-        """ Reason for current status.
-        List of `CodeableConcept` items (represented as `dict` in JSON). """
-        
-        self.subject = None
-        """ Who is/was taking  the medication.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        super(MedicationStatement, self).__init__(jsondict=jsondict, strict=strict)
-    
+    resource_type: ClassVar[str] = "MedicationStatement"
+    basedOn: Optional[List[FHIRReference]] = empty_list()
+    category: Optional[CodeableConcept] = None
+    context: Optional[FHIRReference] = None
+    dateAsserted: Optional[FHIRDate] = None
+    derivedFrom: Optional[List[FHIRReference]] = empty_list()
+    dosage: Optional[List[Dosage]] = empty_list()
+    effectiveDateTime: Optional[FHIRDate] = None
+    effectivePeriod: Optional[Period] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    informationSource: Optional[FHIRReference] = None
+    medicationCodeableConcept: CodeableConcept = None
+    medicationReference: FHIRReference = None
+    note: Optional[List[Annotation]] = empty_list()
+    partOf: Optional[List[FHIRReference]] = empty_list()
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    status: str = None
+    statusReason: Optional[List[CodeableConcept]] = empty_list()
+    subject: FHIRReference = None
+
     def elementProperties(self):
         js = super(MedicationStatement, self).elementProperties()
         js.extend([
-            ("basedOn", "basedOn", fhirreference.FHIRReference, True, None, False),
-            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
-            ("context", "context", fhirreference.FHIRReference, False, None, False),
-            ("dateAsserted", "dateAsserted", fhirdate.FHIRDate, False, None, False),
-            ("derivedFrom", "derivedFrom", fhirreference.FHIRReference, True, None, False),
-            ("dosage", "dosage", dosage.Dosage, True, None, False),
-            ("effectiveDateTime", "effectiveDateTime", fhirdate.FHIRDate, False, "effective", False),
-            ("effectivePeriod", "effectivePeriod", period.Period, False, "effective", False),
-            ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("informationSource", "informationSource", fhirreference.FHIRReference, False, None, False),
-            ("medicationCodeableConcept", "medicationCodeableConcept", codeableconcept.CodeableConcept, False, "medication", True),
-            ("medicationReference", "medicationReference", fhirreference.FHIRReference, False, "medication", True),
-            ("note", "note", annotation.Annotation, True, None, False),
-            ("partOf", "partOf", fhirreference.FHIRReference, True, None, False),
-            ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("category", "category", CodeableConcept, False, None, False),
+            ("context", "context", FHIRReference, False, None, False),
+            ("dateAsserted", "dateAsserted", FHIRDate, False, None, False),
+            ("derivedFrom", "derivedFrom", FHIRReference, True, None, False),
+            ("dosage", "dosage", Dosage, True, None, False),
+            ("effectiveDateTime", "effectiveDateTime", FHIRDate, False, "effective", False),
+            ("effectivePeriod", "effectivePeriod", Period, False, "effective", False),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("informationSource", "informationSource", FHIRReference, False, None, False),
+            ("medicationCodeableConcept", "medicationCodeableConcept", CodeableConcept, False, "medication", True),
+            ("medicationReference", "medicationReference", FHIRReference, False, "medication", True),
+            ("note", "note", Annotation, True, None, False),
+            ("partOf", "partOf", FHIRReference, True, None, False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
-            ("statusReason", "statusReason", codeableconcept.CodeableConcept, True, None, False),
-            ("subject", "subject", fhirreference.FHIRReference, False, None, True),
+            ("statusReason", "statusReason", CodeableConcept, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, True),
         ])
         return js
-
-
-import sys
-try:
-    from . import annotation
-except ImportError:
-    annotation = sys.modules[__package__ + '.annotation']
-try:
-    from . import codeableconcept
-except ImportError:
-    codeableconcept = sys.modules[__package__ + '.codeableconcept']
-try:
-    from . import dosage
-except ImportError:
-    dosage = sys.modules[__package__ + '.dosage']
-try:
-    from . import fhirdate
-except ImportError:
-    fhirdate = sys.modules[__package__ + '.fhirdate']
-try:
-    from . import fhirreference
-except ImportError:
-    fhirreference = sys.modules[__package__ + '.fhirreference']
-try:
-    from . import identifier
-except ImportError:
-    identifier = sys.modules[__package__ + '.identifier']
-try:
-    from . import period
-except ImportError:
-    period = sys.modules[__package__ + '.period']
