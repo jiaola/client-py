@@ -9,7 +9,7 @@ import sys
 from dataclasses import dataclass
 from typing import ClassVar, Optional, List
 from .fhirabstractbase import empty_list
-{% set special = 'Identifier' != classes[-1].name and 'Extension' != classes[-1].name and 'Element' != classes[-1].name %}{%- if special %}{% for imp in imports %}{% if imp.module not in imported %}
+{% set notspecial = 'Identifier' != classes[-1].name and 'Extension' != classes[-1].name and 'Element' != classes[-1].name %}{%- if notspecial %}{% for imp in imports %}{% if imp.module not in imported %}
 from .{{ imp.module }} import {{ imp.name }}{% set _ = imported.update({imp.module: True}) %}
 {%- endif %}{% endfor %}{%- endif %}
 
@@ -33,7 +33,7 @@ class {{klass.name}}({{klass.superclass.name | default('object')}}):
 
 
 {%- for prop in klass.properties %}
-{%- if special %}{% set pname = prop.class_name %}{% else %}{% set pname = '"' + prop.class_name + '"' %}{% endif %}
+{%- if notspecial %}{% set pname = prop.class_name %}{% else %}{% set pname = '"' + prop.class_name + '"' %}{% endif %}
     {{prop.name}}:{%- if prop.is_array %}{%- if prop.nonoptional %} List[{{pname}}]{% else %} Optional[List[{{pname}}]]{%- endif %} = empty_list(){% else %}{%- if prop.nonoptional %} {{pname}}{% else %} Optional[{{pname}}]{%- endif %} = None{% endif %}
 
 {%- endfor %}
@@ -42,7 +42,7 @@ class {{klass.name}}({{klass.superclass.name | default('object')}}):
 {%- if klass.properties %}
 
     def elementProperties(self):
-        {%- if not special %}
+        {%- if not notspecial %}
         {%- for imp in imports %}{% if imp.module not in imported %}
         from .{{imp.module}} import {{imp.name}}{%- endif %}{% endfor %}
         {% endif %}

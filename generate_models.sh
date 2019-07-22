@@ -5,7 +5,6 @@ if [ ! -e fhir-parser ]; then
 fi
 
 cp fhir-parser-resources/settings.py fhir-parser/settings.py
-pipenv shell
 cd fhir-parser
-./generate.py $1
+pipenv run python ./generate.py $1
 cd ..
