@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -15,30 +15,6 @@ from .fhirdate import FHIRDate
 from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .period import Period
-
-
-@dataclass
-class DetectedIssueMitigation(BackboneElement):
-    """ Step taken to address.
-
-    Indicates an action that has been taken or is committed to reduce or
-    eliminate the likelihood of the risk identified by the detected issue from
-    manifesting.  Can also reflect an observation of known mitigating factors
-    that may reduce/eliminate the need for any action.
-    """
-    resource_type: ClassVar[str] = "DetectedIssueMitigation"
-    action: CodeableConcept = None
-    author: Optional[FHIRReference] = None
-    date: Optional[FHIRDate] = None
-
-    def elementProperties(self):
-        js = super(DetectedIssueMitigation, self).elementProperties()
-        js.extend([
-            ("action", "action", CodeableConcept, False, None, True),
-            ("author", "author", FHIRReference, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-        ])
-        return js
 
 
 @dataclass
@@ -62,6 +38,30 @@ class DetectedIssueEvidence(BackboneElement):
 
 
 @dataclass
+class DetectedIssueMitigation(BackboneElement):
+    """ Step taken to address.
+
+    Indicates an action that has been taken or is committed to reduce or
+    eliminate the likelihood of the risk identified by the detected issue from
+    manifesting.  Can also reflect an observation of known mitigating factors
+    that may reduce/eliminate the need for any action.
+    """
+    resource_type: ClassVar[str] = "DetectedIssueMitigation"
+    action: CodeableConcept = None
+    date: Optional[FHIRDate] = None
+    author: Optional[FHIRReference] = None
+
+    def elementProperties(self):
+        js = super(DetectedIssueMitigation, self).elementProperties()
+        js.extend([
+            ("action", "action", CodeableConcept, False, None, True),
+            ("date", "date", FHIRDate, False, None, False),
+            ("author", "author", FHIRReference, False, None, False),
+        ])
+        return js
+
+
+@dataclass
 class DetectedIssue(DomainResource):
     """ Clinical issue with action.
 
@@ -71,35 +71,35 @@ class DetectedIssue(DomainResource):
     etc.
     """
     resource_type: ClassVar[str] = "DetectedIssue"
-    author: Optional[FHIRReference] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    status: str = None
     code: Optional[CodeableConcept] = None
-    detail: Optional[str] = None
-    evidence: Optional[List[DetectedIssueEvidence]] = empty_list()
+    severity: Optional[str] = None
+    patient: Optional[FHIRReference] = None
     identifiedDateTime: Optional[FHIRDate] = None
     identifiedPeriod: Optional[Period] = None
-    identifier: Optional[List[Identifier]] = empty_list()
+    author: Optional[FHIRReference] = None
     implicated: Optional[List[FHIRReference]] = empty_list()
-    mitigation: Optional[List[DetectedIssueMitigation]] = empty_list()
-    patient: Optional[FHIRReference] = None
+    evidence: Optional[List[DetectedIssueEvidence]] = empty_list()
+    detail: Optional[str] = None
     reference: Optional[str] = None
-    severity: Optional[str] = None
-    status: str = None
+    mitigation: Optional[List[DetectedIssueMitigation]] = empty_list()
 
     def elementProperties(self):
         js = super(DetectedIssue, self).elementProperties()
         js.extend([
-            ("author", "author", FHIRReference, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("status", "status", str, False, None, True),
             ("code", "code", CodeableConcept, False, None, False),
-            ("detail", "detail", str, False, None, False),
-            ("evidence", "evidence", DetectedIssueEvidence, True, None, False),
+            ("severity", "severity", str, False, None, False),
+            ("patient", "patient", FHIRReference, False, None, False),
             ("identifiedDateTime", "identifiedDateTime", FHIRDate, False, "identified", False),
             ("identifiedPeriod", "identifiedPeriod", Period, False, "identified", False),
-            ("identifier", "identifier", Identifier, True, None, False),
+            ("author", "author", FHIRReference, False, None, False),
             ("implicated", "implicated", FHIRReference, True, None, False),
-            ("mitigation", "mitigation", DetectedIssueMitigation, True, None, False),
-            ("patient", "patient", FHIRReference, False, None, False),
+            ("evidence", "evidence", DetectedIssueEvidence, True, None, False),
+            ("detail", "detail", str, False, None, False),
             ("reference", "reference", str, False, None, False),
-            ("severity", "severity", str, False, None, False),
-            ("status", "status", str, False, None, True),
+            ("mitigation", "mitigation", DetectedIssueMitigation, True, None, False),
         ])
         return js

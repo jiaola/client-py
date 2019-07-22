@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceProtein) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceProtein) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -27,26 +27,26 @@ class SubstanceProteinSubunit(BackboneElement):
     be repeated multiple times.
     """
     resource_type: ClassVar[str] = "SubstanceProteinSubunit"
-    cTerminalModification: Optional[str] = None
-    cTerminalModificationId: Optional[Identifier] = None
-    length: Optional[int] = None
-    nTerminalModification: Optional[str] = None
-    nTerminalModificationId: Optional[Identifier] = None
-    sequence: Optional[str] = None
-    sequenceAttachment: Optional[Attachment] = None
     subunit: Optional[int] = None
+    sequence: Optional[str] = None
+    length: Optional[int] = None
+    sequenceAttachment: Optional[Attachment] = None
+    nTerminalModificationId: Optional[Identifier] = None
+    nTerminalModification: Optional[str] = None
+    cTerminalModificationId: Optional[Identifier] = None
+    cTerminalModification: Optional[str] = None
 
     def elementProperties(self):
         js = super(SubstanceProteinSubunit, self).elementProperties()
         js.extend([
-            ("cTerminalModification", "cTerminalModification", str, False, None, False),
-            ("cTerminalModificationId", "cTerminalModificationId", Identifier, False, None, False),
-            ("length", "length", int, False, None, False),
-            ("nTerminalModification", "nTerminalModification", str, False, None, False),
-            ("nTerminalModificationId", "nTerminalModificationId", Identifier, False, None, False),
-            ("sequence", "sequence", str, False, None, False),
-            ("sequenceAttachment", "sequenceAttachment", Attachment, False, None, False),
             ("subunit", "subunit", int, False, None, False),
+            ("sequence", "sequence", str, False, None, False),
+            ("length", "length", int, False, None, False),
+            ("sequenceAttachment", "sequenceAttachment", Attachment, False, None, False),
+            ("nTerminalModificationId", "nTerminalModificationId", Identifier, False, None, False),
+            ("nTerminalModification", "nTerminalModification", str, False, None, False),
+            ("cTerminalModificationId", "cTerminalModificationId", Identifier, False, None, False),
+            ("cTerminalModification", "cTerminalModification", str, False, None, False),
         ])
         return js
 
@@ -63,17 +63,17 @@ class SubstanceProtein(DomainResource):
     recombinant vaccines, and immunomodulators.
     """
     resource_type: ClassVar[str] = "SubstanceProtein"
-    disulfideLinkage: Optional[List[str]] = empty_list()
-    numberOfSubunits: Optional[int] = None
     sequenceType: Optional[CodeableConcept] = None
+    numberOfSubunits: Optional[int] = None
+    disulfideLinkage: Optional[List[str]] = empty_list()
     subunit: Optional[List[SubstanceProteinSubunit]] = empty_list()
 
     def elementProperties(self):
         js = super(SubstanceProtein, self).elementProperties()
         js.extend([
-            ("disulfideLinkage", "disulfideLinkage", str, True, None, False),
-            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
             ("sequenceType", "sequenceType", CodeableConcept, False, None, False),
+            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
+            ("disulfideLinkage", "disulfideLinkage", str, True, None, False),
             ("subunit", "subunit", SubstanceProteinSubunit, True, None, False),
         ])
         return js

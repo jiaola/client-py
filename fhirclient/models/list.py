@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/List) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/List) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,17 +24,17 @@ class ListEntry(BackboneElement):
     Entries in this list.
     """
     resource_type: ClassVar[str] = "ListEntry"
-    date: Optional[FHIRDate] = None
-    deleted: Optional[bool] = None
     flag: Optional[CodeableConcept] = None
+    deleted: Optional[bool] = None
+    date: Optional[FHIRDate] = None
     item: FHIRReference = None
 
     def elementProperties(self):
         js = super(ListEntry, self).elementProperties()
         js.extend([
-            ("date", "date", FHIRDate, False, None, False),
-            ("deleted", "deleted", bool, False, None, False),
             ("flag", "flag", CodeableConcept, False, None, False),
+            ("deleted", "deleted", bool, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
             ("item", "item", FHIRReference, False, None, True),
         ])
         return js
@@ -45,35 +45,35 @@ class List(DomainResource):
     """ A list is a curated collection of resources.
     """
     resource_type: ClassVar[str] = "List"
-    code: Optional[CodeableConcept] = None
-    date: Optional[FHIRDate] = None
-    emptyReason: Optional[CodeableConcept] = None
-    encounter: Optional[FHIRReference] = None
-    entry: Optional[List[ListEntry]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    mode: str = None
-    note: Optional[List[Annotation]] = empty_list()
-    orderedBy: Optional[CodeableConcept] = None
-    source: Optional[FHIRReference] = None
     status: str = None
-    subject: Optional[FHIRReference] = None
+    mode: str = None
     title: Optional[str] = None
+    code: Optional[CodeableConcept] = None
+    subject: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
+    date: Optional[FHIRDate] = None
+    source: Optional[FHIRReference] = None
+    orderedBy: Optional[CodeableConcept] = None
+    note: Optional[List[Annotation]] = empty_list()
+    entry: Optional[List[ListEntry]] = empty_list()
+    emptyReason: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(List, self).elementProperties()
         js.extend([
-            ("code", "code", CodeableConcept, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("emptyReason", "emptyReason", CodeableConcept, False, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("entry", "entry", ListEntry, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("mode", "mode", str, False, None, True),
-            ("note", "note", Annotation, True, None, False),
-            ("orderedBy", "orderedBy", CodeableConcept, False, None, False),
-            ("source", "source", FHIRReference, False, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
+            ("mode", "mode", str, False, None, True),
             ("title", "title", str, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("source", "source", FHIRReference, False, None, False),
+            ("orderedBy", "orderedBy", CodeableConcept, False, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("entry", "entry", ListEntry, True, None, False),
+            ("emptyReason", "emptyReason", CodeableConcept, False, None, False),
         ])
         return js

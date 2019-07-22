@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MetadataResource) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MetadataResource) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -23,33 +23,33 @@ class MetadataResource(DomainResource):
     resources.
     """
     resource_type: ClassVar[str] = "MetadataResource"
-    contact: Optional[List[ContactDetail]] = empty_list()
-    date: Optional[FHIRDate] = None
-    description: Optional[str] = None
-    experimental: Optional[bool] = None
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    name: Optional[str] = None
-    publisher: Optional[str] = None
-    status: str = None
-    title: Optional[str] = None
     url: Optional[str] = None
-    useContext: Optional[List[UsageContext]] = empty_list()
     version: Optional[str] = None
+    name: Optional[str] = None
+    title: Optional[str] = None
+    status: str = None
+    experimental: Optional[bool] = None
+    date: Optional[FHIRDate] = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
+    useContext: Optional[List[UsageContext]] = empty_list()
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
 
     def elementProperties(self):
         js = super(MetadataResource, self).elementProperties()
         js.extend([
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("name", "name", str, False, None, False),
-            ("publisher", "publisher", str, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("title", "title", str, False, None, False),
             ("url", "url", str, False, None, False),
-            ("useContext", "useContext", UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("status", "status", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("useContext", "useContext", UsageContext, True, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
         ])
         return js

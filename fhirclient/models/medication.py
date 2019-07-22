@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Medication) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Medication) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,17 +24,17 @@ class MedicationIngredient(BackboneElement):
     Identifies a particular constituent of interest in the product.
     """
     resource_type: ClassVar[str] = "MedicationIngredient"
-    isActive: Optional[bool] = None
     itemCodeableConcept: CodeableConcept = None
     itemReference: FHIRReference = None
+    isActive: Optional[bool] = None
     strength: Optional[Ratio] = None
 
     def elementProperties(self):
         js = super(MedicationIngredient, self).elementProperties()
         js.extend([
-            ("isActive", "isActive", bool, False, None, False),
             ("itemCodeableConcept", "itemCodeableConcept", CodeableConcept, False, "item", True),
             ("itemReference", "itemReference", FHIRReference, False, "item", True),
+            ("isActive", "isActive", bool, False, None, False),
             ("strength", "strength", Ratio, False, None, False),
         ])
         return js
@@ -47,14 +47,14 @@ class MedicationBatch(BackboneElement):
     Information that only applies to packages (not products).
     """
     resource_type: ClassVar[str] = "MedicationBatch"
-    expirationDate: Optional[FHIRDate] = None
     lotNumber: Optional[str] = None
+    expirationDate: Optional[FHIRDate] = None
 
     def elementProperties(self):
         js = super(MedicationBatch, self).elementProperties()
         js.extend([
-            ("expirationDate", "expirationDate", FHIRDate, False, None, False),
             ("lotNumber", "lotNumber", str, False, None, False),
+            ("expirationDate", "expirationDate", FHIRDate, False, None, False),
         ])
         return js
 
@@ -68,25 +68,25 @@ class Medication(DomainResource):
     medication as well as for making statements about medication use.
     """
     resource_type: ClassVar[str] = "Medication"
-    amount: Optional[Ratio] = None
-    batch: Optional[MedicationBatch] = None
-    code: Optional[CodeableConcept] = None
-    form: Optional[CodeableConcept] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    ingredient: Optional[List[MedicationIngredient]] = empty_list()
-    manufacturer: Optional[FHIRReference] = None
+    code: Optional[CodeableConcept] = None
     status: Optional[str] = None
+    manufacturer: Optional[FHIRReference] = None
+    form: Optional[CodeableConcept] = None
+    amount: Optional[Ratio] = None
+    ingredient: Optional[List[MedicationIngredient]] = empty_list()
+    batch: Optional[MedicationBatch] = None
 
     def elementProperties(self):
         js = super(Medication, self).elementProperties()
         js.extend([
-            ("amount", "amount", Ratio, False, None, False),
-            ("batch", "batch", MedicationBatch, False, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("form", "form", CodeableConcept, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("ingredient", "ingredient", MedicationIngredient, True, None, False),
-            ("manufacturer", "manufacturer", FHIRReference, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
             ("status", "status", str, False, None, False),
+            ("manufacturer", "manufacturer", FHIRReference, False, None, False),
+            ("form", "form", CodeableConcept, False, None, False),
+            ("amount", "amount", Ratio, False, None, False),
+            ("ingredient", "ingredient", MedicationIngredient, True, None, False),
+            ("batch", "batch", MedicationBatch, False, None, False),
         ])
         return js

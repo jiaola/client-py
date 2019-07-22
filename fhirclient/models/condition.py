@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Condition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Condition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -28,15 +28,15 @@ class ConditionStage(BackboneElement):
     assessments.
     """
     resource_type: ClassVar[str] = "ConditionStage"
-    assessment: Optional[List[FHIRReference]] = empty_list()
     summary: Optional[CodeableConcept] = None
+    assessment: Optional[List[FHIRReference]] = empty_list()
     type: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(ConditionStage, self).elementProperties()
         js.extend([
-            ("assessment", "assessment", FHIRReference, True, None, False),
             ("summary", "summary", CodeableConcept, False, None, False),
+            ("assessment", "assessment", FHIRReference, True, None, False),
             ("type", "type", CodeableConcept, False, None, False),
         ])
         return js
@@ -71,59 +71,59 @@ class Condition(DomainResource):
     or clinical concept that has risen to a level of concern.
     """
     resource_type: ClassVar[str] = "Condition"
-    abatementAge: Optional[Age] = None
-    abatementDateTime: Optional[FHIRDate] = None
-    abatementPeriod: Optional[Period] = None
-    abatementRange: Optional[Range] = None
-    abatementString: Optional[str] = None
-    asserter: Optional[FHIRReference] = None
-    bodySite: Optional[List[CodeableConcept]] = empty_list()
-    category: Optional[List[CodeableConcept]] = empty_list()
-    clinicalStatus: Optional[CodeableConcept] = None
-    code: Optional[CodeableConcept] = None
-    encounter: Optional[FHIRReference] = None
-    evidence: Optional[List[ConditionEvidence]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
-    onsetAge: Optional[Age] = None
+    clinicalStatus: Optional[CodeableConcept] = None
+    verificationStatus: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
+    severity: Optional[CodeableConcept] = None
+    code: Optional[CodeableConcept] = None
+    bodySite: Optional[List[CodeableConcept]] = empty_list()
+    subject: FHIRReference = None
+    encounter: Optional[FHIRReference] = None
     onsetDateTime: Optional[FHIRDate] = None
+    onsetAge: Optional[Age] = None
     onsetPeriod: Optional[Period] = None
     onsetRange: Optional[Range] = None
     onsetString: Optional[str] = None
+    abatementDateTime: Optional[FHIRDate] = None
+    abatementAge: Optional[Age] = None
+    abatementPeriod: Optional[Period] = None
+    abatementRange: Optional[Range] = None
+    abatementString: Optional[str] = None
     recordedDate: Optional[FHIRDate] = None
     recorder: Optional[FHIRReference] = None
-    severity: Optional[CodeableConcept] = None
+    asserter: Optional[FHIRReference] = None
     stage: Optional[List[ConditionStage]] = empty_list()
-    subject: FHIRReference = None
-    verificationStatus: Optional[CodeableConcept] = None
+    evidence: Optional[List[ConditionEvidence]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(Condition, self).elementProperties()
         js.extend([
-            ("abatementAge", "abatementAge", Age, False, "abatement", False),
-            ("abatementDateTime", "abatementDateTime", FHIRDate, False, "abatement", False),
-            ("abatementPeriod", "abatementPeriod", Period, False, "abatement", False),
-            ("abatementRange", "abatementRange", Range, False, "abatement", False),
-            ("abatementString", "abatementString", str, False, "abatement", False),
-            ("asserter", "asserter", FHIRReference, False, None, False),
-            ("bodySite", "bodySite", CodeableConcept, True, None, False),
-            ("category", "category", CodeableConcept, True, None, False),
-            ("clinicalStatus", "clinicalStatus", CodeableConcept, False, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("evidence", "evidence", ConditionEvidence, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("onsetAge", "onsetAge", Age, False, "onset", False),
+            ("clinicalStatus", "clinicalStatus", CodeableConcept, False, None, False),
+            ("verificationStatus", "verificationStatus", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
+            ("severity", "severity", CodeableConcept, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("bodySite", "bodySite", CodeableConcept, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, True),
+            ("encounter", "encounter", FHIRReference, False, None, False),
             ("onsetDateTime", "onsetDateTime", FHIRDate, False, "onset", False),
+            ("onsetAge", "onsetAge", Age, False, "onset", False),
             ("onsetPeriod", "onsetPeriod", Period, False, "onset", False),
             ("onsetRange", "onsetRange", Range, False, "onset", False),
             ("onsetString", "onsetString", str, False, "onset", False),
+            ("abatementDateTime", "abatementDateTime", FHIRDate, False, "abatement", False),
+            ("abatementAge", "abatementAge", Age, False, "abatement", False),
+            ("abatementPeriod", "abatementPeriod", Period, False, "abatement", False),
+            ("abatementRange", "abatementRange", Range, False, "abatement", False),
+            ("abatementString", "abatementString", str, False, "abatement", False),
             ("recordedDate", "recordedDate", FHIRDate, False, None, False),
             ("recorder", "recorder", FHIRReference, False, None, False),
-            ("severity", "severity", CodeableConcept, False, None, False),
+            ("asserter", "asserter", FHIRReference, False, None, False),
             ("stage", "stage", ConditionStage, True, None, False),
-            ("subject", "subject", FHIRReference, False, None, True),
-            ("verificationStatus", "verificationStatus", CodeableConcept, False, None, False),
+            ("evidence", "evidence", ConditionEvidence, True, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProduct) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProduct) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -16,36 +16,6 @@ from .fhirdate import FHIRDate
 from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .marketingstatus import MarketingStatus
-
-
-@dataclass
-class MedicinalProductSpecialDesignation(BackboneElement):
-    """ Indicates if the medicinal product has an orphan designation for the
-    treatment of a rare disease.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductSpecialDesignation"
-    date: Optional[FHIRDate] = None
-    identifier: Optional[List[Identifier]] = empty_list()
-    indicationCodeableConcept: Optional[CodeableConcept] = None
-    indicationReference: Optional[FHIRReference] = None
-    intendedUse: Optional[CodeableConcept] = None
-    species: Optional[CodeableConcept] = None
-    status: Optional[CodeableConcept] = None
-    type: Optional[CodeableConcept] = None
-
-    def elementProperties(self):
-        js = super(MedicinalProductSpecialDesignation, self).elementProperties()
-        js.extend([
-            ("date", "date", FHIRDate, False, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("indicationCodeableConcept", "indicationCodeableConcept", CodeableConcept, False, "indication", False),
-            ("indicationReference", "indicationReference", FHIRReference, False, "indication", False),
-            ("intendedUse", "intendedUse", CodeableConcept, False, None, False),
-            ("species", "species", CodeableConcept, False, None, False),
-            ("status", "status", CodeableConcept, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
-        ])
-        return js
 
 
 @dataclass
@@ -89,16 +59,16 @@ class MedicinalProductName(BackboneElement):
     """ The product's name, including full name and possibly coded parts.
     """
     resource_type: ClassVar[str] = "MedicinalProductName"
-    countryLanguage: Optional[List[MedicinalProductNameCountryLanguage]] = empty_list()
-    namePart: Optional[List[MedicinalProductNameNamePart]] = empty_list()
     productName: str = None
+    namePart: Optional[List[MedicinalProductNameNamePart]] = empty_list()
+    countryLanguage: Optional[List[MedicinalProductNameCountryLanguage]] = empty_list()
 
     def elementProperties(self):
         js = super(MedicinalProductName, self).elementProperties()
         js.extend([
-            ("countryLanguage", "countryLanguage", MedicinalProductNameCountryLanguage, True, None, False),
-            ("namePart", "namePart", MedicinalProductNameNamePart, True, None, False),
             ("productName", "productName", str, False, None, True),
+            ("namePart", "namePart", MedicinalProductNameNamePart, True, None, False),
+            ("countryLanguage", "countryLanguage", MedicinalProductNameCountryLanguage, True, None, False),
         ])
         return js
 
@@ -109,22 +79,52 @@ class MedicinalProductManufacturingBusinessOperation(BackboneElement):
     purpose.
     """
     resource_type: ClassVar[str] = "MedicinalProductManufacturingBusinessOperation"
-    authorisationReferenceNumber: Optional[Identifier] = None
-    confidentialityIndicator: Optional[CodeableConcept] = None
-    effectiveDate: Optional[FHIRDate] = None
-    manufacturer: Optional[List[FHIRReference]] = empty_list()
     operationType: Optional[CodeableConcept] = None
+    authorisationReferenceNumber: Optional[Identifier] = None
+    effectiveDate: Optional[FHIRDate] = None
+    confidentialityIndicator: Optional[CodeableConcept] = None
+    manufacturer: Optional[List[FHIRReference]] = empty_list()
     regulator: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(MedicinalProductManufacturingBusinessOperation, self).elementProperties()
         js.extend([
-            ("authorisationReferenceNumber", "authorisationReferenceNumber", Identifier, False, None, False),
-            ("confidentialityIndicator", "confidentialityIndicator", CodeableConcept, False, None, False),
-            ("effectiveDate", "effectiveDate", FHIRDate, False, None, False),
-            ("manufacturer", "manufacturer", FHIRReference, True, None, False),
             ("operationType", "operationType", CodeableConcept, False, None, False),
+            ("authorisationReferenceNumber", "authorisationReferenceNumber", Identifier, False, None, False),
+            ("effectiveDate", "effectiveDate", FHIRDate, False, None, False),
+            ("confidentialityIndicator", "confidentialityIndicator", CodeableConcept, False, None, False),
+            ("manufacturer", "manufacturer", FHIRReference, True, None, False),
             ("regulator", "regulator", FHIRReference, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class MedicinalProductSpecialDesignation(BackboneElement):
+    """ Indicates if the medicinal product has an orphan designation for the
+    treatment of a rare disease.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductSpecialDesignation"
+    identifier: Optional[List[Identifier]] = empty_list()
+    type: Optional[CodeableConcept] = None
+    intendedUse: Optional[CodeableConcept] = None
+    indicationCodeableConcept: Optional[CodeableConcept] = None
+    indicationReference: Optional[FHIRReference] = None
+    status: Optional[CodeableConcept] = None
+    date: Optional[FHIRDate] = None
+    species: Optional[CodeableConcept] = None
+
+    def elementProperties(self):
+        js = super(MedicinalProductSpecialDesignation, self).elementProperties()
+        js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("intendedUse", "intendedUse", CodeableConcept, False, None, False),
+            ("indicationCodeableConcept", "indicationCodeableConcept", CodeableConcept, False, "indication", False),
+            ("indicationReference", "indicationReference", FHIRReference, False, "indication", False),
+            ("status", "status", CodeableConcept, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("species", "species", CodeableConcept, False, None, False),
         ])
         return js
 
@@ -135,49 +135,49 @@ class MedicinalProduct(DomainResource):
     direct patient care (e.g. regulatory use).
     """
     resource_type: ClassVar[str] = "MedicinalProduct"
-    additionalMonitoringIndicator: Optional[CodeableConcept] = None
-    attachedDocument: Optional[List[FHIRReference]] = empty_list()
-    clinicalTrial: Optional[List[FHIRReference]] = empty_list()
-    combinedPharmaceuticalDoseForm: Optional[CodeableConcept] = None
-    contact: Optional[List[FHIRReference]] = empty_list()
-    crossReference: Optional[List[Identifier]] = empty_list()
-    domain: Optional[Coding] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    legalStatusOfSupply: Optional[CodeableConcept] = None
-    manufacturingBusinessOperation: Optional[List[MedicinalProductManufacturingBusinessOperation]] = empty_list()
-    marketingStatus: Optional[List[MarketingStatus]] = empty_list()
-    masterFile: Optional[List[FHIRReference]] = empty_list()
-    name: List[MedicinalProductName] = empty_list()
-    packagedMedicinalProduct: Optional[List[FHIRReference]] = empty_list()
-    paediatricUseIndicator: Optional[CodeableConcept] = None
-    pharmaceuticalProduct: Optional[List[FHIRReference]] = empty_list()
-    productClassification: Optional[List[CodeableConcept]] = empty_list()
-    specialDesignation: Optional[List[MedicinalProductSpecialDesignation]] = empty_list()
-    specialMeasures: Optional[List[str]] = empty_list()
     type: Optional[CodeableConcept] = None
+    domain: Optional[Coding] = None
+    combinedPharmaceuticalDoseForm: Optional[CodeableConcept] = None
+    legalStatusOfSupply: Optional[CodeableConcept] = None
+    additionalMonitoringIndicator: Optional[CodeableConcept] = None
+    specialMeasures: Optional[List[str]] = empty_list()
+    paediatricUseIndicator: Optional[CodeableConcept] = None
+    productClassification: Optional[List[CodeableConcept]] = empty_list()
+    marketingStatus: Optional[List[MarketingStatus]] = empty_list()
+    pharmaceuticalProduct: Optional[List[FHIRReference]] = empty_list()
+    packagedMedicinalProduct: Optional[List[FHIRReference]] = empty_list()
+    attachedDocument: Optional[List[FHIRReference]] = empty_list()
+    masterFile: Optional[List[FHIRReference]] = empty_list()
+    contact: Optional[List[FHIRReference]] = empty_list()
+    clinicalTrial: Optional[List[FHIRReference]] = empty_list()
+    name: List[MedicinalProductName] = empty_list()
+    crossReference: Optional[List[Identifier]] = empty_list()
+    manufacturingBusinessOperation: Optional[List[MedicinalProductManufacturingBusinessOperation]] = empty_list()
+    specialDesignation: Optional[List[MedicinalProductSpecialDesignation]] = empty_list()
 
     def elementProperties(self):
         js = super(MedicinalProduct, self).elementProperties()
         js.extend([
-            ("additionalMonitoringIndicator", "additionalMonitoringIndicator", CodeableConcept, False, None, False),
-            ("attachedDocument", "attachedDocument", FHIRReference, True, None, False),
-            ("clinicalTrial", "clinicalTrial", FHIRReference, True, None, False),
-            ("combinedPharmaceuticalDoseForm", "combinedPharmaceuticalDoseForm", CodeableConcept, False, None, False),
-            ("contact", "contact", FHIRReference, True, None, False),
-            ("crossReference", "crossReference", Identifier, True, None, False),
-            ("domain", "domain", Coding, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("legalStatusOfSupply", "legalStatusOfSupply", CodeableConcept, False, None, False),
-            ("manufacturingBusinessOperation", "manufacturingBusinessOperation", MedicinalProductManufacturingBusinessOperation, True, None, False),
-            ("marketingStatus", "marketingStatus", MarketingStatus, True, None, False),
-            ("masterFile", "masterFile", FHIRReference, True, None, False),
-            ("name", "name", MedicinalProductName, True, None, True),
-            ("packagedMedicinalProduct", "packagedMedicinalProduct", FHIRReference, True, None, False),
-            ("paediatricUseIndicator", "paediatricUseIndicator", CodeableConcept, False, None, False),
-            ("pharmaceuticalProduct", "pharmaceuticalProduct", FHIRReference, True, None, False),
-            ("productClassification", "productClassification", CodeableConcept, True, None, False),
-            ("specialDesignation", "specialDesignation", MedicinalProductSpecialDesignation, True, None, False),
-            ("specialMeasures", "specialMeasures", str, True, None, False),
             ("type", "type", CodeableConcept, False, None, False),
+            ("domain", "domain", Coding, False, None, False),
+            ("combinedPharmaceuticalDoseForm", "combinedPharmaceuticalDoseForm", CodeableConcept, False, None, False),
+            ("legalStatusOfSupply", "legalStatusOfSupply", CodeableConcept, False, None, False),
+            ("additionalMonitoringIndicator", "additionalMonitoringIndicator", CodeableConcept, False, None, False),
+            ("specialMeasures", "specialMeasures", str, True, None, False),
+            ("paediatricUseIndicator", "paediatricUseIndicator", CodeableConcept, False, None, False),
+            ("productClassification", "productClassification", CodeableConcept, True, None, False),
+            ("marketingStatus", "marketingStatus", MarketingStatus, True, None, False),
+            ("pharmaceuticalProduct", "pharmaceuticalProduct", FHIRReference, True, None, False),
+            ("packagedMedicinalProduct", "packagedMedicinalProduct", FHIRReference, True, None, False),
+            ("attachedDocument", "attachedDocument", FHIRReference, True, None, False),
+            ("masterFile", "masterFile", FHIRReference, True, None, False),
+            ("contact", "contact", FHIRReference, True, None, False),
+            ("clinicalTrial", "clinicalTrial", FHIRReference, True, None, False),
+            ("name", "name", MedicinalProductName, True, None, True),
+            ("crossReference", "crossReference", Identifier, True, None, False),
+            ("manufacturingBusinessOperation", "manufacturingBusinessOperation", MedicinalProductManufacturingBusinessOperation, True, None, False),
+            ("specialDesignation", "specialDesignation", MedicinalProductSpecialDesignation, True, None, False),
         ])
         return js

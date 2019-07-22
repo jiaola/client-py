@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -16,6 +16,25 @@ from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .period import Period
 from .quantity import Quantity
+
+
+@dataclass
+class MeasureReportGroupStratifierStratumComponent(BackboneElement):
+    """ Stratifier component values.
+
+    A stratifier component value.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratumComponent"
+    code: CodeableConcept = None
+    value: CodeableConcept = None
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupStratifierStratumComponent, self).elementProperties()
+        js.extend([
+            ("code", "code", CodeableConcept, False, None, True),
+            ("value", "value", CodeableConcept, False, None, True),
+        ])
+        return js
 
 
 @dataclass
@@ -41,25 +60,6 @@ class MeasureReportGroupStratifierStratumPopulation(BackboneElement):
 
 
 @dataclass
-class MeasureReportGroupStratifierStratumComponent(BackboneElement):
-    """ Stratifier component values.
-
-    A stratifier component value.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratumComponent"
-    code: CodeableConcept = None
-    value: CodeableConcept = None
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupStratifierStratumComponent, self).elementProperties()
-        js.extend([
-            ("code", "code", CodeableConcept, False, None, True),
-            ("value", "value", CodeableConcept, False, None, True),
-        ])
-        return js
-
-
-@dataclass
 class MeasureReportGroupStratifierStratum(BackboneElement):
     """ Stratum results, one for each unique value, or set of values, in the
     stratifier, or stratifier components.
@@ -69,38 +69,18 @@ class MeasureReportGroupStratifierStratum(BackboneElement):
     will be four strata, one for each possible gender value.
     """
     resource_type: ClassVar[str] = "MeasureReportGroupStratifierStratum"
-    component: Optional[List[MeasureReportGroupStratifierStratumComponent]] = empty_list()
-    measureScore: Optional[Quantity] = None
-    population: Optional[List[MeasureReportGroupStratifierStratumPopulation]] = empty_list()
     value: Optional[CodeableConcept] = None
+    component: Optional[List[MeasureReportGroupStratifierStratumComponent]] = empty_list()
+    population: Optional[List[MeasureReportGroupStratifierStratumPopulation]] = empty_list()
+    measureScore: Optional[Quantity] = None
 
     def elementProperties(self):
         js = super(MeasureReportGroupStratifierStratum, self).elementProperties()
         js.extend([
-            ("component", "component", MeasureReportGroupStratifierStratumComponent, True, None, False),
-            ("measureScore", "measureScore", Quantity, False, None, False),
-            ("population", "population", MeasureReportGroupStratifierStratumPopulation, True, None, False),
             ("value", "value", CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class MeasureReportGroupStratifier(BackboneElement):
-    """ Stratification results.
-
-    When a measure includes multiple stratifiers, there will be a stratifier
-    group for each stratifier defined by the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureReportGroupStratifier"
-    code: Optional[List[CodeableConcept]] = empty_list()
-    stratum: Optional[List[MeasureReportGroupStratifierStratum]] = empty_list()
-
-    def elementProperties(self):
-        js = super(MeasureReportGroupStratifier, self).elementProperties()
-        js.extend([
-            ("code", "code", CodeableConcept, True, None, False),
-            ("stratum", "stratum", MeasureReportGroupStratifierStratum, True, None, False),
+            ("component", "component", MeasureReportGroupStratifierStratumComponent, True, None, False),
+            ("population", "population", MeasureReportGroupStratifierStratumPopulation, True, None, False),
+            ("measureScore", "measureScore", Quantity, False, None, False),
         ])
         return js
 
@@ -128,6 +108,26 @@ class MeasureReportGroupPopulation(BackboneElement):
 
 
 @dataclass
+class MeasureReportGroupStratifier(BackboneElement):
+    """ Stratification results.
+
+    When a measure includes multiple stratifiers, there will be a stratifier
+    group for each stratifier defined by the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureReportGroupStratifier"
+    code: Optional[List[CodeableConcept]] = empty_list()
+    stratum: Optional[List[MeasureReportGroupStratifierStratum]] = empty_list()
+
+    def elementProperties(self):
+        js = super(MeasureReportGroupStratifier, self).elementProperties()
+        js.extend([
+            ("code", "code", CodeableConcept, True, None, False),
+            ("stratum", "stratum", MeasureReportGroupStratifierStratum, True, None, False),
+        ])
+        return js
+
+
+@dataclass
 class MeasureReportGroup(BackboneElement):
     """ Measure results for each group.
 
@@ -136,16 +136,16 @@ class MeasureReportGroup(BackboneElement):
     """
     resource_type: ClassVar[str] = "MeasureReportGroup"
     code: Optional[CodeableConcept] = None
-    measureScore: Optional[Quantity] = None
     population: Optional[List[MeasureReportGroupPopulation]] = empty_list()
+    measureScore: Optional[Quantity] = None
     stratifier: Optional[List[MeasureReportGroupStratifier]] = empty_list()
 
     def elementProperties(self):
         js = super(MeasureReportGroup, self).elementProperties()
         js.extend([
             ("code", "code", CodeableConcept, False, None, False),
-            ("measureScore", "measureScore", Quantity, False, None, False),
             ("population", "population", MeasureReportGroupPopulation, True, None, False),
+            ("measureScore", "measureScore", Quantity, False, None, False),
             ("stratifier", "stratifier", MeasureReportGroupStratifier, True, None, False),
         ])
         return js
@@ -160,31 +160,31 @@ class MeasureReport(DomainResource):
     calculation.
     """
     resource_type: ClassVar[str] = "MeasureReport"
-    date: Optional[FHIRDate] = None
-    evaluatedResource: Optional[List[FHIRReference]] = empty_list()
-    group: Optional[List[MeasureReportGroup]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    improvementNotation: Optional[CodeableConcept] = None
-    measure: str = None
-    period: Period = None
-    reporter: Optional[FHIRReference] = None
     status: str = None
-    subject: Optional[FHIRReference] = None
     type: str = None
+    measure: str = None
+    subject: Optional[FHIRReference] = None
+    date: Optional[FHIRDate] = None
+    reporter: Optional[FHIRReference] = None
+    period: Period = None
+    improvementNotation: Optional[CodeableConcept] = None
+    group: Optional[List[MeasureReportGroup]] = empty_list()
+    evaluatedResource: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(MeasureReport, self).elementProperties()
         js.extend([
-            ("date", "date", FHIRDate, False, None, False),
-            ("evaluatedResource", "evaluatedResource", FHIRReference, True, None, False),
-            ("group", "group", MeasureReportGroup, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("improvementNotation", "improvementNotation", CodeableConcept, False, None, False),
-            ("measure", "measure", str, False, None, True),
-            ("period", "period", Period, False, None, True),
-            ("reporter", "reporter", FHIRReference, False, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
             ("type", "type", str, False, None, True),
+            ("measure", "measure", str, False, None, True),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("reporter", "reporter", FHIRReference, False, None, False),
+            ("period", "period", Period, False, None, True),
+            ("improvementNotation", "improvementNotation", CodeableConcept, False, None, False),
+            ("group", "group", MeasureReportGroup, True, None, False),
+            ("evaluatedResource", "evaluatedResource", FHIRReference, True, None, False),
         ])
         return js

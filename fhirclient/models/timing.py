@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Timing) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Timing) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,43 +25,43 @@ class TimingRepeat(Element):
     """
     resource_type: ClassVar[str] = "TimingRepeat"
     boundsDuration: Optional[Duration] = None
-    boundsPeriod: Optional[Period] = None
     boundsRange: Optional[Range] = None
+    boundsPeriod: Optional[Period] = None
     count: Optional[int] = None
     countMax: Optional[int] = None
-    dayOfWeek: Optional[List[str]] = empty_list()
     duration: Optional[float] = None
     durationMax: Optional[float] = None
     durationUnit: Optional[str] = None
     frequency: Optional[int] = None
     frequencyMax: Optional[int] = None
-    offset: Optional[int] = None
     period: Optional[float] = None
     periodMax: Optional[float] = None
     periodUnit: Optional[str] = None
+    dayOfWeek: Optional[List[str]] = empty_list()
     timeOfDay: Optional[List[FHIRDate]] = empty_list()
     when: Optional[List[str]] = empty_list()
+    offset: Optional[int] = None
 
     def elementProperties(self):
         js = super(TimingRepeat, self).elementProperties()
         js.extend([
             ("boundsDuration", "boundsDuration", Duration, False, "bounds", False),
-            ("boundsPeriod", "boundsPeriod", Period, False, "bounds", False),
             ("boundsRange", "boundsRange", Range, False, "bounds", False),
+            ("boundsPeriod", "boundsPeriod", Period, False, "bounds", False),
             ("count", "count", int, False, None, False),
             ("countMax", "countMax", int, False, None, False),
-            ("dayOfWeek", "dayOfWeek", str, True, None, False),
             ("duration", "duration", float, False, None, False),
             ("durationMax", "durationMax", float, False, None, False),
             ("durationUnit", "durationUnit", str, False, None, False),
             ("frequency", "frequency", int, False, None, False),
             ("frequencyMax", "frequencyMax", int, False, None, False),
-            ("offset", "offset", int, False, None, False),
             ("period", "period", float, False, None, False),
             ("periodMax", "periodMax", float, False, None, False),
             ("periodUnit", "periodUnit", str, False, None, False),
+            ("dayOfWeek", "dayOfWeek", str, True, None, False),
             ("timeOfDay", "timeOfDay", FHIRDate, True, None, False),
             ("when", "when", str, True, None, False),
+            ("offset", "offset", int, False, None, False),
         ])
         return js
 
@@ -77,15 +77,15 @@ class Timing(BackboneElement):
     schedule to which past regular activities were carried out.
     """
     resource_type: ClassVar[str] = "Timing"
-    code: Optional[CodeableConcept] = None
     event: Optional[List[FHIRDate]] = empty_list()
     repeat: Optional[TimingRepeat] = None
+    code: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(Timing, self).elementProperties()
         js.extend([
-            ("code", "code", CodeableConcept, False, None, False),
             ("event", "event", FHIRDate, True, None, False),
             ("repeat", "repeat", TimingRepeat, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
         ])
         return js

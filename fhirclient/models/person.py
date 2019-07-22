@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Person) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Person) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,14 +24,14 @@ class PersonLink(BackboneElement):
     """ Link to a resource that concerns the same actual person.
     """
     resource_type: ClassVar[str] = "PersonLink"
-    assurance: Optional[str] = None
     target: FHIRReference = None
+    assurance: Optional[str] = None
 
     def elementProperties(self):
         js = super(PersonLink, self).elementProperties()
         js.extend([
-            ("assurance", "assurance", str, False, None, False),
             ("target", "target", FHIRReference, False, None, True),
+            ("assurance", "assurance", str, False, None, False),
         ])
         return js
 
@@ -44,29 +44,29 @@ class Person(DomainResource):
     specific health-related context.
     """
     resource_type: ClassVar[str] = "Person"
-    active: Optional[bool] = None
-    address: Optional[List[Address]] = empty_list()
-    birthDate: Optional[FHIRDate] = None
-    gender: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    link: Optional[List[PersonLink]] = empty_list()
-    managingOrganization: Optional[FHIRReference] = None
     name: Optional[List[HumanName]] = empty_list()
-    photo: Optional[Attachment] = None
     telecom: Optional[List[ContactPoint]] = empty_list()
+    gender: Optional[str] = None
+    birthDate: Optional[FHIRDate] = None
+    address: Optional[List[Address]] = empty_list()
+    photo: Optional[Attachment] = None
+    managingOrganization: Optional[FHIRReference] = None
+    active: Optional[bool] = None
+    link: Optional[List[PersonLink]] = empty_list()
 
     def elementProperties(self):
         js = super(Person, self).elementProperties()
         js.extend([
-            ("active", "active", bool, False, None, False),
-            ("address", "address", Address, True, None, False),
-            ("birthDate", "birthDate", FHIRDate, False, None, False),
-            ("gender", "gender", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("link", "link", PersonLink, True, None, False),
-            ("managingOrganization", "managingOrganization", FHIRReference, False, None, False),
             ("name", "name", HumanName, True, None, False),
-            ("photo", "photo", Attachment, False, None, False),
             ("telecom", "telecom", ContactPoint, True, None, False),
+            ("gender", "gender", str, False, None, False),
+            ("birthDate", "birthDate", FHIRDate, False, None, False),
+            ("address", "address", Address, True, None, False),
+            ("photo", "photo", Attachment, False, None, False),
+            ("managingOrganization", "managingOrganization", FHIRReference, False, None, False),
+            ("active", "active", bool, False, None, False),
+            ("link", "link", PersonLink, True, None, False),
         ])
         return js

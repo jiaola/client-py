@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -17,33 +17,62 @@ from .usagecontext import UsageContext
 
 
 @dataclass
-class TerminologyCapabilitiesValidateCode(BackboneElement):
-    """ Information about the [ValueSet/$validate-code](valueset-operation-
-    validate-code.html) operation.
+class TerminologyCapabilitiesExpansionParameter(BackboneElement):
+    """ Supported expansion parameter.
     """
-    resource_type: ClassVar[str] = "TerminologyCapabilitiesValidateCode"
-    translations: bool = None
+    resource_type: ClassVar[str] = "TerminologyCapabilitiesExpansionParameter"
+    name: str = None
+    documentation: Optional[str] = None
 
     def elementProperties(self):
-        js = super(TerminologyCapabilitiesValidateCode, self).elementProperties()
+        js = super(TerminologyCapabilitiesExpansionParameter, self).elementProperties()
         js.extend([
-            ("translations", "translations", bool, False, None, True),
+            ("name", "name", str, False, None, True),
+            ("documentation", "documentation", str, False, None, False),
         ])
         return js
 
 
 @dataclass
-class TerminologyCapabilitiesTranslation(BackboneElement):
-    """ Information about the [ConceptMap/$translate](conceptmap-operation-
-    translate.html) operation.
+class TerminologyCapabilitiesCodeSystemVersionFilter(BackboneElement):
+    """ Filter Properties supported.
     """
-    resource_type: ClassVar[str] = "TerminologyCapabilitiesTranslation"
-    needsMap: bool = None
+    resource_type: ClassVar[str] = "TerminologyCapabilitiesCodeSystemVersionFilter"
+    code: str = None
+    op: List[str] = empty_list()
 
     def elementProperties(self):
-        js = super(TerminologyCapabilitiesTranslation, self).elementProperties()
+        js = super(TerminologyCapabilitiesCodeSystemVersionFilter, self).elementProperties()
         js.extend([
-            ("needsMap", "needsMap", bool, False, None, True),
+            ("code", "code", str, False, None, True),
+            ("op", "op", str, True, None, True),
+        ])
+        return js
+
+
+@dataclass
+class TerminologyCapabilitiesCodeSystemVersion(BackboneElement):
+    """ Version of Code System supported.
+
+    For the code system, a list of versions that are supported by the server.
+    """
+    resource_type: ClassVar[str] = "TerminologyCapabilitiesCodeSystemVersion"
+    code: Optional[str] = None
+    isDefault: Optional[bool] = None
+    compositional: Optional[bool] = None
+    language: Optional[List[str]] = empty_list()
+    filter: Optional[List[TerminologyCapabilitiesCodeSystemVersionFilter]] = empty_list()
+    property: Optional[List[str]] = empty_list()
+
+    def elementProperties(self):
+        js = super(TerminologyCapabilitiesCodeSystemVersion, self).elementProperties()
+        js.extend([
+            ("code", "code", str, False, None, False),
+            ("isDefault", "isDefault", bool, False, None, False),
+            ("compositional", "compositional", bool, False, None, False),
+            ("language", "language", str, True, None, False),
+            ("filter", "filter", TerminologyCapabilitiesCodeSystemVersionFilter, True, None, False),
+            ("property", "property", str, True, None, False),
         ])
         return js
 
@@ -91,18 +120,24 @@ class TerminologyCapabilitiesImplementation(BackboneElement):
 
 
 @dataclass
-class TerminologyCapabilitiesExpansionParameter(BackboneElement):
-    """ Supported expansion parameter.
+class TerminologyCapabilitiesCodeSystem(BackboneElement):
+    """ A code system supported by the server.
+
+    Identifies a code system that is supported by the server. If there is a no
+    code system URL, then this declares the general assumptions a client can
+    make about support for any CodeSystem resource.
     """
-    resource_type: ClassVar[str] = "TerminologyCapabilitiesExpansionParameter"
-    documentation: Optional[str] = None
-    name: str = None
+    resource_type: ClassVar[str] = "TerminologyCapabilitiesCodeSystem"
+    uri: Optional[str] = None
+    version: Optional[List[TerminologyCapabilitiesCodeSystemVersion]] = empty_list()
+    subsumption: Optional[bool] = None
 
     def elementProperties(self):
-        js = super(TerminologyCapabilitiesExpansionParameter, self).elementProperties()
+        js = super(TerminologyCapabilitiesCodeSystem, self).elementProperties()
         js.extend([
-            ("documentation", "documentation", str, False, None, False),
-            ("name", "name", str, False, None, True),
+            ("uri", "uri", str, False, None, False),
+            ("version", "version", TerminologyCapabilitiesCodeSystemVersion, True, None, False),
+            ("subsumption", "subsumption", bool, False, None, False),
         ])
         return js
 
@@ -114,8 +149,8 @@ class TerminologyCapabilitiesExpansion(BackboneElement):
     """
     resource_type: ClassVar[str] = "TerminologyCapabilitiesExpansion"
     hierarchical: Optional[bool] = None
-    incomplete: Optional[bool] = None
     paging: Optional[bool] = None
+    incomplete: Optional[bool] = None
     parameter: Optional[List[TerminologyCapabilitiesExpansionParameter]] = empty_list()
     textFilter: Optional[str] = None
 
@@ -123,8 +158,8 @@ class TerminologyCapabilitiesExpansion(BackboneElement):
         js = super(TerminologyCapabilitiesExpansion, self).elementProperties()
         js.extend([
             ("hierarchical", "hierarchical", bool, False, None, False),
-            ("incomplete", "incomplete", bool, False, None, False),
             ("paging", "paging", bool, False, None, False),
+            ("incomplete", "incomplete", bool, False, None, False),
             ("parameter", "parameter", TerminologyCapabilitiesExpansionParameter, True, None, False),
             ("textFilter", "textFilter", str, False, None, False),
         ])
@@ -132,68 +167,33 @@ class TerminologyCapabilitiesExpansion(BackboneElement):
 
 
 @dataclass
-class TerminologyCapabilitiesCodeSystemVersionFilter(BackboneElement):
-    """ Filter Properties supported.
+class TerminologyCapabilitiesValidateCode(BackboneElement):
+    """ Information about the [ValueSet/$validate-code](valueset-operation-
+    validate-code.html) operation.
     """
-    resource_type: ClassVar[str] = "TerminologyCapabilitiesCodeSystemVersionFilter"
-    code: str = None
-    op: List[str] = empty_list()
+    resource_type: ClassVar[str] = "TerminologyCapabilitiesValidateCode"
+    translations: bool = None
 
     def elementProperties(self):
-        js = super(TerminologyCapabilitiesCodeSystemVersionFilter, self).elementProperties()
+        js = super(TerminologyCapabilitiesValidateCode, self).elementProperties()
         js.extend([
-            ("code", "code", str, False, None, True),
-            ("op", "op", str, True, None, True),
+            ("translations", "translations", bool, False, None, True),
         ])
         return js
 
 
 @dataclass
-class TerminologyCapabilitiesCodeSystemVersion(BackboneElement):
-    """ Version of Code System supported.
-
-    For the code system, a list of versions that are supported by the server.
+class TerminologyCapabilitiesTranslation(BackboneElement):
+    """ Information about the [ConceptMap/$translate](conceptmap-operation-
+    translate.html) operation.
     """
-    resource_type: ClassVar[str] = "TerminologyCapabilitiesCodeSystemVersion"
-    code: Optional[str] = None
-    compositional: Optional[bool] = None
-    filter: Optional[List[TerminologyCapabilitiesCodeSystemVersionFilter]] = empty_list()
-    isDefault: Optional[bool] = None
-    language: Optional[List[str]] = empty_list()
-    property: Optional[List[str]] = empty_list()
+    resource_type: ClassVar[str] = "TerminologyCapabilitiesTranslation"
+    needsMap: bool = None
 
     def elementProperties(self):
-        js = super(TerminologyCapabilitiesCodeSystemVersion, self).elementProperties()
+        js = super(TerminologyCapabilitiesTranslation, self).elementProperties()
         js.extend([
-            ("code", "code", str, False, None, False),
-            ("compositional", "compositional", bool, False, None, False),
-            ("filter", "filter", TerminologyCapabilitiesCodeSystemVersionFilter, True, None, False),
-            ("isDefault", "isDefault", bool, False, None, False),
-            ("language", "language", str, True, None, False),
-            ("property", "property", str, True, None, False),
-        ])
-        return js
-
-
-@dataclass
-class TerminologyCapabilitiesCodeSystem(BackboneElement):
-    """ A code system supported by the server.
-
-    Identifies a code system that is supported by the server. If there is a no
-    code system URL, then this declares the general assumptions a client can
-    make about support for any CodeSystem resource.
-    """
-    resource_type: ClassVar[str] = "TerminologyCapabilitiesCodeSystem"
-    subsumption: Optional[bool] = None
-    uri: Optional[str] = None
-    version: Optional[List[TerminologyCapabilitiesCodeSystemVersion]] = empty_list()
-
-    def elementProperties(self):
-        js = super(TerminologyCapabilitiesCodeSystem, self).elementProperties()
-        js.extend([
-            ("subsumption", "subsumption", bool, False, None, False),
-            ("uri", "uri", str, False, None, False),
-            ("version", "version", TerminologyCapabilitiesCodeSystemVersion, True, None, False),
+            ("needsMap", "needsMap", bool, False, None, True),
         ])
         return js
 
@@ -226,57 +226,57 @@ class TerminologyCapabilities(DomainResource):
     implementation.
     """
     resource_type: ClassVar[str] = "TerminologyCapabilities"
-    closure: Optional[TerminologyCapabilitiesClosure] = None
-    codeSearch: Optional[str] = None
-    codeSystem: Optional[List[TerminologyCapabilitiesCodeSystem]] = empty_list()
-    contact: Optional[List[ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: FHIRDate = None
-    description: Optional[str] = None
-    expansion: Optional[TerminologyCapabilitiesExpansion] = None
-    experimental: Optional[bool] = None
-    implementation: Optional[TerminologyCapabilitiesImplementation] = None
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    kind: str = None
-    lockedDate: Optional[bool] = None
-    name: Optional[str] = None
-    publisher: Optional[str] = None
-    purpose: Optional[str] = None
-    software: Optional[TerminologyCapabilitiesSoftware] = None
-    status: str = None
-    title: Optional[str] = None
-    translation: Optional[TerminologyCapabilitiesTranslation] = None
     url: Optional[str] = None
-    useContext: Optional[List[UsageContext]] = empty_list()
-    validateCode: Optional[TerminologyCapabilitiesValidateCode] = None
     version: Optional[str] = None
+    name: Optional[str] = None
+    title: Optional[str] = None
+    status: str = None
+    experimental: Optional[bool] = None
+    date: FHIRDate = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
+    useContext: Optional[List[UsageContext]] = empty_list()
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
+    purpose: Optional[str] = None
+    copyright: Optional[str] = None
+    kind: str = None
+    software: Optional[TerminologyCapabilitiesSoftware] = None
+    implementation: Optional[TerminologyCapabilitiesImplementation] = None
+    lockedDate: Optional[bool] = None
+    codeSystem: Optional[List[TerminologyCapabilitiesCodeSystem]] = empty_list()
+    expansion: Optional[TerminologyCapabilitiesExpansion] = None
+    codeSearch: Optional[str] = None
+    validateCode: Optional[TerminologyCapabilitiesValidateCode] = None
+    translation: Optional[TerminologyCapabilitiesTranslation] = None
+    closure: Optional[TerminologyCapabilitiesClosure] = None
 
     def elementProperties(self):
         js = super(TerminologyCapabilities, self).elementProperties()
         js.extend([
-            ("closure", "closure", TerminologyCapabilitiesClosure, False, None, False),
-            ("codeSearch", "codeSearch", str, False, None, False),
-            ("codeSystem", "codeSystem", TerminologyCapabilitiesCodeSystem, True, None, False),
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", FHIRDate, False, None, True),
-            ("description", "description", str, False, None, False),
-            ("expansion", "expansion", TerminologyCapabilitiesExpansion, False, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("implementation", "implementation", TerminologyCapabilitiesImplementation, False, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("kind", "kind", str, False, None, True),
-            ("lockedDate", "lockedDate", bool, False, None, False),
-            ("name", "name", str, False, None, False),
-            ("publisher", "publisher", str, False, None, False),
-            ("purpose", "purpose", str, False, None, False),
-            ("software", "software", TerminologyCapabilitiesSoftware, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("title", "title", str, False, None, False),
-            ("translation", "translation", TerminologyCapabilitiesTranslation, False, None, False),
             ("url", "url", str, False, None, False),
-            ("useContext", "useContext", UsageContext, True, None, False),
-            ("validateCode", "validateCode", TerminologyCapabilitiesValidateCode, False, None, False),
             ("version", "version", str, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("status", "status", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
+            ("date", "date", FHIRDate, False, None, True),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("useContext", "useContext", UsageContext, True, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
+            ("purpose", "purpose", str, False, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("kind", "kind", str, False, None, True),
+            ("software", "software", TerminologyCapabilitiesSoftware, False, None, False),
+            ("implementation", "implementation", TerminologyCapabilitiesImplementation, False, None, False),
+            ("lockedDate", "lockedDate", bool, False, None, False),
+            ("codeSystem", "codeSystem", TerminologyCapabilitiesCodeSystem, True, None, False),
+            ("expansion", "expansion", TerminologyCapabilitiesExpansion, False, None, False),
+            ("codeSearch", "codeSearch", str, False, None, False),
+            ("validateCode", "validateCode", TerminologyCapabilitiesValidateCode, False, None, False),
+            ("translation", "translation", TerminologyCapabilitiesTranslation, False, None, False),
+            ("closure", "closure", TerminologyCapabilitiesClosure, False, None, False),
         ])
         return js

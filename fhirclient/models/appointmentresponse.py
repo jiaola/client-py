@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,25 +21,25 @@ class AppointmentResponse(DomainResource):
     such as a confirmation or rejection.
     """
     resource_type: ClassVar[str] = "AppointmentResponse"
-    actor: Optional[FHIRReference] = None
-    appointment: FHIRReference = None
-    comment: Optional[str] = None
-    end: Optional[FHIRDate] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    participantStatus: str = None
-    participantType: Optional[List[CodeableConcept]] = empty_list()
+    appointment: FHIRReference = None
     start: Optional[FHIRDate] = None
+    end: Optional[FHIRDate] = None
+    participantType: Optional[List[CodeableConcept]] = empty_list()
+    actor: Optional[FHIRReference] = None
+    participantStatus: str = None
+    comment: Optional[str] = None
 
     def elementProperties(self):
         js = super(AppointmentResponse, self).elementProperties()
         js.extend([
-            ("actor", "actor", FHIRReference, False, None, False),
-            ("appointment", "appointment", FHIRReference, False, None, True),
-            ("comment", "comment", str, False, None, False),
-            ("end", "end", FHIRDate, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("participantStatus", "participantStatus", str, False, None, True),
-            ("participantType", "participantType", CodeableConcept, True, None, False),
+            ("appointment", "appointment", FHIRReference, False, None, True),
             ("start", "start", FHIRDate, False, None, False),
+            ("end", "end", FHIRDate, False, None, False),
+            ("participantType", "participantType", CodeableConcept, True, None, False),
+            ("actor", "actor", FHIRReference, False, None, False),
+            ("participantStatus", "participantStatus", str, False, None, True),
+            ("comment", "comment", str, False, None, False),
         ])
         return js

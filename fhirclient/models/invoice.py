@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Invoice) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Invoice) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -19,25 +19,6 @@ from .money import Money
 
 
 @dataclass
-class InvoiceParticipant(BackboneElement):
-    """ Participant in creation of this Invoice.
-
-    Indicates who or what performed or participated in the charged service.
-    """
-    resource_type: ClassVar[str] = "InvoiceParticipant"
-    actor: FHIRReference = None
-    role: Optional[CodeableConcept] = None
-
-    def elementProperties(self):
-        js = super(InvoiceParticipant, self).elementProperties()
-        js.extend([
-            ("actor", "actor", FHIRReference, False, None, True),
-            ("role", "role", CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-@dataclass
 class InvoiceLineItemPriceComponent(BackboneElement):
     """ Components of total line item price.
 
@@ -49,18 +30,37 @@ class InvoiceLineItemPriceComponent(BackboneElement):
     of the Invoice as to how the prices have been calculated.
     """
     resource_type: ClassVar[str] = "InvoiceLineItemPriceComponent"
-    amount: Optional[Money] = None
+    type: str = None
     code: Optional[CodeableConcept] = None
     factor: Optional[float] = None
-    type: str = None
+    amount: Optional[Money] = None
 
     def elementProperties(self):
         js = super(InvoiceLineItemPriceComponent, self).elementProperties()
         js.extend([
-            ("amount", "amount", Money, False, None, False),
+            ("type", "type", str, False, None, True),
             ("code", "code", CodeableConcept, False, None, False),
             ("factor", "factor", float, False, None, False),
-            ("type", "type", str, False, None, True),
+            ("amount", "amount", Money, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class InvoiceParticipant(BackboneElement):
+    """ Participant in creation of this Invoice.
+
+    Indicates who or what performed or participated in the charged service.
+    """
+    resource_type: ClassVar[str] = "InvoiceParticipant"
+    role: Optional[CodeableConcept] = None
+    actor: FHIRReference = None
+
+    def elementProperties(self):
+        js = super(InvoiceParticipant, self).elementProperties()
+        js.extend([
+            ("role", "role", CodeableConcept, False, None, False),
+            ("actor", "actor", FHIRReference, False, None, True),
         ])
         return js
 
@@ -74,18 +74,18 @@ class InvoiceLineItem(BackboneElement):
     ChargeItem resource.
     """
     resource_type: ClassVar[str] = "InvoiceLineItem"
-    chargeItemCodeableConcept: CodeableConcept = None
-    chargeItemReference: FHIRReference = None
-    priceComponent: Optional[List[InvoiceLineItemPriceComponent]] = empty_list()
     sequence: Optional[int] = None
+    chargeItemReference: FHIRReference = None
+    chargeItemCodeableConcept: CodeableConcept = None
+    priceComponent: Optional[List[InvoiceLineItemPriceComponent]] = empty_list()
 
     def elementProperties(self):
         js = super(InvoiceLineItem, self).elementProperties()
         js.extend([
-            ("chargeItemCodeableConcept", "chargeItemCodeableConcept", CodeableConcept, False, "chargeItem", True),
-            ("chargeItemReference", "chargeItemReference", FHIRReference, False, "chargeItem", True),
-            ("priceComponent", "priceComponent", InvoiceLineItemPriceComponent, True, None, False),
             ("sequence", "sequence", int, False, None, False),
+            ("chargeItemReference", "chargeItemReference", FHIRReference, False, "chargeItem", True),
+            ("chargeItemCodeableConcept", "chargeItemCodeableConcept", CodeableConcept, False, "chargeItem", True),
+            ("priceComponent", "priceComponent", InvoiceLineItemPriceComponent, True, None, False),
         ])
         return js
 
@@ -98,41 +98,41 @@ class Invoice(DomainResource):
     individual and total price for Billing purpose.
     """
     resource_type: ClassVar[str] = "Invoice"
-    account: Optional[FHIRReference] = None
-    cancelledReason: Optional[str] = None
-    date: Optional[FHIRDate] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    issuer: Optional[FHIRReference] = None
-    lineItem: Optional[List[InvoiceLineItem]] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
-    participant: Optional[List[InvoiceParticipant]] = empty_list()
-    paymentTerms: Optional[str] = None
-    recipient: Optional[FHIRReference] = None
     status: str = None
-    subject: Optional[FHIRReference] = None
-    totalGross: Optional[Money] = None
-    totalNet: Optional[Money] = None
-    totalPriceComponent: Optional[List[InvoiceLineItemPriceComponent]] = empty_list()
+    cancelledReason: Optional[str] = None
     type: Optional[CodeableConcept] = None
+    subject: Optional[FHIRReference] = None
+    recipient: Optional[FHIRReference] = None
+    date: Optional[FHIRDate] = None
+    participant: Optional[List[InvoiceParticipant]] = empty_list()
+    issuer: Optional[FHIRReference] = None
+    account: Optional[FHIRReference] = None
+    lineItem: Optional[List[InvoiceLineItem]] = empty_list()
+    totalPriceComponent: Optional[List[InvoiceLineItemPriceComponent]] = empty_list()
+    totalNet: Optional[Money] = None
+    totalGross: Optional[Money] = None
+    paymentTerms: Optional[str] = None
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(Invoice, self).elementProperties()
         js.extend([
-            ("account", "account", FHIRReference, False, None, False),
-            ("cancelledReason", "cancelledReason", str, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("issuer", "issuer", FHIRReference, False, None, False),
-            ("lineItem", "lineItem", InvoiceLineItem, True, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("participant", "participant", InvoiceParticipant, True, None, False),
-            ("paymentTerms", "paymentTerms", str, False, None, False),
-            ("recipient", "recipient", FHIRReference, False, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
-            ("totalGross", "totalGross", Money, False, None, False),
-            ("totalNet", "totalNet", Money, False, None, False),
-            ("totalPriceComponent", "totalPriceComponent", InvoiceLineItemPriceComponent, True, None, False),
+            ("cancelledReason", "cancelledReason", str, False, None, False),
             ("type", "type", CodeableConcept, False, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("recipient", "recipient", FHIRReference, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("participant", "participant", InvoiceParticipant, True, None, False),
+            ("issuer", "issuer", FHIRReference, False, None, False),
+            ("account", "account", FHIRReference, False, None, False),
+            ("lineItem", "lineItem", InvoiceLineItem, True, None, False),
+            ("totalPriceComponent", "totalPriceComponent", InvoiceLineItemPriceComponent, True, None, False),
+            ("totalNet", "totalNet", Money, False, None, False),
+            ("totalGross", "totalGross", Money, False, None, False),
+            ("paymentTerms", "paymentTerms", str, False, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js

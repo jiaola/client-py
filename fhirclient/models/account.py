@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Account) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Account) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -14,28 +14,6 @@ from .domainresource import DomainResource
 from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .period import Period
-
-
-@dataclass
-class AccountGuarantor(BackboneElement):
-    """ The parties ultimately responsible for balancing the Account.
-
-    The parties responsible for balancing the account if other payment options
-    fall short.
-    """
-    resource_type: ClassVar[str] = "AccountGuarantor"
-    onHold: Optional[bool] = None
-    party: FHIRReference = None
-    period: Optional[Period] = None
-
-    def elementProperties(self):
-        js = super(AccountGuarantor, self).elementProperties()
-        js.extend([
-            ("onHold", "onHold", bool, False, None, False),
-            ("party", "party", FHIRReference, False, None, True),
-            ("period", "period", Period, False, None, False),
-        ])
-        return js
 
 
 @dataclass
@@ -57,6 +35,28 @@ class AccountCoverage(BackboneElement):
 
 
 @dataclass
+class AccountGuarantor(BackboneElement):
+    """ The parties ultimately responsible for balancing the Account.
+
+    The parties responsible for balancing the account if other payment options
+    fall short.
+    """
+    resource_type: ClassVar[str] = "AccountGuarantor"
+    party: FHIRReference = None
+    onHold: Optional[bool] = None
+    period: Optional[Period] = None
+
+    def elementProperties(self):
+        js = super(AccountGuarantor, self).elementProperties()
+        js.extend([
+            ("party", "party", FHIRReference, False, None, True),
+            ("onHold", "onHold", bool, False, None, False),
+            ("period", "period", Period, False, None, False),
+        ])
+        return js
+
+
+@dataclass
 class Account(DomainResource):
     """ Tracks balance, charges, for patient or cost center.
 
@@ -65,31 +65,31 @@ class Account(DomainResource):
     etc.
     """
     resource_type: ClassVar[str] = "Account"
+    identifier: Optional[List[Identifier]] = empty_list()
+    status: str = None
+    type: Optional[CodeableConcept] = None
+    name: Optional[str] = None
+    subject: Optional[List[FHIRReference]] = empty_list()
+    servicePeriod: Optional[Period] = None
     coverage: Optional[List[AccountCoverage]] = empty_list()
+    owner: Optional[FHIRReference] = None
     description: Optional[str] = None
     guarantor: Optional[List[AccountGuarantor]] = empty_list()
-    identifier: Optional[List[Identifier]] = empty_list()
-    name: Optional[str] = None
-    owner: Optional[FHIRReference] = None
     partOf: Optional[FHIRReference] = None
-    servicePeriod: Optional[Period] = None
-    status: str = None
-    subject: Optional[List[FHIRReference]] = empty_list()
-    type: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(Account, self).elementProperties()
         js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("subject", "subject", FHIRReference, True, None, False),
+            ("servicePeriod", "servicePeriod", Period, False, None, False),
             ("coverage", "coverage", AccountCoverage, True, None, False),
+            ("owner", "owner", FHIRReference, False, None, False),
             ("description", "description", str, False, None, False),
             ("guarantor", "guarantor", AccountGuarantor, True, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("name", "name", str, False, None, False),
-            ("owner", "owner", FHIRReference, False, None, False),
             ("partOf", "partOf", FHIRReference, False, None, False),
-            ("servicePeriod", "servicePeriod", Period, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, True, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
         ])
         return js

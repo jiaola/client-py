@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Location) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Location) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -27,16 +27,16 @@ class LocationPosition(BackboneElement):
     datum (This is the same co-ordinate system used in KML).
     """
     resource_type: ClassVar[str] = "LocationPosition"
-    altitude: Optional[float] = None
-    latitude: float = None
     longitude: float = None
+    latitude: float = None
+    altitude: Optional[float] = None
 
     def elementProperties(self):
         js = super(LocationPosition, self).elementProperties()
         js.extend([
-            ("altitude", "altitude", float, False, None, False),
-            ("latitude", "latitude", float, False, None, True),
             ("longitude", "longitude", float, False, None, True),
+            ("latitude", "latitude", float, False, None, True),
+            ("altitude", "altitude", float, False, None, False),
         ])
         return js
 
@@ -46,18 +46,18 @@ class LocationHoursOfOperation(BackboneElement):
     """ What days/times during a week is this location usually open.
     """
     resource_type: ClassVar[str] = "LocationHoursOfOperation"
-    allDay: Optional[bool] = None
-    closingTime: Optional[FHIRDate] = None
     daysOfWeek: Optional[List[str]] = empty_list()
+    allDay: Optional[bool] = None
     openingTime: Optional[FHIRDate] = None
+    closingTime: Optional[FHIRDate] = None
 
     def elementProperties(self):
         js = super(LocationHoursOfOperation, self).elementProperties()
         js.extend([
-            ("allDay", "allDay", bool, False, None, False),
-            ("closingTime", "closingTime", FHIRDate, False, None, False),
             ("daysOfWeek", "daysOfWeek", str, True, None, False),
+            ("allDay", "allDay", bool, False, None, False),
             ("openingTime", "openingTime", FHIRDate, False, None, False),
+            ("closingTime", "closingTime", FHIRDate, False, None, False),
         ])
         return js
 
@@ -71,43 +71,43 @@ class Location(DomainResource):
     accommodated.
     """
     resource_type: ClassVar[str] = "Location"
-    address: Optional[Address] = None
-    alias: Optional[List[str]] = empty_list()
-    availabilityExceptions: Optional[str] = None
-    description: Optional[str] = None
-    endpoint: Optional[List[FHIRReference]] = empty_list()
-    hoursOfOperation: Optional[List[LocationHoursOfOperation]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    managingOrganization: Optional[FHIRReference] = None
-    mode: Optional[str] = None
-    name: Optional[str] = None
+    status: Optional[str] = None
     operationalStatus: Optional[Coding] = None
-    partOf: Optional[FHIRReference] = None
+    name: Optional[str] = None
+    alias: Optional[List[str]] = empty_list()
+    description: Optional[str] = None
+    mode: Optional[str] = None
+    type: Optional[List[CodeableConcept]] = empty_list()
+    telecom: Optional[List[ContactPoint]] = empty_list()
+    address: Optional[Address] = None
     physicalType: Optional[CodeableConcept] = None
     position: Optional[LocationPosition] = None
-    status: Optional[str] = None
-    telecom: Optional[List[ContactPoint]] = empty_list()
-    type: Optional[List[CodeableConcept]] = empty_list()
+    managingOrganization: Optional[FHIRReference] = None
+    partOf: Optional[FHIRReference] = None
+    hoursOfOperation: Optional[List[LocationHoursOfOperation]] = empty_list()
+    availabilityExceptions: Optional[str] = None
+    endpoint: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(Location, self).elementProperties()
         js.extend([
-            ("address", "address", Address, False, None, False),
-            ("alias", "alias", str, True, None, False),
-            ("availabilityExceptions", "availabilityExceptions", str, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("endpoint", "endpoint", FHIRReference, True, None, False),
-            ("hoursOfOperation", "hoursOfOperation", LocationHoursOfOperation, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("managingOrganization", "managingOrganization", FHIRReference, False, None, False),
-            ("mode", "mode", str, False, None, False),
-            ("name", "name", str, False, None, False),
+            ("status", "status", str, False, None, False),
             ("operationalStatus", "operationalStatus", Coding, False, None, False),
-            ("partOf", "partOf", FHIRReference, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("alias", "alias", str, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("mode", "mode", str, False, None, False),
+            ("type", "type", CodeableConcept, True, None, False),
+            ("telecom", "telecom", ContactPoint, True, None, False),
+            ("address", "address", Address, False, None, False),
             ("physicalType", "physicalType", CodeableConcept, False, None, False),
             ("position", "position", LocationPosition, False, None, False),
-            ("status", "status", str, False, None, False),
-            ("telecom", "telecom", ContactPoint, True, None, False),
-            ("type", "type", CodeableConcept, True, None, False),
+            ("managingOrganization", "managingOrganization", FHIRReference, False, None, False),
+            ("partOf", "partOf", FHIRReference, False, None, False),
+            ("hoursOfOperation", "hoursOfOperation", LocationHoursOfOperation, True, None, False),
+            ("availabilityExceptions", "availabilityExceptions", str, False, None, False),
+            ("endpoint", "endpoint", FHIRReference, True, None, False),
         ])
         return js

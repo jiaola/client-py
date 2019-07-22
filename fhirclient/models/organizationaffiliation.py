@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OrganizationAffiliation) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OrganizationAffiliation) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,33 +22,33 @@ class OrganizationAffiliation(DomainResource):
     oganizations, that is not a part-of relationship/sub-division relationship.
     """
     resource_type: ClassVar[str] = "OrganizationAffiliation"
-    active: Optional[bool] = None
-    code: Optional[List[CodeableConcept]] = empty_list()
-    endpoint: Optional[List[FHIRReference]] = empty_list()
-    healthcareService: Optional[List[FHIRReference]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    location: Optional[List[FHIRReference]] = empty_list()
-    network: Optional[List[FHIRReference]] = empty_list()
+    active: Optional[bool] = None
+    period: Optional[Period] = None
     organization: Optional[FHIRReference] = None
     participatingOrganization: Optional[FHIRReference] = None
-    period: Optional[Period] = None
+    network: Optional[List[FHIRReference]] = empty_list()
+    code: Optional[List[CodeableConcept]] = empty_list()
     specialty: Optional[List[CodeableConcept]] = empty_list()
+    location: Optional[List[FHIRReference]] = empty_list()
+    healthcareService: Optional[List[FHIRReference]] = empty_list()
     telecom: Optional[List[ContactPoint]] = empty_list()
+    endpoint: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(OrganizationAffiliation, self).elementProperties()
         js.extend([
-            ("active", "active", bool, False, None, False),
-            ("code", "code", CodeableConcept, True, None, False),
-            ("endpoint", "endpoint", FHIRReference, True, None, False),
-            ("healthcareService", "healthcareService", FHIRReference, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("location", "location", FHIRReference, True, None, False),
-            ("network", "network", FHIRReference, True, None, False),
+            ("active", "active", bool, False, None, False),
+            ("period", "period", Period, False, None, False),
             ("organization", "organization", FHIRReference, False, None, False),
             ("participatingOrganization", "participatingOrganization", FHIRReference, False, None, False),
-            ("period", "period", Period, False, None, False),
+            ("network", "network", FHIRReference, True, None, False),
+            ("code", "code", CodeableConcept, True, None, False),
             ("specialty", "specialty", CodeableConcept, True, None, False),
+            ("location", "location", FHIRReference, True, None, False),
+            ("healthcareService", "healthcareService", FHIRReference, True, None, False),
             ("telecom", "telecom", ContactPoint, True, None, False),
+            ("endpoint", "endpoint", FHIRReference, True, None, False),
         ])
         return js

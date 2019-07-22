@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CatalogEntry) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CatalogEntry) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,14 +25,14 @@ class CatalogEntryRelatedEntry(BackboneElement):
     administer a medication.
     """
     resource_type: ClassVar[str] = "CatalogEntryRelatedEntry"
-    item: FHIRReference = None
     relationtype: str = None
+    item: FHIRReference = None
 
     def elementProperties(self):
         js = super(CatalogEntryRelatedEntry, self).elementProperties()
         js.extend([
-            ("item", "item", FHIRReference, False, None, True),
             ("relationtype", "relationtype", str, False, None, True),
+            ("item", "item", FHIRReference, False, None, True),
         ])
         return js
 
@@ -45,35 +45,35 @@ class CatalogEntry(DomainResource):
     catalog.
     """
     resource_type: ClassVar[str] = "CatalogEntry"
-    additionalCharacteristic: Optional[List[CodeableConcept]] = empty_list()
-    additionalClassification: Optional[List[CodeableConcept]] = empty_list()
-    additionalIdentifier: Optional[List[Identifier]] = empty_list()
-    classification: Optional[List[CodeableConcept]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    lastUpdated: Optional[FHIRDate] = None
+    type: Optional[CodeableConcept] = None
     orderable: bool = None
     referencedItem: FHIRReference = None
-    relatedEntry: Optional[List[CatalogEntryRelatedEntry]] = empty_list()
+    additionalIdentifier: Optional[List[Identifier]] = empty_list()
+    classification: Optional[List[CodeableConcept]] = empty_list()
     status: Optional[str] = None
-    type: Optional[CodeableConcept] = None
-    validTo: Optional[FHIRDate] = None
     validityPeriod: Optional[Period] = None
+    validTo: Optional[FHIRDate] = None
+    lastUpdated: Optional[FHIRDate] = None
+    additionalCharacteristic: Optional[List[CodeableConcept]] = empty_list()
+    additionalClassification: Optional[List[CodeableConcept]] = empty_list()
+    relatedEntry: Optional[List[CatalogEntryRelatedEntry]] = empty_list()
 
     def elementProperties(self):
         js = super(CatalogEntry, self).elementProperties()
         js.extend([
-            ("additionalCharacteristic", "additionalCharacteristic", CodeableConcept, True, None, False),
-            ("additionalClassification", "additionalClassification", CodeableConcept, True, None, False),
-            ("additionalIdentifier", "additionalIdentifier", Identifier, True, None, False),
-            ("classification", "classification", CodeableConcept, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("lastUpdated", "lastUpdated", FHIRDate, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
             ("orderable", "orderable", bool, False, None, True),
             ("referencedItem", "referencedItem", FHIRReference, False, None, True),
-            ("relatedEntry", "relatedEntry", CatalogEntryRelatedEntry, True, None, False),
+            ("additionalIdentifier", "additionalIdentifier", Identifier, True, None, False),
+            ("classification", "classification", CodeableConcept, True, None, False),
             ("status", "status", str, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
-            ("validTo", "validTo", FHIRDate, False, None, False),
             ("validityPeriod", "validityPeriod", Period, False, None, False),
+            ("validTo", "validTo", FHIRDate, False, None, False),
+            ("lastUpdated", "lastUpdated", FHIRDate, False, None, False),
+            ("additionalCharacteristic", "additionalCharacteristic", CodeableConcept, True, None, False),
+            ("additionalClassification", "additionalClassification", CodeableConcept, True, None, False),
+            ("relatedEntry", "relatedEntry", CatalogEntryRelatedEntry, True, None, False),
         ])
         return js

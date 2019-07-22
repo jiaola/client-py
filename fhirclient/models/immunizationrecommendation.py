@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -41,38 +41,38 @@ class ImmunizationRecommendationRecommendation(BackboneElement):
     """ Vaccine administration recommendations.
     """
     resource_type: ClassVar[str] = "ImmunizationRecommendationRecommendation"
+    vaccineCode: Optional[List[CodeableConcept]] = empty_list()
+    targetDisease: Optional[CodeableConcept] = None
     contraindicatedVaccineCode: Optional[List[CodeableConcept]] = empty_list()
+    forecastStatus: CodeableConcept = None
+    forecastReason: Optional[List[CodeableConcept]] = empty_list()
     dateCriterion: Optional[List[ImmunizationRecommendationRecommendationDateCriterion]] = empty_list()
     description: Optional[str] = None
+    series: Optional[str] = None
     doseNumberPositiveInt: Optional[int] = None
     doseNumberString: Optional[str] = None
-    forecastReason: Optional[List[CodeableConcept]] = empty_list()
-    forecastStatus: CodeableConcept = None
-    series: Optional[str] = None
     seriesDosesPositiveInt: Optional[int] = None
     seriesDosesString: Optional[str] = None
     supportingImmunization: Optional[List[FHIRReference]] = empty_list()
     supportingPatientInformation: Optional[List[FHIRReference]] = empty_list()
-    targetDisease: Optional[CodeableConcept] = None
-    vaccineCode: Optional[List[CodeableConcept]] = empty_list()
 
     def elementProperties(self):
         js = super(ImmunizationRecommendationRecommendation, self).elementProperties()
         js.extend([
+            ("vaccineCode", "vaccineCode", CodeableConcept, True, None, False),
+            ("targetDisease", "targetDisease", CodeableConcept, False, None, False),
             ("contraindicatedVaccineCode", "contraindicatedVaccineCode", CodeableConcept, True, None, False),
+            ("forecastStatus", "forecastStatus", CodeableConcept, False, None, True),
+            ("forecastReason", "forecastReason", CodeableConcept, True, None, False),
             ("dateCriterion", "dateCriterion", ImmunizationRecommendationRecommendationDateCriterion, True, None, False),
             ("description", "description", str, False, None, False),
+            ("series", "series", str, False, None, False),
             ("doseNumberPositiveInt", "doseNumberPositiveInt", int, False, "doseNumber", False),
             ("doseNumberString", "doseNumberString", str, False, "doseNumber", False),
-            ("forecastReason", "forecastReason", CodeableConcept, True, None, False),
-            ("forecastStatus", "forecastStatus", CodeableConcept, False, None, True),
-            ("series", "series", str, False, None, False),
             ("seriesDosesPositiveInt", "seriesDosesPositiveInt", int, False, "seriesDoses", False),
             ("seriesDosesString", "seriesDosesString", str, False, "seriesDoses", False),
             ("supportingImmunization", "supportingImmunization", FHIRReference, True, None, False),
             ("supportingPatientInformation", "supportingPatientInformation", FHIRReference, True, None, False),
-            ("targetDisease", "targetDisease", CodeableConcept, False, None, False),
-            ("vaccineCode", "vaccineCode", CodeableConcept, True, None, False),
         ])
         return js
 
@@ -85,19 +85,19 @@ class ImmunizationRecommendation(DomainResource):
     according to a published schedule with optional supporting justification.
     """
     resource_type: ClassVar[str] = "ImmunizationRecommendation"
-    authority: Optional[FHIRReference] = None
-    date: FHIRDate = None
     identifier: Optional[List[Identifier]] = empty_list()
     patient: FHIRReference = None
+    date: FHIRDate = None
+    authority: Optional[FHIRReference] = None
     recommendation: List[ImmunizationRecommendationRecommendation] = empty_list()
 
     def elementProperties(self):
         js = super(ImmunizationRecommendation, self).elementProperties()
         js.extend([
-            ("authority", "authority", FHIRReference, False, None, False),
-            ("date", "date", FHIRDate, False, None, True),
             ("identifier", "identifier", Identifier, True, None, False),
             ("patient", "patient", FHIRReference, False, None, True),
+            ("date", "date", FHIRDate, False, None, True),
+            ("authority", "authority", FHIRReference, False, None, False),
             ("recommendation", "recommendation", ImmunizationRecommendationRecommendation, True, None, True),
         ])
         return js

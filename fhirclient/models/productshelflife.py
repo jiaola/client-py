@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ProductShelfLife) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ProductShelfLife) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,16 +21,16 @@ class ProductShelfLife(BackboneElement):
     """
     resource_type: ClassVar[str] = "ProductShelfLife"
     identifier: Optional[Identifier] = None
+    type: CodeableConcept = None
     period: Quantity = None
     specialPrecautionsForStorage: Optional[List[CodeableConcept]] = empty_list()
-    type: CodeableConcept = None
 
     def elementProperties(self):
         js = super(ProductShelfLife, self).elementProperties()
         js.extend([
             ("identifier", "identifier", Identifier, False, None, False),
+            ("type", "type", CodeableConcept, False, None, True),
             ("period", "period", Quantity, False, None, True),
             ("specialPrecautionsForStorage", "specialPrecautionsForStorage", CodeableConcept, True, None, False),
-            ("type", "type", CodeableConcept, False, None, True),
         ])
         return js

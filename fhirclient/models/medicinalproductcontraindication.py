@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductContraindication) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductContraindication) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,16 +21,16 @@ class MedicinalProductContraindicationOtherTherapy(BackboneElement):
     therapies described as part of the indication.
     """
     resource_type: ClassVar[str] = "MedicinalProductContraindicationOtherTherapy"
+    therapyRelationshipType: CodeableConcept = None
     medicationCodeableConcept: CodeableConcept = None
     medicationReference: FHIRReference = None
-    therapyRelationshipType: CodeableConcept = None
 
     def elementProperties(self):
         js = super(MedicinalProductContraindicationOtherTherapy, self).elementProperties()
         js.extend([
+            ("therapyRelationshipType", "therapyRelationshipType", CodeableConcept, False, None, True),
             ("medicationCodeableConcept", "medicationCodeableConcept", CodeableConcept, False, "medication", True),
             ("medicationReference", "medicationReference", FHIRReference, False, "medication", True),
-            ("therapyRelationshipType", "therapyRelationshipType", CodeableConcept, False, None, True),
         ])
         return js
 
@@ -43,23 +43,23 @@ class MedicinalProductContraindication(DomainResource):
     medicinal product, including for regulatory purposes.
     """
     resource_type: ClassVar[str] = "MedicinalProductContraindication"
-    comorbidity: Optional[List[CodeableConcept]] = empty_list()
+    subject: Optional[List[FHIRReference]] = empty_list()
     disease: Optional[CodeableConcept] = None
     diseaseStatus: Optional[CodeableConcept] = None
+    comorbidity: Optional[List[CodeableConcept]] = empty_list()
+    therapeuticIndication: Optional[List[FHIRReference]] = empty_list()
     otherTherapy: Optional[List[MedicinalProductContraindicationOtherTherapy]] = empty_list()
     population: Optional[List[Population]] = empty_list()
-    subject: Optional[List[FHIRReference]] = empty_list()
-    therapeuticIndication: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(MedicinalProductContraindication, self).elementProperties()
         js.extend([
-            ("comorbidity", "comorbidity", CodeableConcept, True, None, False),
+            ("subject", "subject", FHIRReference, True, None, False),
             ("disease", "disease", CodeableConcept, False, None, False),
             ("diseaseStatus", "diseaseStatus", CodeableConcept, False, None, False),
+            ("comorbidity", "comorbidity", CodeableConcept, True, None, False),
+            ("therapeuticIndication", "therapeuticIndication", FHIRReference, True, None, False),
             ("otherTherapy", "otherTherapy", MedicinalProductContraindicationOtherTherapy, True, None, False),
             ("population", "population", Population, True, None, False),
-            ("subject", "subject", FHIRReference, True, None, False),
-            ("therapeuticIndication", "therapeuticIndication", FHIRReference, True, None, False),
         ])
         return js

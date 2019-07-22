@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,16 +24,16 @@ class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawal
     appropriate.
     """
     resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod"
-    supportingInformation: Optional[str] = None
     tissue: CodeableConcept = None
     value: Quantity = None
+    supportingInformation: Optional[str] = None
 
     def elementProperties(self):
         js = super(MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod, self).elementProperties()
         js.extend([
-            ("supportingInformation", "supportingInformation", str, False, None, False),
             ("tissue", "tissue", CodeableConcept, False, None, True),
             ("value", "value", Quantity, False, None, True),
+            ("supportingInformation", "supportingInformation", str, False, None, False),
         ])
         return js
 
@@ -56,34 +56,6 @@ class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies(BackboneE
 
 
 @dataclass
-class MedicinalProductPharmaceuticalRouteOfAdministration(BackboneElement):
-    """ The path by which the pharmaceutical product is taken into or makes contact
-    with the body.
-    """
-    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministration"
-    code: CodeableConcept = None
-    firstDose: Optional[Quantity] = None
-    maxDosePerDay: Optional[Quantity] = None
-    maxDosePerTreatmentPeriod: Optional[Ratio] = None
-    maxSingleDose: Optional[Quantity] = None
-    maxTreatmentPeriod: Optional[Duration] = None
-    targetSpecies: Optional[List[MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies]] = empty_list()
-
-    def elementProperties(self):
-        js = super(MedicinalProductPharmaceuticalRouteOfAdministration, self).elementProperties()
-        js.extend([
-            ("code", "code", CodeableConcept, False, None, True),
-            ("firstDose", "firstDose", Quantity, False, None, False),
-            ("maxDosePerDay", "maxDosePerDay", Quantity, False, None, False),
-            ("maxDosePerTreatmentPeriod", "maxDosePerTreatmentPeriod", Ratio, False, None, False),
-            ("maxSingleDose", "maxSingleDose", Quantity, False, None, False),
-            ("maxTreatmentPeriod", "maxTreatmentPeriod", Duration, False, None, False),
-            ("targetSpecies", "targetSpecies", MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies, True, None, False),
-        ])
-        return js
-
-
-@dataclass
 class MedicinalProductPharmaceuticalCharacteristics(BackboneElement):
     """ Characteristics e.g. a products onset of action.
     """
@@ -101,28 +73,56 @@ class MedicinalProductPharmaceuticalCharacteristics(BackboneElement):
 
 
 @dataclass
+class MedicinalProductPharmaceuticalRouteOfAdministration(BackboneElement):
+    """ The path by which the pharmaceutical product is taken into or makes contact
+    with the body.
+    """
+    resource_type: ClassVar[str] = "MedicinalProductPharmaceuticalRouteOfAdministration"
+    code: CodeableConcept = None
+    firstDose: Optional[Quantity] = None
+    maxSingleDose: Optional[Quantity] = None
+    maxDosePerDay: Optional[Quantity] = None
+    maxDosePerTreatmentPeriod: Optional[Ratio] = None
+    maxTreatmentPeriod: Optional[Duration] = None
+    targetSpecies: Optional[List[MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies]] = empty_list()
+
+    def elementProperties(self):
+        js = super(MedicinalProductPharmaceuticalRouteOfAdministration, self).elementProperties()
+        js.extend([
+            ("code", "code", CodeableConcept, False, None, True),
+            ("firstDose", "firstDose", Quantity, False, None, False),
+            ("maxSingleDose", "maxSingleDose", Quantity, False, None, False),
+            ("maxDosePerDay", "maxDosePerDay", Quantity, False, None, False),
+            ("maxDosePerTreatmentPeriod", "maxDosePerTreatmentPeriod", Ratio, False, None, False),
+            ("maxTreatmentPeriod", "maxTreatmentPeriod", Duration, False, None, False),
+            ("targetSpecies", "targetSpecies", MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies, True, None, False),
+        ])
+        return js
+
+
+@dataclass
 class MedicinalProductPharmaceutical(DomainResource):
     """ A pharmaceutical product described in terms of its composition and dose
     form.
     """
     resource_type: ClassVar[str] = "MedicinalProductPharmaceutical"
-    administrableDoseForm: CodeableConcept = None
-    characteristics: Optional[List[MedicinalProductPharmaceuticalCharacteristics]] = empty_list()
-    device: Optional[List[FHIRReference]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    ingredient: Optional[List[FHIRReference]] = empty_list()
-    routeOfAdministration: List[MedicinalProductPharmaceuticalRouteOfAdministration] = empty_list()
+    administrableDoseForm: CodeableConcept = None
     unitOfPresentation: Optional[CodeableConcept] = None
+    ingredient: Optional[List[FHIRReference]] = empty_list()
+    device: Optional[List[FHIRReference]] = empty_list()
+    characteristics: Optional[List[MedicinalProductPharmaceuticalCharacteristics]] = empty_list()
+    routeOfAdministration: List[MedicinalProductPharmaceuticalRouteOfAdministration] = empty_list()
 
     def elementProperties(self):
         js = super(MedicinalProductPharmaceutical, self).elementProperties()
         js.extend([
-            ("administrableDoseForm", "administrableDoseForm", CodeableConcept, False, None, True),
-            ("characteristics", "characteristics", MedicinalProductPharmaceuticalCharacteristics, True, None, False),
-            ("device", "device", FHIRReference, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("ingredient", "ingredient", FHIRReference, True, None, False),
-            ("routeOfAdministration", "routeOfAdministration", MedicinalProductPharmaceuticalRouteOfAdministration, True, None, True),
+            ("administrableDoseForm", "administrableDoseForm", CodeableConcept, False, None, True),
             ("unitOfPresentation", "unitOfPresentation", CodeableConcept, False, None, False),
+            ("ingredient", "ingredient", FHIRReference, True, None, False),
+            ("device", "device", FHIRReference, True, None, False),
+            ("characteristics", "characteristics", MedicinalProductPharmaceuticalCharacteristics, True, None, False),
+            ("routeOfAdministration", "routeOfAdministration", MedicinalProductPharmaceuticalRouteOfAdministration, True, None, True),
         ])
         return js

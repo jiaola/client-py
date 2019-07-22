@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Organization) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Organization) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -23,18 +23,18 @@ class OrganizationContact(BackboneElement):
     """ Contact for the organization for a certain purpose.
     """
     resource_type: ClassVar[str] = "OrganizationContact"
-    address: Optional[Address] = None
-    name: Optional[HumanName] = None
     purpose: Optional[CodeableConcept] = None
+    name: Optional[HumanName] = None
     telecom: Optional[List[ContactPoint]] = empty_list()
+    address: Optional[Address] = None
 
     def elementProperties(self):
         js = super(OrganizationContact, self).elementProperties()
         js.extend([
-            ("address", "address", Address, False, None, False),
-            ("name", "name", HumanName, False, None, False),
             ("purpose", "purpose", CodeableConcept, False, None, False),
+            ("name", "name", HumanName, False, None, False),
             ("telecom", "telecom", ContactPoint, True, None, False),
+            ("address", "address", Address, False, None, False),
         ])
         return js
 
@@ -49,29 +49,29 @@ class Organization(DomainResource):
     groups, healthcare practice groups, payer/insurer, etc.
     """
     resource_type: ClassVar[str] = "Organization"
+    identifier: Optional[List[Identifier]] = empty_list()
     active: Optional[bool] = None
-    address: Optional[List[Address]] = empty_list()
+    type: Optional[List[CodeableConcept]] = empty_list()
+    name: Optional[str] = None
     alias: Optional[List[str]] = empty_list()
+    telecom: Optional[List[ContactPoint]] = empty_list()
+    address: Optional[List[Address]] = empty_list()
+    partOf: Optional[FHIRReference] = None
     contact: Optional[List[OrganizationContact]] = empty_list()
     endpoint: Optional[List[FHIRReference]] = empty_list()
-    identifier: Optional[List[Identifier]] = empty_list()
-    name: Optional[str] = None
-    partOf: Optional[FHIRReference] = None
-    telecom: Optional[List[ContactPoint]] = empty_list()
-    type: Optional[List[CodeableConcept]] = empty_list()
 
     def elementProperties(self):
         js = super(Organization, self).elementProperties()
         js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
             ("active", "active", bool, False, None, False),
-            ("address", "address", Address, True, None, False),
+            ("type", "type", CodeableConcept, True, None, False),
+            ("name", "name", str, False, None, False),
             ("alias", "alias", str, True, None, False),
+            ("telecom", "telecom", ContactPoint, True, None, False),
+            ("address", "address", Address, True, None, False),
+            ("partOf", "partOf", FHIRReference, False, None, False),
             ("contact", "contact", OrganizationContact, True, None, False),
             ("endpoint", "endpoint", FHIRReference, True, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("name", "name", str, False, None, False),
-            ("partOf", "partOf", FHIRReference, False, None, False),
-            ("telecom", "telecom", ContactPoint, True, None, False),
-            ("type", "type", CodeableConcept, True, None, False),
         ])
         return js

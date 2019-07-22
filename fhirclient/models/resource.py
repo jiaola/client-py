@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Resource) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Resource) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -20,16 +20,16 @@ class Resource(FHIRAbstractResource):
     """
     resource_type: ClassVar[str] = "Resource"
     id: Optional[str] = None
+    meta: Optional[Meta] = None
     implicitRules: Optional[str] = None
     language: Optional[str] = None
-    meta: Optional[Meta] = None
 
     def elementProperties(self):
         js = super(Resource, self).elementProperties()
         js.extend([
             ("id", "id", str, False, None, False),
+            ("meta", "meta", Meta, False, None, False),
             ("implicitRules", "implicitRules", str, False, None, False),
             ("language", "language", str, False, None, False),
-            ("meta", "meta", Meta, False, None, False),
         ])
         return js

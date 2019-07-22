@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,25 +22,25 @@ class EnrollmentResponse(DomainResource):
     an EnrollmentRequest resource.
     """
     resource_type: ClassVar[str] = "EnrollmentResponse"
-    created: Optional[FHIRDate] = None
-    disposition: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    organization: Optional[FHIRReference] = None
-    outcome: Optional[str] = None
-    request: Optional[FHIRReference] = None
-    requestProvider: Optional[FHIRReference] = None
     status: Optional[str] = None
+    request: Optional[FHIRReference] = None
+    outcome: Optional[str] = None
+    disposition: Optional[str] = None
+    created: Optional[FHIRDate] = None
+    organization: Optional[FHIRReference] = None
+    requestProvider: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(EnrollmentResponse, self).elementProperties()
         js.extend([
-            ("created", "created", FHIRDate, False, None, False),
-            ("disposition", "disposition", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("organization", "organization", FHIRReference, False, None, False),
-            ("outcome", "outcome", str, False, None, False),
-            ("request", "request", FHIRReference, False, None, False),
-            ("requestProvider", "requestProvider", FHIRReference, False, None, False),
             ("status", "status", str, False, None, False),
+            ("request", "request", FHIRReference, False, None, False),
+            ("outcome", "outcome", str, False, None, False),
+            ("disposition", "disposition", str, False, None, False),
+            ("created", "created", FHIRDate, False, None, False),
+            ("organization", "organization", FHIRReference, False, None, False),
+            ("requestProvider", "requestProvider", FHIRReference, False, None, False),
         ])
         return js

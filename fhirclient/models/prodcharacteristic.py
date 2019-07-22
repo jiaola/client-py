@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ProdCharacteristic) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ProdCharacteristic) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,31 +21,31 @@ class ProdCharacteristic(BackboneElement):
     available.
     """
     resource_type: ClassVar[str] = "ProdCharacteristic"
-    color: Optional[List[str]] = empty_list()
-    depth: Optional[Quantity] = None
-    externalDiameter: Optional[Quantity] = None
     height: Optional[Quantity] = None
-    image: Optional[List[Attachment]] = empty_list()
-    imprint: Optional[List[str]] = empty_list()
-    nominalVolume: Optional[Quantity] = None
-    scoring: Optional[CodeableConcept] = None
-    shape: Optional[str] = None
-    weight: Optional[Quantity] = None
     width: Optional[Quantity] = None
+    depth: Optional[Quantity] = None
+    weight: Optional[Quantity] = None
+    nominalVolume: Optional[Quantity] = None
+    externalDiameter: Optional[Quantity] = None
+    shape: Optional[str] = None
+    color: Optional[List[str]] = empty_list()
+    imprint: Optional[List[str]] = empty_list()
+    image: Optional[List[Attachment]] = empty_list()
+    scoring: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(ProdCharacteristic, self).elementProperties()
         js.extend([
-            ("color", "color", str, True, None, False),
-            ("depth", "depth", Quantity, False, None, False),
-            ("externalDiameter", "externalDiameter", Quantity, False, None, False),
             ("height", "height", Quantity, False, None, False),
-            ("image", "image", Attachment, True, None, False),
-            ("imprint", "imprint", str, True, None, False),
-            ("nominalVolume", "nominalVolume", Quantity, False, None, False),
-            ("scoring", "scoring", CodeableConcept, False, None, False),
-            ("shape", "shape", str, False, None, False),
-            ("weight", "weight", Quantity, False, None, False),
             ("width", "width", Quantity, False, None, False),
+            ("depth", "depth", Quantity, False, None, False),
+            ("weight", "weight", Quantity, False, None, False),
+            ("nominalVolume", "nominalVolume", Quantity, False, None, False),
+            ("externalDiameter", "externalDiameter", Quantity, False, None, False),
+            ("shape", "shape", str, False, None, False),
+            ("color", "color", str, True, None, False),
+            ("imprint", "imprint", str, True, None, False),
+            ("image", "image", Attachment, True, None, False),
+            ("scoring", "scoring", CodeableConcept, False, None, False),
         ])
         return js

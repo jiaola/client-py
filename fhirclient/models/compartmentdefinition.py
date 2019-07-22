@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -23,15 +23,15 @@ class CompartmentDefinitionResource(BackboneElement):
     """
     resource_type: ClassVar[str] = "CompartmentDefinitionResource"
     code: str = None
-    documentation: Optional[str] = None
     param: Optional[List[str]] = empty_list()
+    documentation: Optional[str] = None
 
     def elementProperties(self):
         js = super(CompartmentDefinitionResource, self).elementProperties()
         js.extend([
             ("code", "code", str, False, None, True),
-            ("documentation", "documentation", str, False, None, False),
             ("param", "param", str, True, None, False),
+            ("documentation", "documentation", str, False, None, False),
         ])
         return js
 
@@ -44,37 +44,37 @@ class CompartmentDefinition(DomainResource):
     server.
     """
     resource_type: ClassVar[str] = "CompartmentDefinition"
-    code: str = None
-    contact: Optional[List[ContactDetail]] = empty_list()
-    date: Optional[FHIRDate] = None
-    description: Optional[str] = None
-    experimental: Optional[bool] = None
-    name: str = None
-    publisher: Optional[str] = None
-    purpose: Optional[str] = None
-    resource: Optional[List[CompartmentDefinitionResource]] = empty_list()
-    search: bool = None
-    status: str = None
     url: str = None
-    useContext: Optional[List[UsageContext]] = empty_list()
     version: Optional[str] = None
+    name: str = None
+    status: str = None
+    experimental: Optional[bool] = None
+    date: Optional[FHIRDate] = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
+    useContext: Optional[List[UsageContext]] = empty_list()
+    purpose: Optional[str] = None
+    code: str = None
+    search: bool = None
+    resource: Optional[List[CompartmentDefinitionResource]] = empty_list()
 
     def elementProperties(self):
         js = super(CompartmentDefinition, self).elementProperties()
         js.extend([
-            ("code", "code", str, False, None, True),
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("name", "name", str, False, None, True),
-            ("publisher", "publisher", str, False, None, False),
-            ("purpose", "purpose", str, False, None, False),
-            ("resource", "resource", CompartmentDefinitionResource, True, None, False),
-            ("search", "search", bool, False, None, True),
-            ("status", "status", str, False, None, True),
             ("url", "url", str, False, None, True),
-            ("useContext", "useContext", UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
+            ("name", "name", str, False, None, True),
+            ("status", "status", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("useContext", "useContext", UsageContext, True, None, False),
+            ("purpose", "purpose", str, False, None, False),
+            ("code", "code", str, False, None, True),
+            ("search", "search", bool, False, None, True),
+            ("resource", "resource", CompartmentDefinitionResource, True, None, False),
         ])
         return js

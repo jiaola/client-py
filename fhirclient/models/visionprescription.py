@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -45,38 +45,38 @@ class VisionPrescriptionLensSpecification(BackboneElement):
     the authorization for the fullfillment by certified professionals.
     """
     resource_type: ClassVar[str] = "VisionPrescriptionLensSpecification"
-    add: Optional[float] = None
-    axis: Optional[int] = None
-    backCurve: Optional[float] = None
-    brand: Optional[str] = None
-    color: Optional[str] = None
+    product: CodeableConcept = None
+    eye: str = None
+    sphere: Optional[float] = None
     cylinder: Optional[float] = None
+    axis: Optional[int] = None
+    prism: Optional[List[VisionPrescriptionLensSpecificationPrism]] = empty_list()
+    add: Optional[float] = None
+    power: Optional[float] = None
+    backCurve: Optional[float] = None
     diameter: Optional[float] = None
     duration: Optional[Quantity] = None
-    eye: str = None
+    color: Optional[str] = None
+    brand: Optional[str] = None
     note: Optional[List[Annotation]] = empty_list()
-    power: Optional[float] = None
-    prism: Optional[List[VisionPrescriptionLensSpecificationPrism]] = empty_list()
-    product: CodeableConcept = None
-    sphere: Optional[float] = None
 
     def elementProperties(self):
         js = super(VisionPrescriptionLensSpecification, self).elementProperties()
         js.extend([
-            ("add", "add", float, False, None, False),
-            ("axis", "axis", int, False, None, False),
-            ("backCurve", "backCurve", float, False, None, False),
-            ("brand", "brand", str, False, None, False),
-            ("color", "color", str, False, None, False),
+            ("product", "product", CodeableConcept, False, None, True),
+            ("eye", "eye", str, False, None, True),
+            ("sphere", "sphere", float, False, None, False),
             ("cylinder", "cylinder", float, False, None, False),
+            ("axis", "axis", int, False, None, False),
+            ("prism", "prism", VisionPrescriptionLensSpecificationPrism, True, None, False),
+            ("add", "add", float, False, None, False),
+            ("power", "power", float, False, None, False),
+            ("backCurve", "backCurve", float, False, None, False),
             ("diameter", "diameter", float, False, None, False),
             ("duration", "duration", Quantity, False, None, False),
-            ("eye", "eye", str, False, None, True),
+            ("color", "color", str, False, None, False),
+            ("brand", "brand", str, False, None, False),
             ("note", "note", Annotation, True, None, False),
-            ("power", "power", float, False, None, False),
-            ("prism", "prism", VisionPrescriptionLensSpecificationPrism, True, None, False),
-            ("product", "product", CodeableConcept, False, None, True),
-            ("sphere", "sphere", float, False, None, False),
         ])
         return js
 
@@ -89,25 +89,25 @@ class VisionPrescription(DomainResource):
     patient.
     """
     resource_type: ClassVar[str] = "VisionPrescription"
-    created: FHIRDate = None
-    dateWritten: FHIRDate = None
-    encounter: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    lensSpecification: List[VisionPrescriptionLensSpecification] = empty_list()
-    patient: FHIRReference = None
-    prescriber: FHIRReference = None
     status: str = None
+    created: FHIRDate = None
+    patient: FHIRReference = None
+    encounter: Optional[FHIRReference] = None
+    dateWritten: FHIRDate = None
+    prescriber: FHIRReference = None
+    lensSpecification: List[VisionPrescriptionLensSpecification] = empty_list()
 
     def elementProperties(self):
         js = super(VisionPrescription, self).elementProperties()
         js.extend([
-            ("created", "created", FHIRDate, False, None, True),
-            ("dateWritten", "dateWritten", FHIRDate, False, None, True),
-            ("encounter", "encounter", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("lensSpecification", "lensSpecification", VisionPrescriptionLensSpecification, True, None, True),
-            ("patient", "patient", FHIRReference, False, None, True),
-            ("prescriber", "prescriber", FHIRReference, False, None, True),
             ("status", "status", str, False, None, True),
+            ("created", "created", FHIRDate, False, None, True),
+            ("patient", "patient", FHIRReference, False, None, True),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("dateWritten", "dateWritten", FHIRDate, False, None, True),
+            ("prescriber", "prescriber", FHIRReference, False, None, True),
+            ("lensSpecification", "lensSpecification", VisionPrescriptionLensSpecification, True, None, True),
         ])
         return js

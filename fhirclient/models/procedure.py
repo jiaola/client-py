@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -27,15 +27,15 @@ class ProcedurePerformer(BackboneElement):
     Limited to "real" people rather than equipment.
     """
     resource_type: ClassVar[str] = "ProcedurePerformer"
-    actor: FHIRReference = None
     function: Optional[CodeableConcept] = None
+    actor: FHIRReference = None
     onBehalfOf: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(ProcedurePerformer, self).elementProperties()
         js.extend([
-            ("actor", "actor", FHIRReference, False, None, True),
             ("function", "function", CodeableConcept, False, None, False),
+            ("actor", "actor", FHIRReference, False, None, True),
             ("onBehalfOf", "onBehalfOf", FHIRReference, False, None, False),
         ])
         return js
@@ -71,73 +71,73 @@ class Procedure(DomainResource):
     services, counseling, or hypnotherapy.
     """
     resource_type: ClassVar[str] = "Procedure"
-    asserter: Optional[FHIRReference] = None
-    basedOn: Optional[List[FHIRReference]] = empty_list()
-    bodySite: Optional[List[CodeableConcept]] = empty_list()
-    category: Optional[CodeableConcept] = None
-    code: Optional[CodeableConcept] = None
-    complication: Optional[List[CodeableConcept]] = empty_list()
-    complicationDetail: Optional[List[FHIRReference]] = empty_list()
-    encounter: Optional[FHIRReference] = None
-    focalDevice: Optional[List[ProcedureFocalDevice]] = empty_list()
-    followUp: Optional[List[CodeableConcept]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
     instantiatesCanonical: Optional[List[str]] = empty_list()
     instantiatesUri: Optional[List[str]] = empty_list()
-    location: Optional[FHIRReference] = None
-    note: Optional[List[Annotation]] = empty_list()
-    outcome: Optional[CodeableConcept] = None
+    basedOn: Optional[List[FHIRReference]] = empty_list()
     partOf: Optional[List[FHIRReference]] = empty_list()
-    performedAge: Optional[Age] = None
-    performedDateTime: Optional[FHIRDate] = None
-    performedPeriod: Optional[Period] = None
-    performedRange: Optional[Range] = None
-    performedString: Optional[str] = None
-    performer: Optional[List[ProcedurePerformer]] = empty_list()
-    reasonCode: Optional[List[CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[FHIRReference]] = empty_list()
-    recorder: Optional[FHIRReference] = None
-    report: Optional[List[FHIRReference]] = empty_list()
     status: str = None
     statusReason: Optional[CodeableConcept] = None
+    category: Optional[CodeableConcept] = None
+    code: Optional[CodeableConcept] = None
     subject: FHIRReference = None
-    usedCode: Optional[List[CodeableConcept]] = empty_list()
+    encounter: Optional[FHIRReference] = None
+    performedDateTime: Optional[FHIRDate] = None
+    performedPeriod: Optional[Period] = None
+    performedString: Optional[str] = None
+    performedAge: Optional[Age] = None
+    performedRange: Optional[Range] = None
+    recorder: Optional[FHIRReference] = None
+    asserter: Optional[FHIRReference] = None
+    performer: Optional[List[ProcedurePerformer]] = empty_list()
+    location: Optional[FHIRReference] = None
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    bodySite: Optional[List[CodeableConcept]] = empty_list()
+    outcome: Optional[CodeableConcept] = None
+    report: Optional[List[FHIRReference]] = empty_list()
+    complication: Optional[List[CodeableConcept]] = empty_list()
+    complicationDetail: Optional[List[FHIRReference]] = empty_list()
+    followUp: Optional[List[CodeableConcept]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
+    focalDevice: Optional[List[ProcedureFocalDevice]] = empty_list()
     usedReference: Optional[List[FHIRReference]] = empty_list()
+    usedCode: Optional[List[CodeableConcept]] = empty_list()
 
     def elementProperties(self):
         js = super(Procedure, self).elementProperties()
         js.extend([
-            ("asserter", "asserter", FHIRReference, False, None, False),
-            ("basedOn", "basedOn", FHIRReference, True, None, False),
-            ("bodySite", "bodySite", CodeableConcept, True, None, False),
-            ("category", "category", CodeableConcept, False, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("complication", "complication", CodeableConcept, True, None, False),
-            ("complicationDetail", "complicationDetail", FHIRReference, True, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("focalDevice", "focalDevice", ProcedureFocalDevice, True, None, False),
-            ("followUp", "followUp", CodeableConcept, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
             ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
             ("instantiatesUri", "instantiatesUri", str, True, None, False),
-            ("location", "location", FHIRReference, False, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("outcome", "outcome", CodeableConcept, False, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
             ("partOf", "partOf", FHIRReference, True, None, False),
-            ("performedAge", "performedAge", Age, False, "performed", False),
-            ("performedDateTime", "performedDateTime", FHIRDate, False, "performed", False),
-            ("performedPeriod", "performedPeriod", Period, False, "performed", False),
-            ("performedRange", "performedRange", Range, False, "performed", False),
-            ("performedString", "performedString", str, False, "performed", False),
-            ("performer", "performer", ProcedurePerformer, True, None, False),
-            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
-            ("recorder", "recorder", FHIRReference, False, None, False),
-            ("report", "report", FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
             ("statusReason", "statusReason", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
             ("subject", "subject", FHIRReference, False, None, True),
-            ("usedCode", "usedCode", CodeableConcept, True, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("performedDateTime", "performedDateTime", FHIRDate, False, "performed", False),
+            ("performedPeriod", "performedPeriod", Period, False, "performed", False),
+            ("performedString", "performedString", str, False, "performed", False),
+            ("performedAge", "performedAge", Age, False, "performed", False),
+            ("performedRange", "performedRange", Range, False, "performed", False),
+            ("recorder", "recorder", FHIRReference, False, None, False),
+            ("asserter", "asserter", FHIRReference, False, None, False),
+            ("performer", "performer", ProcedurePerformer, True, None, False),
+            ("location", "location", FHIRReference, False, None, False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("bodySite", "bodySite", CodeableConcept, True, None, False),
+            ("outcome", "outcome", CodeableConcept, False, None, False),
+            ("report", "report", FHIRReference, True, None, False),
+            ("complication", "complication", CodeableConcept, True, None, False),
+            ("complicationDetail", "complicationDetail", FHIRReference, True, None, False),
+            ("followUp", "followUp", CodeableConcept, True, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("focalDevice", "focalDevice", ProcedureFocalDevice, True, None, False),
             ("usedReference", "usedReference", FHIRReference, True, None, False),
+            ("usedCode", "usedCode", CodeableConcept, True, None, False),
         ])
         return js

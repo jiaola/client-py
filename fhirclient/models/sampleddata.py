@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SampledData) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SampledData) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -20,23 +20,23 @@ class SampledData(Element):
     There may be more than one dimension in the data.
     """
     resource_type: ClassVar[str] = "SampledData"
-    data: Optional[str] = None
-    dimensions: int = None
-    factor: Optional[float] = None
-    lowerLimit: Optional[float] = None
     origin: Quantity = None
     period: float = None
+    factor: Optional[float] = None
+    lowerLimit: Optional[float] = None
     upperLimit: Optional[float] = None
+    dimensions: int = None
+    data: Optional[str] = None
 
     def elementProperties(self):
         js = super(SampledData, self).elementProperties()
         js.extend([
-            ("data", "data", str, False, None, False),
-            ("dimensions", "dimensions", int, False, None, True),
-            ("factor", "factor", float, False, None, False),
-            ("lowerLimit", "lowerLimit", float, False, None, False),
             ("origin", "origin", Quantity, False, None, True),
             ("period", "period", float, False, None, True),
+            ("factor", "factor", float, False, None, False),
+            ("lowerLimit", "lowerLimit", float, False, None, False),
             ("upperLimit", "upperLimit", float, False, None, False),
+            ("dimensions", "dimensions", int, False, None, True),
+            ("data", "data", str, False, None, False),
         ])
         return js

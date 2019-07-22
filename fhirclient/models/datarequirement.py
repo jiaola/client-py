@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -18,20 +18,27 @@ from .period import Period
 
 
 @dataclass
-class DataRequirementSort(Element):
-    """ Order of the results.
+class DataRequirementCodeFilter(Element):
+    """ What codes are expected.
 
-    Specifies the order of the results to be returned.
+    Code filters specify additional constraints on the data, specifying the
+    value set of interest for a particular element of the data. Each code
+    filter defines an additional constraint on the data, i.e. code filters are
+    AND'ed, not OR'ed.
     """
-    resource_type: ClassVar[str] = "DataRequirementSort"
-    direction: str = None
-    path: str = None
+    resource_type: ClassVar[str] = "DataRequirementCodeFilter"
+    path: Optional[str] = None
+    searchParam: Optional[str] = None
+    valueSet: Optional[str] = None
+    code: Optional[List[Coding]] = empty_list()
 
     def elementProperties(self):
-        js = super(DataRequirementSort, self).elementProperties()
+        js = super(DataRequirementCodeFilter, self).elementProperties()
         js.extend([
-            ("direction", "direction", str, False, None, True),
-            ("path", "path", str, False, None, True),
+            ("path", "path", str, False, None, False),
+            ("searchParam", "searchParam", str, False, None, False),
+            ("valueSet", "valueSet", str, False, None, False),
+            ("code", "code", Coding, True, None, False),
         ])
         return js
 
@@ -48,8 +55,8 @@ class DataRequirementDateFilter(Element):
     path: Optional[str] = None
     searchParam: Optional[str] = None
     valueDateTime: Optional[FHIRDate] = None
-    valueDuration: Optional[Duration] = None
     valuePeriod: Optional[Period] = None
+    valueDuration: Optional[Duration] = None
 
     def elementProperties(self):
         js = super(DataRequirementDateFilter, self).elementProperties()
@@ -57,34 +64,27 @@ class DataRequirementDateFilter(Element):
             ("path", "path", str, False, None, False),
             ("searchParam", "searchParam", str, False, None, False),
             ("valueDateTime", "valueDateTime", FHIRDate, False, "value", False),
-            ("valueDuration", "valueDuration", Duration, False, "value", False),
             ("valuePeriod", "valuePeriod", Period, False, "value", False),
+            ("valueDuration", "valueDuration", Duration, False, "value", False),
         ])
         return js
 
 
 @dataclass
-class DataRequirementCodeFilter(Element):
-    """ What codes are expected.
+class DataRequirementSort(Element):
+    """ Order of the results.
 
-    Code filters specify additional constraints on the data, specifying the
-    value set of interest for a particular element of the data. Each code
-    filter defines an additional constraint on the data, i.e. code filters are
-    AND'ed, not OR'ed.
+    Specifies the order of the results to be returned.
     """
-    resource_type: ClassVar[str] = "DataRequirementCodeFilter"
-    code: Optional[List[Coding]] = empty_list()
-    path: Optional[str] = None
-    searchParam: Optional[str] = None
-    valueSet: Optional[str] = None
+    resource_type: ClassVar[str] = "DataRequirementSort"
+    path: str = None
+    direction: str = None
 
     def elementProperties(self):
-        js = super(DataRequirementCodeFilter, self).elementProperties()
+        js = super(DataRequirementSort, self).elementProperties()
         js.extend([
-            ("code", "code", Coding, True, None, False),
-            ("path", "path", str, False, None, False),
-            ("searchParam", "searchParam", str, False, None, False),
-            ("valueSet", "valueSet", str, False, None, False),
+            ("path", "path", str, False, None, True),
+            ("direction", "direction", str, False, None, True),
         ])
         return js
 
@@ -97,27 +97,27 @@ class DataRequirement(Element):
     and optional code or date-based filters of the data.
     """
     resource_type: ClassVar[str] = "DataRequirement"
+    type: str = None
+    profile: Optional[List[str]] = empty_list()
+    subjectCodeableConcept: Optional[CodeableConcept] = None
+    subjectReference: Optional[FHIRReference] = None
+    mustSupport: Optional[List[str]] = empty_list()
     codeFilter: Optional[List[DataRequirementCodeFilter]] = empty_list()
     dateFilter: Optional[List[DataRequirementDateFilter]] = empty_list()
     limit: Optional[int] = None
-    mustSupport: Optional[List[str]] = empty_list()
-    profile: Optional[List[str]] = empty_list()
     sort: Optional[List[DataRequirementSort]] = empty_list()
-    subjectCodeableConcept: Optional[CodeableConcept] = None
-    subjectReference: Optional[FHIRReference] = None
-    type: str = None
 
     def elementProperties(self):
         js = super(DataRequirement, self).elementProperties()
         js.extend([
+            ("type", "type", str, False, None, True),
+            ("profile", "profile", str, True, None, False),
+            ("subjectCodeableConcept", "subjectCodeableConcept", CodeableConcept, False, "subject", False),
+            ("subjectReference", "subjectReference", FHIRReference, False, "subject", False),
+            ("mustSupport", "mustSupport", str, True, None, False),
             ("codeFilter", "codeFilter", DataRequirementCodeFilter, True, None, False),
             ("dateFilter", "dateFilter", DataRequirementDateFilter, True, None, False),
             ("limit", "limit", int, False, None, False),
-            ("mustSupport", "mustSupport", str, True, None, False),
-            ("profile", "profile", str, True, None, False),
             ("sort", "sort", DataRequirementSort, True, None, False),
-            ("subjectCodeableConcept", "subjectCodeableConcept", CodeableConcept, False, "subject", False),
-            ("subjectReference", "subjectReference", FHIRReference, False, "subject", False),
-            ("type", "type", str, False, None, True),
         ])
         return js

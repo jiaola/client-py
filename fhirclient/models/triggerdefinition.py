@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,25 +24,25 @@ class TriggerDefinition(Element):
     data events, or periodic, as determined by the type element.
     """
     resource_type: ClassVar[str] = "TriggerDefinition"
-    condition: Optional[Expression] = None
-    data: Optional[List[DataRequirement]] = empty_list()
+    type: str = None
     name: Optional[str] = None
+    timingTiming: Optional[Timing] = None
+    timingReference: Optional[FHIRReference] = None
     timingDate: Optional[FHIRDate] = None
     timingDateTime: Optional[FHIRDate] = None
-    timingReference: Optional[FHIRReference] = None
-    timingTiming: Optional[Timing] = None
-    type: str = None
+    data: Optional[List[DataRequirement]] = empty_list()
+    condition: Optional[Expression] = None
 
     def elementProperties(self):
         js = super(TriggerDefinition, self).elementProperties()
         js.extend([
-            ("condition", "condition", Expression, False, None, False),
-            ("data", "data", DataRequirement, True, None, False),
+            ("type", "type", str, False, None, True),
             ("name", "name", str, False, None, False),
+            ("timingTiming", "timingTiming", Timing, False, "timing", False),
+            ("timingReference", "timingReference", FHIRReference, False, "timing", False),
             ("timingDate", "timingDate", FHIRDate, False, "timing", False),
             ("timingDateTime", "timingDateTime", FHIRDate, False, "timing", False),
-            ("timingReference", "timingReference", FHIRReference, False, "timing", False),
-            ("timingTiming", "timingTiming", Timing, False, "timing", False),
-            ("type", "type", str, False, None, True),
+            ("data", "data", DataRequirement, True, None, False),
+            ("condition", "condition", Expression, False, None, False),
         ])
         return js

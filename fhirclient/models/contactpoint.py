@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -20,19 +20,19 @@ class ContactPoint(Element):
     organization, including telephone, email, etc.
     """
     resource_type: ClassVar[str] = "ContactPoint"
-    period: Optional[Period] = None
-    rank: Optional[int] = None
     system: Optional[str] = None
-    use: Optional[str] = None
     value: Optional[str] = None
+    use: Optional[str] = None
+    rank: Optional[int] = None
+    period: Optional[Period] = None
 
     def elementProperties(self):
         js = super(ContactPoint, self).elementProperties()
         js.extend([
-            ("period", "period", Period, False, None, False),
-            ("rank", "rank", int, False, None, False),
             ("system", "system", str, False, None, False),
-            ("use", "use", str, False, None, False),
             ("value", "value", str, False, None, False),
+            ("use", "use", str, False, None, False),
+            ("rank", "rank", int, False, None, False),
+            ("period", "period", Period, False, None, False),
         ])
         return js

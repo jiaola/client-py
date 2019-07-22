@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Composition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Composition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -19,36 +19,22 @@ from .period import Period
 
 
 @dataclass
-class CompositionSection(BackboneElement):
-    """ Composition is broken into sections.
+class CompositionAttester(BackboneElement):
+    """ Attests to accuracy of composition.
 
-    The root of the sections that make up the composition.
+    A participant who has attested to the accuracy of the composition/document.
     """
-    resource_type: ClassVar[str] = "CompositionSection"
-    author: Optional[List[FHIRReference]] = empty_list()
-    code: Optional[CodeableConcept] = None
-    emptyReason: Optional[CodeableConcept] = None
-    entry: Optional[List[FHIRReference]] = empty_list()
-    focus: Optional[FHIRReference] = None
-    mode: Optional[str] = None
-    orderedBy: Optional[CodeableConcept] = None
-    section: Optional[List[CompositionSection]] = empty_list()
-    text: Optional[Narrative] = None
-    title: Optional[str] = None
+    resource_type: ClassVar[str] = "CompositionAttester"
+    mode: str = None
+    time: Optional[FHIRDate] = None
+    party: Optional[FHIRReference] = None
 
     def elementProperties(self):
-        js = super(CompositionSection, self).elementProperties()
+        js = super(CompositionAttester, self).elementProperties()
         js.extend([
-            ("author", "author", FHIRReference, True, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("emptyReason", "emptyReason", CodeableConcept, False, None, False),
-            ("entry", "entry", FHIRReference, True, None, False),
-            ("focus", "focus", FHIRReference, False, None, False),
-            ("mode", "mode", str, False, None, False),
-            ("orderedBy", "orderedBy", CodeableConcept, False, None, False),
-            ("section", "section", CompositionSection, True, None, False),
-            ("text", "text", Narrative, False, None, False),
-            ("title", "title", str, False, None, False),
+            ("mode", "mode", str, False, None, True),
+            ("time", "time", FHIRDate, False, None, False),
+            ("party", "party", FHIRReference, False, None, False),
         ])
         return js
 
@@ -84,36 +70,50 @@ class CompositionEvent(BackboneElement):
     """
     resource_type: ClassVar[str] = "CompositionEvent"
     code: Optional[List[CodeableConcept]] = empty_list()
-    detail: Optional[List[FHIRReference]] = empty_list()
     period: Optional[Period] = None
+    detail: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(CompositionEvent, self).elementProperties()
         js.extend([
             ("code", "code", CodeableConcept, True, None, False),
-            ("detail", "detail", FHIRReference, True, None, False),
             ("period", "period", Period, False, None, False),
+            ("detail", "detail", FHIRReference, True, None, False),
         ])
         return js
 
 
 @dataclass
-class CompositionAttester(BackboneElement):
-    """ Attests to accuracy of composition.
+class CompositionSection(BackboneElement):
+    """ Composition is broken into sections.
 
-    A participant who has attested to the accuracy of the composition/document.
+    The root of the sections that make up the composition.
     """
-    resource_type: ClassVar[str] = "CompositionAttester"
-    mode: str = None
-    party: Optional[FHIRReference] = None
-    time: Optional[FHIRDate] = None
+    resource_type: ClassVar[str] = "CompositionSection"
+    title: Optional[str] = None
+    code: Optional[CodeableConcept] = None
+    author: Optional[List[FHIRReference]] = empty_list()
+    focus: Optional[FHIRReference] = None
+    text: Optional[Narrative] = None
+    mode: Optional[str] = None
+    orderedBy: Optional[CodeableConcept] = None
+    entry: Optional[List[FHIRReference]] = empty_list()
+    emptyReason: Optional[CodeableConcept] = None
+    section: Optional[List[CompositionSection]] = empty_list()
 
     def elementProperties(self):
-        js = super(CompositionAttester, self).elementProperties()
+        js = super(CompositionSection, self).elementProperties()
         js.extend([
-            ("mode", "mode", str, False, None, True),
-            ("party", "party", FHIRReference, False, None, False),
-            ("time", "time", FHIRDate, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("author", "author", FHIRReference, True, None, False),
+            ("focus", "focus", FHIRReference, False, None, False),
+            ("text", "text", Narrative, False, None, False),
+            ("mode", "mode", str, False, None, False),
+            ("orderedBy", "orderedBy", CodeableConcept, False, None, False),
+            ("entry", "entry", FHIRReference, True, None, False),
+            ("emptyReason", "emptyReason", CodeableConcept, False, None, False),
+            ("section", "section", CompositionSection, True, None, False),
         ])
         return js
 
@@ -134,39 +134,39 @@ class Composition(DomainResource):
     Bundle (for example Patient, Practitioner, Encounter, etc.).
     """
     resource_type: ClassVar[str] = "Composition"
-    attester: Optional[List[CompositionAttester]] = empty_list()
-    author: List[FHIRReference] = empty_list()
-    category: Optional[List[CodeableConcept]] = empty_list()
-    confidentiality: Optional[str] = None
-    custodian: Optional[FHIRReference] = None
-    date: FHIRDate = None
-    encounter: Optional[FHIRReference] = None
-    event: Optional[List[CompositionEvent]] = empty_list()
     identifier: Optional[Identifier] = None
-    relatesTo: Optional[List[CompositionRelatesTo]] = empty_list()
-    section: Optional[List[CompositionSection]] = empty_list()
     status: str = None
-    subject: Optional[FHIRReference] = None
-    title: str = None
     type: CodeableConcept = None
+    category: Optional[List[CodeableConcept]] = empty_list()
+    subject: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
+    date: FHIRDate = None
+    author: List[FHIRReference] = empty_list()
+    title: str = None
+    confidentiality: Optional[str] = None
+    attester: Optional[List[CompositionAttester]] = empty_list()
+    custodian: Optional[FHIRReference] = None
+    relatesTo: Optional[List[CompositionRelatesTo]] = empty_list()
+    event: Optional[List[CompositionEvent]] = empty_list()
+    section: Optional[List[CompositionSection]] = empty_list()
 
     def elementProperties(self):
         js = super(Composition, self).elementProperties()
         js.extend([
-            ("attester", "attester", CompositionAttester, True, None, False),
-            ("author", "author", FHIRReference, True, None, True),
-            ("category", "category", CodeableConcept, True, None, False),
-            ("confidentiality", "confidentiality", str, False, None, False),
-            ("custodian", "custodian", FHIRReference, False, None, False),
-            ("date", "date", FHIRDate, False, None, True),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("event", "event", CompositionEvent, True, None, False),
             ("identifier", "identifier", Identifier, False, None, False),
-            ("relatesTo", "relatesTo", CompositionRelatesTo, True, None, False),
-            ("section", "section", CompositionSection, True, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
-            ("title", "title", str, False, None, True),
             ("type", "type", CodeableConcept, False, None, True),
+            ("category", "category", CodeableConcept, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("date", "date", FHIRDate, False, None, True),
+            ("author", "author", FHIRReference, True, None, True),
+            ("title", "title", str, False, None, True),
+            ("confidentiality", "confidentiality", str, False, None, False),
+            ("attester", "attester", CompositionAttester, True, None, False),
+            ("custodian", "custodian", FHIRReference, False, None, False),
+            ("relatesTo", "relatesTo", CompositionRelatesTo, True, None, False),
+            ("event", "event", CompositionEvent, True, None, False),
+            ("section", "section", CompositionSection, True, None, False),
         ])
         return js

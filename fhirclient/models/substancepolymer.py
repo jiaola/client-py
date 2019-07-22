@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstancePolymer) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstancePolymer) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -16,37 +16,37 @@ from .substanceamount import SubstanceAmount
 
 
 @dataclass
-class SubstancePolymerRepeatRepeatUnitStructuralRepresentation(BackboneElement):
+class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation(BackboneElement):
     """ Todo.
     """
-    resource_type: ClassVar[str] = "SubstancePolymerRepeatRepeatUnitStructuralRepresentation"
-    attachment: Optional[Attachment] = None
-    representation: Optional[str] = None
-    type: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation"
+    degree: Optional[CodeableConcept] = None
+    amount: Optional[SubstanceAmount] = None
 
     def elementProperties(self):
-        js = super(SubstancePolymerRepeatRepeatUnitStructuralRepresentation, self).elementProperties()
+        js = super(SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation, self).elementProperties()
         js.extend([
-            ("attachment", "attachment", Attachment, False, None, False),
-            ("representation", "representation", str, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
+            ("degree", "degree", CodeableConcept, False, None, False),
+            ("amount", "amount", SubstanceAmount, False, None, False),
         ])
         return js
 
 
 @dataclass
-class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation(BackboneElement):
+class SubstancePolymerRepeatRepeatUnitStructuralRepresentation(BackboneElement):
     """ Todo.
     """
-    resource_type: ClassVar[str] = "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation"
-    amount: Optional[SubstanceAmount] = None
-    degree: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "SubstancePolymerRepeatRepeatUnitStructuralRepresentation"
+    type: Optional[CodeableConcept] = None
+    representation: Optional[str] = None
+    attachment: Optional[Attachment] = None
 
     def elementProperties(self):
-        js = super(SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation, self).elementProperties()
+        js = super(SubstancePolymerRepeatRepeatUnitStructuralRepresentation, self).elementProperties()
         js.extend([
-            ("amount", "amount", SubstanceAmount, False, None, False),
-            ("degree", "degree", CodeableConcept, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("representation", "representation", str, False, None, False),
+            ("attachment", "attachment", Attachment, False, None, False),
         ])
         return js
 
@@ -56,41 +56,20 @@ class SubstancePolymerRepeatRepeatUnit(BackboneElement):
     """ Todo.
     """
     resource_type: ClassVar[str] = "SubstancePolymerRepeatRepeatUnit"
-    amount: Optional[SubstanceAmount] = None
-    degreeOfPolymerisation: Optional[List[SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation]] = empty_list()
     orientationOfPolymerisation: Optional[CodeableConcept] = None
     repeatUnit: Optional[str] = None
+    amount: Optional[SubstanceAmount] = None
+    degreeOfPolymerisation: Optional[List[SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation]] = empty_list()
     structuralRepresentation: Optional[List[SubstancePolymerRepeatRepeatUnitStructuralRepresentation]] = empty_list()
 
     def elementProperties(self):
         js = super(SubstancePolymerRepeatRepeatUnit, self).elementProperties()
         js.extend([
-            ("amount", "amount", SubstanceAmount, False, None, False),
-            ("degreeOfPolymerisation", "degreeOfPolymerisation", SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation, True, None, False),
             ("orientationOfPolymerisation", "orientationOfPolymerisation", CodeableConcept, False, None, False),
             ("repeatUnit", "repeatUnit", str, False, None, False),
+            ("amount", "amount", SubstanceAmount, False, None, False),
+            ("degreeOfPolymerisation", "degreeOfPolymerisation", SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation, True, None, False),
             ("structuralRepresentation", "structuralRepresentation", SubstancePolymerRepeatRepeatUnitStructuralRepresentation, True, None, False),
-        ])
-        return js
-
-
-@dataclass
-class SubstancePolymerRepeat(BackboneElement):
-    """ Todo.
-    """
-    resource_type: ClassVar[str] = "SubstancePolymerRepeat"
-    averageMolecularFormula: Optional[str] = None
-    numberOfUnits: Optional[int] = None
-    repeatUnit: Optional[List[SubstancePolymerRepeatRepeatUnit]] = empty_list()
-    repeatUnitAmountType: Optional[CodeableConcept] = None
-
-    def elementProperties(self):
-        js = super(SubstancePolymerRepeat, self).elementProperties()
-        js.extend([
-            ("averageMolecularFormula", "averageMolecularFormula", str, False, None, False),
-            ("numberOfUnits", "numberOfUnits", int, False, None, False),
-            ("repeatUnit", "repeatUnit", SubstancePolymerRepeatRepeatUnit, True, None, False),
-            ("repeatUnitAmountType", "repeatUnitAmountType", CodeableConcept, False, None, False),
         ])
         return js
 
@@ -100,18 +79,18 @@ class SubstancePolymerMonomerSetStartingMaterial(BackboneElement):
     """ Todo.
     """
     resource_type: ClassVar[str] = "SubstancePolymerMonomerSetStartingMaterial"
-    amount: Optional[SubstanceAmount] = None
-    isDefining: Optional[bool] = None
     material: Optional[CodeableConcept] = None
     type: Optional[CodeableConcept] = None
+    isDefining: Optional[bool] = None
+    amount: Optional[SubstanceAmount] = None
 
     def elementProperties(self):
         js = super(SubstancePolymerMonomerSetStartingMaterial, self).elementProperties()
         js.extend([
-            ("amount", "amount", SubstanceAmount, False, None, False),
-            ("isDefining", "isDefining", bool, False, None, False),
             ("material", "material", CodeableConcept, False, None, False),
             ("type", "type", CodeableConcept, False, None, False),
+            ("isDefining", "isDefining", bool, False, None, False),
+            ("amount", "amount", SubstanceAmount, False, None, False),
         ])
         return js
 
@@ -134,13 +113,34 @@ class SubstancePolymerMonomerSet(BackboneElement):
 
 
 @dataclass
+class SubstancePolymerRepeat(BackboneElement):
+    """ Todo.
+    """
+    resource_type: ClassVar[str] = "SubstancePolymerRepeat"
+    numberOfUnits: Optional[int] = None
+    averageMolecularFormula: Optional[str] = None
+    repeatUnitAmountType: Optional[CodeableConcept] = None
+    repeatUnit: Optional[List[SubstancePolymerRepeatRepeatUnit]] = empty_list()
+
+    def elementProperties(self):
+        js = super(SubstancePolymerRepeat, self).elementProperties()
+        js.extend([
+            ("numberOfUnits", "numberOfUnits", int, False, None, False),
+            ("averageMolecularFormula", "averageMolecularFormula", str, False, None, False),
+            ("repeatUnitAmountType", "repeatUnitAmountType", CodeableConcept, False, None, False),
+            ("repeatUnit", "repeatUnit", SubstancePolymerRepeatRepeatUnit, True, None, False),
+        ])
+        return js
+
+
+@dataclass
 class SubstancePolymer(DomainResource):
     """ Todo.
     """
     resource_type: ClassVar[str] = "SubstancePolymer"
     class_fhir: Optional[CodeableConcept] = None
-    copolymerConnectivity: Optional[List[CodeableConcept]] = empty_list()
     geometry: Optional[CodeableConcept] = None
+    copolymerConnectivity: Optional[List[CodeableConcept]] = empty_list()
     modification: Optional[List[str]] = empty_list()
     monomerSet: Optional[List[SubstancePolymerMonomerSet]] = empty_list()
     repeat: Optional[List[SubstancePolymerRepeat]] = empty_list()
@@ -149,8 +149,8 @@ class SubstancePolymer(DomainResource):
         js = super(SubstancePolymer, self).elementProperties()
         js.extend([
             ("class_fhir", "class", CodeableConcept, False, None, False),
-            ("copolymerConnectivity", "copolymerConnectivity", CodeableConcept, True, None, False),
             ("geometry", "geometry", CodeableConcept, False, None, False),
+            ("copolymerConnectivity", "copolymerConnectivity", CodeableConcept, True, None, False),
             ("modification", "modification", str, True, None, False),
             ("monomerSet", "monomerSet", SubstancePolymerMonomerSet, True, None, False),
             ("repeat", "repeat", SubstancePolymerRepeat, True, None, False),

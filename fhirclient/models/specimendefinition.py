@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SpecimenDefinition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SpecimenDefinition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -16,30 +16,6 @@ from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .quantity import Quantity
 from .range import Range
-
-
-@dataclass
-class SpecimenDefinitionTypeTestedHandling(BackboneElement):
-    """ Specimen handling before testing.
-
-    Set of instructions for preservation/transport of the specimen at a defined
-    temperature interval, prior the testing process.
-    """
-    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedHandling"
-    instruction: Optional[str] = None
-    maxDuration: Optional[Duration] = None
-    temperatureQualifier: Optional[CodeableConcept] = None
-    temperatureRange: Optional[Range] = None
-
-    def elementProperties(self):
-        js = super(SpecimenDefinitionTypeTestedHandling, self).elementProperties()
-        js.extend([
-            ("instruction", "instruction", str, False, None, False),
-            ("maxDuration", "maxDuration", Duration, False, None, False),
-            ("temperatureQualifier", "temperatureQualifier", CodeableConcept, False, None, False),
-            ("temperatureRange", "temperatureRange", Range, False, None, False),
-        ])
-        return js
 
 
 @dataclass
@@ -67,28 +43,52 @@ class SpecimenDefinitionTypeTestedContainer(BackboneElement):
     """ The specimen's container.
     """
     resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedContainer"
-    additive: Optional[List[SpecimenDefinitionTypeTestedContainerAdditive]] = empty_list()
-    cap: Optional[CodeableConcept] = None
-    capacity: Optional[Quantity] = None
-    description: Optional[str] = None
     material: Optional[CodeableConcept] = None
+    type: Optional[CodeableConcept] = None
+    cap: Optional[CodeableConcept] = None
+    description: Optional[str] = None
+    capacity: Optional[Quantity] = None
     minimumVolumeQuantity: Optional[Quantity] = None
     minimumVolumeString: Optional[str] = None
+    additive: Optional[List[SpecimenDefinitionTypeTestedContainerAdditive]] = empty_list()
     preparation: Optional[str] = None
-    type: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(SpecimenDefinitionTypeTestedContainer, self).elementProperties()
         js.extend([
-            ("additive", "additive", SpecimenDefinitionTypeTestedContainerAdditive, True, None, False),
-            ("cap", "cap", CodeableConcept, False, None, False),
-            ("capacity", "capacity", Quantity, False, None, False),
-            ("description", "description", str, False, None, False),
             ("material", "material", CodeableConcept, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("cap", "cap", CodeableConcept, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("capacity", "capacity", Quantity, False, None, False),
             ("minimumVolumeQuantity", "minimumVolumeQuantity", Quantity, False, "minimumVolume", False),
             ("minimumVolumeString", "minimumVolumeString", str, False, "minimumVolume", False),
+            ("additive", "additive", SpecimenDefinitionTypeTestedContainerAdditive, True, None, False),
             ("preparation", "preparation", str, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class SpecimenDefinitionTypeTestedHandling(BackboneElement):
+    """ Specimen handling before testing.
+
+    Set of instructions for preservation/transport of the specimen at a defined
+    temperature interval, prior the testing process.
+    """
+    resource_type: ClassVar[str] = "SpecimenDefinitionTypeTestedHandling"
+    temperatureQualifier: Optional[CodeableConcept] = None
+    temperatureRange: Optional[Range] = None
+    maxDuration: Optional[Duration] = None
+    instruction: Optional[str] = None
+
+    def elementProperties(self):
+        js = super(SpecimenDefinitionTypeTestedHandling, self).elementProperties()
+        js.extend([
+            ("temperatureQualifier", "temperatureQualifier", CodeableConcept, False, None, False),
+            ("temperatureRange", "temperatureRange", Range, False, None, False),
+            ("maxDuration", "maxDuration", Duration, False, None, False),
+            ("instruction", "instruction", str, False, None, False),
         ])
         return js
 
@@ -100,26 +100,26 @@ class SpecimenDefinitionTypeTested(BackboneElement):
     Specimen conditioned in a container as expected by the testing laboratory.
     """
     resource_type: ClassVar[str] = "SpecimenDefinitionTypeTested"
-    container: Optional[SpecimenDefinitionTypeTestedContainer] = None
-    handling: Optional[List[SpecimenDefinitionTypeTestedHandling]] = empty_list()
     isDerived: Optional[bool] = None
+    type: Optional[CodeableConcept] = None
     preference: str = None
-    rejectionCriterion: Optional[List[CodeableConcept]] = empty_list()
+    container: Optional[SpecimenDefinitionTypeTestedContainer] = None
     requirement: Optional[str] = None
     retentionTime: Optional[Duration] = None
-    type: Optional[CodeableConcept] = None
+    rejectionCriterion: Optional[List[CodeableConcept]] = empty_list()
+    handling: Optional[List[SpecimenDefinitionTypeTestedHandling]] = empty_list()
 
     def elementProperties(self):
         js = super(SpecimenDefinitionTypeTested, self).elementProperties()
         js.extend([
-            ("container", "container", SpecimenDefinitionTypeTestedContainer, False, None, False),
-            ("handling", "handling", SpecimenDefinitionTypeTestedHandling, True, None, False),
             ("isDerived", "isDerived", bool, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
             ("preference", "preference", str, False, None, True),
-            ("rejectionCriterion", "rejectionCriterion", CodeableConcept, True, None, False),
+            ("container", "container", SpecimenDefinitionTypeTestedContainer, False, None, False),
             ("requirement", "requirement", str, False, None, False),
             ("retentionTime", "retentionTime", Duration, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
+            ("rejectionCriterion", "rejectionCriterion", CodeableConcept, True, None, False),
+            ("handling", "handling", SpecimenDefinitionTypeTestedHandling, True, None, False),
         ])
         return js
 
@@ -131,21 +131,21 @@ class SpecimenDefinition(DomainResource):
     A kind of specimen with associated set of requirements.
     """
     resource_type: ClassVar[str] = "SpecimenDefinition"
-    collection: Optional[List[CodeableConcept]] = empty_list()
     identifier: Optional[Identifier] = None
+    typeCollected: Optional[CodeableConcept] = None
     patientPreparation: Optional[List[CodeableConcept]] = empty_list()
     timeAspect: Optional[str] = None
-    typeCollected: Optional[CodeableConcept] = None
+    collection: Optional[List[CodeableConcept]] = empty_list()
     typeTested: Optional[List[SpecimenDefinitionTypeTested]] = empty_list()
 
     def elementProperties(self):
         js = super(SpecimenDefinition, self).elementProperties()
         js.extend([
-            ("collection", "collection", CodeableConcept, True, None, False),
             ("identifier", "identifier", Identifier, False, None, False),
+            ("typeCollected", "typeCollected", CodeableConcept, False, None, False),
             ("patientPreparation", "patientPreparation", CodeableConcept, True, None, False),
             ("timeAspect", "timeAspect", str, False, None, False),
-            ("typeCollected", "typeCollected", CodeableConcept, False, None, False),
+            ("collection", "collection", CodeableConcept, True, None, False),
             ("typeTested", "typeTested", SpecimenDefinitionTypeTested, True, None, False),
         ])
         return js

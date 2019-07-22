@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Claim) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Claim) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,39 +22,79 @@ from .quantity import Quantity
 
 
 @dataclass
-class ClaimSupportingInfo(BackboneElement):
-    """ Supporting information.
+class ClaimItemDetailSubDetail(BackboneElement):
+    """ Product or service provided.
 
-    Additional information codes regarding exceptions, special considerations,
-    the condition, situation, prior or concurrent issues.
+    A claim detail line. Either a simple (a product or service) or a 'group' of
+    sub-details which are simple items.
     """
-    resource_type: ClassVar[str] = "ClaimSupportingInfo"
-    category: CodeableConcept = None
-    code: Optional[CodeableConcept] = None
-    reason: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "ClaimItemDetailSubDetail"
     sequence: int = None
-    timingDate: Optional[FHIRDate] = None
-    timingPeriod: Optional[Period] = None
-    valueAttachment: Optional[Attachment] = None
-    valueBoolean: Optional[bool] = None
-    valueQuantity: Optional[Quantity] = None
-    valueReference: Optional[FHIRReference] = None
-    valueString: Optional[str] = None
+    revenue: Optional[CodeableConcept] = None
+    category: Optional[CodeableConcept] = None
+    productOrService: CodeableConcept = None
+    modifier: Optional[List[CodeableConcept]] = empty_list()
+    programCode: Optional[List[CodeableConcept]] = empty_list()
+    quantity: Optional[Quantity] = None
+    unitPrice: Optional[Money] = None
+    factor: Optional[float] = None
+    net: Optional[Money] = None
+    udi: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
-        js = super(ClaimSupportingInfo, self).elementProperties()
+        js = super(ClaimItemDetailSubDetail, self).elementProperties()
         js.extend([
-            ("category", "category", CodeableConcept, False, None, True),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("reason", "reason", CodeableConcept, False, None, False),
             ("sequence", "sequence", int, False, None, True),
-            ("timingDate", "timingDate", FHIRDate, False, "timing", False),
-            ("timingPeriod", "timingPeriod", Period, False, "timing", False),
-            ("valueAttachment", "valueAttachment", Attachment, False, "value", False),
-            ("valueBoolean", "valueBoolean", bool, False, "value", False),
-            ("valueQuantity", "valueQuantity", Quantity, False, "value", False),
-            ("valueReference", "valueReference", FHIRReference, False, "value", False),
-            ("valueString", "valueString", str, False, "value", False),
+            ("revenue", "revenue", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, False, None, False),
+            ("productOrService", "productOrService", CodeableConcept, False, None, True),
+            ("modifier", "modifier", CodeableConcept, True, None, False),
+            ("programCode", "programCode", CodeableConcept, True, None, False),
+            ("quantity", "quantity", Quantity, False, None, False),
+            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("factor", "factor", float, False, None, False),
+            ("net", "net", Money, False, None, False),
+            ("udi", "udi", FHIRReference, True, None, False),
+        ])
+        return js
+
+
+@dataclass
+class ClaimItemDetail(BackboneElement):
+    """ Product or service provided.
+
+    A claim detail line. Either a simple (a product or service) or a 'group' of
+    sub-details which are simple items.
+    """
+    resource_type: ClassVar[str] = "ClaimItemDetail"
+    sequence: int = None
+    revenue: Optional[CodeableConcept] = None
+    category: Optional[CodeableConcept] = None
+    productOrService: CodeableConcept = None
+    modifier: Optional[List[CodeableConcept]] = empty_list()
+    programCode: Optional[List[CodeableConcept]] = empty_list()
+    quantity: Optional[Quantity] = None
+    unitPrice: Optional[Money] = None
+    factor: Optional[float] = None
+    net: Optional[Money] = None
+    udi: Optional[List[FHIRReference]] = empty_list()
+    subDetail: Optional[List[ClaimItemDetailSubDetail]] = empty_list()
+
+    def elementProperties(self):
+        js = super(ClaimItemDetail, self).elementProperties()
+        js.extend([
+            ("sequence", "sequence", int, False, None, True),
+            ("revenue", "revenue", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, False, None, False),
+            ("productOrService", "productOrService", CodeableConcept, False, None, True),
+            ("modifier", "modifier", CodeableConcept, True, None, False),
+            ("programCode", "programCode", CodeableConcept, True, None, False),
+            ("quantity", "quantity", Quantity, False, None, False),
+            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("factor", "factor", float, False, None, False),
+            ("net", "net", Money, False, None, False),
+            ("udi", "udi", FHIRReference, True, None, False),
+            ("subDetail", "subDetail", ClaimItemDetailSubDetail, True, None, False),
         ])
         return js
 
@@ -68,43 +108,15 @@ class ClaimRelated(BackboneElement):
     """
     resource_type: ClassVar[str] = "ClaimRelated"
     claim: Optional[FHIRReference] = None
-    reference: Optional[Identifier] = None
     relationship: Optional[CodeableConcept] = None
+    reference: Optional[Identifier] = None
 
     def elementProperties(self):
         js = super(ClaimRelated, self).elementProperties()
         js.extend([
             ("claim", "claim", FHIRReference, False, None, False),
-            ("reference", "reference", Identifier, False, None, False),
             ("relationship", "relationship", CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class ClaimProcedure(BackboneElement):
-    """ Clinical procedures performed.
-
-    Procedures performed on the patient relevant to the billing items with the
-    claim.
-    """
-    resource_type: ClassVar[str] = "ClaimProcedure"
-    date: Optional[FHIRDate] = None
-    procedureCodeableConcept: CodeableConcept = None
-    procedureReference: FHIRReference = None
-    sequence: int = None
-    type: Optional[List[CodeableConcept]] = empty_list()
-    udi: Optional[List[FHIRReference]] = empty_list()
-
-    def elementProperties(self):
-        js = super(ClaimProcedure, self).elementProperties()
-        js.extend([
-            ("date", "date", FHIRDate, False, None, False),
-            ("procedureCodeableConcept", "procedureCodeableConcept", CodeableConcept, False, "procedure", True),
-            ("procedureReference", "procedureReference", FHIRReference, False, "procedure", True),
-            ("sequence", "sequence", int, False, None, True),
-            ("type", "type", CodeableConcept, True, None, False),
-            ("udi", "udi", FHIRReference, True, None, False),
+            ("reference", "reference", Identifier, False, None, False),
         ])
         return js
 
@@ -117,156 +129,132 @@ class ClaimPayee(BackboneElement):
     to the terms of the policy.
     """
     resource_type: ClassVar[str] = "ClaimPayee"
-    party: Optional[FHIRReference] = None
     type: CodeableConcept = None
+    party: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(ClaimPayee, self).elementProperties()
         js.extend([
-            ("party", "party", FHIRReference, False, None, False),
             ("type", "type", CodeableConcept, False, None, True),
+            ("party", "party", FHIRReference, False, None, False),
         ])
         return js
 
 
 @dataclass
-class ClaimItemDetailSubDetail(BackboneElement):
-    """ Product or service provided.
+class ClaimCareTeam(BackboneElement):
+    """ Members of the care team.
 
-    A claim detail line. Either a simple (a product or service) or a 'group' of
-    sub-details which are simple items.
+    The members of the team who provided the products and services.
     """
-    resource_type: ClassVar[str] = "ClaimItemDetailSubDetail"
-    category: Optional[CodeableConcept] = None
-    factor: Optional[float] = None
-    modifier: Optional[List[CodeableConcept]] = empty_list()
-    net: Optional[Money] = None
-    productOrService: CodeableConcept = None
-    programCode: Optional[List[CodeableConcept]] = empty_list()
-    quantity: Optional[Quantity] = None
-    revenue: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "ClaimCareTeam"
     sequence: int = None
-    udi: Optional[List[FHIRReference]] = empty_list()
-    unitPrice: Optional[Money] = None
+    provider: FHIRReference = None
+    responsible: Optional[bool] = None
+    role: Optional[CodeableConcept] = None
+    qualification: Optional[CodeableConcept] = None
 
     def elementProperties(self):
-        js = super(ClaimItemDetailSubDetail, self).elementProperties()
+        js = super(ClaimCareTeam, self).elementProperties()
         js.extend([
-            ("category", "category", CodeableConcept, False, None, False),
-            ("factor", "factor", float, False, None, False),
-            ("modifier", "modifier", CodeableConcept, True, None, False),
-            ("net", "net", Money, False, None, False),
-            ("productOrService", "productOrService", CodeableConcept, False, None, True),
-            ("programCode", "programCode", CodeableConcept, True, None, False),
-            ("quantity", "quantity", Quantity, False, None, False),
-            ("revenue", "revenue", CodeableConcept, False, None, False),
             ("sequence", "sequence", int, False, None, True),
-            ("udi", "udi", FHIRReference, True, None, False),
-            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("provider", "provider", FHIRReference, False, None, True),
+            ("responsible", "responsible", bool, False, None, False),
+            ("role", "role", CodeableConcept, False, None, False),
+            ("qualification", "qualification", CodeableConcept, False, None, False),
         ])
         return js
 
 
 @dataclass
-class ClaimItemDetail(BackboneElement):
-    """ Product or service provided.
+class ClaimSupportingInfo(BackboneElement):
+    """ Supporting information.
 
-    A claim detail line. Either a simple (a product or service) or a 'group' of
-    sub-details which are simple items.
+    Additional information codes regarding exceptions, special considerations,
+    the condition, situation, prior or concurrent issues.
     """
-    resource_type: ClassVar[str] = "ClaimItemDetail"
-    category: Optional[CodeableConcept] = None
-    factor: Optional[float] = None
-    modifier: Optional[List[CodeableConcept]] = empty_list()
-    net: Optional[Money] = None
-    productOrService: CodeableConcept = None
-    programCode: Optional[List[CodeableConcept]] = empty_list()
-    quantity: Optional[Quantity] = None
-    revenue: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "ClaimSupportingInfo"
     sequence: int = None
-    subDetail: Optional[List[ClaimItemDetailSubDetail]] = empty_list()
-    udi: Optional[List[FHIRReference]] = empty_list()
-    unitPrice: Optional[Money] = None
+    category: CodeableConcept = None
+    code: Optional[CodeableConcept] = None
+    timingDate: Optional[FHIRDate] = None
+    timingPeriod: Optional[Period] = None
+    valueBoolean: Optional[bool] = None
+    valueString: Optional[str] = None
+    valueQuantity: Optional[Quantity] = None
+    valueAttachment: Optional[Attachment] = None
+    valueReference: Optional[FHIRReference] = None
+    reason: Optional[CodeableConcept] = None
 
     def elementProperties(self):
-        js = super(ClaimItemDetail, self).elementProperties()
+        js = super(ClaimSupportingInfo, self).elementProperties()
         js.extend([
-            ("category", "category", CodeableConcept, False, None, False),
-            ("factor", "factor", float, False, None, False),
-            ("modifier", "modifier", CodeableConcept, True, None, False),
-            ("net", "net", Money, False, None, False),
-            ("productOrService", "productOrService", CodeableConcept, False, None, True),
-            ("programCode", "programCode", CodeableConcept, True, None, False),
-            ("quantity", "quantity", Quantity, False, None, False),
-            ("revenue", "revenue", CodeableConcept, False, None, False),
             ("sequence", "sequence", int, False, None, True),
-            ("subDetail", "subDetail", ClaimItemDetailSubDetail, True, None, False),
-            ("udi", "udi", FHIRReference, True, None, False),
-            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("category", "category", CodeableConcept, False, None, True),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("timingDate", "timingDate", FHIRDate, False, "timing", False),
+            ("timingPeriod", "timingPeriod", Period, False, "timing", False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", False),
+            ("valueString", "valueString", str, False, "value", False),
+            ("valueQuantity", "valueQuantity", Quantity, False, "value", False),
+            ("valueAttachment", "valueAttachment", Attachment, False, "value", False),
+            ("valueReference", "valueReference", FHIRReference, False, "value", False),
+            ("reason", "reason", CodeableConcept, False, None, False),
         ])
         return js
 
 
 @dataclass
-class ClaimItem(BackboneElement):
-    """ Product or service provided.
+class ClaimDiagnosis(BackboneElement):
+    """ Pertinent diagnosis information.
 
-    A claim line. Either a simple  product or service or a 'group' of details
-    which can each be a simple items or groups of sub-details.
+    Information about diagnoses relevant to the claim items.
     """
-    resource_type: ClassVar[str] = "ClaimItem"
-    bodySite: Optional[CodeableConcept] = None
-    careTeamSequence: Optional[List[int]] = empty_list()
-    category: Optional[CodeableConcept] = None
-    detail: Optional[List[ClaimItemDetail]] = empty_list()
-    diagnosisSequence: Optional[List[int]] = empty_list()
-    encounter: Optional[List[FHIRReference]] = empty_list()
-    factor: Optional[float] = None
-    informationSequence: Optional[List[int]] = empty_list()
-    locationAddress: Optional[Address] = None
-    locationCodeableConcept: Optional[CodeableConcept] = None
-    locationReference: Optional[FHIRReference] = None
-    modifier: Optional[List[CodeableConcept]] = empty_list()
-    net: Optional[Money] = None
-    procedureSequence: Optional[List[int]] = empty_list()
-    productOrService: CodeableConcept = None
-    programCode: Optional[List[CodeableConcept]] = empty_list()
-    quantity: Optional[Quantity] = None
-    revenue: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "ClaimDiagnosis"
     sequence: int = None
-    servicedDate: Optional[FHIRDate] = None
-    servicedPeriod: Optional[Period] = None
-    subSite: Optional[List[CodeableConcept]] = empty_list()
-    udi: Optional[List[FHIRReference]] = empty_list()
-    unitPrice: Optional[Money] = None
+    diagnosisCodeableConcept: CodeableConcept = None
+    diagnosisReference: FHIRReference = None
+    type: Optional[List[CodeableConcept]] = empty_list()
+    onAdmission: Optional[CodeableConcept] = None
+    packageCode: Optional[CodeableConcept] = None
 
     def elementProperties(self):
-        js = super(ClaimItem, self).elementProperties()
+        js = super(ClaimDiagnosis, self).elementProperties()
         js.extend([
-            ("bodySite", "bodySite", CodeableConcept, False, None, False),
-            ("careTeamSequence", "careTeamSequence", int, True, None, False),
-            ("category", "category", CodeableConcept, False, None, False),
-            ("detail", "detail", ClaimItemDetail, True, None, False),
-            ("diagnosisSequence", "diagnosisSequence", int, True, None, False),
-            ("encounter", "encounter", FHIRReference, True, None, False),
-            ("factor", "factor", float, False, None, False),
-            ("informationSequence", "informationSequence", int, True, None, False),
-            ("locationAddress", "locationAddress", Address, False, "location", False),
-            ("locationCodeableConcept", "locationCodeableConcept", CodeableConcept, False, "location", False),
-            ("locationReference", "locationReference", FHIRReference, False, "location", False),
-            ("modifier", "modifier", CodeableConcept, True, None, False),
-            ("net", "net", Money, False, None, False),
-            ("procedureSequence", "procedureSequence", int, True, None, False),
-            ("productOrService", "productOrService", CodeableConcept, False, None, True),
-            ("programCode", "programCode", CodeableConcept, True, None, False),
-            ("quantity", "quantity", Quantity, False, None, False),
-            ("revenue", "revenue", CodeableConcept, False, None, False),
             ("sequence", "sequence", int, False, None, True),
-            ("servicedDate", "servicedDate", FHIRDate, False, "serviced", False),
-            ("servicedPeriod", "servicedPeriod", Period, False, "serviced", False),
-            ("subSite", "subSite", CodeableConcept, True, None, False),
+            ("diagnosisCodeableConcept", "diagnosisCodeableConcept", CodeableConcept, False, "diagnosis", True),
+            ("diagnosisReference", "diagnosisReference", FHIRReference, False, "diagnosis", True),
+            ("type", "type", CodeableConcept, True, None, False),
+            ("onAdmission", "onAdmission", CodeableConcept, False, None, False),
+            ("packageCode", "packageCode", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class ClaimProcedure(BackboneElement):
+    """ Clinical procedures performed.
+
+    Procedures performed on the patient relevant to the billing items with the
+    claim.
+    """
+    resource_type: ClassVar[str] = "ClaimProcedure"
+    sequence: int = None
+    type: Optional[List[CodeableConcept]] = empty_list()
+    date: Optional[FHIRDate] = None
+    procedureCodeableConcept: CodeableConcept = None
+    procedureReference: FHIRReference = None
+    udi: Optional[List[FHIRReference]] = empty_list()
+
+    def elementProperties(self):
+        js = super(ClaimProcedure, self).elementProperties()
+        js.extend([
+            ("sequence", "sequence", int, False, None, True),
+            ("type", "type", CodeableConcept, True, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("procedureCodeableConcept", "procedureCodeableConcept", CodeableConcept, False, "procedure", True),
+            ("procedureReference", "procedureReference", FHIRReference, False, "procedure", True),
             ("udi", "udi", FHIRReference, True, None, False),
-            ("unitPrice", "unitPrice", Money, False, None, False),
         ])
         return js
 
@@ -279,76 +267,24 @@ class ClaimInsurance(BackboneElement):
     services specified on the claim.
     """
     resource_type: ClassVar[str] = "ClaimInsurance"
-    businessArrangement: Optional[str] = None
-    claimResponse: Optional[FHIRReference] = None
-    coverage: FHIRReference = None
+    sequence: int = None
     focal: bool = None
     identifier: Optional[Identifier] = None
+    coverage: FHIRReference = None
+    businessArrangement: Optional[str] = None
     preAuthRef: Optional[List[str]] = empty_list()
-    sequence: int = None
+    claimResponse: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(ClaimInsurance, self).elementProperties()
         js.extend([
-            ("businessArrangement", "businessArrangement", str, False, None, False),
-            ("claimResponse", "claimResponse", FHIRReference, False, None, False),
-            ("coverage", "coverage", FHIRReference, False, None, True),
+            ("sequence", "sequence", int, False, None, True),
             ("focal", "focal", bool, False, None, True),
             ("identifier", "identifier", Identifier, False, None, False),
+            ("coverage", "coverage", FHIRReference, False, None, True),
+            ("businessArrangement", "businessArrangement", str, False, None, False),
             ("preAuthRef", "preAuthRef", str, True, None, False),
-            ("sequence", "sequence", int, False, None, True),
-        ])
-        return js
-
-
-@dataclass
-class ClaimDiagnosis(BackboneElement):
-    """ Pertinent diagnosis information.
-
-    Information about diagnoses relevant to the claim items.
-    """
-    resource_type: ClassVar[str] = "ClaimDiagnosis"
-    diagnosisCodeableConcept: CodeableConcept = None
-    diagnosisReference: FHIRReference = None
-    onAdmission: Optional[CodeableConcept] = None
-    packageCode: Optional[CodeableConcept] = None
-    sequence: int = None
-    type: Optional[List[CodeableConcept]] = empty_list()
-
-    def elementProperties(self):
-        js = super(ClaimDiagnosis, self).elementProperties()
-        js.extend([
-            ("diagnosisCodeableConcept", "diagnosisCodeableConcept", CodeableConcept, False, "diagnosis", True),
-            ("diagnosisReference", "diagnosisReference", FHIRReference, False, "diagnosis", True),
-            ("onAdmission", "onAdmission", CodeableConcept, False, None, False),
-            ("packageCode", "packageCode", CodeableConcept, False, None, False),
-            ("sequence", "sequence", int, False, None, True),
-            ("type", "type", CodeableConcept, True, None, False),
-        ])
-        return js
-
-
-@dataclass
-class ClaimCareTeam(BackboneElement):
-    """ Members of the care team.
-
-    The members of the team who provided the products and services.
-    """
-    resource_type: ClassVar[str] = "ClaimCareTeam"
-    provider: FHIRReference = None
-    qualification: Optional[CodeableConcept] = None
-    responsible: Optional[bool] = None
-    role: Optional[CodeableConcept] = None
-    sequence: int = None
-
-    def elementProperties(self):
-        js = super(ClaimCareTeam, self).elementProperties()
-        js.extend([
-            ("provider", "provider", FHIRReference, False, None, True),
-            ("qualification", "qualification", CodeableConcept, False, None, False),
-            ("responsible", "responsible", bool, False, None, False),
-            ("role", "role", CodeableConcept, False, None, False),
-            ("sequence", "sequence", int, False, None, True),
+            ("claimResponse", "claimResponse", FHIRReference, False, None, False),
         ])
         return js
 
@@ -362,17 +298,81 @@ class ClaimAccident(BackboneElement):
     """
     resource_type: ClassVar[str] = "ClaimAccident"
     date: FHIRDate = None
+    type: Optional[CodeableConcept] = None
     locationAddress: Optional[Address] = None
     locationReference: Optional[FHIRReference] = None
-    type: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(ClaimAccident, self).elementProperties()
         js.extend([
             ("date", "date", FHIRDate, False, None, True),
+            ("type", "type", CodeableConcept, False, None, False),
             ("locationAddress", "locationAddress", Address, False, "location", False),
             ("locationReference", "locationReference", FHIRReference, False, "location", False),
-            ("type", "type", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class ClaimItem(BackboneElement):
+    """ Product or service provided.
+
+    A claim line. Either a simple  product or service or a 'group' of details
+    which can each be a simple items or groups of sub-details.
+    """
+    resource_type: ClassVar[str] = "ClaimItem"
+    sequence: int = None
+    careTeamSequence: Optional[List[int]] = empty_list()
+    diagnosisSequence: Optional[List[int]] = empty_list()
+    procedureSequence: Optional[List[int]] = empty_list()
+    informationSequence: Optional[List[int]] = empty_list()
+    revenue: Optional[CodeableConcept] = None
+    category: Optional[CodeableConcept] = None
+    productOrService: CodeableConcept = None
+    modifier: Optional[List[CodeableConcept]] = empty_list()
+    programCode: Optional[List[CodeableConcept]] = empty_list()
+    servicedDate: Optional[FHIRDate] = None
+    servicedPeriod: Optional[Period] = None
+    locationCodeableConcept: Optional[CodeableConcept] = None
+    locationAddress: Optional[Address] = None
+    locationReference: Optional[FHIRReference] = None
+    quantity: Optional[Quantity] = None
+    unitPrice: Optional[Money] = None
+    factor: Optional[float] = None
+    net: Optional[Money] = None
+    udi: Optional[List[FHIRReference]] = empty_list()
+    bodySite: Optional[CodeableConcept] = None
+    subSite: Optional[List[CodeableConcept]] = empty_list()
+    encounter: Optional[List[FHIRReference]] = empty_list()
+    detail: Optional[List[ClaimItemDetail]] = empty_list()
+
+    def elementProperties(self):
+        js = super(ClaimItem, self).elementProperties()
+        js.extend([
+            ("sequence", "sequence", int, False, None, True),
+            ("careTeamSequence", "careTeamSequence", int, True, None, False),
+            ("diagnosisSequence", "diagnosisSequence", int, True, None, False),
+            ("procedureSequence", "procedureSequence", int, True, None, False),
+            ("informationSequence", "informationSequence", int, True, None, False),
+            ("revenue", "revenue", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, False, None, False),
+            ("productOrService", "productOrService", CodeableConcept, False, None, True),
+            ("modifier", "modifier", CodeableConcept, True, None, False),
+            ("programCode", "programCode", CodeableConcept, True, None, False),
+            ("servicedDate", "servicedDate", FHIRDate, False, "serviced", False),
+            ("servicedPeriod", "servicedPeriod", Period, False, "serviced", False),
+            ("locationCodeableConcept", "locationCodeableConcept", CodeableConcept, False, "location", False),
+            ("locationAddress", "locationAddress", Address, False, "location", False),
+            ("locationReference", "locationReference", FHIRReference, False, "location", False),
+            ("quantity", "quantity", Quantity, False, None, False),
+            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("factor", "factor", float, False, None, False),
+            ("net", "net", Money, False, None, False),
+            ("udi", "udi", FHIRReference, True, None, False),
+            ("bodySite", "bodySite", CodeableConcept, False, None, False),
+            ("subSite", "subSite", CodeableConcept, True, None, False),
+            ("encounter", "encounter", FHIRReference, True, None, False),
+            ("detail", "detail", ClaimItemDetail, True, None, False),
         ])
         return js
 
@@ -386,63 +386,63 @@ class Claim(DomainResource):
     insurer for reimbursement.
     """
     resource_type: ClassVar[str] = "Claim"
-    accident: Optional[ClaimAccident] = None
-    billablePeriod: Optional[Period] = None
-    careTeam: Optional[List[ClaimCareTeam]] = empty_list()
-    created: FHIRDate = None
-    diagnosis: Optional[List[ClaimDiagnosis]] = empty_list()
-    enterer: Optional[FHIRReference] = None
-    facility: Optional[FHIRReference] = None
-    fundsReserve: Optional[CodeableConcept] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    insurance: List[ClaimInsurance] = empty_list()
-    insurer: Optional[FHIRReference] = None
-    item: Optional[List[ClaimItem]] = empty_list()
-    originalPrescription: Optional[FHIRReference] = None
-    patient: FHIRReference = None
-    payee: Optional[ClaimPayee] = None
-    prescription: Optional[FHIRReference] = None
-    priority: CodeableConcept = None
-    procedure: Optional[List[ClaimProcedure]] = empty_list()
-    provider: FHIRReference = None
-    referral: Optional[FHIRReference] = None
-    related: Optional[List[ClaimRelated]] = empty_list()
     status: str = None
-    subType: Optional[CodeableConcept] = None
-    supportingInfo: Optional[List[ClaimSupportingInfo]] = empty_list()
-    total: Optional[Money] = None
     type: CodeableConcept = None
+    subType: Optional[CodeableConcept] = None
     use: str = None
+    patient: FHIRReference = None
+    billablePeriod: Optional[Period] = None
+    created: FHIRDate = None
+    enterer: Optional[FHIRReference] = None
+    insurer: Optional[FHIRReference] = None
+    provider: FHIRReference = None
+    priority: CodeableConcept = None
+    fundsReserve: Optional[CodeableConcept] = None
+    related: Optional[List[ClaimRelated]] = empty_list()
+    prescription: Optional[FHIRReference] = None
+    originalPrescription: Optional[FHIRReference] = None
+    payee: Optional[ClaimPayee] = None
+    referral: Optional[FHIRReference] = None
+    facility: Optional[FHIRReference] = None
+    careTeam: Optional[List[ClaimCareTeam]] = empty_list()
+    supportingInfo: Optional[List[ClaimSupportingInfo]] = empty_list()
+    diagnosis: Optional[List[ClaimDiagnosis]] = empty_list()
+    procedure: Optional[List[ClaimProcedure]] = empty_list()
+    insurance: List[ClaimInsurance] = empty_list()
+    accident: Optional[ClaimAccident] = None
+    item: Optional[List[ClaimItem]] = empty_list()
+    total: Optional[Money] = None
 
     def elementProperties(self):
         js = super(Claim, self).elementProperties()
         js.extend([
-            ("accident", "accident", ClaimAccident, False, None, False),
-            ("billablePeriod", "billablePeriod", Period, False, None, False),
-            ("careTeam", "careTeam", ClaimCareTeam, True, None, False),
-            ("created", "created", FHIRDate, False, None, True),
-            ("diagnosis", "diagnosis", ClaimDiagnosis, True, None, False),
-            ("enterer", "enterer", FHIRReference, False, None, False),
-            ("facility", "facility", FHIRReference, False, None, False),
-            ("fundsReserve", "fundsReserve", CodeableConcept, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("insurance", "insurance", ClaimInsurance, True, None, True),
-            ("insurer", "insurer", FHIRReference, False, None, False),
-            ("item", "item", ClaimItem, True, None, False),
-            ("originalPrescription", "originalPrescription", FHIRReference, False, None, False),
-            ("patient", "patient", FHIRReference, False, None, True),
-            ("payee", "payee", ClaimPayee, False, None, False),
-            ("prescription", "prescription", FHIRReference, False, None, False),
-            ("priority", "priority", CodeableConcept, False, None, True),
-            ("procedure", "procedure", ClaimProcedure, True, None, False),
-            ("provider", "provider", FHIRReference, False, None, True),
-            ("referral", "referral", FHIRReference, False, None, False),
-            ("related", "related", ClaimRelated, True, None, False),
             ("status", "status", str, False, None, True),
-            ("subType", "subType", CodeableConcept, False, None, False),
-            ("supportingInfo", "supportingInfo", ClaimSupportingInfo, True, None, False),
-            ("total", "total", Money, False, None, False),
             ("type", "type", CodeableConcept, False, None, True),
+            ("subType", "subType", CodeableConcept, False, None, False),
             ("use", "use", str, False, None, True),
+            ("patient", "patient", FHIRReference, False, None, True),
+            ("billablePeriod", "billablePeriod", Period, False, None, False),
+            ("created", "created", FHIRDate, False, None, True),
+            ("enterer", "enterer", FHIRReference, False, None, False),
+            ("insurer", "insurer", FHIRReference, False, None, False),
+            ("provider", "provider", FHIRReference, False, None, True),
+            ("priority", "priority", CodeableConcept, False, None, True),
+            ("fundsReserve", "fundsReserve", CodeableConcept, False, None, False),
+            ("related", "related", ClaimRelated, True, None, False),
+            ("prescription", "prescription", FHIRReference, False, None, False),
+            ("originalPrescription", "originalPrescription", FHIRReference, False, None, False),
+            ("payee", "payee", ClaimPayee, False, None, False),
+            ("referral", "referral", FHIRReference, False, None, False),
+            ("facility", "facility", FHIRReference, False, None, False),
+            ("careTeam", "careTeam", ClaimCareTeam, True, None, False),
+            ("supportingInfo", "supportingInfo", ClaimSupportingInfo, True, None, False),
+            ("diagnosis", "diagnosis", ClaimDiagnosis, True, None, False),
+            ("procedure", "procedure", ClaimProcedure, True, None, False),
+            ("insurance", "insurance", ClaimInsurance, True, None, True),
+            ("accident", "accident", ClaimAccident, False, None, False),
+            ("item", "item", ClaimItem, True, None, False),
+            ("total", "total", Money, False, None, False),
         ])
         return js

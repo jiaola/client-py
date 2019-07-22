@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Goal) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Goal) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -28,30 +28,30 @@ class GoalTarget(BackboneElement):
     Indicates what should be done by when.
     """
     resource_type: ClassVar[str] = "GoalTarget"
-    detailBoolean: Optional[bool] = None
-    detailCodeableConcept: Optional[CodeableConcept] = None
-    detailInteger: Optional[int] = None
+    measure: Optional[CodeableConcept] = None
     detailQuantity: Optional[Quantity] = None
     detailRange: Optional[Range] = None
-    detailRatio: Optional[Ratio] = None
+    detailCodeableConcept: Optional[CodeableConcept] = None
     detailString: Optional[str] = None
+    detailBoolean: Optional[bool] = None
+    detailInteger: Optional[int] = None
+    detailRatio: Optional[Ratio] = None
     dueDate: Optional[FHIRDate] = None
     dueDuration: Optional[Duration] = None
-    measure: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(GoalTarget, self).elementProperties()
         js.extend([
-            ("detailBoolean", "detailBoolean", bool, False, "detail", False),
-            ("detailCodeableConcept", "detailCodeableConcept", CodeableConcept, False, "detail", False),
-            ("detailInteger", "detailInteger", int, False, "detail", False),
+            ("measure", "measure", CodeableConcept, False, None, False),
             ("detailQuantity", "detailQuantity", Quantity, False, "detail", False),
             ("detailRange", "detailRange", Range, False, "detail", False),
-            ("detailRatio", "detailRatio", Ratio, False, "detail", False),
+            ("detailCodeableConcept", "detailCodeableConcept", CodeableConcept, False, "detail", False),
             ("detailString", "detailString", str, False, "detail", False),
+            ("detailBoolean", "detailBoolean", bool, False, "detail", False),
+            ("detailInteger", "detailInteger", int, False, "detail", False),
+            ("detailRatio", "detailRatio", Ratio, False, "detail", False),
             ("dueDate", "dueDate", FHIRDate, False, "due", False),
             ("dueDuration", "dueDuration", Duration, False, "due", False),
-            ("measure", "measure", CodeableConcept, False, None, False),
         ])
         return js
 
@@ -66,43 +66,43 @@ class Goal(DomainResource):
     objective, etc.
     """
     resource_type: ClassVar[str] = "Goal"
-    achievementStatus: Optional[CodeableConcept] = None
-    addresses: Optional[List[FHIRReference]] = empty_list()
-    category: Optional[List[CodeableConcept]] = empty_list()
-    description: CodeableConcept = None
-    expressedBy: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
     lifecycleStatus: str = None
+    achievementStatus: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
+    priority: Optional[CodeableConcept] = None
+    description: CodeableConcept = None
+    subject: FHIRReference = None
+    startDate: Optional[FHIRDate] = None
+    startCodeableConcept: Optional[CodeableConcept] = None
+    target: Optional[List[GoalTarget]] = empty_list()
+    statusDate: Optional[FHIRDate] = None
+    statusReason: Optional[str] = None
+    expressedBy: Optional[FHIRReference] = None
+    addresses: Optional[List[FHIRReference]] = empty_list()
     note: Optional[List[Annotation]] = empty_list()
     outcomeCode: Optional[List[CodeableConcept]] = empty_list()
     outcomeReference: Optional[List[FHIRReference]] = empty_list()
-    priority: Optional[CodeableConcept] = None
-    startCodeableConcept: Optional[CodeableConcept] = None
-    startDate: Optional[FHIRDate] = None
-    statusDate: Optional[FHIRDate] = None
-    statusReason: Optional[str] = None
-    subject: FHIRReference = None
-    target: Optional[List[GoalTarget]] = empty_list()
 
     def elementProperties(self):
         js = super(Goal, self).elementProperties()
         js.extend([
-            ("achievementStatus", "achievementStatus", CodeableConcept, False, None, False),
-            ("addresses", "addresses", FHIRReference, True, None, False),
-            ("category", "category", CodeableConcept, True, None, False),
-            ("description", "description", CodeableConcept, False, None, True),
-            ("expressedBy", "expressedBy", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
             ("lifecycleStatus", "lifecycleStatus", str, False, None, True),
+            ("achievementStatus", "achievementStatus", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
+            ("priority", "priority", CodeableConcept, False, None, False),
+            ("description", "description", CodeableConcept, False, None, True),
+            ("subject", "subject", FHIRReference, False, None, True),
+            ("startDate", "startDate", FHIRDate, False, "start", False),
+            ("startCodeableConcept", "startCodeableConcept", CodeableConcept, False, "start", False),
+            ("target", "target", GoalTarget, True, None, False),
+            ("statusDate", "statusDate", FHIRDate, False, None, False),
+            ("statusReason", "statusReason", str, False, None, False),
+            ("expressedBy", "expressedBy", FHIRReference, False, None, False),
+            ("addresses", "addresses", FHIRReference, True, None, False),
             ("note", "note", Annotation, True, None, False),
             ("outcomeCode", "outcomeCode", CodeableConcept, True, None, False),
             ("outcomeReference", "outcomeReference", FHIRReference, True, None, False),
-            ("priority", "priority", CodeableConcept, False, None, False),
-            ("startCodeableConcept", "startCodeableConcept", CodeableConcept, False, "start", False),
-            ("startDate", "startDate", FHIRDate, False, "start", False),
-            ("statusDate", "statusDate", FHIRDate, False, None, False),
-            ("statusReason", "statusReason", str, False, None, False),
-            ("subject", "subject", FHIRReference, False, None, True),
-            ("target", "target", GoalTarget, True, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Parameters) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Parameters) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -51,113 +51,113 @@ class ParametersParameter(BackboneElement):
     """
     resource_type: ClassVar[str] = "ParametersParameter"
     name: str = None
-    part: Optional[List[ParametersParameter]] = empty_list()
-    resource: Optional[Resource] = None
-    valueAddress: Optional[Address] = None
-    valueAge: Optional[Age] = None
-    valueAnnotation: Optional[Annotation] = None
-    valueAttachment: Optional[Attachment] = None
     valueBase64Binary: Optional[str] = None
     valueBoolean: Optional[bool] = None
     valueCanonical: Optional[str] = None
     valueCode: Optional[str] = None
-    valueCodeableConcept: Optional[CodeableConcept] = None
-    valueCoding: Optional[Coding] = None
-    valueContactDetail: Optional[ContactDetail] = None
-    valueContactPoint: Optional[ContactPoint] = None
-    valueContributor: Optional[Contributor] = None
-    valueCount: Optional[Count] = None
-    valueDataRequirement: Optional[DataRequirement] = None
     valueDate: Optional[FHIRDate] = None
     valueDateTime: Optional[FHIRDate] = None
     valueDecimal: Optional[float] = None
-    valueDistance: Optional[Distance] = None
-    valueDosage: Optional[Dosage] = None
-    valueDuration: Optional[Duration] = None
-    valueExpression: Optional[Expression] = None
-    valueHumanName: Optional[HumanName] = None
     valueId: Optional[str] = None
-    valueIdentifier: Optional[Identifier] = None
     valueInstant: Optional[FHIRDate] = None
     valueInteger: Optional[int] = None
     valueMarkdown: Optional[str] = None
-    valueMoney: Optional[Money] = None
     valueOid: Optional[str] = None
-    valueParameterDefinition: Optional[ParameterDefinition] = None
-    valuePeriod: Optional[Period] = None
     valuePositiveInt: Optional[int] = None
+    valueString: Optional[str] = None
+    valueTime: Optional[FHIRDate] = None
+    valueUnsignedInt: Optional[int] = None
+    valueUri: Optional[str] = None
+    valueUrl: Optional[str] = None
+    valueUuid: Optional[str] = None
+    valueAddress: Optional[Address] = None
+    valueAge: Optional[Age] = None
+    valueAnnotation: Optional[Annotation] = None
+    valueAttachment: Optional[Attachment] = None
+    valueCodeableConcept: Optional[CodeableConcept] = None
+    valueCoding: Optional[Coding] = None
+    valueContactPoint: Optional[ContactPoint] = None
+    valueCount: Optional[Count] = None
+    valueDistance: Optional[Distance] = None
+    valueDuration: Optional[Duration] = None
+    valueHumanName: Optional[HumanName] = None
+    valueIdentifier: Optional[Identifier] = None
+    valueMoney: Optional[Money] = None
+    valuePeriod: Optional[Period] = None
     valueQuantity: Optional[Quantity] = None
     valueRange: Optional[Range] = None
     valueRatio: Optional[Ratio] = None
     valueReference: Optional[FHIRReference] = None
-    valueRelatedArtifact: Optional[RelatedArtifact] = None
     valueSampledData: Optional[SampledData] = None
     valueSignature: Optional[Signature] = None
-    valueString: Optional[str] = None
-    valueTime: Optional[FHIRDate] = None
     valueTiming: Optional[Timing] = None
+    valueContactDetail: Optional[ContactDetail] = None
+    valueContributor: Optional[Contributor] = None
+    valueDataRequirement: Optional[DataRequirement] = None
+    valueExpression: Optional[Expression] = None
+    valueParameterDefinition: Optional[ParameterDefinition] = None
+    valueRelatedArtifact: Optional[RelatedArtifact] = None
     valueTriggerDefinition: Optional[TriggerDefinition] = None
-    valueUnsignedInt: Optional[int] = None
-    valueUri: Optional[str] = None
-    valueUrl: Optional[str] = None
     valueUsageContext: Optional[UsageContext] = None
-    valueUuid: Optional[str] = None
+    valueDosage: Optional[Dosage] = None
+    resource: Optional[Resource] = None
+    part: Optional[List[ParametersParameter]] = empty_list()
 
     def elementProperties(self):
         js = super(ParametersParameter, self).elementProperties()
         js.extend([
             ("name", "name", str, False, None, True),
-            ("part", "part", ParametersParameter, True, None, False),
-            ("resource", "resource", Resource, False, None, False),
-            ("valueAddress", "valueAddress", Address, False, "value", False),
-            ("valueAge", "valueAge", Age, False, "value", False),
-            ("valueAnnotation", "valueAnnotation", Annotation, False, "value", False),
-            ("valueAttachment", "valueAttachment", Attachment, False, "value", False),
             ("valueBase64Binary", "valueBase64Binary", str, False, "value", False),
             ("valueBoolean", "valueBoolean", bool, False, "value", False),
             ("valueCanonical", "valueCanonical", str, False, "value", False),
             ("valueCode", "valueCode", str, False, "value", False),
-            ("valueCodeableConcept", "valueCodeableConcept", CodeableConcept, False, "value", False),
-            ("valueCoding", "valueCoding", Coding, False, "value", False),
-            ("valueContactDetail", "valueContactDetail", ContactDetail, False, "value", False),
-            ("valueContactPoint", "valueContactPoint", ContactPoint, False, "value", False),
-            ("valueContributor", "valueContributor", Contributor, False, "value", False),
-            ("valueCount", "valueCount", Count, False, "value", False),
-            ("valueDataRequirement", "valueDataRequirement", DataRequirement, False, "value", False),
             ("valueDate", "valueDate", FHIRDate, False, "value", False),
             ("valueDateTime", "valueDateTime", FHIRDate, False, "value", False),
             ("valueDecimal", "valueDecimal", float, False, "value", False),
-            ("valueDistance", "valueDistance", Distance, False, "value", False),
-            ("valueDosage", "valueDosage", Dosage, False, "value", False),
-            ("valueDuration", "valueDuration", Duration, False, "value", False),
-            ("valueExpression", "valueExpression", Expression, False, "value", False),
-            ("valueHumanName", "valueHumanName", HumanName, False, "value", False),
             ("valueId", "valueId", str, False, "value", False),
-            ("valueIdentifier", "valueIdentifier", Identifier, False, "value", False),
             ("valueInstant", "valueInstant", FHIRDate, False, "value", False),
             ("valueInteger", "valueInteger", int, False, "value", False),
             ("valueMarkdown", "valueMarkdown", str, False, "value", False),
-            ("valueMoney", "valueMoney", Money, False, "value", False),
             ("valueOid", "valueOid", str, False, "value", False),
-            ("valueParameterDefinition", "valueParameterDefinition", ParameterDefinition, False, "value", False),
-            ("valuePeriod", "valuePeriod", Period, False, "value", False),
             ("valuePositiveInt", "valuePositiveInt", int, False, "value", False),
+            ("valueString", "valueString", str, False, "value", False),
+            ("valueTime", "valueTime", FHIRDate, False, "value", False),
+            ("valueUnsignedInt", "valueUnsignedInt", int, False, "value", False),
+            ("valueUri", "valueUri", str, False, "value", False),
+            ("valueUrl", "valueUrl", str, False, "value", False),
+            ("valueUuid", "valueUuid", str, False, "value", False),
+            ("valueAddress", "valueAddress", Address, False, "value", False),
+            ("valueAge", "valueAge", Age, False, "value", False),
+            ("valueAnnotation", "valueAnnotation", Annotation, False, "value", False),
+            ("valueAttachment", "valueAttachment", Attachment, False, "value", False),
+            ("valueCodeableConcept", "valueCodeableConcept", CodeableConcept, False, "value", False),
+            ("valueCoding", "valueCoding", Coding, False, "value", False),
+            ("valueContactPoint", "valueContactPoint", ContactPoint, False, "value", False),
+            ("valueCount", "valueCount", Count, False, "value", False),
+            ("valueDistance", "valueDistance", Distance, False, "value", False),
+            ("valueDuration", "valueDuration", Duration, False, "value", False),
+            ("valueHumanName", "valueHumanName", HumanName, False, "value", False),
+            ("valueIdentifier", "valueIdentifier", Identifier, False, "value", False),
+            ("valueMoney", "valueMoney", Money, False, "value", False),
+            ("valuePeriod", "valuePeriod", Period, False, "value", False),
             ("valueQuantity", "valueQuantity", Quantity, False, "value", False),
             ("valueRange", "valueRange", Range, False, "value", False),
             ("valueRatio", "valueRatio", Ratio, False, "value", False),
             ("valueReference", "valueReference", FHIRReference, False, "value", False),
-            ("valueRelatedArtifact", "valueRelatedArtifact", RelatedArtifact, False, "value", False),
             ("valueSampledData", "valueSampledData", SampledData, False, "value", False),
             ("valueSignature", "valueSignature", Signature, False, "value", False),
-            ("valueString", "valueString", str, False, "value", False),
-            ("valueTime", "valueTime", FHIRDate, False, "value", False),
             ("valueTiming", "valueTiming", Timing, False, "value", False),
+            ("valueContactDetail", "valueContactDetail", ContactDetail, False, "value", False),
+            ("valueContributor", "valueContributor", Contributor, False, "value", False),
+            ("valueDataRequirement", "valueDataRequirement", DataRequirement, False, "value", False),
+            ("valueExpression", "valueExpression", Expression, False, "value", False),
+            ("valueParameterDefinition", "valueParameterDefinition", ParameterDefinition, False, "value", False),
+            ("valueRelatedArtifact", "valueRelatedArtifact", RelatedArtifact, False, "value", False),
             ("valueTriggerDefinition", "valueTriggerDefinition", TriggerDefinition, False, "value", False),
-            ("valueUnsignedInt", "valueUnsignedInt", int, False, "value", False),
-            ("valueUri", "valueUri", str, False, "value", False),
-            ("valueUrl", "valueUrl", str, False, "value", False),
             ("valueUsageContext", "valueUsageContext", UsageContext, False, "value", False),
-            ("valueUuid", "valueUuid", str, False, "value", False),
+            ("valueDosage", "valueDosage", Dosage, False, "value", False),
+            ("resource", "resource", Resource, False, None, False),
+            ("part", "part", ParametersParameter, True, None, False),
         ])
         return js
 

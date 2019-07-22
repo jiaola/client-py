@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -27,17 +27,17 @@ class ImplementationGuideManifestResource(BackboneElement):
     example resource.
     """
     resource_type: ClassVar[str] = "ImplementationGuideManifestResource"
+    reference: FHIRReference = None
     exampleBoolean: Optional[bool] = None
     exampleCanonical: Optional[str] = None
-    reference: FHIRReference = None
     relativePath: Optional[str] = None
 
     def elementProperties(self):
         js = super(ImplementationGuideManifestResource, self).elementProperties()
         js.extend([
+            ("reference", "reference", FHIRReference, False, None, True),
             ("exampleBoolean", "exampleBoolean", bool, False, "example", False),
             ("exampleCanonical", "exampleCanonical", str, False, "example", False),
-            ("reference", "reference", FHIRReference, False, None, True),
             ("relativePath", "relativePath", str, False, None, False),
         ])
         return js
@@ -50,104 +50,36 @@ class ImplementationGuideManifestPage(BackboneElement):
     Information about a page within the IG.
     """
     resource_type: ClassVar[str] = "ImplementationGuideManifestPage"
-    anchor: Optional[List[str]] = empty_list()
     name: str = None
     title: Optional[str] = None
+    anchor: Optional[List[str]] = empty_list()
 
     def elementProperties(self):
         js = super(ImplementationGuideManifestPage, self).elementProperties()
         js.extend([
-            ("anchor", "anchor", str, True, None, False),
             ("name", "name", str, False, None, True),
             ("title", "title", str, False, None, False),
+            ("anchor", "anchor", str, True, None, False),
         ])
         return js
 
 
 @dataclass
-class ImplementationGuideManifest(BackboneElement):
-    """ Information about an assembled IG.
+class ImplementationGuideDefinitionGrouping(BackboneElement):
+    """ Grouping used to present related resources in the IG.
 
-    Information about an assembled implementation guide, created by the
-    publication tooling.
+    A logical group of resources. Logical groups can be used when building
+    pages.
     """
-    resource_type: ClassVar[str] = "ImplementationGuideManifest"
-    image: Optional[List[str]] = empty_list()
-    other: Optional[List[str]] = empty_list()
-    page: Optional[List[ImplementationGuideManifestPage]] = empty_list()
-    rendering: Optional[str] = None
-    resource: List[ImplementationGuideManifestResource] = empty_list()
+    resource_type: ClassVar[str] = "ImplementationGuideDefinitionGrouping"
+    name: str = None
+    description: Optional[str] = None
 
     def elementProperties(self):
-        js = super(ImplementationGuideManifest, self).elementProperties()
+        js = super(ImplementationGuideDefinitionGrouping, self).elementProperties()
         js.extend([
-            ("image", "image", str, True, None, False),
-            ("other", "other", str, True, None, False),
-            ("page", "page", ImplementationGuideManifestPage, True, None, False),
-            ("rendering", "rendering", str, False, None, False),
-            ("resource", "resource", ImplementationGuideManifestResource, True, None, True),
-        ])
-        return js
-
-
-@dataclass
-class ImplementationGuideGlobal(BackboneElement):
-    """ Profiles that apply globally.
-
-    A set of profiles that all resources covered by this implementation guide
-    must conform to.
-    """
-    resource_type: ClassVar[str] = "ImplementationGuideGlobal"
-    profile: str = None
-    type: str = None
-
-    def elementProperties(self):
-        js = super(ImplementationGuideGlobal, self).elementProperties()
-        js.extend([
-            ("profile", "profile", str, False, None, True),
-            ("type", "type", str, False, None, True),
-        ])
-        return js
-
-
-@dataclass
-class ImplementationGuideDependsOn(BackboneElement):
-    """ Another Implementation guide this depends on.
-
-    Another implementation guide that this implementation depends on.
-    Typically, an implementation guide uses value sets, profiles etc.defined in
-    other implementation guides.
-    """
-    resource_type: ClassVar[str] = "ImplementationGuideDependsOn"
-    packageId: Optional[str] = None
-    uri: str = None
-    version: Optional[str] = None
-
-    def elementProperties(self):
-        js = super(ImplementationGuideDependsOn, self).elementProperties()
-        js.extend([
-            ("packageId", "packageId", str, False, None, False),
-            ("uri", "uri", str, False, None, True),
-            ("version", "version", str, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class ImplementationGuideDefinitionTemplate(BackboneElement):
-    """ A template for building resources.
-    """
-    resource_type: ClassVar[str] = "ImplementationGuideDefinitionTemplate"
-    code: str = None
-    scope: Optional[str] = None
-    source: str = None
-
-    def elementProperties(self):
-        js = super(ImplementationGuideDefinitionTemplate, self).elementProperties()
-        js.extend([
-            ("code", "code", str, False, None, True),
-            ("scope", "scope", str, False, None, False),
-            ("source", "source", str, False, None, True),
+            ("name", "name", str, False, None, True),
+            ("description", "description", str, False, None, False),
         ])
         return js
 
@@ -162,24 +94,50 @@ class ImplementationGuideDefinitionResource(BackboneElement):
     example resource.
     """
     resource_type: ClassVar[str] = "ImplementationGuideDefinitionResource"
+    reference: FHIRReference = None
+    fhirVersion: Optional[List[str]] = empty_list()
+    name: Optional[str] = None
     description: Optional[str] = None
     exampleBoolean: Optional[bool] = None
     exampleCanonical: Optional[str] = None
-    fhirVersion: Optional[List[str]] = empty_list()
     groupingId: Optional[str] = None
-    name: Optional[str] = None
-    reference: FHIRReference = None
 
     def elementProperties(self):
         js = super(ImplementationGuideDefinitionResource, self).elementProperties()
         js.extend([
+            ("reference", "reference", FHIRReference, False, None, True),
+            ("fhirVersion", "fhirVersion", str, True, None, False),
+            ("name", "name", str, False, None, False),
             ("description", "description", str, False, None, False),
             ("exampleBoolean", "exampleBoolean", bool, False, "example", False),
             ("exampleCanonical", "exampleCanonical", str, False, "example", False),
-            ("fhirVersion", "fhirVersion", str, True, None, False),
             ("groupingId", "groupingId", str, False, None, False),
-            ("name", "name", str, False, None, False),
-            ("reference", "reference", FHIRReference, False, None, True),
+        ])
+        return js
+
+
+@dataclass
+class ImplementationGuideDefinitionPage(BackboneElement):
+    """ Page/Section in the Guide.
+
+    A page / section in the implementation guide. The root page is the
+    implementation guide home page.
+    """
+    resource_type: ClassVar[str] = "ImplementationGuideDefinitionPage"
+    nameUrl: str = None
+    nameReference: FHIRReference = None
+    title: str = None
+    generation: str = None
+    page: Optional[List[ImplementationGuideDefinitionPage]] = empty_list()
+
+    def elementProperties(self):
+        js = super(ImplementationGuideDefinitionPage, self).elementProperties()
+        js.extend([
+            ("nameUrl", "nameUrl", str, False, "name", True),
+            ("nameReference", "nameReference", FHIRReference, False, "name", True),
+            ("title", "title", str, False, None, True),
+            ("generation", "generation", str, False, None, True),
+            ("page", "page", ImplementationGuideDefinitionPage, True, None, False),
         ])
         return js
 
@@ -202,47 +160,63 @@ class ImplementationGuideDefinitionParameter(BackboneElement):
 
 
 @dataclass
-class ImplementationGuideDefinitionPage(BackboneElement):
-    """ Page/Section in the Guide.
-
-    A page / section in the implementation guide. The root page is the
-    implementation guide home page.
+class ImplementationGuideDefinitionTemplate(BackboneElement):
+    """ A template for building resources.
     """
-    resource_type: ClassVar[str] = "ImplementationGuideDefinitionPage"
-    generation: str = None
-    nameReference: FHIRReference = None
-    nameUrl: str = None
-    page: Optional[List[ImplementationGuideDefinitionPage]] = empty_list()
-    title: str = None
+    resource_type: ClassVar[str] = "ImplementationGuideDefinitionTemplate"
+    code: str = None
+    source: str = None
+    scope: Optional[str] = None
 
     def elementProperties(self):
-        js = super(ImplementationGuideDefinitionPage, self).elementProperties()
+        js = super(ImplementationGuideDefinitionTemplate, self).elementProperties()
         js.extend([
-            ("generation", "generation", str, False, None, True),
-            ("nameReference", "nameReference", FHIRReference, False, "name", True),
-            ("nameUrl", "nameUrl", str, False, "name", True),
-            ("page", "page", ImplementationGuideDefinitionPage, True, None, False),
-            ("title", "title", str, False, None, True),
+            ("code", "code", str, False, None, True),
+            ("source", "source", str, False, None, True),
+            ("scope", "scope", str, False, None, False),
         ])
         return js
 
 
 @dataclass
-class ImplementationGuideDefinitionGrouping(BackboneElement):
-    """ Grouping used to present related resources in the IG.
+class ImplementationGuideDependsOn(BackboneElement):
+    """ Another Implementation guide this depends on.
 
-    A logical group of resources. Logical groups can be used when building
-    pages.
+    Another implementation guide that this implementation depends on.
+    Typically, an implementation guide uses value sets, profiles etc.defined in
+    other implementation guides.
     """
-    resource_type: ClassVar[str] = "ImplementationGuideDefinitionGrouping"
-    description: Optional[str] = None
-    name: str = None
+    resource_type: ClassVar[str] = "ImplementationGuideDependsOn"
+    uri: str = None
+    packageId: Optional[str] = None
+    version: Optional[str] = None
 
     def elementProperties(self):
-        js = super(ImplementationGuideDefinitionGrouping, self).elementProperties()
+        js = super(ImplementationGuideDependsOn, self).elementProperties()
         js.extend([
-            ("description", "description", str, False, None, False),
-            ("name", "name", str, False, None, True),
+            ("uri", "uri", str, False, None, True),
+            ("packageId", "packageId", str, False, None, False),
+            ("version", "version", str, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class ImplementationGuideGlobal(BackboneElement):
+    """ Profiles that apply globally.
+
+    A set of profiles that all resources covered by this implementation guide
+    must conform to.
+    """
+    resource_type: ClassVar[str] = "ImplementationGuideGlobal"
+    type: str = None
+    profile: str = None
+
+    def elementProperties(self):
+        js = super(ImplementationGuideGlobal, self).elementProperties()
+        js.extend([
+            ("type", "type", str, False, None, True),
+            ("profile", "profile", str, False, None, True),
         ])
         return js
 
@@ -256,19 +230,45 @@ class ImplementationGuideDefinition(BackboneElement):
     """
     resource_type: ClassVar[str] = "ImplementationGuideDefinition"
     grouping: Optional[List[ImplementationGuideDefinitionGrouping]] = empty_list()
+    resource: List[ImplementationGuideDefinitionResource] = empty_list()
     page: Optional[ImplementationGuideDefinitionPage] = None
     parameter: Optional[List[ImplementationGuideDefinitionParameter]] = empty_list()
-    resource: List[ImplementationGuideDefinitionResource] = empty_list()
     template: Optional[List[ImplementationGuideDefinitionTemplate]] = empty_list()
 
     def elementProperties(self):
         js = super(ImplementationGuideDefinition, self).elementProperties()
         js.extend([
             ("grouping", "grouping", ImplementationGuideDefinitionGrouping, True, None, False),
+            ("resource", "resource", ImplementationGuideDefinitionResource, True, None, True),
             ("page", "page", ImplementationGuideDefinitionPage, False, None, False),
             ("parameter", "parameter", ImplementationGuideDefinitionParameter, True, None, False),
-            ("resource", "resource", ImplementationGuideDefinitionResource, True, None, True),
             ("template", "template", ImplementationGuideDefinitionTemplate, True, None, False),
+        ])
+        return js
+
+
+@dataclass
+class ImplementationGuideManifest(BackboneElement):
+    """ Information about an assembled IG.
+
+    Information about an assembled implementation guide, created by the
+    publication tooling.
+    """
+    resource_type: ClassVar[str] = "ImplementationGuideManifest"
+    rendering: Optional[str] = None
+    resource: List[ImplementationGuideManifestResource] = empty_list()
+    page: Optional[List[ImplementationGuideManifestPage]] = empty_list()
+    image: Optional[List[str]] = empty_list()
+    other: Optional[List[str]] = empty_list()
+
+    def elementProperties(self):
+        js = super(ImplementationGuideManifest, self).elementProperties()
+        js.extend([
+            ("rendering", "rendering", str, False, None, False),
+            ("resource", "resource", ImplementationGuideManifestResource, True, None, True),
+            ("page", "page", ImplementationGuideManifestPage, True, None, False),
+            ("image", "image", str, True, None, False),
+            ("other", "other", str, True, None, False),
         ])
         return js
 
@@ -283,49 +283,49 @@ class ImplementationGuide(DomainResource):
     to publish a computable definition of all the parts.
     """
     resource_type: ClassVar[str] = "ImplementationGuide"
-    contact: Optional[List[ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: Optional[FHIRDate] = None
-    definition: Optional[ImplementationGuideDefinition] = None
-    dependsOn: Optional[List[ImplementationGuideDependsOn]] = empty_list()
-    description: Optional[str] = None
-    experimental: Optional[bool] = None
-    fhirVersion: List[str] = empty_list()
-    global_fhir: Optional[List[ImplementationGuideGlobal]] = empty_list()
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    license: Optional[str] = None
-    manifest: Optional[ImplementationGuideManifest] = None
-    name: str = None
-    packageId: str = None
-    publisher: Optional[str] = None
-    status: str = None
-    title: Optional[str] = None
     url: str = None
-    useContext: Optional[List[UsageContext]] = empty_list()
     version: Optional[str] = None
+    name: str = None
+    title: Optional[str] = None
+    status: str = None
+    experimental: Optional[bool] = None
+    date: Optional[FHIRDate] = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
+    useContext: Optional[List[UsageContext]] = empty_list()
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
+    copyright: Optional[str] = None
+    packageId: str = None
+    license: Optional[str] = None
+    fhirVersion: List[str] = empty_list()
+    dependsOn: Optional[List[ImplementationGuideDependsOn]] = empty_list()
+    global_fhir: Optional[List[ImplementationGuideGlobal]] = empty_list()
+    definition: Optional[ImplementationGuideDefinition] = None
+    manifest: Optional[ImplementationGuideManifest] = None
 
     def elementProperties(self):
         js = super(ImplementationGuide, self).elementProperties()
         js.extend([
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("definition", "definition", ImplementationGuideDefinition, False, None, False),
-            ("dependsOn", "dependsOn", ImplementationGuideDependsOn, True, None, False),
-            ("description", "description", str, False, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("fhirVersion", "fhirVersion", str, True, None, True),
-            ("global_fhir", "global", ImplementationGuideGlobal, True, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("license", "license", str, False, None, False),
-            ("manifest", "manifest", ImplementationGuideManifest, False, None, False),
-            ("name", "name", str, False, None, True),
-            ("packageId", "packageId", str, False, None, True),
-            ("publisher", "publisher", str, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("title", "title", str, False, None, False),
             ("url", "url", str, False, None, True),
-            ("useContext", "useContext", UsageContext, True, None, False),
             ("version", "version", str, False, None, False),
+            ("name", "name", str, False, None, True),
+            ("title", "title", str, False, None, False),
+            ("status", "status", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("useContext", "useContext", UsageContext, True, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("packageId", "packageId", str, False, None, True),
+            ("license", "license", str, False, None, False),
+            ("fhirVersion", "fhirVersion", str, True, None, True),
+            ("dependsOn", "dependsOn", ImplementationGuideDependsOn, True, None, False),
+            ("global_fhir", "global", ImplementationGuideGlobal, True, None, False),
+            ("definition", "definition", ImplementationGuideDefinition, False, None, False),
+            ("manifest", "manifest", ImplementationGuideManifest, False, None, False),
         ])
         return js

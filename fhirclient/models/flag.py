@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Flag) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Flag) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -23,25 +23,25 @@ class Flag(DomainResource):
     patient.
     """
     resource_type: ClassVar[str] = "Flag"
-    author: Optional[FHIRReference] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    status: str = None
     category: Optional[List[CodeableConcept]] = empty_list()
     code: CodeableConcept = None
-    encounter: Optional[FHIRReference] = None
-    identifier: Optional[List[Identifier]] = empty_list()
-    period: Optional[Period] = None
-    status: str = None
     subject: FHIRReference = None
+    period: Optional[Period] = None
+    encounter: Optional[FHIRReference] = None
+    author: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(Flag, self).elementProperties()
         js.extend([
-            ("author", "author", FHIRReference, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("status", "status", str, False, None, True),
             ("category", "category", CodeableConcept, True, None, False),
             ("code", "code", CodeableConcept, False, None, True),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("period", "period", Period, False, None, False),
-            ("status", "status", str, False, None, True),
             ("subject", "subject", FHIRReference, False, None, True),
+            ("period", "period", Period, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("author", "author", FHIRReference, False, None, False),
         ])
         return js

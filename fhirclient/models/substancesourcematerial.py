@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -15,39 +15,18 @@ from .identifier import Identifier
 
 
 @dataclass
-class SubstanceSourceMaterialPartDescription(BackboneElement):
-    """ To do.
+class SubstanceSourceMaterialOrganismAuthor(BackboneElement):
+    """ 4.9.13.6.1 Author type (Conditional).
     """
-    resource_type: ClassVar[str] = "SubstanceSourceMaterialPartDescription"
-    part: Optional[CodeableConcept] = None
-    partLocation: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganismAuthor"
+    authorType: Optional[CodeableConcept] = None
+    authorDescription: Optional[str] = None
 
     def elementProperties(self):
-        js = super(SubstanceSourceMaterialPartDescription, self).elementProperties()
+        js = super(SubstanceSourceMaterialOrganismAuthor, self).elementProperties()
         js.extend([
-            ("part", "part", CodeableConcept, False, None, False),
-            ("partLocation", "partLocation", CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class SubstanceSourceMaterialOrganismOrganismGeneral(BackboneElement):
-    """ 4.9.13.7.1 Kingdom (Conditional).
-    """
-    resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganismOrganismGeneral"
-    class_fhir: Optional[CodeableConcept] = None
-    kingdom: Optional[CodeableConcept] = None
-    order: Optional[CodeableConcept] = None
-    phylum: Optional[CodeableConcept] = None
-
-    def elementProperties(self):
-        js = super(SubstanceSourceMaterialOrganismOrganismGeneral, self).elementProperties()
-        js.extend([
-            ("class_fhir", "class", CodeableConcept, False, None, False),
-            ("kingdom", "kingdom", CodeableConcept, False, None, False),
-            ("order", "order", CodeableConcept, False, None, False),
-            ("phylum", "phylum", CodeableConcept, False, None, False),
+            ("authorType", "authorType", CodeableConcept, False, None, False),
+            ("authorDescription", "authorDescription", str, False, None, False),
         ])
         return js
 
@@ -57,69 +36,41 @@ class SubstanceSourceMaterialOrganismHybrid(BackboneElement):
     """ 4.9.13.8.1 Hybrid species maternal organism ID (Optional).
     """
     resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganismHybrid"
-    hybridType: Optional[CodeableConcept] = None
     maternalOrganismId: Optional[str] = None
     maternalOrganismName: Optional[str] = None
     paternalOrganismId: Optional[str] = None
     paternalOrganismName: Optional[str] = None
+    hybridType: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(SubstanceSourceMaterialOrganismHybrid, self).elementProperties()
         js.extend([
-            ("hybridType", "hybridType", CodeableConcept, False, None, False),
             ("maternalOrganismId", "maternalOrganismId", str, False, None, False),
             ("maternalOrganismName", "maternalOrganismName", str, False, None, False),
             ("paternalOrganismId", "paternalOrganismId", str, False, None, False),
             ("paternalOrganismName", "paternalOrganismName", str, False, None, False),
+            ("hybridType", "hybridType", CodeableConcept, False, None, False),
         ])
         return js
 
 
 @dataclass
-class SubstanceSourceMaterialOrganismAuthor(BackboneElement):
-    """ 4.9.13.6.1 Author type (Conditional).
+class SubstanceSourceMaterialOrganismOrganismGeneral(BackboneElement):
+    """ 4.9.13.7.1 Kingdom (Conditional).
     """
-    resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganismAuthor"
-    authorDescription: Optional[str] = None
-    authorType: Optional[CodeableConcept] = None
+    resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganismOrganismGeneral"
+    kingdom: Optional[CodeableConcept] = None
+    phylum: Optional[CodeableConcept] = None
+    class_fhir: Optional[CodeableConcept] = None
+    order: Optional[CodeableConcept] = None
 
     def elementProperties(self):
-        js = super(SubstanceSourceMaterialOrganismAuthor, self).elementProperties()
+        js = super(SubstanceSourceMaterialOrganismOrganismGeneral, self).elementProperties()
         js.extend([
-            ("authorDescription", "authorDescription", str, False, None, False),
-            ("authorType", "authorType", CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class SubstanceSourceMaterialOrganism(BackboneElement):
-    """ This subclause describes the organism which the substance is derived from.
-    For vaccines, the parent organism shall be specified based on these
-    subclause elements. As an example, full taxonomy will be described for the
-    Substance Name: ., Leaf.
-    """
-    resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganism"
-    author: Optional[List[SubstanceSourceMaterialOrganismAuthor]] = empty_list()
-    family: Optional[CodeableConcept] = None
-    genus: Optional[CodeableConcept] = None
-    hybrid: Optional[SubstanceSourceMaterialOrganismHybrid] = None
-    intraspecificDescription: Optional[str] = None
-    intraspecificType: Optional[CodeableConcept] = None
-    organismGeneral: Optional[SubstanceSourceMaterialOrganismOrganismGeneral] = None
-    species: Optional[CodeableConcept] = None
-
-    def elementProperties(self):
-        js = super(SubstanceSourceMaterialOrganism, self).elementProperties()
-        js.extend([
-            ("author", "author", SubstanceSourceMaterialOrganismAuthor, True, None, False),
-            ("family", "family", CodeableConcept, False, None, False),
-            ("genus", "genus", CodeableConcept, False, None, False),
-            ("hybrid", "hybrid", SubstanceSourceMaterialOrganismHybrid, False, None, False),
-            ("intraspecificDescription", "intraspecificDescription", str, False, None, False),
-            ("intraspecificType", "intraspecificType", CodeableConcept, False, None, False),
-            ("organismGeneral", "organismGeneral", SubstanceSourceMaterialOrganismOrganismGeneral, False, None, False),
-            ("species", "species", CodeableConcept, False, None, False),
+            ("kingdom", "kingdom", CodeableConcept, False, None, False),
+            ("phylum", "phylum", CodeableConcept, False, None, False),
+            ("class_fhir", "class", CodeableConcept, False, None, False),
+            ("order", "order", CodeableConcept, False, None, False),
         ])
         return js
 
@@ -150,6 +101,55 @@ class SubstanceSourceMaterialFractionDescription(BackboneElement):
 
 
 @dataclass
+class SubstanceSourceMaterialOrganism(BackboneElement):
+    """ This subclause describes the organism which the substance is derived from.
+    For vaccines, the parent organism shall be specified based on these
+    subclause elements. As an example, full taxonomy will be described for the
+    Substance Name: ., Leaf.
+    """
+    resource_type: ClassVar[str] = "SubstanceSourceMaterialOrganism"
+    family: Optional[CodeableConcept] = None
+    genus: Optional[CodeableConcept] = None
+    species: Optional[CodeableConcept] = None
+    intraspecificType: Optional[CodeableConcept] = None
+    intraspecificDescription: Optional[str] = None
+    author: Optional[List[SubstanceSourceMaterialOrganismAuthor]] = empty_list()
+    hybrid: Optional[SubstanceSourceMaterialOrganismHybrid] = None
+    organismGeneral: Optional[SubstanceSourceMaterialOrganismOrganismGeneral] = None
+
+    def elementProperties(self):
+        js = super(SubstanceSourceMaterialOrganism, self).elementProperties()
+        js.extend([
+            ("family", "family", CodeableConcept, False, None, False),
+            ("genus", "genus", CodeableConcept, False, None, False),
+            ("species", "species", CodeableConcept, False, None, False),
+            ("intraspecificType", "intraspecificType", CodeableConcept, False, None, False),
+            ("intraspecificDescription", "intraspecificDescription", str, False, None, False),
+            ("author", "author", SubstanceSourceMaterialOrganismAuthor, True, None, False),
+            ("hybrid", "hybrid", SubstanceSourceMaterialOrganismHybrid, False, None, False),
+            ("organismGeneral", "organismGeneral", SubstanceSourceMaterialOrganismOrganismGeneral, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class SubstanceSourceMaterialPartDescription(BackboneElement):
+    """ To do.
+    """
+    resource_type: ClassVar[str] = "SubstanceSourceMaterialPartDescription"
+    part: Optional[CodeableConcept] = None
+    partLocation: Optional[CodeableConcept] = None
+
+    def elementProperties(self):
+        js = super(SubstanceSourceMaterialPartDescription, self).elementProperties()
+        js.extend([
+            ("part", "part", CodeableConcept, False, None, False),
+            ("partLocation", "partLocation", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
 class SubstanceSourceMaterial(DomainResource):
     """ Source material shall capture information on the taxonomic and anatomical
     origins as well as the fraction of a material that can result in or can be
@@ -167,35 +167,35 @@ class SubstanceSourceMaterial(DomainResource):
     herbal annex.
     """
     resource_type: ClassVar[str] = "SubstanceSourceMaterial"
-    countryOfOrigin: Optional[List[CodeableConcept]] = empty_list()
-    developmentStage: Optional[CodeableConcept] = None
-    fractionDescription: Optional[List[SubstanceSourceMaterialFractionDescription]] = empty_list()
-    geographicalLocation: Optional[List[str]] = empty_list()
-    organism: Optional[SubstanceSourceMaterialOrganism] = None
+    sourceMaterialClass: Optional[CodeableConcept] = None
+    sourceMaterialType: Optional[CodeableConcept] = None
+    sourceMaterialState: Optional[CodeableConcept] = None
     organismId: Optional[Identifier] = None
     organismName: Optional[str] = None
     parentSubstanceId: Optional[List[Identifier]] = empty_list()
     parentSubstanceName: Optional[List[str]] = empty_list()
+    countryOfOrigin: Optional[List[CodeableConcept]] = empty_list()
+    geographicalLocation: Optional[List[str]] = empty_list()
+    developmentStage: Optional[CodeableConcept] = None
+    fractionDescription: Optional[List[SubstanceSourceMaterialFractionDescription]] = empty_list()
+    organism: Optional[SubstanceSourceMaterialOrganism] = None
     partDescription: Optional[List[SubstanceSourceMaterialPartDescription]] = empty_list()
-    sourceMaterialClass: Optional[CodeableConcept] = None
-    sourceMaterialState: Optional[CodeableConcept] = None
-    sourceMaterialType: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(SubstanceSourceMaterial, self).elementProperties()
         js.extend([
-            ("countryOfOrigin", "countryOfOrigin", CodeableConcept, True, None, False),
-            ("developmentStage", "developmentStage", CodeableConcept, False, None, False),
-            ("fractionDescription", "fractionDescription", SubstanceSourceMaterialFractionDescription, True, None, False),
-            ("geographicalLocation", "geographicalLocation", str, True, None, False),
-            ("organism", "organism", SubstanceSourceMaterialOrganism, False, None, False),
+            ("sourceMaterialClass", "sourceMaterialClass", CodeableConcept, False, None, False),
+            ("sourceMaterialType", "sourceMaterialType", CodeableConcept, False, None, False),
+            ("sourceMaterialState", "sourceMaterialState", CodeableConcept, False, None, False),
             ("organismId", "organismId", Identifier, False, None, False),
             ("organismName", "organismName", str, False, None, False),
             ("parentSubstanceId", "parentSubstanceId", Identifier, True, None, False),
             ("parentSubstanceName", "parentSubstanceName", str, True, None, False),
+            ("countryOfOrigin", "countryOfOrigin", CodeableConcept, True, None, False),
+            ("geographicalLocation", "geographicalLocation", str, True, None, False),
+            ("developmentStage", "developmentStage", CodeableConcept, False, None, False),
+            ("fractionDescription", "fractionDescription", SubstanceSourceMaterialFractionDescription, True, None, False),
+            ("organism", "organism", SubstanceSourceMaterialOrganism, False, None, False),
             ("partDescription", "partDescription", SubstanceSourceMaterialPartDescription, True, None, False),
-            ("sourceMaterialClass", "sourceMaterialClass", CodeableConcept, False, None, False),
-            ("sourceMaterialState", "sourceMaterialState", CodeableConcept, False, None, False),
-            ("sourceMaterialType", "sourceMaterialType", CodeableConcept, False, None, False),
         ])
         return js

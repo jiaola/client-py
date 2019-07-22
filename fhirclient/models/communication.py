@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,16 +25,16 @@ class CommunicationPayload(BackboneElement):
     Text, attachment(s), or resource(s) that was communicated to the recipient.
     """
     resource_type: ClassVar[str] = "CommunicationPayload"
+    contentString: str = None
     contentAttachment: Attachment = None
     contentReference: FHIRReference = None
-    contentString: str = None
 
     def elementProperties(self):
         js = super(CommunicationPayload, self).elementProperties()
         js.extend([
+            ("contentString", "contentString", str, False, "content", True),
             ("contentAttachment", "contentAttachment", Attachment, False, "content", True),
             ("contentReference", "contentReference", FHIRReference, False, "content", True),
-            ("contentString", "contentString", str, False, "content", True),
         ])
         return js
 
@@ -48,55 +48,55 @@ class Communication(DomainResource):
     reportable condition.
     """
     resource_type: ClassVar[str] = "Communication"
-    about: Optional[List[FHIRReference]] = empty_list()
-    basedOn: Optional[List[FHIRReference]] = empty_list()
-    category: Optional[List[CodeableConcept]] = empty_list()
-    encounter: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    inResponseTo: Optional[List[FHIRReference]] = empty_list()
     instantiatesCanonical: Optional[List[str]] = empty_list()
     instantiatesUri: Optional[List[str]] = empty_list()
-    medium: Optional[List[CodeableConcept]] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
+    basedOn: Optional[List[FHIRReference]] = empty_list()
     partOf: Optional[List[FHIRReference]] = empty_list()
-    payload: Optional[List[CommunicationPayload]] = empty_list()
+    inResponseTo: Optional[List[FHIRReference]] = empty_list()
+    status: str = None
+    statusReason: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
     priority: Optional[str] = None
-    reasonCode: Optional[List[CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    medium: Optional[List[CodeableConcept]] = empty_list()
+    subject: Optional[FHIRReference] = None
+    topic: Optional[CodeableConcept] = None
+    about: Optional[List[FHIRReference]] = empty_list()
+    encounter: Optional[FHIRReference] = None
+    sent: Optional[FHIRDate] = None
     received: Optional[FHIRDate] = None
     recipient: Optional[List[FHIRReference]] = empty_list()
     sender: Optional[FHIRReference] = None
-    sent: Optional[FHIRDate] = None
-    status: str = None
-    statusReason: Optional[CodeableConcept] = None
-    subject: Optional[FHIRReference] = None
-    topic: Optional[CodeableConcept] = None
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    payload: Optional[List[CommunicationPayload]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(Communication, self).elementProperties()
         js.extend([
-            ("about", "about", FHIRReference, True, None, False),
-            ("basedOn", "basedOn", FHIRReference, True, None, False),
-            ("category", "category", CodeableConcept, True, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("inResponseTo", "inResponseTo", FHIRReference, True, None, False),
             ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
             ("instantiatesUri", "instantiatesUri", str, True, None, False),
-            ("medium", "medium", CodeableConcept, True, None, False),
-            ("note", "note", Annotation, True, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
             ("partOf", "partOf", FHIRReference, True, None, False),
-            ("payload", "payload", CommunicationPayload, True, None, False),
+            ("inResponseTo", "inResponseTo", FHIRReference, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("statusReason", "statusReason", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
             ("priority", "priority", str, False, None, False),
-            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("medium", "medium", CodeableConcept, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("topic", "topic", CodeableConcept, False, None, False),
+            ("about", "about", FHIRReference, True, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("sent", "sent", FHIRDate, False, None, False),
             ("received", "received", FHIRDate, False, None, False),
             ("recipient", "recipient", FHIRReference, True, None, False),
             ("sender", "sender", FHIRReference, False, None, False),
-            ("sent", "sent", FHIRDate, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("statusReason", "statusReason", CodeableConcept, False, None, False),
-            ("subject", "subject", FHIRReference, False, None, False),
-            ("topic", "topic", CodeableConcept, False, None, False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("payload", "payload", CommunicationPayload, True, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js

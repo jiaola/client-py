@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Bundle) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Bundle) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -13,25 +13,6 @@ from .fhirdate import FHIRDate
 from .identifier import Identifier
 from .resource import Resource
 from .signature import Signature
-
-
-@dataclass
-class BundleLink(BackboneElement):
-    """ Links related to this Bundle.
-
-    A series of links that provide context to this bundle.
-    """
-    resource_type: ClassVar[str] = "BundleLink"
-    relation: str = None
-    url: str = None
-
-    def elementProperties(self):
-        js = super(BundleLink, self).elementProperties()
-        js.extend([
-            ("relation", "relation", str, False, None, True),
-            ("url", "url", str, False, None, True),
-        ])
-        return js
 
 
 @dataclass
@@ -55,33 +36,6 @@ class BundleEntrySearch(BackboneElement):
 
 
 @dataclass
-class BundleEntryResponse(BackboneElement):
-    """ Results of execution (transaction/batch/history).
-
-    Indicates the results of processing the corresponding 'request' entry in
-    the batch or transaction being responded to or what the results of an
-    operation where when returning history.
-    """
-    resource_type: ClassVar[str] = "BundleEntryResponse"
-    etag: Optional[str] = None
-    lastModified: Optional[FHIRDate] = None
-    location: Optional[str] = None
-    outcome: Optional[Resource] = None
-    status: str = None
-
-    def elementProperties(self):
-        js = super(BundleEntryResponse, self).elementProperties()
-        js.extend([
-            ("etag", "etag", str, False, None, False),
-            ("lastModified", "lastModified", FHIRDate, False, None, False),
-            ("location", "location", str, False, None, False),
-            ("outcome", "outcome", Resource, False, None, False),
-            ("status", "status", str, False, None, True),
-        ])
-        return js
-
-
-@dataclass
 class BundleEntryRequest(BackboneElement):
     """ Additional execution information (transaction/batch/history).
 
@@ -90,21 +44,67 @@ class BundleEntryRequest(BackboneElement):
     to create the version contained in the entry.
     """
     resource_type: ClassVar[str] = "BundleEntryRequest"
-    ifMatch: Optional[str] = None
-    ifModifiedSince: Optional[FHIRDate] = None
-    ifNoneExist: Optional[str] = None
-    ifNoneMatch: Optional[str] = None
     method: str = None
     url: str = None
+    ifNoneMatch: Optional[str] = None
+    ifModifiedSince: Optional[FHIRDate] = None
+    ifMatch: Optional[str] = None
+    ifNoneExist: Optional[str] = None
 
     def elementProperties(self):
         js = super(BundleEntryRequest, self).elementProperties()
         js.extend([
-            ("ifMatch", "ifMatch", str, False, None, False),
-            ("ifModifiedSince", "ifModifiedSince", FHIRDate, False, None, False),
-            ("ifNoneExist", "ifNoneExist", str, False, None, False),
-            ("ifNoneMatch", "ifNoneMatch", str, False, None, False),
             ("method", "method", str, False, None, True),
+            ("url", "url", str, False, None, True),
+            ("ifNoneMatch", "ifNoneMatch", str, False, None, False),
+            ("ifModifiedSince", "ifModifiedSince", FHIRDate, False, None, False),
+            ("ifMatch", "ifMatch", str, False, None, False),
+            ("ifNoneExist", "ifNoneExist", str, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class BundleEntryResponse(BackboneElement):
+    """ Results of execution (transaction/batch/history).
+
+    Indicates the results of processing the corresponding 'request' entry in
+    the batch or transaction being responded to or what the results of an
+    operation where when returning history.
+    """
+    resource_type: ClassVar[str] = "BundleEntryResponse"
+    status: str = None
+    location: Optional[str] = None
+    etag: Optional[str] = None
+    lastModified: Optional[FHIRDate] = None
+    outcome: Optional[Resource] = None
+
+    def elementProperties(self):
+        js = super(BundleEntryResponse, self).elementProperties()
+        js.extend([
+            ("status", "status", str, False, None, True),
+            ("location", "location", str, False, None, False),
+            ("etag", "etag", str, False, None, False),
+            ("lastModified", "lastModified", FHIRDate, False, None, False),
+            ("outcome", "outcome", Resource, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class BundleLink(BackboneElement):
+    """ Links related to this Bundle.
+
+    A series of links that provide context to this bundle.
+    """
+    resource_type: ClassVar[str] = "BundleLink"
+    relation: str = None
+    url: str = None
+
+    def elementProperties(self):
+        js = super(BundleLink, self).elementProperties()
+        js.extend([
+            ("relation", "relation", str, False, None, True),
             ("url", "url", str, False, None, True),
         ])
         return js
@@ -118,22 +118,22 @@ class BundleEntry(BackboneElement):
     information about a resource (transactions and history only).
     """
     resource_type: ClassVar[str] = "BundleEntry"
-    fullUrl: Optional[str] = None
     link: Optional[List[BundleLink]] = empty_list()
-    request: Optional[BundleEntryRequest] = None
+    fullUrl: Optional[str] = None
     resource: Optional[Resource] = None
-    response: Optional[BundleEntryResponse] = None
     search: Optional[BundleEntrySearch] = None
+    request: Optional[BundleEntryRequest] = None
+    response: Optional[BundleEntryResponse] = None
 
     def elementProperties(self):
         js = super(BundleEntry, self).elementProperties()
         js.extend([
-            ("fullUrl", "fullUrl", str, False, None, False),
             ("link", "link", BundleLink, True, None, False),
-            ("request", "request", BundleEntryRequest, False, None, False),
+            ("fullUrl", "fullUrl", str, False, None, False),
             ("resource", "resource", Resource, False, None, False),
-            ("response", "response", BundleEntryResponse, False, None, False),
             ("search", "search", BundleEntrySearch, False, None, False),
+            ("request", "request", BundleEntryRequest, False, None, False),
+            ("response", "response", BundleEntryResponse, False, None, False),
         ])
         return js
 
@@ -145,23 +145,23 @@ class Bundle(Resource):
     A container for a collection of resources.
     """
     resource_type: ClassVar[str] = "Bundle"
-    entry: Optional[List[BundleEntry]] = empty_list()
     identifier: Optional[Identifier] = None
-    link: Optional[List[BundleLink]] = empty_list()
-    signature: Optional[Signature] = None
+    type: str = None
     timestamp: Optional[FHIRDate] = None
     total: Optional[int] = None
-    type: str = None
+    link: Optional[List[BundleLink]] = empty_list()
+    entry: Optional[List[BundleEntry]] = empty_list()
+    signature: Optional[Signature] = None
 
     def elementProperties(self):
         js = super(Bundle, self).elementProperties()
         js.extend([
-            ("entry", "entry", BundleEntry, True, None, False),
             ("identifier", "identifier", Identifier, False, None, False),
-            ("link", "link", BundleLink, True, None, False),
-            ("signature", "signature", Signature, False, None, False),
+            ("type", "type", str, False, None, True),
             ("timestamp", "timestamp", FHIRDate, False, None, False),
             ("total", "total", int, False, None, False),
-            ("type", "type", str, False, None, True),
+            ("link", "link", BundleLink, True, None, False),
+            ("entry", "entry", BundleEntry, True, None, False),
+            ("signature", "signature", Signature, False, None, False),
         ])
         return js

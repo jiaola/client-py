@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,22 +21,22 @@ class OperationOutcomeIssue(BackboneElement):
     action.
     """
     resource_type: ClassVar[str] = "OperationOutcomeIssue"
+    severity: str = None
     code: str = None
     details: Optional[CodeableConcept] = None
     diagnostics: Optional[str] = None
-    expression: Optional[List[str]] = empty_list()
     location: Optional[List[str]] = empty_list()
-    severity: str = None
+    expression: Optional[List[str]] = empty_list()
 
     def elementProperties(self):
         js = super(OperationOutcomeIssue, self).elementProperties()
         js.extend([
+            ("severity", "severity", str, False, None, True),
             ("code", "code", str, False, None, True),
             ("details", "details", CodeableConcept, False, None, False),
             ("diagnostics", "diagnostics", str, False, None, False),
-            ("expression", "expression", str, True, None, False),
             ("location", "location", str, True, None, False),
-            ("severity", "severity", str, False, None, True),
+            ("expression", "expression", str, True, None, False),
         ])
         return js
 

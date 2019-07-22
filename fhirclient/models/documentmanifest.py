@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -43,33 +43,33 @@ class DocumentManifest(DomainResource):
     that applies to the collection.
     """
     resource_type: ClassVar[str] = "DocumentManifest"
-    author: Optional[List[FHIRReference]] = empty_list()
-    content: List[FHIRReference] = empty_list()
-    created: Optional[FHIRDate] = None
-    description: Optional[str] = None
-    identifier: Optional[List[Identifier]] = empty_list()
     masterIdentifier: Optional[Identifier] = None
-    recipient: Optional[List[FHIRReference]] = empty_list()
-    related: Optional[List[DocumentManifestRelated]] = empty_list()
-    source: Optional[str] = None
+    identifier: Optional[List[Identifier]] = empty_list()
     status: str = None
-    subject: Optional[FHIRReference] = None
     type: Optional[CodeableConcept] = None
+    subject: Optional[FHIRReference] = None
+    created: Optional[FHIRDate] = None
+    author: Optional[List[FHIRReference]] = empty_list()
+    recipient: Optional[List[FHIRReference]] = empty_list()
+    source: Optional[str] = None
+    description: Optional[str] = None
+    content: List[FHIRReference] = empty_list()
+    related: Optional[List[DocumentManifestRelated]] = empty_list()
 
     def elementProperties(self):
         js = super(DocumentManifest, self).elementProperties()
         js.extend([
-            ("author", "author", FHIRReference, True, None, False),
-            ("content", "content", FHIRReference, True, None, True),
-            ("created", "created", FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
             ("masterIdentifier", "masterIdentifier", Identifier, False, None, False),
-            ("recipient", "recipient", FHIRReference, True, None, False),
-            ("related", "related", DocumentManifestRelated, True, None, False),
-            ("source", "source", str, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
             ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
             ("type", "type", CodeableConcept, False, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("created", "created", FHIRDate, False, None, False),
+            ("author", "author", FHIRReference, True, None, False),
+            ("recipient", "recipient", FHIRReference, True, None, False),
+            ("source", "source", str, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("content", "content", FHIRReference, True, None, True),
+            ("related", "related", DocumentManifestRelated, True, None, False),
         ])
         return js

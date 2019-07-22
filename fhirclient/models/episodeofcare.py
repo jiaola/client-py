@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,14 +25,14 @@ class EpisodeOfCareStatusHistory(BackboneElement):
     requiring processing the history of the resource).
     """
     resource_type: ClassVar[str] = "EpisodeOfCareStatusHistory"
-    period: Period = None
     status: str = None
+    period: Period = None
 
     def elementProperties(self):
         js = super(EpisodeOfCareStatusHistory, self).elementProperties()
         js.extend([
-            ("period", "period", Period, False, None, True),
             ("status", "status", str, False, None, True),
+            ("period", "period", Period, False, None, True),
         ])
         return js
 
@@ -43,15 +43,15 @@ class EpisodeOfCareDiagnosis(BackboneElement):
     """
     resource_type: ClassVar[str] = "EpisodeOfCareDiagnosis"
     condition: FHIRReference = None
-    rank: Optional[int] = None
     role: Optional[CodeableConcept] = None
+    rank: Optional[int] = None
 
     def elementProperties(self):
         js = super(EpisodeOfCareDiagnosis, self).elementProperties()
         js.extend([
             ("condition", "condition", FHIRReference, False, None, True),
-            ("rank", "rank", int, False, None, False),
             ("role", "role", CodeableConcept, False, None, False),
+            ("rank", "rank", int, False, None, False),
         ])
         return js
 
@@ -68,33 +68,33 @@ class EpisodeOfCare(DomainResource):
     time.
     """
     resource_type: ClassVar[str] = "EpisodeOfCare"
-    account: Optional[List[FHIRReference]] = empty_list()
-    careManager: Optional[FHIRReference] = None
-    diagnosis: Optional[List[EpisodeOfCareDiagnosis]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    managingOrganization: Optional[FHIRReference] = None
-    patient: FHIRReference = None
-    period: Optional[Period] = None
-    referralRequest: Optional[List[FHIRReference]] = empty_list()
     status: str = None
     statusHistory: Optional[List[EpisodeOfCareStatusHistory]] = empty_list()
-    team: Optional[List[FHIRReference]] = empty_list()
     type: Optional[List[CodeableConcept]] = empty_list()
+    diagnosis: Optional[List[EpisodeOfCareDiagnosis]] = empty_list()
+    patient: FHIRReference = None
+    managingOrganization: Optional[FHIRReference] = None
+    period: Optional[Period] = None
+    referralRequest: Optional[List[FHIRReference]] = empty_list()
+    careManager: Optional[FHIRReference] = None
+    team: Optional[List[FHIRReference]] = empty_list()
+    account: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(EpisodeOfCare, self).elementProperties()
         js.extend([
-            ("account", "account", FHIRReference, True, None, False),
-            ("careManager", "careManager", FHIRReference, False, None, False),
-            ("diagnosis", "diagnosis", EpisodeOfCareDiagnosis, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("managingOrganization", "managingOrganization", FHIRReference, False, None, False),
-            ("patient", "patient", FHIRReference, False, None, True),
-            ("period", "period", Period, False, None, False),
-            ("referralRequest", "referralRequest", FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
             ("statusHistory", "statusHistory", EpisodeOfCareStatusHistory, True, None, False),
-            ("team", "team", FHIRReference, True, None, False),
             ("type", "type", CodeableConcept, True, None, False),
+            ("diagnosis", "diagnosis", EpisodeOfCareDiagnosis, True, None, False),
+            ("patient", "patient", FHIRReference, False, None, True),
+            ("managingOrganization", "managingOrganization", FHIRReference, False, None, False),
+            ("period", "period", Period, False, None, False),
+            ("referralRequest", "referralRequest", FHIRReference, True, None, False),
+            ("careManager", "careManager", FHIRReference, False, None, False),
+            ("team", "team", FHIRReference, True, None, False),
+            ("account", "account", FHIRReference, True, None, False),
         ])
         return js

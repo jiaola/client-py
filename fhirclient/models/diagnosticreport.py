@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -51,47 +51,47 @@ class DiagnosticReport(DomainResource):
     interpretations, and formatted representation of diagnostic reports.
     """
     resource_type: ClassVar[str] = "DiagnosticReport"
+    identifier: Optional[List[Identifier]] = empty_list()
     basedOn: Optional[List[FHIRReference]] = empty_list()
+    status: str = None
     category: Optional[List[CodeableConcept]] = empty_list()
     code: CodeableConcept = None
-    conclusion: Optional[str] = None
-    conclusionCode: Optional[List[CodeableConcept]] = empty_list()
+    subject: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
     effectiveDateTime: Optional[FHIRDate] = None
     effectivePeriod: Optional[Period] = None
-    encounter: Optional[FHIRReference] = None
-    identifier: Optional[List[Identifier]] = empty_list()
-    imagingStudy: Optional[List[FHIRReference]] = empty_list()
     issued: Optional[FHIRDate] = None
-    media: Optional[List[DiagnosticReportMedia]] = empty_list()
     performer: Optional[List[FHIRReference]] = empty_list()
-    presentedForm: Optional[List[Attachment]] = empty_list()
-    result: Optional[List[FHIRReference]] = empty_list()
     resultsInterpreter: Optional[List[FHIRReference]] = empty_list()
     specimen: Optional[List[FHIRReference]] = empty_list()
-    status: str = None
-    subject: Optional[FHIRReference] = None
+    result: Optional[List[FHIRReference]] = empty_list()
+    imagingStudy: Optional[List[FHIRReference]] = empty_list()
+    media: Optional[List[DiagnosticReportMedia]] = empty_list()
+    conclusion: Optional[str] = None
+    conclusionCode: Optional[List[CodeableConcept]] = empty_list()
+    presentedForm: Optional[List[Attachment]] = empty_list()
 
     def elementProperties(self):
         js = super(DiagnosticReport, self).elementProperties()
         js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
             ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("status", "status", str, False, None, True),
             ("category", "category", CodeableConcept, True, None, False),
             ("code", "code", CodeableConcept, False, None, True),
-            ("conclusion", "conclusion", str, False, None, False),
-            ("conclusionCode", "conclusionCode", CodeableConcept, True, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
             ("effectiveDateTime", "effectiveDateTime", FHIRDate, False, "effective", False),
             ("effectivePeriod", "effectivePeriod", Period, False, "effective", False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("imagingStudy", "imagingStudy", FHIRReference, True, None, False),
             ("issued", "issued", FHIRDate, False, None, False),
-            ("media", "media", DiagnosticReportMedia, True, None, False),
             ("performer", "performer", FHIRReference, True, None, False),
-            ("presentedForm", "presentedForm", Attachment, True, None, False),
-            ("result", "result", FHIRReference, True, None, False),
             ("resultsInterpreter", "resultsInterpreter", FHIRReference, True, None, False),
             ("specimen", "specimen", FHIRReference, True, None, False),
-            ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
+            ("result", "result", FHIRReference, True, None, False),
+            ("imagingStudy", "imagingStudy", FHIRReference, True, None, False),
+            ("media", "media", DiagnosticReportMedia, True, None, False),
+            ("conclusion", "conclusion", str, False, None, False),
+            ("conclusionCode", "conclusionCode", CodeableConcept, True, None, False),
+            ("presentedForm", "presentedForm", Attachment, True, None, False),
         ])
         return js

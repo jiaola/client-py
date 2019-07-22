@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Slot) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Slot) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -20,31 +20,31 @@ class Slot(DomainResource):
     """ A slot of time on a schedule that may be available for booking appointments.
     """
     resource_type: ClassVar[str] = "Slot"
-    appointmentType: Optional[CodeableConcept] = None
-    comment: Optional[str] = None
-    end: FHIRDate = None
     identifier: Optional[List[Identifier]] = empty_list()
-    overbooked: Optional[bool] = None
-    schedule: FHIRReference = None
     serviceCategory: Optional[List[CodeableConcept]] = empty_list()
     serviceType: Optional[List[CodeableConcept]] = empty_list()
     specialty: Optional[List[CodeableConcept]] = empty_list()
-    start: FHIRDate = None
+    appointmentType: Optional[CodeableConcept] = None
+    schedule: FHIRReference = None
     status: str = None
+    start: FHIRDate = None
+    end: FHIRDate = None
+    overbooked: Optional[bool] = None
+    comment: Optional[str] = None
 
     def elementProperties(self):
         js = super(Slot, self).elementProperties()
         js.extend([
-            ("appointmentType", "appointmentType", CodeableConcept, False, None, False),
-            ("comment", "comment", str, False, None, False),
-            ("end", "end", FHIRDate, False, None, True),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("overbooked", "overbooked", bool, False, None, False),
-            ("schedule", "schedule", FHIRReference, False, None, True),
             ("serviceCategory", "serviceCategory", CodeableConcept, True, None, False),
             ("serviceType", "serviceType", CodeableConcept, True, None, False),
             ("specialty", "specialty", CodeableConcept, True, None, False),
-            ("start", "start", FHIRDate, False, None, True),
+            ("appointmentType", "appointmentType", CodeableConcept, False, None, False),
+            ("schedule", "schedule", FHIRReference, False, None, True),
             ("status", "status", str, False, None, True),
+            ("start", "start", FHIRDate, False, None, True),
+            ("end", "end", FHIRDate, False, None, True),
+            ("overbooked", "overbooked", bool, False, None, False),
+            ("comment", "comment", str, False, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceAmount) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceAmount) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -20,14 +20,14 @@ class SubstanceAmountReferenceRange(Element):
     """ Reference range of possible or expected values.
     """
     resource_type: ClassVar[str] = "SubstanceAmountReferenceRange"
-    highLimit: Optional[Quantity] = None
     lowLimit: Optional[Quantity] = None
+    highLimit: Optional[Quantity] = None
 
     def elementProperties(self):
         js = super(SubstanceAmountReferenceRange, self).elementProperties()
         js.extend([
-            ("highLimit", "highLimit", Quantity, False, None, False),
             ("lowLimit", "lowLimit", Quantity, False, None, False),
+            ("highLimit", "highLimit", Quantity, False, None, False),
         ])
         return js
 
@@ -46,8 +46,8 @@ class SubstanceAmount(BackboneElement):
     amountQuantity: Optional[Quantity] = None
     amountRange: Optional[Range] = None
     amountString: Optional[str] = None
-    amountText: Optional[str] = None
     amountType: Optional[CodeableConcept] = None
+    amountText: Optional[str] = None
     referenceRange: Optional[SubstanceAmountReferenceRange] = None
 
     def elementProperties(self):
@@ -56,8 +56,8 @@ class SubstanceAmount(BackboneElement):
             ("amountQuantity", "amountQuantity", Quantity, False, "amount", False),
             ("amountRange", "amountRange", Range, False, "amount", False),
             ("amountString", "amountString", str, False, "amount", False),
-            ("amountText", "amountText", str, False, None, False),
             ("amountType", "amountType", CodeableConcept, False, None, False),
+            ("amountText", "amountText", str, False, None, False),
             ("referenceRange", "referenceRange", SubstanceAmountReferenceRange, False, None, False),
         ])
         return js

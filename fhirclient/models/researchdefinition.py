@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchDefinition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchDefinition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -29,79 +29,79 @@ class ResearchDefinition(DomainResource):
     about.
     """
     resource_type: ClassVar[str] = "ResearchDefinition"
-    approvalDate: Optional[FHIRDate] = None
-    author: Optional[List[ContactDetail]] = empty_list()
-    comment: Optional[List[str]] = empty_list()
-    contact: Optional[List[ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: Optional[FHIRDate] = None
-    description: Optional[str] = None
-    editor: Optional[List[ContactDetail]] = empty_list()
-    effectivePeriod: Optional[Period] = None
-    endorser: Optional[List[ContactDetail]] = empty_list()
-    experimental: Optional[bool] = None
-    exposure: Optional[FHIRReference] = None
-    exposureAlternative: Optional[FHIRReference] = None
+    url: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    lastReviewDate: Optional[FHIRDate] = None
-    library: Optional[List[str]] = empty_list()
+    version: Optional[str] = None
     name: Optional[str] = None
-    outcome: Optional[FHIRReference] = None
-    population: FHIRReference = None
-    publisher: Optional[str] = None
-    purpose: Optional[str] = None
-    relatedArtifact: Optional[List[RelatedArtifact]] = empty_list()
-    reviewer: Optional[List[ContactDetail]] = empty_list()
+    title: Optional[str] = None
     shortTitle: Optional[str] = None
+    subtitle: Optional[str] = None
     status: str = None
+    experimental: Optional[bool] = None
     subjectCodeableConcept: Optional[CodeableConcept] = None
     subjectReference: Optional[FHIRReference] = None
-    subtitle: Optional[str] = None
-    title: Optional[str] = None
-    topic: Optional[List[CodeableConcept]] = empty_list()
-    url: Optional[str] = None
-    usage: Optional[str] = None
+    date: Optional[FHIRDate] = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
+    comment: Optional[List[str]] = empty_list()
     useContext: Optional[List[UsageContext]] = empty_list()
-    version: Optional[str] = None
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
+    purpose: Optional[str] = None
+    usage: Optional[str] = None
+    copyright: Optional[str] = None
+    approvalDate: Optional[FHIRDate] = None
+    lastReviewDate: Optional[FHIRDate] = None
+    effectivePeriod: Optional[Period] = None
+    topic: Optional[List[CodeableConcept]] = empty_list()
+    author: Optional[List[ContactDetail]] = empty_list()
+    editor: Optional[List[ContactDetail]] = empty_list()
+    reviewer: Optional[List[ContactDetail]] = empty_list()
+    endorser: Optional[List[ContactDetail]] = empty_list()
+    relatedArtifact: Optional[List[RelatedArtifact]] = empty_list()
+    library: Optional[List[str]] = empty_list()
+    population: FHIRReference = None
+    exposure: Optional[FHIRReference] = None
+    exposureAlternative: Optional[FHIRReference] = None
+    outcome: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(ResearchDefinition, self).elementProperties()
         js.extend([
-            ("approvalDate", "approvalDate", FHIRDate, False, None, False),
-            ("author", "author", ContactDetail, True, None, False),
-            ("comment", "comment", str, True, None, False),
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("editor", "editor", ContactDetail, True, None, False),
-            ("effectivePeriod", "effectivePeriod", Period, False, None, False),
-            ("endorser", "endorser", ContactDetail, True, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("exposure", "exposure", FHIRReference, False, None, False),
-            ("exposureAlternative", "exposureAlternative", FHIRReference, False, None, False),
+            ("url", "url", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("lastReviewDate", "lastReviewDate", FHIRDate, False, None, False),
-            ("library", "library", str, True, None, False),
+            ("version", "version", str, False, None, False),
             ("name", "name", str, False, None, False),
-            ("outcome", "outcome", FHIRReference, False, None, False),
-            ("population", "population", FHIRReference, False, None, True),
-            ("publisher", "publisher", str, False, None, False),
-            ("purpose", "purpose", str, False, None, False),
-            ("relatedArtifact", "relatedArtifact", RelatedArtifact, True, None, False),
-            ("reviewer", "reviewer", ContactDetail, True, None, False),
+            ("title", "title", str, False, None, False),
             ("shortTitle", "shortTitle", str, False, None, False),
+            ("subtitle", "subtitle", str, False, None, False),
             ("status", "status", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
             ("subjectCodeableConcept", "subjectCodeableConcept", CodeableConcept, False, "subject", False),
             ("subjectReference", "subjectReference", FHIRReference, False, "subject", False),
-            ("subtitle", "subtitle", str, False, None, False),
-            ("title", "title", str, False, None, False),
-            ("topic", "topic", CodeableConcept, True, None, False),
-            ("url", "url", str, False, None, False),
-            ("usage", "usage", str, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("comment", "comment", str, True, None, False),
             ("useContext", "useContext", UsageContext, True, None, False),
-            ("version", "version", str, False, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
+            ("purpose", "purpose", str, False, None, False),
+            ("usage", "usage", str, False, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("approvalDate", "approvalDate", FHIRDate, False, None, False),
+            ("lastReviewDate", "lastReviewDate", FHIRDate, False, None, False),
+            ("effectivePeriod", "effectivePeriod", Period, False, None, False),
+            ("topic", "topic", CodeableConcept, True, None, False),
+            ("author", "author", ContactDetail, True, None, False),
+            ("editor", "editor", ContactDetail, True, None, False),
+            ("reviewer", "reviewer", ContactDetail, True, None, False),
+            ("endorser", "endorser", ContactDetail, True, None, False),
+            ("relatedArtifact", "relatedArtifact", RelatedArtifact, True, None, False),
+            ("library", "library", str, True, None, False),
+            ("population", "population", FHIRReference, False, None, True),
+            ("exposure", "exposure", FHIRReference, False, None, False),
+            ("exposureAlternative", "exposureAlternative", FHIRReference, False, None, False),
+            ("outcome", "outcome", FHIRReference, False, None, False),
         ])
         return js

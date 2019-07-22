@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -28,24 +28,24 @@ class AllergyIntoleranceReaction(BackboneElement):
     identified substance.
     """
     resource_type: ClassVar[str] = "AllergyIntoleranceReaction"
-    description: Optional[str] = None
-    exposureRoute: Optional[CodeableConcept] = None
+    substance: Optional[CodeableConcept] = None
     manifestation: List[CodeableConcept] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
+    description: Optional[str] = None
     onset: Optional[FHIRDate] = None
     severity: Optional[str] = None
-    substance: Optional[CodeableConcept] = None
+    exposureRoute: Optional[CodeableConcept] = None
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(AllergyIntoleranceReaction, self).elementProperties()
         js.extend([
-            ("description", "description", str, False, None, False),
-            ("exposureRoute", "exposureRoute", CodeableConcept, False, None, False),
+            ("substance", "substance", CodeableConcept, False, None, False),
             ("manifestation", "manifestation", CodeableConcept, True, None, True),
-            ("note", "note", Annotation, True, None, False),
+            ("description", "description", str, False, None, False),
             ("onset", "onset", FHIRDate, False, None, False),
             ("severity", "severity", str, False, None, False),
-            ("substance", "substance", CodeableConcept, False, None, False),
+            ("exposureRoute", "exposureRoute", CodeableConcept, False, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js
 
@@ -58,49 +58,49 @@ class AllergyIntolerance(DomainResource):
     an individual and associated with exposure to a substance.
     """
     resource_type: ClassVar[str] = "AllergyIntolerance"
-    asserter: Optional[FHIRReference] = None
-    category: Optional[List[str]] = empty_list()
-    clinicalStatus: Optional[CodeableConcept] = None
-    code: Optional[CodeableConcept] = None
-    criticality: Optional[str] = None
-    encounter: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    lastOccurrence: Optional[FHIRDate] = None
-    note: Optional[List[Annotation]] = empty_list()
-    onsetAge: Optional[Age] = None
+    clinicalStatus: Optional[CodeableConcept] = None
+    verificationStatus: Optional[CodeableConcept] = None
+    type: Optional[str] = None
+    category: Optional[List[str]] = empty_list()
+    criticality: Optional[str] = None
+    code: Optional[CodeableConcept] = None
+    patient: FHIRReference = None
+    encounter: Optional[FHIRReference] = None
     onsetDateTime: Optional[FHIRDate] = None
+    onsetAge: Optional[Age] = None
     onsetPeriod: Optional[Period] = None
     onsetRange: Optional[Range] = None
     onsetString: Optional[str] = None
-    patient: FHIRReference = None
-    reaction: Optional[List[AllergyIntoleranceReaction]] = empty_list()
     recordedDate: Optional[FHIRDate] = None
     recorder: Optional[FHIRReference] = None
-    type: Optional[str] = None
-    verificationStatus: Optional[CodeableConcept] = None
+    asserter: Optional[FHIRReference] = None
+    lastOccurrence: Optional[FHIRDate] = None
+    note: Optional[List[Annotation]] = empty_list()
+    reaction: Optional[List[AllergyIntoleranceReaction]] = empty_list()
 
     def elementProperties(self):
         js = super(AllergyIntolerance, self).elementProperties()
         js.extend([
-            ("asserter", "asserter", FHIRReference, False, None, False),
-            ("category", "category", str, True, None, False),
-            ("clinicalStatus", "clinicalStatus", CodeableConcept, False, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("criticality", "criticality", str, False, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("lastOccurrence", "lastOccurrence", FHIRDate, False, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("onsetAge", "onsetAge", Age, False, "onset", False),
+            ("clinicalStatus", "clinicalStatus", CodeableConcept, False, None, False),
+            ("verificationStatus", "verificationStatus", CodeableConcept, False, None, False),
+            ("type", "type", str, False, None, False),
+            ("category", "category", str, True, None, False),
+            ("criticality", "criticality", str, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("patient", "patient", FHIRReference, False, None, True),
+            ("encounter", "encounter", FHIRReference, False, None, False),
             ("onsetDateTime", "onsetDateTime", FHIRDate, False, "onset", False),
+            ("onsetAge", "onsetAge", Age, False, "onset", False),
             ("onsetPeriod", "onsetPeriod", Period, False, "onset", False),
             ("onsetRange", "onsetRange", Range, False, "onset", False),
             ("onsetString", "onsetString", str, False, "onset", False),
-            ("patient", "patient", FHIRReference, False, None, True),
-            ("reaction", "reaction", AllergyIntoleranceReaction, True, None, False),
             ("recordedDate", "recordedDate", FHIRDate, False, None, False),
             ("recorder", "recorder", FHIRReference, False, None, False),
-            ("type", "type", str, False, None, False),
-            ("verificationStatus", "verificationStatus", CodeableConcept, False, None, False),
+            ("asserter", "asserter", FHIRReference, False, None, False),
+            ("lastOccurrence", "lastOccurrence", FHIRDate, False, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("reaction", "reaction", AllergyIntoleranceReaction, True, None, False),
         ])
         return js

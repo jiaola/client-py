@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -48,33 +48,33 @@ class RelatedPerson(DomainResource):
     care process.
     """
     resource_type: ClassVar[str] = "RelatedPerson"
-    active: Optional[bool] = None
-    address: Optional[List[Address]] = empty_list()
-    birthDate: Optional[FHIRDate] = None
-    communication: Optional[List[RelatedPersonCommunication]] = empty_list()
-    gender: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    name: Optional[List[HumanName]] = empty_list()
+    active: Optional[bool] = None
     patient: FHIRReference = None
-    period: Optional[Period] = None
-    photo: Optional[List[Attachment]] = empty_list()
     relationship: Optional[List[CodeableConcept]] = empty_list()
+    name: Optional[List[HumanName]] = empty_list()
     telecom: Optional[List[ContactPoint]] = empty_list()
+    gender: Optional[str] = None
+    birthDate: Optional[FHIRDate] = None
+    address: Optional[List[Address]] = empty_list()
+    photo: Optional[List[Attachment]] = empty_list()
+    period: Optional[Period] = None
+    communication: Optional[List[RelatedPersonCommunication]] = empty_list()
 
     def elementProperties(self):
         js = super(RelatedPerson, self).elementProperties()
         js.extend([
-            ("active", "active", bool, False, None, False),
-            ("address", "address", Address, True, None, False),
-            ("birthDate", "birthDate", FHIRDate, False, None, False),
-            ("communication", "communication", RelatedPersonCommunication, True, None, False),
-            ("gender", "gender", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("name", "name", HumanName, True, None, False),
+            ("active", "active", bool, False, None, False),
             ("patient", "patient", FHIRReference, False, None, True),
-            ("period", "period", Period, False, None, False),
-            ("photo", "photo", Attachment, True, None, False),
             ("relationship", "relationship", CodeableConcept, True, None, False),
+            ("name", "name", HumanName, True, None, False),
             ("telecom", "telecom", ContactPoint, True, None, False),
+            ("gender", "gender", str, False, None, False),
+            ("birthDate", "birthDate", FHIRDate, False, None, False),
+            ("address", "address", Address, True, None, False),
+            ("photo", "photo", Attachment, True, None, False),
+            ("period", "period", Period, False, None, False),
+            ("communication", "communication", RelatedPersonCommunication, True, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/BodyStructure) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/BodyStructure) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,25 +24,25 @@ class BodyStructure(DomainResource):
     use case.
     """
     resource_type: ClassVar[str] = "BodyStructure"
-    active: Optional[bool] = None
-    description: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    image: Optional[List[Attachment]] = empty_list()
+    active: Optional[bool] = None
+    morphology: Optional[CodeableConcept] = None
     location: Optional[CodeableConcept] = None
     locationQualifier: Optional[List[CodeableConcept]] = empty_list()
-    morphology: Optional[CodeableConcept] = None
+    description: Optional[str] = None
+    image: Optional[List[Attachment]] = empty_list()
     patient: FHIRReference = None
 
     def elementProperties(self):
         js = super(BodyStructure, self).elementProperties()
         js.extend([
-            ("active", "active", bool, False, None, False),
-            ("description", "description", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("image", "image", Attachment, True, None, False),
+            ("active", "active", bool, False, None, False),
+            ("morphology", "morphology", CodeableConcept, False, None, False),
             ("location", "location", CodeableConcept, False, None, False),
             ("locationQualifier", "locationQualifier", CodeableConcept, True, None, False),
-            ("morphology", "morphology", CodeableConcept, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("image", "image", Attachment, True, None, False),
             ("patient", "patient", FHIRReference, False, None, True),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Measure) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Measure) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,31 +22,6 @@ from .usagecontext import UsageContext
 
 
 @dataclass
-class MeasureSupplementalData(BackboneElement):
-    """ What other data should be reported with the measure.
-
-    The supplemental data criteria for the measure report, specified as either
-    the name of a valid CQL expression within a referenced library, or a valid
-    FHIR Resource Path.
-    """
-    resource_type: ClassVar[str] = "MeasureSupplementalData"
-    code: Optional[CodeableConcept] = None
-    criteria: Expression = None
-    description: Optional[str] = None
-    usage: Optional[List[CodeableConcept]] = empty_list()
-
-    def elementProperties(self):
-        js = super(MeasureSupplementalData, self).elementProperties()
-        js.extend([
-            ("code", "code", CodeableConcept, False, None, False),
-            ("criteria", "criteria", Expression, False, None, True),
-            ("description", "description", str, False, None, False),
-            ("usage", "usage", CodeableConcept, True, None, False),
-        ])
-        return js
-
-
-@dataclass
 class MeasureGroupStratifierComponent(BackboneElement):
     """ Stratifier criteria component for the measure.
 
@@ -56,15 +31,36 @@ class MeasureGroupStratifierComponent(BackboneElement):
     """
     resource_type: ClassVar[str] = "MeasureGroupStratifierComponent"
     code: Optional[CodeableConcept] = None
-    criteria: Expression = None
     description: Optional[str] = None
+    criteria: Expression = None
 
     def elementProperties(self):
         js = super(MeasureGroupStratifierComponent, self).elementProperties()
         js.extend([
             ("code", "code", CodeableConcept, False, None, False),
-            ("criteria", "criteria", Expression, False, None, True),
             ("description", "description", str, False, None, False),
+            ("criteria", "criteria", Expression, False, None, True),
+        ])
+        return js
+
+
+@dataclass
+class MeasureGroupPopulation(BackboneElement):
+    """ Population criteria.
+
+    A population criteria for the measure.
+    """
+    resource_type: ClassVar[str] = "MeasureGroupPopulation"
+    code: Optional[CodeableConcept] = None
+    description: Optional[str] = None
+    criteria: Expression = None
+
+    def elementProperties(self):
+        js = super(MeasureGroupPopulation, self).elementProperties()
+        js.extend([
+            ("code", "code", CodeableConcept, False, None, False),
+            ("description", "description", str, False, None, False),
+            ("criteria", "criteria", Expression, False, None, True),
         ])
         return js
 
@@ -79,38 +75,17 @@ class MeasureGroupStratifier(BackboneElement):
     """
     resource_type: ClassVar[str] = "MeasureGroupStratifier"
     code: Optional[CodeableConcept] = None
-    component: Optional[List[MeasureGroupStratifierComponent]] = empty_list()
-    criteria: Optional[Expression] = None
     description: Optional[str] = None
+    criteria: Optional[Expression] = None
+    component: Optional[List[MeasureGroupStratifierComponent]] = empty_list()
 
     def elementProperties(self):
         js = super(MeasureGroupStratifier, self).elementProperties()
         js.extend([
             ("code", "code", CodeableConcept, False, None, False),
-            ("component", "component", MeasureGroupStratifierComponent, True, None, False),
+            ("description", "description", str, False, None, False),
             ("criteria", "criteria", Expression, False, None, False),
-            ("description", "description", str, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class MeasureGroupPopulation(BackboneElement):
-    """ Population criteria.
-
-    A population criteria for the measure.
-    """
-    resource_type: ClassVar[str] = "MeasureGroupPopulation"
-    code: Optional[CodeableConcept] = None
-    criteria: Expression = None
-    description: Optional[str] = None
-
-    def elementProperties(self):
-        js = super(MeasureGroupPopulation, self).elementProperties()
-        js.extend([
-            ("code", "code", CodeableConcept, False, None, False),
-            ("criteria", "criteria", Expression, False, None, True),
-            ("description", "description", str, False, None, False),
+            ("component", "component", MeasureGroupStratifierComponent, True, None, False),
         ])
         return js
 
@@ -139,99 +114,124 @@ class MeasureGroup(BackboneElement):
 
 
 @dataclass
+class MeasureSupplementalData(BackboneElement):
+    """ What other data should be reported with the measure.
+
+    The supplemental data criteria for the measure report, specified as either
+    the name of a valid CQL expression within a referenced library, or a valid
+    FHIR Resource Path.
+    """
+    resource_type: ClassVar[str] = "MeasureSupplementalData"
+    code: Optional[CodeableConcept] = None
+    usage: Optional[List[CodeableConcept]] = empty_list()
+    description: Optional[str] = None
+    criteria: Expression = None
+
+    def elementProperties(self):
+        js = super(MeasureSupplementalData, self).elementProperties()
+        js.extend([
+            ("code", "code", CodeableConcept, False, None, False),
+            ("usage", "usage", CodeableConcept, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("criteria", "criteria", Expression, False, None, True),
+        ])
+        return js
+
+
+@dataclass
 class Measure(DomainResource):
     """ A quality measure definition.
 
     The Measure resource provides the definition of a quality measure.
     """
     resource_type: ClassVar[str] = "Measure"
-    approvalDate: Optional[FHIRDate] = None
-    author: Optional[List[ContactDetail]] = empty_list()
-    clinicalRecommendationStatement: Optional[str] = None
-    compositeScoring: Optional[CodeableConcept] = None
-    contact: Optional[List[ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: Optional[FHIRDate] = None
-    definition: Optional[List[str]] = empty_list()
-    description: Optional[str] = None
-    disclaimer: Optional[str] = None
-    editor: Optional[List[ContactDetail]] = empty_list()
-    effectivePeriod: Optional[Period] = None
-    endorser: Optional[List[ContactDetail]] = empty_list()
-    experimental: Optional[bool] = None
-    group: Optional[List[MeasureGroup]] = empty_list()
-    guidance: Optional[str] = None
+    url: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    improvementNotation: Optional[CodeableConcept] = None
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    lastReviewDate: Optional[FHIRDate] = None
-    library: Optional[List[str]] = empty_list()
+    version: Optional[str] = None
     name: Optional[str] = None
-    publisher: Optional[str] = None
-    purpose: Optional[str] = None
-    rateAggregation: Optional[str] = None
-    rationale: Optional[str] = None
-    relatedArtifact: Optional[List[RelatedArtifact]] = empty_list()
-    reviewer: Optional[List[ContactDetail]] = empty_list()
-    riskAdjustment: Optional[str] = None
-    scoring: Optional[CodeableConcept] = None
+    title: Optional[str] = None
+    subtitle: Optional[str] = None
     status: str = None
+    experimental: Optional[bool] = None
     subjectCodeableConcept: Optional[CodeableConcept] = None
     subjectReference: Optional[FHIRReference] = None
-    subtitle: Optional[str] = None
-    supplementalData: Optional[List[MeasureSupplementalData]] = empty_list()
-    title: Optional[str] = None
-    topic: Optional[List[CodeableConcept]] = empty_list()
-    type: Optional[List[CodeableConcept]] = empty_list()
-    url: Optional[str] = None
-    usage: Optional[str] = None
+    date: Optional[FHIRDate] = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
     useContext: Optional[List[UsageContext]] = empty_list()
-    version: Optional[str] = None
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
+    purpose: Optional[str] = None
+    usage: Optional[str] = None
+    copyright: Optional[str] = None
+    approvalDate: Optional[FHIRDate] = None
+    lastReviewDate: Optional[FHIRDate] = None
+    effectivePeriod: Optional[Period] = None
+    topic: Optional[List[CodeableConcept]] = empty_list()
+    author: Optional[List[ContactDetail]] = empty_list()
+    editor: Optional[List[ContactDetail]] = empty_list()
+    reviewer: Optional[List[ContactDetail]] = empty_list()
+    endorser: Optional[List[ContactDetail]] = empty_list()
+    relatedArtifact: Optional[List[RelatedArtifact]] = empty_list()
+    library: Optional[List[str]] = empty_list()
+    disclaimer: Optional[str] = None
+    scoring: Optional[CodeableConcept] = None
+    compositeScoring: Optional[CodeableConcept] = None
+    type: Optional[List[CodeableConcept]] = empty_list()
+    riskAdjustment: Optional[str] = None
+    rateAggregation: Optional[str] = None
+    rationale: Optional[str] = None
+    clinicalRecommendationStatement: Optional[str] = None
+    improvementNotation: Optional[CodeableConcept] = None
+    definition: Optional[List[str]] = empty_list()
+    guidance: Optional[str] = None
+    group: Optional[List[MeasureGroup]] = empty_list()
+    supplementalData: Optional[List[MeasureSupplementalData]] = empty_list()
 
     def elementProperties(self):
         js = super(Measure, self).elementProperties()
         js.extend([
-            ("approvalDate", "approvalDate", FHIRDate, False, None, False),
-            ("author", "author", ContactDetail, True, None, False),
-            ("clinicalRecommendationStatement", "clinicalRecommendationStatement", str, False, None, False),
-            ("compositeScoring", "compositeScoring", CodeableConcept, False, None, False),
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("definition", "definition", str, True, None, False),
-            ("description", "description", str, False, None, False),
-            ("disclaimer", "disclaimer", str, False, None, False),
-            ("editor", "editor", ContactDetail, True, None, False),
-            ("effectivePeriod", "effectivePeriod", Period, False, None, False),
-            ("endorser", "endorser", ContactDetail, True, None, False),
-            ("experimental", "experimental", bool, False, None, False),
-            ("group", "group", MeasureGroup, True, None, False),
-            ("guidance", "guidance", str, False, None, False),
+            ("url", "url", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("improvementNotation", "improvementNotation", CodeableConcept, False, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("lastReviewDate", "lastReviewDate", FHIRDate, False, None, False),
-            ("library", "library", str, True, None, False),
+            ("version", "version", str, False, None, False),
             ("name", "name", str, False, None, False),
-            ("publisher", "publisher", str, False, None, False),
-            ("purpose", "purpose", str, False, None, False),
-            ("rateAggregation", "rateAggregation", str, False, None, False),
-            ("rationale", "rationale", str, False, None, False),
-            ("relatedArtifact", "relatedArtifact", RelatedArtifact, True, None, False),
-            ("reviewer", "reviewer", ContactDetail, True, None, False),
-            ("riskAdjustment", "riskAdjustment", str, False, None, False),
-            ("scoring", "scoring", CodeableConcept, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("subtitle", "subtitle", str, False, None, False),
             ("status", "status", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
             ("subjectCodeableConcept", "subjectCodeableConcept", CodeableConcept, False, "subject", False),
             ("subjectReference", "subjectReference", FHIRReference, False, "subject", False),
-            ("subtitle", "subtitle", str, False, None, False),
-            ("supplementalData", "supplementalData", MeasureSupplementalData, True, None, False),
-            ("title", "title", str, False, None, False),
-            ("topic", "topic", CodeableConcept, True, None, False),
-            ("type", "type", CodeableConcept, True, None, False),
-            ("url", "url", str, False, None, False),
-            ("usage", "usage", str, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
             ("useContext", "useContext", UsageContext, True, None, False),
-            ("version", "version", str, False, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
+            ("purpose", "purpose", str, False, None, False),
+            ("usage", "usage", str, False, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("approvalDate", "approvalDate", FHIRDate, False, None, False),
+            ("lastReviewDate", "lastReviewDate", FHIRDate, False, None, False),
+            ("effectivePeriod", "effectivePeriod", Period, False, None, False),
+            ("topic", "topic", CodeableConcept, True, None, False),
+            ("author", "author", ContactDetail, True, None, False),
+            ("editor", "editor", ContactDetail, True, None, False),
+            ("reviewer", "reviewer", ContactDetail, True, None, False),
+            ("endorser", "endorser", ContactDetail, True, None, False),
+            ("relatedArtifact", "relatedArtifact", RelatedArtifact, True, None, False),
+            ("library", "library", str, True, None, False),
+            ("disclaimer", "disclaimer", str, False, None, False),
+            ("scoring", "scoring", CodeableConcept, False, None, False),
+            ("compositeScoring", "compositeScoring", CodeableConcept, False, None, False),
+            ("type", "type", CodeableConcept, True, None, False),
+            ("riskAdjustment", "riskAdjustment", str, False, None, False),
+            ("rateAggregation", "rateAggregation", str, False, None, False),
+            ("rationale", "rationale", str, False, None, False),
+            ("clinicalRecommendationStatement", "clinicalRecommendationStatement", str, False, None, False),
+            ("improvementNotation", "improvementNotation", CodeableConcept, False, None, False),
+            ("definition", "definition", str, True, None, False),
+            ("guidance", "guidance", str, False, None, False),
+            ("group", "group", MeasureGroup, True, None, False),
+            ("supplementalData", "supplementalData", MeasureSupplementalData, True, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -26,16 +26,16 @@ class CommunicationRequestPayload(BackboneElement):
     Text, attachment(s), or resource(s) to be communicated to the recipient.
     """
     resource_type: ClassVar[str] = "CommunicationRequestPayload"
+    contentString: str = None
     contentAttachment: Attachment = None
     contentReference: FHIRReference = None
-    contentString: str = None
 
     def elementProperties(self):
         js = super(CommunicationRequestPayload, self).elementProperties()
         js.extend([
+            ("contentString", "contentString", str, False, "content", True),
             ("contentAttachment", "contentAttachment", Attachment, False, "content", True),
             ("contentReference", "contentReference", FHIRReference, False, "content", True),
-            ("contentString", "contentString", str, False, "content", True),
         ])
         return js
 
@@ -49,55 +49,55 @@ class CommunicationRequest(DomainResource):
     health agency be notified about a reportable condition.
     """
     resource_type: ClassVar[str] = "CommunicationRequest"
-    about: Optional[List[FHIRReference]] = empty_list()
-    authoredOn: Optional[FHIRDate] = None
-    basedOn: Optional[List[FHIRReference]] = empty_list()
-    category: Optional[List[CodeableConcept]] = empty_list()
-    doNotPerform: Optional[bool] = None
-    encounter: Optional[FHIRReference] = None
-    groupIdentifier: Optional[Identifier] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    medium: Optional[List[CodeableConcept]] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
-    occurrenceDateTime: Optional[FHIRDate] = None
-    occurrencePeriod: Optional[Period] = None
-    payload: Optional[List[CommunicationRequestPayload]] = empty_list()
-    priority: Optional[str] = None
-    reasonCode: Optional[List[CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[FHIRReference]] = empty_list()
-    recipient: Optional[List[FHIRReference]] = empty_list()
+    basedOn: Optional[List[FHIRReference]] = empty_list()
     replaces: Optional[List[FHIRReference]] = empty_list()
-    requester: Optional[FHIRReference] = None
-    sender: Optional[FHIRReference] = None
+    groupIdentifier: Optional[Identifier] = None
     status: str = None
     statusReason: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
+    priority: Optional[str] = None
+    doNotPerform: Optional[bool] = None
+    medium: Optional[List[CodeableConcept]] = empty_list()
     subject: Optional[FHIRReference] = None
+    about: Optional[List[FHIRReference]] = empty_list()
+    encounter: Optional[FHIRReference] = None
+    payload: Optional[List[CommunicationRequestPayload]] = empty_list()
+    occurrenceDateTime: Optional[FHIRDate] = None
+    occurrencePeriod: Optional[Period] = None
+    authoredOn: Optional[FHIRDate] = None
+    requester: Optional[FHIRReference] = None
+    recipient: Optional[List[FHIRReference]] = empty_list()
+    sender: Optional[FHIRReference] = None
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(CommunicationRequest, self).elementProperties()
         js.extend([
-            ("about", "about", FHIRReference, True, None, False),
-            ("authoredOn", "authoredOn", FHIRDate, False, None, False),
-            ("basedOn", "basedOn", FHIRReference, True, None, False),
-            ("category", "category", CodeableConcept, True, None, False),
-            ("doNotPerform", "doNotPerform", bool, False, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("groupIdentifier", "groupIdentifier", Identifier, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("medium", "medium", CodeableConcept, True, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("occurrenceDateTime", "occurrenceDateTime", FHIRDate, False, "occurrence", False),
-            ("occurrencePeriod", "occurrencePeriod", Period, False, "occurrence", False),
-            ("payload", "payload", CommunicationRequestPayload, True, None, False),
-            ("priority", "priority", str, False, None, False),
-            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
-            ("recipient", "recipient", FHIRReference, True, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
             ("replaces", "replaces", FHIRReference, True, None, False),
-            ("requester", "requester", FHIRReference, False, None, False),
-            ("sender", "sender", FHIRReference, False, None, False),
+            ("groupIdentifier", "groupIdentifier", Identifier, False, None, False),
             ("status", "status", str, False, None, True),
             ("statusReason", "statusReason", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
+            ("priority", "priority", str, False, None, False),
+            ("doNotPerform", "doNotPerform", bool, False, None, False),
+            ("medium", "medium", CodeableConcept, True, None, False),
             ("subject", "subject", FHIRReference, False, None, False),
+            ("about", "about", FHIRReference, True, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("payload", "payload", CommunicationRequestPayload, True, None, False),
+            ("occurrenceDateTime", "occurrenceDateTime", FHIRDate, False, "occurrence", False),
+            ("occurrencePeriod", "occurrencePeriod", Period, False, "occurrence", False),
+            ("authoredOn", "authoredOn", FHIRDate, False, None, False),
+            ("requester", "requester", FHIRReference, False, None, False),
+            ("recipient", "recipient", FHIRReference, True, None, False),
+            ("sender", "sender", FHIRReference, False, None, False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js

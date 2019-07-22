@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -13,25 +13,6 @@ from .backboneelement import BackboneElement
 from .codeableconcept import CodeableConcept
 from .domainresource import DomainResource
 from .identifier import Identifier
-
-
-@dataclass
-class SubstanceNucleicAcidSubunitSugar(BackboneElement):
-    """ 5.3.6.8.1 Sugar ID (Mandatory).
-    """
-    resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunitSugar"
-    identifier: Optional[Identifier] = None
-    name: Optional[str] = None
-    residueSite: Optional[str] = None
-
-    def elementProperties(self):
-        js = super(SubstanceNucleicAcidSubunitSugar, self).elementProperties()
-        js.extend([
-            ("identifier", "identifier", Identifier, False, None, False),
-            ("name", "name", str, False, None, False),
-            ("residueSite", "residueSite", str, False, None, False),
-        ])
-        return js
 
 
 @dataclass
@@ -56,32 +37,51 @@ class SubstanceNucleicAcidSubunitLinkage(BackboneElement):
 
 
 @dataclass
+class SubstanceNucleicAcidSubunitSugar(BackboneElement):
+    """ 5.3.6.8.1 Sugar ID (Mandatory).
+    """
+    resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunitSugar"
+    identifier: Optional[Identifier] = None
+    name: Optional[str] = None
+    residueSite: Optional[str] = None
+
+    def elementProperties(self):
+        js = super(SubstanceNucleicAcidSubunitSugar, self).elementProperties()
+        js.extend([
+            ("identifier", "identifier", Identifier, False, None, False),
+            ("name", "name", str, False, None, False),
+            ("residueSite", "residueSite", str, False, None, False),
+        ])
+        return js
+
+
+@dataclass
 class SubstanceNucleicAcidSubunit(BackboneElement):
     """ Subunits are listed in order of decreasing length; sequences of the same
     length will be ordered by molecular weight; subunits that have identical
     sequences will be repeated multiple times.
     """
     resource_type: ClassVar[str] = "SubstanceNucleicAcidSubunit"
-    fivePrime: Optional[CodeableConcept] = None
-    length: Optional[int] = None
-    linkage: Optional[List[SubstanceNucleicAcidSubunitLinkage]] = empty_list()
-    sequence: Optional[str] = None
-    sequenceAttachment: Optional[Attachment] = None
     subunit: Optional[int] = None
-    sugar: Optional[List[SubstanceNucleicAcidSubunitSugar]] = empty_list()
+    sequence: Optional[str] = None
+    length: Optional[int] = None
+    sequenceAttachment: Optional[Attachment] = None
+    fivePrime: Optional[CodeableConcept] = None
     threePrime: Optional[CodeableConcept] = None
+    linkage: Optional[List[SubstanceNucleicAcidSubunitLinkage]] = empty_list()
+    sugar: Optional[List[SubstanceNucleicAcidSubunitSugar]] = empty_list()
 
     def elementProperties(self):
         js = super(SubstanceNucleicAcidSubunit, self).elementProperties()
         js.extend([
-            ("fivePrime", "fivePrime", CodeableConcept, False, None, False),
-            ("length", "length", int, False, None, False),
-            ("linkage", "linkage", SubstanceNucleicAcidSubunitLinkage, True, None, False),
-            ("sequence", "sequence", str, False, None, False),
-            ("sequenceAttachment", "sequenceAttachment", Attachment, False, None, False),
             ("subunit", "subunit", int, False, None, False),
-            ("sugar", "sugar", SubstanceNucleicAcidSubunitSugar, True, None, False),
+            ("sequence", "sequence", str, False, None, False),
+            ("length", "length", int, False, None, False),
+            ("sequenceAttachment", "sequenceAttachment", Attachment, False, None, False),
+            ("fivePrime", "fivePrime", CodeableConcept, False, None, False),
             ("threePrime", "threePrime", CodeableConcept, False, None, False),
+            ("linkage", "linkage", SubstanceNucleicAcidSubunitLinkage, True, None, False),
+            ("sugar", "sugar", SubstanceNucleicAcidSubunitSugar, True, None, False),
         ])
         return js
 
@@ -94,19 +94,19 @@ class SubstanceNucleicAcid(DomainResource):
     direction.
     """
     resource_type: ClassVar[str] = "SubstanceNucleicAcid"
-    areaOfHybridisation: Optional[str] = None
-    numberOfSubunits: Optional[int] = None
-    oligoNucleotideType: Optional[CodeableConcept] = None
     sequenceType: Optional[CodeableConcept] = None
+    numberOfSubunits: Optional[int] = None
+    areaOfHybridisation: Optional[str] = None
+    oligoNucleotideType: Optional[CodeableConcept] = None
     subunit: Optional[List[SubstanceNucleicAcidSubunit]] = empty_list()
 
     def elementProperties(self):
         js = super(SubstanceNucleicAcid, self).elementProperties()
         js.extend([
-            ("areaOfHybridisation", "areaOfHybridisation", str, False, None, False),
-            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
-            ("oligoNucleotideType", "oligoNucleotideType", CodeableConcept, False, None, False),
             ("sequenceType", "sequenceType", CodeableConcept, False, None, False),
+            ("numberOfSubunits", "numberOfSubunits", int, False, None, False),
+            ("areaOfHybridisation", "areaOfHybridisation", str, False, None, False),
+            ("oligoNucleotideType", "oligoNucleotideType", CodeableConcept, False, None, False),
             ("subunit", "subunit", SubstanceNucleicAcidSubunit, True, None, False),
         ])
         return js

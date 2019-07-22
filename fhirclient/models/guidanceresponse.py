@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -26,43 +26,43 @@ class GuidanceResponse(DomainResource):
     description of any proposed actions to be taken.
     """
     resource_type: ClassVar[str] = "GuidanceResponse"
-    dataRequirement: Optional[List[DataRequirement]] = empty_list()
-    encounter: Optional[FHIRReference] = None
-    evaluationMessage: Optional[List[FHIRReference]] = empty_list()
+    requestIdentifier: Optional[Identifier] = None
     identifier: Optional[List[Identifier]] = empty_list()
+    moduleUri: str = None
     moduleCanonical: str = None
     moduleCodeableConcept: CodeableConcept = None
-    moduleUri: str = None
-    note: Optional[List[Annotation]] = empty_list()
+    status: str = None
+    subject: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
     occurrenceDateTime: Optional[FHIRDate] = None
-    outputParameters: Optional[FHIRReference] = None
     performer: Optional[FHIRReference] = None
     reasonCode: Optional[List[CodeableConcept]] = empty_list()
     reasonReference: Optional[List[FHIRReference]] = empty_list()
-    requestIdentifier: Optional[Identifier] = None
+    note: Optional[List[Annotation]] = empty_list()
+    evaluationMessage: Optional[List[FHIRReference]] = empty_list()
+    outputParameters: Optional[FHIRReference] = None
     result: Optional[FHIRReference] = None
-    status: str = None
-    subject: Optional[FHIRReference] = None
+    dataRequirement: Optional[List[DataRequirement]] = empty_list()
 
     def elementProperties(self):
         js = super(GuidanceResponse, self).elementProperties()
         js.extend([
-            ("dataRequirement", "dataRequirement", DataRequirement, True, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("evaluationMessage", "evaluationMessage", FHIRReference, True, None, False),
+            ("requestIdentifier", "requestIdentifier", Identifier, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
+            ("moduleUri", "moduleUri", str, False, "module", True),
             ("moduleCanonical", "moduleCanonical", str, False, "module", True),
             ("moduleCodeableConcept", "moduleCodeableConcept", CodeableConcept, False, "module", True),
-            ("moduleUri", "moduleUri", str, False, "module", True),
-            ("note", "note", Annotation, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
             ("occurrenceDateTime", "occurrenceDateTime", FHIRDate, False, None, False),
-            ("outputParameters", "outputParameters", FHIRReference, False, None, False),
             ("performer", "performer", FHIRReference, False, None, False),
             ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
             ("reasonReference", "reasonReference", FHIRReference, True, None, False),
-            ("requestIdentifier", "requestIdentifier", Identifier, False, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("evaluationMessage", "evaluationMessage", FHIRReference, True, None, False),
+            ("outputParameters", "outputParameters", FHIRReference, False, None, False),
             ("result", "result", FHIRReference, False, None, False),
-            ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
+            ("dataRequirement", "dataRequirement", DataRequirement, True, None, False),
         ])
         return js

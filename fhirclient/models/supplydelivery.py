@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -26,16 +26,16 @@ class SupplyDeliverySuppliedItem(BackboneElement):
     The item that is being delivered or has been supplied.
     """
     resource_type: ClassVar[str] = "SupplyDeliverySuppliedItem"
+    quantity: Optional[Quantity] = None
     itemCodeableConcept: Optional[CodeableConcept] = None
     itemReference: Optional[FHIRReference] = None
-    quantity: Optional[Quantity] = None
 
     def elementProperties(self):
         js = super(SupplyDeliverySuppliedItem, self).elementProperties()
         js.extend([
+            ("quantity", "quantity", Quantity, False, None, False),
             ("itemCodeableConcept", "itemCodeableConcept", CodeableConcept, False, "item", False),
             ("itemReference", "itemReference", FHIRReference, False, "item", False),
-            ("quantity", "quantity", Quantity, False, None, False),
         ])
         return js
 
@@ -47,35 +47,35 @@ class SupplyDelivery(DomainResource):
     Record of delivery of what is supplied.
     """
     resource_type: ClassVar[str] = "SupplyDelivery"
-    basedOn: Optional[List[FHIRReference]] = empty_list()
-    destination: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
+    basedOn: Optional[List[FHIRReference]] = empty_list()
+    partOf: Optional[List[FHIRReference]] = empty_list()
+    status: Optional[str] = None
+    patient: Optional[FHIRReference] = None
+    type: Optional[CodeableConcept] = None
+    suppliedItem: Optional[SupplyDeliverySuppliedItem] = None
     occurrenceDateTime: Optional[FHIRDate] = None
     occurrencePeriod: Optional[Period] = None
     occurrenceTiming: Optional[Timing] = None
-    partOf: Optional[List[FHIRReference]] = empty_list()
-    patient: Optional[FHIRReference] = None
-    receiver: Optional[List[FHIRReference]] = empty_list()
-    status: Optional[str] = None
-    suppliedItem: Optional[SupplyDeliverySuppliedItem] = None
     supplier: Optional[FHIRReference] = None
-    type: Optional[CodeableConcept] = None
+    destination: Optional[FHIRReference] = None
+    receiver: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(SupplyDelivery, self).elementProperties()
         js.extend([
-            ("basedOn", "basedOn", FHIRReference, True, None, False),
-            ("destination", "destination", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("partOf", "partOf", FHIRReference, True, None, False),
+            ("status", "status", str, False, None, False),
+            ("patient", "patient", FHIRReference, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("suppliedItem", "suppliedItem", SupplyDeliverySuppliedItem, False, None, False),
             ("occurrenceDateTime", "occurrenceDateTime", FHIRDate, False, "occurrence", False),
             ("occurrencePeriod", "occurrencePeriod", Period, False, "occurrence", False),
             ("occurrenceTiming", "occurrenceTiming", Timing, False, "occurrence", False),
-            ("partOf", "partOf", FHIRReference, True, None, False),
-            ("patient", "patient", FHIRReference, False, None, False),
-            ("receiver", "receiver", FHIRReference, True, None, False),
-            ("status", "status", str, False, None, False),
-            ("suppliedItem", "suppliedItem", SupplyDeliverySuppliedItem, False, None, False),
             ("supplier", "supplier", FHIRReference, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
+            ("destination", "destination", FHIRReference, False, None, False),
+            ("receiver", "receiver", FHIRReference, True, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Subscription) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Subscription) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,18 +22,18 @@ class SubscriptionChannel(BackboneElement):
     the criteria.
     """
     resource_type: ClassVar[str] = "SubscriptionChannel"
-    endpoint: Optional[str] = None
-    header: Optional[List[str]] = empty_list()
-    payload: Optional[str] = None
     type: str = None
+    endpoint: Optional[str] = None
+    payload: Optional[str] = None
+    header: Optional[List[str]] = empty_list()
 
     def elementProperties(self):
         js = super(SubscriptionChannel, self).elementProperties()
         js.extend([
-            ("endpoint", "endpoint", str, False, None, False),
-            ("header", "header", str, True, None, False),
-            ("payload", "payload", str, False, None, False),
             ("type", "type", str, False, None, True),
+            ("endpoint", "endpoint", str, False, None, False),
+            ("payload", "payload", str, False, None, False),
+            ("header", "header", str, True, None, False),
         ])
         return js
 
@@ -49,23 +49,23 @@ class Subscription(DomainResource):
     "channel" so that another system can take an appropriate action.
     """
     resource_type: ClassVar[str] = "Subscription"
-    channel: SubscriptionChannel = None
-    contact: Optional[List[ContactPoint]] = empty_list()
-    criteria: str = None
-    end: Optional[FHIRDate] = None
-    error: Optional[str] = None
-    reason: str = None
     status: str = None
+    contact: Optional[List[ContactPoint]] = empty_list()
+    end: Optional[FHIRDate] = None
+    reason: str = None
+    criteria: str = None
+    error: Optional[str] = None
+    channel: SubscriptionChannel = None
 
     def elementProperties(self):
         js = super(Subscription, self).elementProperties()
         js.extend([
-            ("channel", "channel", SubscriptionChannel, False, None, True),
-            ("contact", "contact", ContactPoint, True, None, False),
-            ("criteria", "criteria", str, False, None, True),
-            ("end", "end", FHIRDate, False, None, False),
-            ("error", "error", str, False, None, False),
-            ("reason", "reason", str, False, None, True),
             ("status", "status", str, False, None, True),
+            ("contact", "contact", ContactPoint, True, None, False),
+            ("end", "end", FHIRDate, False, None, False),
+            ("reason", "reason", str, False, None, True),
+            ("criteria", "criteria", str, False, None, True),
+            ("error", "error", str, False, None, False),
+            ("channel", "channel", SubscriptionChannel, False, None, True),
         ])
         return js

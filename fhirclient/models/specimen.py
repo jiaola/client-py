@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Specimen) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Specimen) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,24 +21,57 @@ from .quantity import Quantity
 
 
 @dataclass
+class SpecimenCollection(BackboneElement):
+    """ Collection details.
+
+    Details concerning the specimen collection.
+    """
+    resource_type: ClassVar[str] = "SpecimenCollection"
+    collector: Optional[FHIRReference] = None
+    collectedDateTime: Optional[FHIRDate] = None
+    collectedPeriod: Optional[Period] = None
+    duration: Optional[Duration] = None
+    quantity: Optional[Quantity] = None
+    method: Optional[CodeableConcept] = None
+    bodySite: Optional[CodeableConcept] = None
+    fastingStatusCodeableConcept: Optional[CodeableConcept] = None
+    fastingStatusDuration: Optional[Duration] = None
+
+    def elementProperties(self):
+        js = super(SpecimenCollection, self).elementProperties()
+        js.extend([
+            ("collector", "collector", FHIRReference, False, None, False),
+            ("collectedDateTime", "collectedDateTime", FHIRDate, False, "collected", False),
+            ("collectedPeriod", "collectedPeriod", Period, False, "collected", False),
+            ("duration", "duration", Duration, False, None, False),
+            ("quantity", "quantity", Quantity, False, None, False),
+            ("method", "method", CodeableConcept, False, None, False),
+            ("bodySite", "bodySite", CodeableConcept, False, None, False),
+            ("fastingStatusCodeableConcept", "fastingStatusCodeableConcept", CodeableConcept, False, "fastingStatus", False),
+            ("fastingStatusDuration", "fastingStatusDuration", Duration, False, "fastingStatus", False),
+        ])
+        return js
+
+
+@dataclass
 class SpecimenProcessing(BackboneElement):
     """ Processing and processing step details.
 
     Details concerning processing and processing steps for the specimen.
     """
     resource_type: ClassVar[str] = "SpecimenProcessing"
-    additive: Optional[List[FHIRReference]] = empty_list()
     description: Optional[str] = None
     procedure: Optional[CodeableConcept] = None
+    additive: Optional[List[FHIRReference]] = empty_list()
     timeDateTime: Optional[FHIRDate] = None
     timePeriod: Optional[Period] = None
 
     def elementProperties(self):
         js = super(SpecimenProcessing, self).elementProperties()
         js.extend([
-            ("additive", "additive", FHIRReference, True, None, False),
             ("description", "description", str, False, None, False),
             ("procedure", "procedure", CodeableConcept, False, None, False),
+            ("additive", "additive", FHIRReference, True, None, False),
             ("timeDateTime", "timeDateTime", FHIRDate, False, "time", False),
             ("timePeriod", "timePeriod", Period, False, "time", False),
         ])
@@ -53,57 +86,24 @@ class SpecimenContainer(BackboneElement):
     i.e. blood in tube in tray in rack is not addressed here.
     """
     resource_type: ClassVar[str] = "SpecimenContainer"
+    identifier: Optional[List[Identifier]] = empty_list()
+    description: Optional[str] = None
+    type: Optional[CodeableConcept] = None
+    capacity: Optional[Quantity] = None
+    specimenQuantity: Optional[Quantity] = None
     additiveCodeableConcept: Optional[CodeableConcept] = None
     additiveReference: Optional[FHIRReference] = None
-    capacity: Optional[Quantity] = None
-    description: Optional[str] = None
-    identifier: Optional[List[Identifier]] = empty_list()
-    specimenQuantity: Optional[Quantity] = None
-    type: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(SpecimenContainer, self).elementProperties()
         js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("description", "description", str, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("capacity", "capacity", Quantity, False, None, False),
+            ("specimenQuantity", "specimenQuantity", Quantity, False, None, False),
             ("additiveCodeableConcept", "additiveCodeableConcept", CodeableConcept, False, "additive", False),
             ("additiveReference", "additiveReference", FHIRReference, False, "additive", False),
-            ("capacity", "capacity", Quantity, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("specimenQuantity", "specimenQuantity", Quantity, False, None, False),
-            ("type", "type", CodeableConcept, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class SpecimenCollection(BackboneElement):
-    """ Collection details.
-
-    Details concerning the specimen collection.
-    """
-    resource_type: ClassVar[str] = "SpecimenCollection"
-    bodySite: Optional[CodeableConcept] = None
-    collectedDateTime: Optional[FHIRDate] = None
-    collectedPeriod: Optional[Period] = None
-    collector: Optional[FHIRReference] = None
-    duration: Optional[Duration] = None
-    fastingStatusCodeableConcept: Optional[CodeableConcept] = None
-    fastingStatusDuration: Optional[Duration] = None
-    method: Optional[CodeableConcept] = None
-    quantity: Optional[Quantity] = None
-
-    def elementProperties(self):
-        js = super(SpecimenCollection, self).elementProperties()
-        js.extend([
-            ("bodySite", "bodySite", CodeableConcept, False, None, False),
-            ("collectedDateTime", "collectedDateTime", FHIRDate, False, "collected", False),
-            ("collectedPeriod", "collectedPeriod", Period, False, "collected", False),
-            ("collector", "collector", FHIRReference, False, None, False),
-            ("duration", "duration", Duration, False, None, False),
-            ("fastingStatusCodeableConcept", "fastingStatusCodeableConcept", CodeableConcept, False, "fastingStatus", False),
-            ("fastingStatusDuration", "fastingStatusDuration", Duration, False, "fastingStatus", False),
-            ("method", "method", CodeableConcept, False, None, False),
-            ("quantity", "quantity", Quantity, False, None, False),
         ])
         return js
 
@@ -115,35 +115,35 @@ class Specimen(DomainResource):
     A sample to be used for analysis.
     """
     resource_type: ClassVar[str] = "Specimen"
-    accessionIdentifier: Optional[Identifier] = None
-    collection: Optional[SpecimenCollection] = None
-    condition: Optional[List[CodeableConcept]] = empty_list()
-    container: Optional[List[SpecimenContainer]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
-    parent: Optional[List[FHIRReference]] = empty_list()
-    processing: Optional[List[SpecimenProcessing]] = empty_list()
-    receivedTime: Optional[FHIRDate] = None
-    request: Optional[List[FHIRReference]] = empty_list()
+    accessionIdentifier: Optional[Identifier] = None
     status: Optional[str] = None
-    subject: Optional[FHIRReference] = None
     type: Optional[CodeableConcept] = None
+    subject: Optional[FHIRReference] = None
+    receivedTime: Optional[FHIRDate] = None
+    parent: Optional[List[FHIRReference]] = empty_list()
+    request: Optional[List[FHIRReference]] = empty_list()
+    collection: Optional[SpecimenCollection] = None
+    processing: Optional[List[SpecimenProcessing]] = empty_list()
+    container: Optional[List[SpecimenContainer]] = empty_list()
+    condition: Optional[List[CodeableConcept]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(Specimen, self).elementProperties()
         js.extend([
-            ("accessionIdentifier", "accessionIdentifier", Identifier, False, None, False),
-            ("collection", "collection", SpecimenCollection, False, None, False),
-            ("condition", "condition", CodeableConcept, True, None, False),
-            ("container", "container", SpecimenContainer, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("parent", "parent", FHIRReference, True, None, False),
-            ("processing", "processing", SpecimenProcessing, True, None, False),
-            ("receivedTime", "receivedTime", FHIRDate, False, None, False),
-            ("request", "request", FHIRReference, True, None, False),
+            ("accessionIdentifier", "accessionIdentifier", Identifier, False, None, False),
             ("status", "status", str, False, None, False),
-            ("subject", "subject", FHIRReference, False, None, False),
             ("type", "type", CodeableConcept, False, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("receivedTime", "receivedTime", FHIRDate, False, None, False),
+            ("parent", "parent", FHIRReference, True, None, False),
+            ("request", "request", FHIRReference, True, None, False),
+            ("collection", "collection", SpecimenCollection, False, None, False),
+            ("processing", "processing", SpecimenProcessing, True, None, False),
+            ("container", "container", SpecimenContainer, True, None, False),
+            ("condition", "condition", CodeableConcept, True, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js

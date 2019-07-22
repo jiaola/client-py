@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Linkage) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Linkage) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,14 +22,14 @@ class LinkageItem(BackboneElement):
     collection of linked items.
     """
     resource_type: ClassVar[str] = "LinkageItem"
-    resource: FHIRReference = None
     type: str = None
+    resource: FHIRReference = None
 
     def elementProperties(self):
         js = super(LinkageItem, self).elementProperties()
         js.extend([
-            ("resource", "resource", FHIRReference, False, None, True),
             ("type", "type", str, False, None, True),
+            ("resource", "resource", FHIRReference, False, None, True),
         ])
         return js
 

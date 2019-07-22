@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Signature) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Signature) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,23 +25,23 @@ class Signature(Element):
     ceremony Different signature approaches have different utilities.
     """
     resource_type: ClassVar[str] = "Signature"
-    data: Optional[str] = None
-    onBehalfOf: Optional[FHIRReference] = None
-    sigFormat: Optional[str] = None
-    targetFormat: Optional[str] = None
     type: List[Coding] = empty_list()
     when: FHIRDate = None
     who: FHIRReference = None
+    onBehalfOf: Optional[FHIRReference] = None
+    targetFormat: Optional[str] = None
+    sigFormat: Optional[str] = None
+    data: Optional[str] = None
 
     def elementProperties(self):
         js = super(Signature, self).elementProperties()
         js.extend([
-            ("data", "data", str, False, None, False),
-            ("onBehalfOf", "onBehalfOf", FHIRReference, False, None, False),
-            ("sigFormat", "sigFormat", str, False, None, False),
-            ("targetFormat", "targetFormat", str, False, None, False),
             ("type", "type", Coding, True, None, True),
             ("when", "when", FHIRDate, False, None, True),
             ("who", "who", FHIRReference, False, None, True),
+            ("onBehalfOf", "onBehalfOf", FHIRReference, False, None, False),
+            ("targetFormat", "targetFormat", str, False, None, False),
+            ("sigFormat", "sigFormat", str, False, None, False),
+            ("data", "data", str, False, None, False),
         ])
         return js

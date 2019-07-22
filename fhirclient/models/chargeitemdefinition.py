@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -32,18 +32,39 @@ class ChargeItemDefinitionPropertyGroupPriceComponent(BackboneElement):
     of the Invoice of how the prices have been calculated.
     """
     resource_type: ClassVar[str] = "ChargeItemDefinitionPropertyGroupPriceComponent"
-    amount: Optional[Money] = None
+    type: str = None
     code: Optional[CodeableConcept] = None
     factor: Optional[float] = None
-    type: str = None
+    amount: Optional[Money] = None
 
     def elementProperties(self):
         js = super(ChargeItemDefinitionPropertyGroupPriceComponent, self).elementProperties()
         js.extend([
-            ("amount", "amount", Money, False, None, False),
+            ("type", "type", str, False, None, True),
             ("code", "code", CodeableConcept, False, None, False),
             ("factor", "factor", float, False, None, False),
-            ("type", "type", str, False, None, True),
+            ("amount", "amount", Money, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class ChargeItemDefinitionApplicability(BackboneElement):
+    """ Whether or not the billing code is applicable.
+
+    Expressions that describe applicability criteria for the billing code.
+    """
+    resource_type: ClassVar[str] = "ChargeItemDefinitionApplicability"
+    description: Optional[str] = None
+    language: Optional[str] = None
+    expression: Optional[str] = None
+
+    def elementProperties(self):
+        js = super(ChargeItemDefinitionApplicability, self).elementProperties()
+        js.extend([
+            ("description", "description", str, False, None, False),
+            ("language", "language", str, False, None, False),
+            ("expression", "expression", str, False, None, False),
         ])
         return js
 
@@ -70,27 +91,6 @@ class ChargeItemDefinitionPropertyGroup(BackboneElement):
 
 
 @dataclass
-class ChargeItemDefinitionApplicability(BackboneElement):
-    """ Whether or not the billing code is applicable.
-
-    Expressions that describe applicability criteria for the billing code.
-    """
-    resource_type: ClassVar[str] = "ChargeItemDefinitionApplicability"
-    description: Optional[str] = None
-    expression: Optional[str] = None
-    language: Optional[str] = None
-
-    def elementProperties(self):
-        js = super(ChargeItemDefinitionApplicability, self).elementProperties()
-        js.extend([
-            ("description", "description", str, False, None, False),
-            ("expression", "expression", str, False, None, False),
-            ("language", "language", str, False, None, False),
-        ])
-        return js
-
-
-@dataclass
 class ChargeItemDefinition(DomainResource):
     """ Definition of properties and rules about how the price and the
     applicability of a ChargeItem can be determined.
@@ -102,55 +102,55 @@ class ChargeItemDefinition(DomainResource):
     system.
     """
     resource_type: ClassVar[str] = "ChargeItemDefinition"
-    applicability: Optional[List[ChargeItemDefinitionApplicability]] = empty_list()
-    approvalDate: Optional[FHIRDate] = None
-    code: Optional[CodeableConcept] = None
-    contact: Optional[List[ContactDetail]] = empty_list()
-    copyright: Optional[str] = None
-    date: Optional[FHIRDate] = None
-    derivedFromUri: Optional[List[str]] = empty_list()
-    description: Optional[str] = None
-    effectivePeriod: Optional[Period] = None
-    experimental: Optional[bool] = None
+    url: str = None
     identifier: Optional[List[Identifier]] = empty_list()
-    instance: Optional[List[FHIRReference]] = empty_list()
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    lastReviewDate: Optional[FHIRDate] = None
+    version: Optional[str] = None
+    title: Optional[str] = None
+    derivedFromUri: Optional[List[str]] = empty_list()
     partOf: Optional[List[str]] = empty_list()
-    propertyGroup: Optional[List[ChargeItemDefinitionPropertyGroup]] = empty_list()
-    publisher: Optional[str] = None
     replaces: Optional[List[str]] = empty_list()
     status: str = None
-    title: Optional[str] = None
-    url: str = None
+    experimental: Optional[bool] = None
+    date: Optional[FHIRDate] = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    description: Optional[str] = None
     useContext: Optional[List[UsageContext]] = empty_list()
-    version: Optional[str] = None
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
+    copyright: Optional[str] = None
+    approvalDate: Optional[FHIRDate] = None
+    lastReviewDate: Optional[FHIRDate] = None
+    effectivePeriod: Optional[Period] = None
+    code: Optional[CodeableConcept] = None
+    instance: Optional[List[FHIRReference]] = empty_list()
+    applicability: Optional[List[ChargeItemDefinitionApplicability]] = empty_list()
+    propertyGroup: Optional[List[ChargeItemDefinitionPropertyGroup]] = empty_list()
 
     def elementProperties(self):
         js = super(ChargeItemDefinition, self).elementProperties()
         js.extend([
-            ("applicability", "applicability", ChargeItemDefinitionApplicability, True, None, False),
-            ("approvalDate", "approvalDate", FHIRDate, False, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("copyright", "copyright", str, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("derivedFromUri", "derivedFromUri", str, True, None, False),
-            ("description", "description", str, False, None, False),
-            ("effectivePeriod", "effectivePeriod", Period, False, None, False),
-            ("experimental", "experimental", bool, False, None, False),
+            ("url", "url", str, False, None, True),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("instance", "instance", FHIRReference, True, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("lastReviewDate", "lastReviewDate", FHIRDate, False, None, False),
+            ("version", "version", str, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("derivedFromUri", "derivedFromUri", str, True, None, False),
             ("partOf", "partOf", str, True, None, False),
-            ("propertyGroup", "propertyGroup", ChargeItemDefinitionPropertyGroup, True, None, False),
-            ("publisher", "publisher", str, False, None, False),
             ("replaces", "replaces", str, True, None, False),
             ("status", "status", str, False, None, True),
-            ("title", "title", str, False, None, False),
-            ("url", "url", str, False, None, True),
+            ("experimental", "experimental", bool, False, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("description", "description", str, False, None, False),
             ("useContext", "useContext", UsageContext, True, None, False),
-            ("version", "version", str, False, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
+            ("copyright", "copyright", str, False, None, False),
+            ("approvalDate", "approvalDate", FHIRDate, False, None, False),
+            ("lastReviewDate", "lastReviewDate", FHIRDate, False, None, False),
+            ("effectivePeriod", "effectivePeriod", Period, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("instance", "instance", FHIRReference, True, None, False),
+            ("applicability", "applicability", ChargeItemDefinitionApplicability, True, None, False),
+            ("propertyGroup", "propertyGroup", ChargeItemDefinitionPropertyGroup, True, None, False),
         ])
         return js

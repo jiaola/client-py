@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -31,18 +31,18 @@ class PractitionerQualification(BackboneElement):
     practitioner to practice medicine within a certian locality.
     """
     resource_type: ClassVar[str] = "PractitionerQualification"
-    code: CodeableConcept = None
     identifier: Optional[List[Identifier]] = empty_list()
-    issuer: Optional[FHIRReference] = None
+    code: CodeableConcept = None
     period: Optional[Period] = None
+    issuer: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(PractitionerQualification, self).elementProperties()
         js.extend([
-            ("code", "code", CodeableConcept, False, None, True),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("issuer", "issuer", FHIRReference, False, None, False),
+            ("code", "code", CodeableConcept, False, None, True),
             ("period", "period", Period, False, None, False),
+            ("issuer", "issuer", FHIRReference, False, None, False),
         ])
         return js
 
@@ -56,29 +56,29 @@ class Practitioner(DomainResource):
     healthcare.
     """
     resource_type: ClassVar[str] = "Practitioner"
-    active: Optional[bool] = None
-    address: Optional[List[Address]] = empty_list()
-    birthDate: Optional[FHIRDate] = None
-    communication: Optional[List[CodeableConcept]] = empty_list()
-    gender: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
+    active: Optional[bool] = None
     name: Optional[List[HumanName]] = empty_list()
+    telecom: Optional[List[ContactPoint]] = empty_list()
+    address: Optional[List[Address]] = empty_list()
+    gender: Optional[str] = None
+    birthDate: Optional[FHIRDate] = None
     photo: Optional[List[Attachment]] = empty_list()
     qualification: Optional[List[PractitionerQualification]] = empty_list()
-    telecom: Optional[List[ContactPoint]] = empty_list()
+    communication: Optional[List[CodeableConcept]] = empty_list()
 
     def elementProperties(self):
         js = super(Practitioner, self).elementProperties()
         js.extend([
-            ("active", "active", bool, False, None, False),
-            ("address", "address", Address, True, None, False),
-            ("birthDate", "birthDate", FHIRDate, False, None, False),
-            ("communication", "communication", CodeableConcept, True, None, False),
-            ("gender", "gender", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
+            ("active", "active", bool, False, None, False),
             ("name", "name", HumanName, True, None, False),
+            ("telecom", "telecom", ContactPoint, True, None, False),
+            ("address", "address", Address, True, None, False),
+            ("gender", "gender", str, False, None, False),
+            ("birthDate", "birthDate", FHIRDate, False, None, False),
             ("photo", "photo", Attachment, True, None, False),
             ("qualification", "qualification", PractitionerQualification, True, None, False),
-            ("telecom", "telecom", ContactPoint, True, None, False),
+            ("communication", "communication", CodeableConcept, True, None, False),
         ])
         return js

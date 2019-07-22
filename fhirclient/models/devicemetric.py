@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -23,16 +23,16 @@ class DeviceMetricCalibration(BackboneElement):
     be performed.
     """
     resource_type: ClassVar[str] = "DeviceMetricCalibration"
+    type: Optional[str] = None
     state: Optional[str] = None
     time: Optional[FHIRDate] = None
-    type: Optional[str] = None
 
     def elementProperties(self):
         js = super(DeviceMetricCalibration, self).elementProperties()
         js.extend([
+            ("type", "type", str, False, None, False),
             ("state", "state", str, False, None, False),
             ("time", "time", FHIRDate, False, None, False),
-            ("type", "type", str, False, None, False),
         ])
         return js
 
@@ -45,29 +45,29 @@ class DeviceMetric(DomainResource):
     device.
     """
     resource_type: ClassVar[str] = "DeviceMetric"
-    calibration: Optional[List[DeviceMetricCalibration]] = empty_list()
-    category: str = None
-    color: Optional[str] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    measurementPeriod: Optional[Timing] = None
-    operationalStatus: Optional[str] = None
-    parent: Optional[FHIRReference] = None
-    source: Optional[FHIRReference] = None
     type: CodeableConcept = None
     unit: Optional[CodeableConcept] = None
+    source: Optional[FHIRReference] = None
+    parent: Optional[FHIRReference] = None
+    operationalStatus: Optional[str] = None
+    color: Optional[str] = None
+    category: str = None
+    measurementPeriod: Optional[Timing] = None
+    calibration: Optional[List[DeviceMetricCalibration]] = empty_list()
 
     def elementProperties(self):
         js = super(DeviceMetric, self).elementProperties()
         js.extend([
-            ("calibration", "calibration", DeviceMetricCalibration, True, None, False),
-            ("category", "category", str, False, None, True),
-            ("color", "color", str, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("measurementPeriod", "measurementPeriod", Timing, False, None, False),
-            ("operationalStatus", "operationalStatus", str, False, None, False),
-            ("parent", "parent", FHIRReference, False, None, False),
-            ("source", "source", FHIRReference, False, None, False),
             ("type", "type", CodeableConcept, False, None, True),
             ("unit", "unit", CodeableConcept, False, None, False),
+            ("source", "source", FHIRReference, False, None, False),
+            ("parent", "parent", FHIRReference, False, None, False),
+            ("operationalStatus", "operationalStatus", str, False, None, False),
+            ("color", "color", str, False, None, False),
+            ("category", "category", str, False, None, True),
+            ("measurementPeriod", "measurementPeriod", Timing, False, None, False),
+            ("calibration", "calibration", DeviceMetricCalibration, True, None, False),
         ])
         return js

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Binary) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Binary) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,14 +22,14 @@ class Binary(Resource):
     """
     resource_type: ClassVar[str] = "Binary"
     contentType: str = None
-    data: Optional[str] = None
     securityContext: Optional[FHIRReference] = None
+    data: Optional[str] = None
 
     def elementProperties(self):
         js = super(Binary, self).elementProperties()
         js.extend([
             ("contentType", "contentType", str, False, None, True),
-            ("data", "data", str, False, None, False),
             ("securityContext", "securityContext", FHIRReference, False, None, False),
+            ("data", "data", str, False, None, False),
         ])
         return js

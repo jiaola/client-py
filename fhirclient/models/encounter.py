@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Encounter) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Encounter) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -27,108 +27,14 @@ class EncounterStatusHistory(BackboneElement):
     resource, or even have the server store them.
     """
     resource_type: ClassVar[str] = "EncounterStatusHistory"
-    period: Period = None
     status: str = None
+    period: Period = None
 
     def elementProperties(self):
         js = super(EncounterStatusHistory, self).elementProperties()
         js.extend([
-            ("period", "period", Period, False, None, True),
             ("status", "status", str, False, None, True),
-        ])
-        return js
-
-
-@dataclass
-class EncounterParticipant(BackboneElement):
-    """ List of participants involved in the encounter.
-
-    The list of people responsible for providing the service.
-    """
-    resource_type: ClassVar[str] = "EncounterParticipant"
-    individual: Optional[FHIRReference] = None
-    period: Optional[Period] = None
-    type: Optional[List[CodeableConcept]] = empty_list()
-
-    def elementProperties(self):
-        js = super(EncounterParticipant, self).elementProperties()
-        js.extend([
-            ("individual", "individual", FHIRReference, False, None, False),
-            ("period", "period", Period, False, None, False),
-            ("type", "type", CodeableConcept, True, None, False),
-        ])
-        return js
-
-
-@dataclass
-class EncounterLocation(BackboneElement):
-    """ List of locations where the patient has been.
-
-    List of locations where  the patient has been during this encounter.
-    """
-    resource_type: ClassVar[str] = "EncounterLocation"
-    location: FHIRReference = None
-    period: Optional[Period] = None
-    physicalType: Optional[CodeableConcept] = None
-    status: Optional[str] = None
-
-    def elementProperties(self):
-        js = super(EncounterLocation, self).elementProperties()
-        js.extend([
-            ("location", "location", FHIRReference, False, None, True),
-            ("period", "period", Period, False, None, False),
-            ("physicalType", "physicalType", CodeableConcept, False, None, False),
-            ("status", "status", str, False, None, False),
-        ])
-        return js
-
-
-@dataclass
-class EncounterHospitalization(BackboneElement):
-    """ Details about the admission to a healthcare service.
-    """
-    resource_type: ClassVar[str] = "EncounterHospitalization"
-    admitSource: Optional[CodeableConcept] = None
-    destination: Optional[FHIRReference] = None
-    dietPreference: Optional[List[CodeableConcept]] = empty_list()
-    dischargeDisposition: Optional[CodeableConcept] = None
-    origin: Optional[FHIRReference] = None
-    preAdmissionIdentifier: Optional[Identifier] = None
-    reAdmission: Optional[CodeableConcept] = None
-    specialArrangement: Optional[List[CodeableConcept]] = empty_list()
-    specialCourtesy: Optional[List[CodeableConcept]] = empty_list()
-
-    def elementProperties(self):
-        js = super(EncounterHospitalization, self).elementProperties()
-        js.extend([
-            ("admitSource", "admitSource", CodeableConcept, False, None, False),
-            ("destination", "destination", FHIRReference, False, None, False),
-            ("dietPreference", "dietPreference", CodeableConcept, True, None, False),
-            ("dischargeDisposition", "dischargeDisposition", CodeableConcept, False, None, False),
-            ("origin", "origin", FHIRReference, False, None, False),
-            ("preAdmissionIdentifier", "preAdmissionIdentifier", Identifier, False, None, False),
-            ("reAdmission", "reAdmission", CodeableConcept, False, None, False),
-            ("specialArrangement", "specialArrangement", CodeableConcept, True, None, False),
-            ("specialCourtesy", "specialCourtesy", CodeableConcept, True, None, False),
-        ])
-        return js
-
-
-@dataclass
-class EncounterDiagnosis(BackboneElement):
-    """ The list of diagnosis relevant to this encounter.
-    """
-    resource_type: ClassVar[str] = "EncounterDiagnosis"
-    condition: FHIRReference = None
-    rank: Optional[int] = None
-    use: Optional[CodeableConcept] = None
-
-    def elementProperties(self):
-        js = super(EncounterDiagnosis, self).elementProperties()
-        js.extend([
-            ("condition", "condition", FHIRReference, False, None, True),
-            ("rank", "rank", int, False, None, False),
-            ("use", "use", CodeableConcept, False, None, False),
+            ("period", "period", Period, False, None, True),
         ])
         return js
 
@@ -159,6 +65,100 @@ class EncounterClassHistory(BackboneElement):
 
 
 @dataclass
+class EncounterParticipant(BackboneElement):
+    """ List of participants involved in the encounter.
+
+    The list of people responsible for providing the service.
+    """
+    resource_type: ClassVar[str] = "EncounterParticipant"
+    type: Optional[List[CodeableConcept]] = empty_list()
+    period: Optional[Period] = None
+    individual: Optional[FHIRReference] = None
+
+    def elementProperties(self):
+        js = super(EncounterParticipant, self).elementProperties()
+        js.extend([
+            ("type", "type", CodeableConcept, True, None, False),
+            ("period", "period", Period, False, None, False),
+            ("individual", "individual", FHIRReference, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class EncounterDiagnosis(BackboneElement):
+    """ The list of diagnosis relevant to this encounter.
+    """
+    resource_type: ClassVar[str] = "EncounterDiagnosis"
+    condition: FHIRReference = None
+    use: Optional[CodeableConcept] = None
+    rank: Optional[int] = None
+
+    def elementProperties(self):
+        js = super(EncounterDiagnosis, self).elementProperties()
+        js.extend([
+            ("condition", "condition", FHIRReference, False, None, True),
+            ("use", "use", CodeableConcept, False, None, False),
+            ("rank", "rank", int, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class EncounterHospitalization(BackboneElement):
+    """ Details about the admission to a healthcare service.
+    """
+    resource_type: ClassVar[str] = "EncounterHospitalization"
+    preAdmissionIdentifier: Optional[Identifier] = None
+    origin: Optional[FHIRReference] = None
+    admitSource: Optional[CodeableConcept] = None
+    reAdmission: Optional[CodeableConcept] = None
+    dietPreference: Optional[List[CodeableConcept]] = empty_list()
+    specialCourtesy: Optional[List[CodeableConcept]] = empty_list()
+    specialArrangement: Optional[List[CodeableConcept]] = empty_list()
+    destination: Optional[FHIRReference] = None
+    dischargeDisposition: Optional[CodeableConcept] = None
+
+    def elementProperties(self):
+        js = super(EncounterHospitalization, self).elementProperties()
+        js.extend([
+            ("preAdmissionIdentifier", "preAdmissionIdentifier", Identifier, False, None, False),
+            ("origin", "origin", FHIRReference, False, None, False),
+            ("admitSource", "admitSource", CodeableConcept, False, None, False),
+            ("reAdmission", "reAdmission", CodeableConcept, False, None, False),
+            ("dietPreference", "dietPreference", CodeableConcept, True, None, False),
+            ("specialCourtesy", "specialCourtesy", CodeableConcept, True, None, False),
+            ("specialArrangement", "specialArrangement", CodeableConcept, True, None, False),
+            ("destination", "destination", FHIRReference, False, None, False),
+            ("dischargeDisposition", "dischargeDisposition", CodeableConcept, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class EncounterLocation(BackboneElement):
+    """ List of locations where the patient has been.
+
+    List of locations where  the patient has been during this encounter.
+    """
+    resource_type: ClassVar[str] = "EncounterLocation"
+    location: FHIRReference = None
+    status: Optional[str] = None
+    physicalType: Optional[CodeableConcept] = None
+    period: Optional[Period] = None
+
+    def elementProperties(self):
+        js = super(EncounterLocation, self).elementProperties()
+        js.extend([
+            ("location", "location", FHIRReference, False, None, True),
+            ("status", "status", str, False, None, False),
+            ("physicalType", "physicalType", CodeableConcept, False, None, False),
+            ("period", "period", Period, False, None, False),
+        ])
+        return js
+
+
+@dataclass
 class Encounter(DomainResource):
     """ An interaction during which services are provided to the patient.
 
@@ -167,55 +167,55 @@ class Encounter(DomainResource):
     patient.
     """
     resource_type: ClassVar[str] = "Encounter"
-    account: Optional[List[FHIRReference]] = empty_list()
-    appointment: Optional[List[FHIRReference]] = empty_list()
-    basedOn: Optional[List[FHIRReference]] = empty_list()
-    classHistory: Optional[List[EncounterClassHistory]] = empty_list()
-    class_fhir: Coding = None
-    diagnosis: Optional[List[EncounterDiagnosis]] = empty_list()
-    episodeOfCare: Optional[List[FHIRReference]] = empty_list()
-    hospitalization: Optional[EncounterHospitalization] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    length: Optional[Duration] = None
-    location: Optional[List[EncounterLocation]] = empty_list()
-    partOf: Optional[FHIRReference] = None
-    participant: Optional[List[EncounterParticipant]] = empty_list()
-    period: Optional[Period] = None
-    priority: Optional[CodeableConcept] = None
-    reasonCode: Optional[List[CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[FHIRReference]] = empty_list()
-    serviceProvider: Optional[FHIRReference] = None
-    serviceType: Optional[CodeableConcept] = None
     status: str = None
     statusHistory: Optional[List[EncounterStatusHistory]] = empty_list()
-    subject: Optional[FHIRReference] = None
+    class_fhir: Coding = None
+    classHistory: Optional[List[EncounterClassHistory]] = empty_list()
     type: Optional[List[CodeableConcept]] = empty_list()
+    serviceType: Optional[CodeableConcept] = None
+    priority: Optional[CodeableConcept] = None
+    subject: Optional[FHIRReference] = None
+    episodeOfCare: Optional[List[FHIRReference]] = empty_list()
+    basedOn: Optional[List[FHIRReference]] = empty_list()
+    participant: Optional[List[EncounterParticipant]] = empty_list()
+    appointment: Optional[List[FHIRReference]] = empty_list()
+    period: Optional[Period] = None
+    length: Optional[Duration] = None
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    diagnosis: Optional[List[EncounterDiagnosis]] = empty_list()
+    account: Optional[List[FHIRReference]] = empty_list()
+    hospitalization: Optional[EncounterHospitalization] = None
+    location: Optional[List[EncounterLocation]] = empty_list()
+    serviceProvider: Optional[FHIRReference] = None
+    partOf: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(Encounter, self).elementProperties()
         js.extend([
-            ("account", "account", FHIRReference, True, None, False),
-            ("appointment", "appointment", FHIRReference, True, None, False),
-            ("basedOn", "basedOn", FHIRReference, True, None, False),
-            ("classHistory", "classHistory", EncounterClassHistory, True, None, False),
-            ("class_fhir", "class", Coding, False, None, True),
-            ("diagnosis", "diagnosis", EncounterDiagnosis, True, None, False),
-            ("episodeOfCare", "episodeOfCare", FHIRReference, True, None, False),
-            ("hospitalization", "hospitalization", EncounterHospitalization, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("length", "length", Duration, False, None, False),
-            ("location", "location", EncounterLocation, True, None, False),
-            ("partOf", "partOf", FHIRReference, False, None, False),
-            ("participant", "participant", EncounterParticipant, True, None, False),
-            ("period", "period", Period, False, None, False),
-            ("priority", "priority", CodeableConcept, False, None, False),
-            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
-            ("serviceProvider", "serviceProvider", FHIRReference, False, None, False),
-            ("serviceType", "serviceType", CodeableConcept, False, None, False),
             ("status", "status", str, False, None, True),
             ("statusHistory", "statusHistory", EncounterStatusHistory, True, None, False),
-            ("subject", "subject", FHIRReference, False, None, False),
+            ("class_fhir", "class", Coding, False, None, True),
+            ("classHistory", "classHistory", EncounterClassHistory, True, None, False),
             ("type", "type", CodeableConcept, True, None, False),
+            ("serviceType", "serviceType", CodeableConcept, False, None, False),
+            ("priority", "priority", CodeableConcept, False, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("episodeOfCare", "episodeOfCare", FHIRReference, True, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("participant", "participant", EncounterParticipant, True, None, False),
+            ("appointment", "appointment", FHIRReference, True, None, False),
+            ("period", "period", Period, False, None, False),
+            ("length", "length", Duration, False, None, False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("diagnosis", "diagnosis", EncounterDiagnosis, True, None, False),
+            ("account", "account", FHIRReference, True, None, False),
+            ("hospitalization", "hospitalization", EncounterHospitalization, False, None, False),
+            ("location", "location", EncounterLocation, True, None, False),
+            ("serviceProvider", "serviceProvider", FHIRReference, False, None, False),
+            ("partOf", "partOf", FHIRReference, False, None, False),
         ])
         return js

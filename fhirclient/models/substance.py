@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Substance) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Substance) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -26,15 +26,15 @@ class SubstanceInstance(BackboneElement):
     package/container of the substance: an instance.
     """
     resource_type: ClassVar[str] = "SubstanceInstance"
-    expiry: Optional[FHIRDate] = None
     identifier: Optional[Identifier] = None
+    expiry: Optional[FHIRDate] = None
     quantity: Optional[Quantity] = None
 
     def elementProperties(self):
         js = super(SubstanceInstance, self).elementProperties()
         js.extend([
-            ("expiry", "expiry", FHIRDate, False, None, False),
             ("identifier", "identifier", Identifier, False, None, False),
+            ("expiry", "expiry", FHIRDate, False, None, False),
             ("quantity", "quantity", Quantity, False, None, False),
         ])
         return js
@@ -66,23 +66,23 @@ class Substance(DomainResource):
     """ A homogeneous material with a definite composition.
     """
     resource_type: ClassVar[str] = "Substance"
+    identifier: Optional[List[Identifier]] = empty_list()
+    status: Optional[str] = None
     category: Optional[List[CodeableConcept]] = empty_list()
     code: CodeableConcept = None
     description: Optional[str] = None
-    identifier: Optional[List[Identifier]] = empty_list()
-    ingredient: Optional[List[SubstanceIngredient]] = empty_list()
     instance: Optional[List[SubstanceInstance]] = empty_list()
-    status: Optional[str] = None
+    ingredient: Optional[List[SubstanceIngredient]] = empty_list()
 
     def elementProperties(self):
         js = super(Substance, self).elementProperties()
         js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("status", "status", str, False, None, False),
             ("category", "category", CodeableConcept, True, None, False),
             ("code", "code", CodeableConcept, False, None, True),
             ("description", "description", str, False, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("ingredient", "ingredient", SubstanceIngredient, True, None, False),
             ("instance", "instance", SubstanceInstance, True, None, False),
-            ("status", "status", str, False, None, False),
+            ("ingredient", "ingredient", SubstanceIngredient, True, None, False),
         ])
         return js

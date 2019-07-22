@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Meta) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Meta) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,21 +22,21 @@ class Meta(Element):
     be associated with version changes to the resource.
     """
     resource_type: ClassVar[str] = "Meta"
+    versionId: Optional[str] = None
     lastUpdated: Optional[FHIRDate] = None
+    source: Optional[str] = None
     profile: Optional[List[str]] = empty_list()
     security: Optional[List[Coding]] = empty_list()
-    source: Optional[str] = None
     tag: Optional[List[Coding]] = empty_list()
-    versionId: Optional[str] = None
 
     def elementProperties(self):
         js = super(Meta, self).elementProperties()
         js.extend([
+            ("versionId", "versionId", str, False, None, False),
             ("lastUpdated", "lastUpdated", FHIRDate, False, None, False),
+            ("source", "source", str, False, None, False),
             ("profile", "profile", str, True, None, False),
             ("security", "security", Coding, True, None, False),
-            ("source", "source", str, False, None, False),
             ("tag", "tag", Coding, True, None, False),
-            ("versionId", "versionId", str, False, None, False),
         ])
         return js

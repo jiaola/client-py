@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Period) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Period) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -19,13 +19,13 @@ class Period(Element):
     A time period defined by a start and end date and optionally time.
     """
     resource_type: ClassVar[str] = "Period"
-    end: Optional[FHIRDate] = None
     start: Optional[FHIRDate] = None
+    end: Optional[FHIRDate] = None
 
     def elementProperties(self):
         js = super(Period, self).elementProperties()
         js.extend([
-            ("end", "end", FHIRDate, False, None, False),
             ("start", "start", FHIRDate, False, None, False),
+            ("end", "end", FHIRDate, False, None, False),
         ])
         return js

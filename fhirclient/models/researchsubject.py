@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -22,25 +22,25 @@ class ResearchSubject(DomainResource):
     administrative interest in a study.
     """
     resource_type: ClassVar[str] = "ResearchSubject"
-    actualArm: Optional[str] = None
-    assignedArm: Optional[str] = None
-    consent: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    individual: FHIRReference = None
-    period: Optional[Period] = None
     status: str = None
+    period: Optional[Period] = None
     study: FHIRReference = None
+    individual: FHIRReference = None
+    assignedArm: Optional[str] = None
+    actualArm: Optional[str] = None
+    consent: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(ResearchSubject, self).elementProperties()
         js.extend([
-            ("actualArm", "actualArm", str, False, None, False),
-            ("assignedArm", "assignedArm", str, False, None, False),
-            ("consent", "consent", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("individual", "individual", FHIRReference, False, None, True),
-            ("period", "period", Period, False, None, False),
             ("status", "status", str, False, None, True),
+            ("period", "period", Period, False, None, False),
             ("study", "study", FHIRReference, False, None, True),
+            ("individual", "individual", FHIRReference, False, None, True),
+            ("assignedArm", "assignedArm", str, False, None, False),
+            ("actualArm", "actualArm", str, False, None, False),
+            ("consent", "consent", FHIRReference, False, None, False),
         ])
         return js

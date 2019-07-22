@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Contributor) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Contributor) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -20,15 +20,15 @@ class Contributor(Element):
     editors, reviewers, and endorsers.
     """
     resource_type: ClassVar[str] = "Contributor"
-    contact: Optional[List[ContactDetail]] = empty_list()
-    name: str = None
     type: str = None
+    name: str = None
+    contact: Optional[List[ContactDetail]] = empty_list()
 
     def elementProperties(self):
         js = super(Contributor, self).elementProperties()
         js.extend([
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("name", "name", str, False, None, True),
             ("type", "type", str, False, None, True),
+            ("name", "name", str, False, None, True),
+            ("contact", "contact", ContactDetail, True, None, False),
         ])
         return js

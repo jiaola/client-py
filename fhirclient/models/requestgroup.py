@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,6 +25,26 @@ from .timing import Timing
 
 
 @dataclass
+class RequestGroupActionCondition(BackboneElement):
+    """ Whether or not the action is applicable.
+
+    An expression that describes applicability criteria, or start/stop
+    conditions for the action.
+    """
+    resource_type: ClassVar[str] = "RequestGroupActionCondition"
+    kind: str = None
+    expression: Optional[Expression] = None
+
+    def elementProperties(self):
+        js = super(RequestGroupActionCondition, self).elementProperties()
+        js.extend([
+            ("kind", "kind", str, False, None, True),
+            ("expression", "expression", Expression, False, None, False),
+        ])
+        return js
+
+
+@dataclass
 class RequestGroupActionRelatedAction(BackboneElement):
     """ Relationship to another action.
 
@@ -33,37 +53,17 @@ class RequestGroupActionRelatedAction(BackboneElement):
     """
     resource_type: ClassVar[str] = "RequestGroupActionRelatedAction"
     actionId: str = None
+    relationship: str = None
     offsetDuration: Optional[Duration] = None
     offsetRange: Optional[Range] = None
-    relationship: str = None
 
     def elementProperties(self):
         js = super(RequestGroupActionRelatedAction, self).elementProperties()
         js.extend([
             ("actionId", "actionId", str, False, None, True),
+            ("relationship", "relationship", str, False, None, True),
             ("offsetDuration", "offsetDuration", Duration, False, "offset", False),
             ("offsetRange", "offsetRange", Range, False, "offset", False),
-            ("relationship", "relationship", str, False, None, True),
-        ])
-        return js
-
-
-@dataclass
-class RequestGroupActionCondition(BackboneElement):
-    """ Whether or not the action is applicable.
-
-    An expression that describes applicability criteria, or start/stop
-    conditions for the action.
-    """
-    resource_type: ClassVar[str] = "RequestGroupActionCondition"
-    expression: Optional[Expression] = None
-    kind: str = None
-
-    def elementProperties(self):
-        js = super(RequestGroupActionCondition, self).elementProperties()
-        js.extend([
-            ("expression", "expression", Expression, False, None, False),
-            ("kind", "kind", str, False, None, True),
         ])
         return js
 
@@ -75,58 +75,58 @@ class RequestGroupAction(BackboneElement):
     The actions, if any, produced by the evaluation of the artifact.
     """
     resource_type: ClassVar[str] = "RequestGroupAction"
-    action: Optional[List[RequestGroupAction]] = empty_list()
-    cardinalityBehavior: Optional[str] = None
-    code: Optional[List[CodeableConcept]] = empty_list()
-    condition: Optional[List[RequestGroupActionCondition]] = empty_list()
-    description: Optional[str] = None
-    documentation: Optional[List[RelatedArtifact]] = empty_list()
-    groupingBehavior: Optional[str] = None
-    participant: Optional[List[FHIRReference]] = empty_list()
-    precheckBehavior: Optional[str] = None
     prefix: Optional[str] = None
-    priority: Optional[str] = None
-    relatedAction: Optional[List[RequestGroupActionRelatedAction]] = empty_list()
-    requiredBehavior: Optional[str] = None
-    resource: Optional[FHIRReference] = None
-    selectionBehavior: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
     textEquivalent: Optional[str] = None
-    timingAge: Optional[Age] = None
+    priority: Optional[str] = None
+    code: Optional[List[CodeableConcept]] = empty_list()
+    documentation: Optional[List[RelatedArtifact]] = empty_list()
+    condition: Optional[List[RequestGroupActionCondition]] = empty_list()
+    relatedAction: Optional[List[RequestGroupActionRelatedAction]] = empty_list()
     timingDateTime: Optional[FHIRDate] = None
-    timingDuration: Optional[Duration] = None
+    timingAge: Optional[Age] = None
     timingPeriod: Optional[Period] = None
+    timingDuration: Optional[Duration] = None
     timingRange: Optional[Range] = None
     timingTiming: Optional[Timing] = None
-    title: Optional[str] = None
+    participant: Optional[List[FHIRReference]] = empty_list()
     type: Optional[CodeableConcept] = None
+    groupingBehavior: Optional[str] = None
+    selectionBehavior: Optional[str] = None
+    requiredBehavior: Optional[str] = None
+    precheckBehavior: Optional[str] = None
+    cardinalityBehavior: Optional[str] = None
+    resource: Optional[FHIRReference] = None
+    action: Optional[List[RequestGroupAction]] = empty_list()
 
     def elementProperties(self):
         js = super(RequestGroupAction, self).elementProperties()
         js.extend([
-            ("action", "action", RequestGroupAction, True, None, False),
-            ("cardinalityBehavior", "cardinalityBehavior", str, False, None, False),
-            ("code", "code", CodeableConcept, True, None, False),
-            ("condition", "condition", RequestGroupActionCondition, True, None, False),
-            ("description", "description", str, False, None, False),
-            ("documentation", "documentation", RelatedArtifact, True, None, False),
-            ("groupingBehavior", "groupingBehavior", str, False, None, False),
-            ("participant", "participant", FHIRReference, True, None, False),
-            ("precheckBehavior", "precheckBehavior", str, False, None, False),
             ("prefix", "prefix", str, False, None, False),
-            ("priority", "priority", str, False, None, False),
-            ("relatedAction", "relatedAction", RequestGroupActionRelatedAction, True, None, False),
-            ("requiredBehavior", "requiredBehavior", str, False, None, False),
-            ("resource", "resource", FHIRReference, False, None, False),
-            ("selectionBehavior", "selectionBehavior", str, False, None, False),
+            ("title", "title", str, False, None, False),
+            ("description", "description", str, False, None, False),
             ("textEquivalent", "textEquivalent", str, False, None, False),
-            ("timingAge", "timingAge", Age, False, "timing", False),
+            ("priority", "priority", str, False, None, False),
+            ("code", "code", CodeableConcept, True, None, False),
+            ("documentation", "documentation", RelatedArtifact, True, None, False),
+            ("condition", "condition", RequestGroupActionCondition, True, None, False),
+            ("relatedAction", "relatedAction", RequestGroupActionRelatedAction, True, None, False),
             ("timingDateTime", "timingDateTime", FHIRDate, False, "timing", False),
-            ("timingDuration", "timingDuration", Duration, False, "timing", False),
+            ("timingAge", "timingAge", Age, False, "timing", False),
             ("timingPeriod", "timingPeriod", Period, False, "timing", False),
+            ("timingDuration", "timingDuration", Duration, False, "timing", False),
             ("timingRange", "timingRange", Range, False, "timing", False),
             ("timingTiming", "timingTiming", Timing, False, "timing", False),
-            ("title", "title", str, False, None, False),
+            ("participant", "participant", FHIRReference, True, None, False),
             ("type", "type", CodeableConcept, False, None, False),
+            ("groupingBehavior", "groupingBehavior", str, False, None, False),
+            ("selectionBehavior", "selectionBehavior", str, False, None, False),
+            ("requiredBehavior", "requiredBehavior", str, False, None, False),
+            ("precheckBehavior", "precheckBehavior", str, False, None, False),
+            ("cardinalityBehavior", "cardinalityBehavior", str, False, None, False),
+            ("resource", "resource", FHIRReference, False, None, False),
+            ("action", "action", RequestGroupAction, True, None, False),
         ])
         return js
 
@@ -139,45 +139,45 @@ class RequestGroup(DomainResource):
     that have inter-dependencies such as "give this medication after that one".
     """
     resource_type: ClassVar[str] = "RequestGroup"
-    action: Optional[List[RequestGroupAction]] = empty_list()
-    author: Optional[FHIRReference] = None
-    authoredOn: Optional[FHIRDate] = None
-    basedOn: Optional[List[FHIRReference]] = empty_list()
-    code: Optional[CodeableConcept] = None
-    encounter: Optional[FHIRReference] = None
-    groupIdentifier: Optional[Identifier] = None
     identifier: Optional[List[Identifier]] = empty_list()
     instantiatesCanonical: Optional[List[str]] = empty_list()
     instantiatesUri: Optional[List[str]] = empty_list()
+    basedOn: Optional[List[FHIRReference]] = empty_list()
+    replaces: Optional[List[FHIRReference]] = empty_list()
+    groupIdentifier: Optional[Identifier] = None
+    status: str = None
     intent: str = None
-    note: Optional[List[Annotation]] = empty_list()
     priority: Optional[str] = None
+    code: Optional[CodeableConcept] = None
+    subject: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
+    authoredOn: Optional[FHIRDate] = None
+    author: Optional[FHIRReference] = None
     reasonCode: Optional[List[CodeableConcept]] = empty_list()
     reasonReference: Optional[List[FHIRReference]] = empty_list()
-    replaces: Optional[List[FHIRReference]] = empty_list()
-    status: str = None
-    subject: Optional[FHIRReference] = None
+    note: Optional[List[Annotation]] = empty_list()
+    action: Optional[List[RequestGroupAction]] = empty_list()
 
     def elementProperties(self):
         js = super(RequestGroup, self).elementProperties()
         js.extend([
-            ("action", "action", RequestGroupAction, True, None, False),
-            ("author", "author", FHIRReference, False, None, False),
-            ("authoredOn", "authoredOn", FHIRDate, False, None, False),
-            ("basedOn", "basedOn", FHIRReference, True, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("groupIdentifier", "groupIdentifier", Identifier, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
             ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
             ("instantiatesUri", "instantiatesUri", str, True, None, False),
+            ("basedOn", "basedOn", FHIRReference, True, None, False),
+            ("replaces", "replaces", FHIRReference, True, None, False),
+            ("groupIdentifier", "groupIdentifier", Identifier, False, None, False),
+            ("status", "status", str, False, None, True),
             ("intent", "intent", str, False, None, True),
-            ("note", "note", Annotation, True, None, False),
             ("priority", "priority", str, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("subject", "subject", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("authoredOn", "authoredOn", FHIRDate, False, None, False),
+            ("author", "author", FHIRReference, False, None, False),
             ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
             ("reasonReference", "reasonReference", FHIRReference, True, None, False),
-            ("replaces", "replaces", FHIRReference, True, None, False),
-            ("status", "status", str, False, None, True),
-            ("subject", "subject", FHIRReference, False, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("action", "action", RequestGroupAction, True, None, False),
         ])
         return js

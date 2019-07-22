@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -24,39 +24,39 @@ class ImmunizationEvaluation(DomainResource):
     to those  recommendations.
     """
     resource_type: ClassVar[str] = "ImmunizationEvaluation"
-    authority: Optional[FHIRReference] = None
+    identifier: Optional[List[Identifier]] = empty_list()
+    status: str = None
+    patient: FHIRReference = None
     date: Optional[FHIRDate] = None
-    description: Optional[str] = None
-    doseNumberPositiveInt: Optional[int] = None
-    doseNumberString: Optional[str] = None
+    authority: Optional[FHIRReference] = None
+    targetDisease: CodeableConcept = None
+    immunizationEvent: FHIRReference = None
     doseStatus: CodeableConcept = None
     doseStatusReason: Optional[List[CodeableConcept]] = empty_list()
-    identifier: Optional[List[Identifier]] = empty_list()
-    immunizationEvent: FHIRReference = None
-    patient: FHIRReference = None
+    description: Optional[str] = None
     series: Optional[str] = None
+    doseNumberPositiveInt: Optional[int] = None
+    doseNumberString: Optional[str] = None
     seriesDosesPositiveInt: Optional[int] = None
     seriesDosesString: Optional[str] = None
-    status: str = None
-    targetDisease: CodeableConcept = None
 
     def elementProperties(self):
         js = super(ImmunizationEvaluation, self).elementProperties()
         js.extend([
-            ("authority", "authority", FHIRReference, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("patient", "patient", FHIRReference, False, None, True),
             ("date", "date", FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("doseNumberPositiveInt", "doseNumberPositiveInt", int, False, "doseNumber", False),
-            ("doseNumberString", "doseNumberString", str, False, "doseNumber", False),
+            ("authority", "authority", FHIRReference, False, None, False),
+            ("targetDisease", "targetDisease", CodeableConcept, False, None, True),
+            ("immunizationEvent", "immunizationEvent", FHIRReference, False, None, True),
             ("doseStatus", "doseStatus", CodeableConcept, False, None, True),
             ("doseStatusReason", "doseStatusReason", CodeableConcept, True, None, False),
-            ("identifier", "identifier", Identifier, True, None, False),
-            ("immunizationEvent", "immunizationEvent", FHIRReference, False, None, True),
-            ("patient", "patient", FHIRReference, False, None, True),
+            ("description", "description", str, False, None, False),
             ("series", "series", str, False, None, False),
+            ("doseNumberPositiveInt", "doseNumberPositiveInt", int, False, "doseNumber", False),
+            ("doseNumberString", "doseNumberString", str, False, "doseNumber", False),
             ("seriesDosesPositiveInt", "seriesDosesPositiveInt", int, False, "seriesDoses", False),
             ("seriesDosesString", "seriesDosesString", str, False, "seriesDoses", False),
-            ("status", "status", str, False, None, True),
-            ("targetDisease", "targetDisease", CodeableConcept, False, None, True),
         ])
         return js

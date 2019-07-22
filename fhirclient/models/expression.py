@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Expression) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Expression) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,18 +21,18 @@ class Expression(Element):
     """
     resource_type: ClassVar[str] = "Expression"
     description: Optional[str] = None
-    expression: Optional[str] = None
-    language: str = None
     name: Optional[str] = None
+    language: str = None
+    expression: Optional[str] = None
     reference: Optional[str] = None
 
     def elementProperties(self):
         js = super(Expression, self).elementProperties()
         js.extend([
             ("description", "description", str, False, None, False),
-            ("expression", "expression", str, False, None, False),
-            ("language", "language", str, False, None, True),
             ("name", "name", str, False, None, False),
+            ("language", "language", str, False, None, True),
+            ("expression", "expression", str, False, None, False),
             ("reference", "reference", str, False, None, False),
         ])
         return js

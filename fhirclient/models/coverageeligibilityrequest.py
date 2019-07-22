@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -17,28 +17,6 @@ from .identifier import Identifier
 from .money import Money
 from .period import Period
 from .quantity import Quantity
-
-
-@dataclass
-class CoverageEligibilityRequestSupportingInfo(BackboneElement):
-    """ Supporting information.
-
-    Additional information codes regarding exceptions, special considerations,
-    the condition, situation, prior or concurrent issues.
-    """
-    resource_type: ClassVar[str] = "CoverageEligibilityRequestSupportingInfo"
-    appliesToAll: Optional[bool] = None
-    information: FHIRReference = None
-    sequence: int = None
-
-    def elementProperties(self):
-        js = super(CoverageEligibilityRequestSupportingInfo, self).elementProperties()
-        js.extend([
-            ("appliesToAll", "appliesToAll", bool, False, None, False),
-            ("information", "information", FHIRReference, False, None, True),
-            ("sequence", "sequence", int, False, None, True),
-        ])
-        return js
 
 
 @dataclass
@@ -61,37 +39,23 @@ class CoverageEligibilityRequestItemDiagnosis(BackboneElement):
 
 
 @dataclass
-class CoverageEligibilityRequestItem(BackboneElement):
-    """ Item to be evaluated for eligibiity.
+class CoverageEligibilityRequestSupportingInfo(BackboneElement):
+    """ Supporting information.
 
-    Service categories or billable services for which benefit details and/or an
-    authorization prior to service delivery may be required by the payor.
+    Additional information codes regarding exceptions, special considerations,
+    the condition, situation, prior or concurrent issues.
     """
-    resource_type: ClassVar[str] = "CoverageEligibilityRequestItem"
-    category: Optional[CodeableConcept] = None
-    detail: Optional[List[FHIRReference]] = empty_list()
-    diagnosis: Optional[List[CoverageEligibilityRequestItemDiagnosis]] = empty_list()
-    facility: Optional[FHIRReference] = None
-    modifier: Optional[List[CodeableConcept]] = empty_list()
-    productOrService: Optional[CodeableConcept] = None
-    provider: Optional[FHIRReference] = None
-    quantity: Optional[Quantity] = None
-    supportingInfoSequence: Optional[List[int]] = empty_list()
-    unitPrice: Optional[Money] = None
+    resource_type: ClassVar[str] = "CoverageEligibilityRequestSupportingInfo"
+    sequence: int = None
+    information: FHIRReference = None
+    appliesToAll: Optional[bool] = None
 
     def elementProperties(self):
-        js = super(CoverageEligibilityRequestItem, self).elementProperties()
+        js = super(CoverageEligibilityRequestSupportingInfo, self).elementProperties()
         js.extend([
-            ("category", "category", CodeableConcept, False, None, False),
-            ("detail", "detail", FHIRReference, True, None, False),
-            ("diagnosis", "diagnosis", CoverageEligibilityRequestItemDiagnosis, True, None, False),
-            ("facility", "facility", FHIRReference, False, None, False),
-            ("modifier", "modifier", CodeableConcept, True, None, False),
-            ("productOrService", "productOrService", CodeableConcept, False, None, False),
-            ("provider", "provider", FHIRReference, False, None, False),
-            ("quantity", "quantity", Quantity, False, None, False),
-            ("supportingInfoSequence", "supportingInfoSequence", int, True, None, False),
-            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("sequence", "sequence", int, False, None, True),
+            ("information", "information", FHIRReference, False, None, True),
+            ("appliesToAll", "appliesToAll", bool, False, None, False),
         ])
         return js
 
@@ -104,16 +68,52 @@ class CoverageEligibilityRequestInsurance(BackboneElement):
     services.
     """
     resource_type: ClassVar[str] = "CoverageEligibilityRequestInsurance"
-    businessArrangement: Optional[str] = None
-    coverage: FHIRReference = None
     focal: Optional[bool] = None
+    coverage: FHIRReference = None
+    businessArrangement: Optional[str] = None
 
     def elementProperties(self):
         js = super(CoverageEligibilityRequestInsurance, self).elementProperties()
         js.extend([
-            ("businessArrangement", "businessArrangement", str, False, None, False),
-            ("coverage", "coverage", FHIRReference, False, None, True),
             ("focal", "focal", bool, False, None, False),
+            ("coverage", "coverage", FHIRReference, False, None, True),
+            ("businessArrangement", "businessArrangement", str, False, None, False),
+        ])
+        return js
+
+
+@dataclass
+class CoverageEligibilityRequestItem(BackboneElement):
+    """ Item to be evaluated for eligibiity.
+
+    Service categories or billable services for which benefit details and/or an
+    authorization prior to service delivery may be required by the payor.
+    """
+    resource_type: ClassVar[str] = "CoverageEligibilityRequestItem"
+    supportingInfoSequence: Optional[List[int]] = empty_list()
+    category: Optional[CodeableConcept] = None
+    productOrService: Optional[CodeableConcept] = None
+    modifier: Optional[List[CodeableConcept]] = empty_list()
+    provider: Optional[FHIRReference] = None
+    quantity: Optional[Quantity] = None
+    unitPrice: Optional[Money] = None
+    facility: Optional[FHIRReference] = None
+    diagnosis: Optional[List[CoverageEligibilityRequestItemDiagnosis]] = empty_list()
+    detail: Optional[List[FHIRReference]] = empty_list()
+
+    def elementProperties(self):
+        js = super(CoverageEligibilityRequestItem, self).elementProperties()
+        js.extend([
+            ("supportingInfoSequence", "supportingInfoSequence", int, True, None, False),
+            ("category", "category", CodeableConcept, False, None, False),
+            ("productOrService", "productOrService", CodeableConcept, False, None, False),
+            ("modifier", "modifier", CodeableConcept, True, None, False),
+            ("provider", "provider", FHIRReference, False, None, False),
+            ("quantity", "quantity", Quantity, False, None, False),
+            ("unitPrice", "unitPrice", Money, False, None, False),
+            ("facility", "facility", FHIRReference, False, None, False),
+            ("diagnosis", "diagnosis", CoverageEligibilityRequestItemDiagnosis, True, None, False),
+            ("detail", "detail", FHIRReference, True, None, False),
         ])
         return js
 
@@ -129,39 +129,39 @@ class CoverageEligibilityRequest(DomainResource):
     details of the policy.
     """
     resource_type: ClassVar[str] = "CoverageEligibilityRequest"
-    created: FHIRDate = None
-    enterer: Optional[FHIRReference] = None
-    facility: Optional[FHIRReference] = None
     identifier: Optional[List[Identifier]] = empty_list()
-    insurance: Optional[List[CoverageEligibilityRequestInsurance]] = empty_list()
-    insurer: FHIRReference = None
-    item: Optional[List[CoverageEligibilityRequestItem]] = empty_list()
-    patient: FHIRReference = None
+    status: str = None
     priority: Optional[CodeableConcept] = None
-    provider: Optional[FHIRReference] = None
     purpose: List[str] = empty_list()
+    patient: FHIRReference = None
     servicedDate: Optional[FHIRDate] = None
     servicedPeriod: Optional[Period] = None
-    status: str = None
+    created: FHIRDate = None
+    enterer: Optional[FHIRReference] = None
+    provider: Optional[FHIRReference] = None
+    insurer: FHIRReference = None
+    facility: Optional[FHIRReference] = None
     supportingInfo: Optional[List[CoverageEligibilityRequestSupportingInfo]] = empty_list()
+    insurance: Optional[List[CoverageEligibilityRequestInsurance]] = empty_list()
+    item: Optional[List[CoverageEligibilityRequestItem]] = empty_list()
 
     def elementProperties(self):
         js = super(CoverageEligibilityRequest, self).elementProperties()
         js.extend([
-            ("created", "created", FHIRDate, False, None, True),
-            ("enterer", "enterer", FHIRReference, False, None, False),
-            ("facility", "facility", FHIRReference, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("insurance", "insurance", CoverageEligibilityRequestInsurance, True, None, False),
-            ("insurer", "insurer", FHIRReference, False, None, True),
-            ("item", "item", CoverageEligibilityRequestItem, True, None, False),
-            ("patient", "patient", FHIRReference, False, None, True),
+            ("status", "status", str, False, None, True),
             ("priority", "priority", CodeableConcept, False, None, False),
-            ("provider", "provider", FHIRReference, False, None, False),
             ("purpose", "purpose", str, True, None, True),
+            ("patient", "patient", FHIRReference, False, None, True),
             ("servicedDate", "servicedDate", FHIRDate, False, "serviced", False),
             ("servicedPeriod", "servicedPeriod", Period, False, "serviced", False),
-            ("status", "status", str, False, None, True),
+            ("created", "created", FHIRDate, False, None, True),
+            ("enterer", "enterer", FHIRReference, False, None, False),
+            ("provider", "provider", FHIRReference, False, None, False),
+            ("insurer", "insurer", FHIRReference, False, None, True),
+            ("facility", "facility", FHIRReference, False, None, False),
             ("supportingInfo", "supportingInfo", CoverageEligibilityRequestSupportingInfo, True, None, False),
+            ("insurance", "insurance", CoverageEligibilityRequestInsurance, True, None, False),
+            ("item", "item", CoverageEligibilityRequestItem, True, None, False),
         ])
         return js

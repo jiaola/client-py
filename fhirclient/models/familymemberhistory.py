@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -31,25 +31,25 @@ class FamilyMemberHistoryCondition(BackboneElement):
     """
     resource_type: ClassVar[str] = "FamilyMemberHistoryCondition"
     code: CodeableConcept = None
-    contributedToDeath: Optional[bool] = None
-    note: Optional[List[Annotation]] = empty_list()
-    onsetAge: Optional[Age] = None
-    onsetPeriod: Optional[Period] = None
-    onsetRange: Optional[Range] = None
-    onsetString: Optional[str] = None
     outcome: Optional[CodeableConcept] = None
+    contributedToDeath: Optional[bool] = None
+    onsetAge: Optional[Age] = None
+    onsetRange: Optional[Range] = None
+    onsetPeriod: Optional[Period] = None
+    onsetString: Optional[str] = None
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(FamilyMemberHistoryCondition, self).elementProperties()
         js.extend([
             ("code", "code", CodeableConcept, False, None, True),
-            ("contributedToDeath", "contributedToDeath", bool, False, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("onsetAge", "onsetAge", Age, False, "onset", False),
-            ("onsetPeriod", "onsetPeriod", Period, False, "onset", False),
-            ("onsetRange", "onsetRange", Range, False, "onset", False),
-            ("onsetString", "onsetString", str, False, "onset", False),
             ("outcome", "outcome", CodeableConcept, False, None, False),
+            ("contributedToDeath", "contributedToDeath", bool, False, None, False),
+            ("onsetAge", "onsetAge", Age, False, "onset", False),
+            ("onsetRange", "onsetRange", Range, False, "onset", False),
+            ("onsetPeriod", "onsetPeriod", Period, False, "onset", False),
+            ("onsetString", "onsetString", str, False, "onset", False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js
 
@@ -62,61 +62,61 @@ class FamilyMemberHistory(DomainResource):
     in the context of care for the patient.
     """
     resource_type: ClassVar[str] = "FamilyMemberHistory"
-    ageAge: Optional[Age] = None
-    ageRange: Optional[Range] = None
-    ageString: Optional[str] = None
-    bornDate: Optional[FHIRDate] = None
-    bornPeriod: Optional[Period] = None
-    bornString: Optional[str] = None
-    condition: Optional[List[FamilyMemberHistoryCondition]] = empty_list()
-    dataAbsentReason: Optional[CodeableConcept] = None
-    date: Optional[FHIRDate] = None
-    deceasedAge: Optional[Age] = None
-    deceasedBoolean: Optional[bool] = None
-    deceasedDate: Optional[FHIRDate] = None
-    deceasedRange: Optional[Range] = None
-    deceasedString: Optional[str] = None
-    estimatedAge: Optional[bool] = None
     identifier: Optional[List[Identifier]] = empty_list()
     instantiatesCanonical: Optional[List[str]] = empty_list()
     instantiatesUri: Optional[List[str]] = empty_list()
-    name: Optional[str] = None
-    note: Optional[List[Annotation]] = empty_list()
+    status: str = None
+    dataAbsentReason: Optional[CodeableConcept] = None
     patient: FHIRReference = None
-    reasonCode: Optional[List[CodeableConcept]] = empty_list()
-    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    date: Optional[FHIRDate] = None
+    name: Optional[str] = None
     relationship: CodeableConcept = None
     sex: Optional[CodeableConcept] = None
-    status: str = None
+    bornPeriod: Optional[Period] = None
+    bornDate: Optional[FHIRDate] = None
+    bornString: Optional[str] = None
+    ageAge: Optional[Age] = None
+    ageRange: Optional[Range] = None
+    ageString: Optional[str] = None
+    estimatedAge: Optional[bool] = None
+    deceasedBoolean: Optional[bool] = None
+    deceasedAge: Optional[Age] = None
+    deceasedRange: Optional[Range] = None
+    deceasedDate: Optional[FHIRDate] = None
+    deceasedString: Optional[str] = None
+    reasonCode: Optional[List[CodeableConcept]] = empty_list()
+    reasonReference: Optional[List[FHIRReference]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
+    condition: Optional[List[FamilyMemberHistoryCondition]] = empty_list()
 
     def elementProperties(self):
         js = super(FamilyMemberHistory, self).elementProperties()
         js.extend([
-            ("ageAge", "ageAge", Age, False, "age", False),
-            ("ageRange", "ageRange", Range, False, "age", False),
-            ("ageString", "ageString", str, False, "age", False),
-            ("bornDate", "bornDate", FHIRDate, False, "born", False),
-            ("bornPeriod", "bornPeriod", Period, False, "born", False),
-            ("bornString", "bornString", str, False, "born", False),
-            ("condition", "condition", FamilyMemberHistoryCondition, True, None, False),
-            ("dataAbsentReason", "dataAbsentReason", CodeableConcept, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("deceasedAge", "deceasedAge", Age, False, "deceased", False),
-            ("deceasedBoolean", "deceasedBoolean", bool, False, "deceased", False),
-            ("deceasedDate", "deceasedDate", FHIRDate, False, "deceased", False),
-            ("deceasedRange", "deceasedRange", Range, False, "deceased", False),
-            ("deceasedString", "deceasedString", str, False, "deceased", False),
-            ("estimatedAge", "estimatedAge", bool, False, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
             ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
             ("instantiatesUri", "instantiatesUri", str, True, None, False),
-            ("name", "name", str, False, None, False),
-            ("note", "note", Annotation, True, None, False),
+            ("status", "status", str, False, None, True),
+            ("dataAbsentReason", "dataAbsentReason", CodeableConcept, False, None, False),
             ("patient", "patient", FHIRReference, False, None, True),
-            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
-            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("name", "name", str, False, None, False),
             ("relationship", "relationship", CodeableConcept, False, None, True),
             ("sex", "sex", CodeableConcept, False, None, False),
-            ("status", "status", str, False, None, True),
+            ("bornPeriod", "bornPeriod", Period, False, "born", False),
+            ("bornDate", "bornDate", FHIRDate, False, "born", False),
+            ("bornString", "bornString", str, False, "born", False),
+            ("ageAge", "ageAge", Age, False, "age", False),
+            ("ageRange", "ageRange", Range, False, "age", False),
+            ("ageString", "ageString", str, False, "age", False),
+            ("estimatedAge", "estimatedAge", bool, False, None, False),
+            ("deceasedBoolean", "deceasedBoolean", bool, False, "deceased", False),
+            ("deceasedAge", "deceasedAge", Age, False, "deceased", False),
+            ("deceasedRange", "deceasedRange", Range, False, "deceased", False),
+            ("deceasedDate", "deceasedDate", FHIRDate, False, "deceased", False),
+            ("deceasedString", "deceasedString", str, False, "deceased", False),
+            ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
+            ("reasonReference", "reasonReference", FHIRReference, True, None, False),
+            ("note", "note", Annotation, True, None, False),
+            ("condition", "condition", FamilyMemberHistoryCondition, True, None, False),
         ])
         return js

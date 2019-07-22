@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Range) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Range) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -19,13 +19,13 @@ class Range(Element):
     A set of ordered Quantities defined by a low and high limit.
     """
     resource_type: ClassVar[str] = "Range"
-    high: Optional[Quantity] = None
     low: Optional[Quantity] = None
+    high: Optional[Quantity] = None
 
     def elementProperties(self):
         js = super(Range, self).elementProperties()
         js.extend([
-            ("high", "high", Quantity, False, None, False),
             ("low", "low", Quantity, False, None, False),
+            ("high", "high", Quantity, False, None, False),
         ])
         return js

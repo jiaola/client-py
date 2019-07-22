@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -25,20 +25,20 @@ class NamingSystemUniqueId(BackboneElement):
     exchange.
     """
     resource_type: ClassVar[str] = "NamingSystemUniqueId"
-    comment: Optional[str] = None
-    period: Optional[Period] = None
-    preferred: Optional[bool] = None
     type: str = None
     value: str = None
+    preferred: Optional[bool] = None
+    comment: Optional[str] = None
+    period: Optional[Period] = None
 
     def elementProperties(self):
         js = super(NamingSystemUniqueId, self).elementProperties()
         js.extend([
-            ("comment", "comment", str, False, None, False),
-            ("period", "period", Period, False, None, False),
-            ("preferred", "preferred", bool, False, None, False),
             ("type", "type", str, False, None, True),
             ("value", "value", str, False, None, True),
+            ("preferred", "preferred", bool, False, None, False),
+            ("comment", "comment", str, False, None, False),
+            ("period", "period", Period, False, None, False),
         ])
         return js
 
@@ -52,35 +52,35 @@ class NamingSystem(DomainResource):
     "System" used within the Identifier and Coding data types.
     """
     resource_type: ClassVar[str] = "NamingSystem"
-    contact: Optional[List[ContactDetail]] = empty_list()
-    date: FHIRDate = None
-    description: Optional[str] = None
-    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    kind: str = None
     name: str = None
-    publisher: Optional[str] = None
-    responsible: Optional[str] = None
     status: str = None
+    kind: str = None
+    date: FHIRDate = None
+    publisher: Optional[str] = None
+    contact: Optional[List[ContactDetail]] = empty_list()
+    responsible: Optional[str] = None
     type: Optional[CodeableConcept] = None
-    uniqueId: List[NamingSystemUniqueId] = empty_list()
-    usage: Optional[str] = None
+    description: Optional[str] = None
     useContext: Optional[List[UsageContext]] = empty_list()
+    jurisdiction: Optional[List[CodeableConcept]] = empty_list()
+    usage: Optional[str] = None
+    uniqueId: List[NamingSystemUniqueId] = empty_list()
 
     def elementProperties(self):
         js = super(NamingSystem, self).elementProperties()
         js.extend([
-            ("contact", "contact", ContactDetail, True, None, False),
-            ("date", "date", FHIRDate, False, None, True),
-            ("description", "description", str, False, None, False),
-            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
-            ("kind", "kind", str, False, None, True),
             ("name", "name", str, False, None, True),
-            ("publisher", "publisher", str, False, None, False),
-            ("responsible", "responsible", str, False, None, False),
             ("status", "status", str, False, None, True),
+            ("kind", "kind", str, False, None, True),
+            ("date", "date", FHIRDate, False, None, True),
+            ("publisher", "publisher", str, False, None, False),
+            ("contact", "contact", ContactDetail, True, None, False),
+            ("responsible", "responsible", str, False, None, False),
             ("type", "type", CodeableConcept, False, None, False),
-            ("uniqueId", "uniqueId", NamingSystemUniqueId, True, None, True),
-            ("usage", "usage", str, False, None, False),
+            ("description", "description", str, False, None, False),
             ("useContext", "useContext", UsageContext, True, None, False),
+            ("jurisdiction", "jurisdiction", CodeableConcept, True, None, False),
+            ("usage", "usage", str, False, None, False),
+            ("uniqueId", "uniqueId", NamingSystemUniqueId, True, None, True),
         ])
         return js

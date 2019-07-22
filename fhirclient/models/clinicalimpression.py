@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -49,16 +49,16 @@ class ClinicalImpressionFinding(BackboneElement):
     ongoing treatment.
     """
     resource_type: ClassVar[str] = "ClinicalImpressionFinding"
-    basis: Optional[str] = None
     itemCodeableConcept: Optional[CodeableConcept] = None
     itemReference: Optional[FHIRReference] = None
+    basis: Optional[str] = None
 
     def elementProperties(self):
         js = super(ClinicalImpressionFinding, self).elementProperties()
         js.extend([
-            ("basis", "basis", str, False, None, False),
             ("itemCodeableConcept", "itemCodeableConcept", CodeableConcept, False, None, False),
             ("itemReference", "itemReference", FHIRReference, False, None, False),
+            ("basis", "basis", str, False, None, False),
         ])
         return js
 
@@ -77,51 +77,51 @@ class ClinicalImpression(DomainResource):
     with the recording of assessment tools such as Apgar score.
     """
     resource_type: ClassVar[str] = "ClinicalImpression"
-    assessor: Optional[FHIRReference] = None
-    code: Optional[CodeableConcept] = None
-    date: Optional[FHIRDate] = None
-    description: Optional[str] = None
-    effectiveDateTime: Optional[FHIRDate] = None
-    effectivePeriod: Optional[Period] = None
-    encounter: Optional[FHIRReference] = None
-    finding: Optional[List[ClinicalImpressionFinding]] = empty_list()
     identifier: Optional[List[Identifier]] = empty_list()
-    investigation: Optional[List[ClinicalImpressionInvestigation]] = empty_list()
-    note: Optional[List[Annotation]] = empty_list()
-    previous: Optional[FHIRReference] = None
-    problem: Optional[List[FHIRReference]] = empty_list()
-    prognosisCodeableConcept: Optional[List[CodeableConcept]] = empty_list()
-    prognosisReference: Optional[List[FHIRReference]] = empty_list()
-    protocol: Optional[List[str]] = empty_list()
     status: str = None
     statusReason: Optional[CodeableConcept] = None
+    code: Optional[CodeableConcept] = None
+    description: Optional[str] = None
     subject: FHIRReference = None
+    encounter: Optional[FHIRReference] = None
+    effectiveDateTime: Optional[FHIRDate] = None
+    effectivePeriod: Optional[Period] = None
+    date: Optional[FHIRDate] = None
+    assessor: Optional[FHIRReference] = None
+    previous: Optional[FHIRReference] = None
+    problem: Optional[List[FHIRReference]] = empty_list()
+    investigation: Optional[List[ClinicalImpressionInvestigation]] = empty_list()
+    protocol: Optional[List[str]] = empty_list()
     summary: Optional[str] = None
+    finding: Optional[List[ClinicalImpressionFinding]] = empty_list()
+    prognosisCodeableConcept: Optional[List[CodeableConcept]] = empty_list()
+    prognosisReference: Optional[List[FHIRReference]] = empty_list()
     supportingInfo: Optional[List[FHIRReference]] = empty_list()
+    note: Optional[List[Annotation]] = empty_list()
 
     def elementProperties(self):
         js = super(ClinicalImpression, self).elementProperties()
         js.extend([
-            ("assessor", "assessor", FHIRReference, False, None, False),
-            ("code", "code", CodeableConcept, False, None, False),
-            ("date", "date", FHIRDate, False, None, False),
-            ("description", "description", str, False, None, False),
-            ("effectiveDateTime", "effectiveDateTime", FHIRDate, False, "effective", False),
-            ("effectivePeriod", "effectivePeriod", Period, False, "effective", False),
-            ("encounter", "encounter", FHIRReference, False, None, False),
-            ("finding", "finding", ClinicalImpressionFinding, True, None, False),
             ("identifier", "identifier", Identifier, True, None, False),
-            ("investigation", "investigation", ClinicalImpressionInvestigation, True, None, False),
-            ("note", "note", Annotation, True, None, False),
-            ("previous", "previous", FHIRReference, False, None, False),
-            ("problem", "problem", FHIRReference, True, None, False),
-            ("prognosisCodeableConcept", "prognosisCodeableConcept", CodeableConcept, True, None, False),
-            ("prognosisReference", "prognosisReference", FHIRReference, True, None, False),
-            ("protocol", "protocol", str, True, None, False),
             ("status", "status", str, False, None, True),
             ("statusReason", "statusReason", CodeableConcept, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
+            ("description", "description", str, False, None, False),
             ("subject", "subject", FHIRReference, False, None, True),
+            ("encounter", "encounter", FHIRReference, False, None, False),
+            ("effectiveDateTime", "effectiveDateTime", FHIRDate, False, "effective", False),
+            ("effectivePeriod", "effectivePeriod", Period, False, "effective", False),
+            ("date", "date", FHIRDate, False, None, False),
+            ("assessor", "assessor", FHIRReference, False, None, False),
+            ("previous", "previous", FHIRReference, False, None, False),
+            ("problem", "problem", FHIRReference, True, None, False),
+            ("investigation", "investigation", ClinicalImpressionInvestigation, True, None, False),
+            ("protocol", "protocol", str, True, None, False),
             ("summary", "summary", str, False, None, False),
+            ("finding", "finding", ClinicalImpressionFinding, True, None, False),
+            ("prognosisCodeableConcept", "prognosisCodeableConcept", CodeableConcept, True, None, False),
+            ("prognosisReference", "prognosisReference", FHIRReference, True, None, False),
             ("supportingInfo", "supportingInfo", FHIRReference, True, None, False),
+            ("note", "note", Annotation, True, None, False),
         ])
         return js

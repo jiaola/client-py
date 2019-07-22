@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Population) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Population) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,19 +21,19 @@ class Population(BackboneElement):
     A populatioof people with some set of grouping criteria.
     """
     resource_type: ClassVar[str] = "Population"
-    ageCodeableConcept: Optional[CodeableConcept] = None
     ageRange: Optional[Range] = None
+    ageCodeableConcept: Optional[CodeableConcept] = None
     gender: Optional[CodeableConcept] = None
-    physiologicalCondition: Optional[CodeableConcept] = None
     race: Optional[CodeableConcept] = None
+    physiologicalCondition: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(Population, self).elementProperties()
         js.extend([
-            ("ageCodeableConcept", "ageCodeableConcept", CodeableConcept, False, "age", False),
             ("ageRange", "ageRange", Range, False, "age", False),
+            ("ageCodeableConcept", "ageCodeableConcept", CodeableConcept, False, "age", False),
             ("gender", "gender", CodeableConcept, False, None, False),
-            ("physiologicalCondition", "physiologicalCondition", CodeableConcept, False, None, False),
             ("race", "race", CodeableConcept, False, None, False),
+            ("physiologicalCondition", "physiologicalCondition", CodeableConcept, False, None, False),
         ])
         return js

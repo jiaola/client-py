@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Annotation) on 2019-07-18.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Annotation) on 2019-07-22.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -23,15 +23,15 @@ class Annotation(Element):
     resource_type: ClassVar[str] = "Annotation"
     authorReference: Optional[FHIRReference] = None
     authorString: Optional[str] = None
-    text: str = None
     time: Optional[FHIRDate] = None
+    text: str = None
 
     def elementProperties(self):
         js = super(Annotation, self).elementProperties()
         js.extend([
             ("authorReference", "authorReference", FHIRReference, False, "author", False),
             ("authorString", "authorString", str, False, "author", False),
-            ("text", "text", str, False, None, True),
             ("time", "time", FHIRDate, False, None, False),
+            ("text", "text", str, False, None, True),
         ])
         return js
