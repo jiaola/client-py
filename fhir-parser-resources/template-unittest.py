@@ -9,7 +9,7 @@ import os
 import io
 import unittest
 import json
-import {{ class.module }}
+from . import {{ class.module }}
 from .fhirdate import FHIRDate
 
 
