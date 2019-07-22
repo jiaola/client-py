@@ -33,7 +33,7 @@ class {{klass.name}}({{klass.superclass.name | default('object')}}):
 
 
 {%- for prop in klass.properties %}
-{%- if notspecial %}{% set pname = prop.class_name %}{% else %}{% set pname = '"' + prop.class_name + '"' %}{% endif %}
+{%- if notspecial and not klass.is_forward %}{% set pname = prop.class_name %}{% else %}{% set pname = '"' + prop.class_name + '"' %}{% endif %}
     {{prop.name}}:{%- if prop.is_array %}{%- if prop.nonoptional %} List[{{pname}}]{% else %} Optional[List[{{pname}}]]{%- endif %} = empty_list(){% else %}{%- if prop.nonoptional %} {{pname}}{% else %} Optional[{{pname}}]{%- endif %} = None{% endif %}
 
 {%- endfor %}
