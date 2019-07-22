@@ -15,6 +15,6 @@ tests=(models/*_tests.py)
 pipenv run python -m unittest ${tests[@]}
 
 # couple of custom tests
-python -m unittest server_tests.py fhirreference_tests.py
+pipenv run python -m unittest server_tests.py fhirreference_tests.py
 
 cd ..
