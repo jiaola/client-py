@@ -155,7 +155,7 @@ class QuestionnaireItem(BackboneElement):
     answerValueSet: Optional[str] = None
     answerOption: Optional[List[QuestionnaireItemAnswerOption]] = empty_list()
     initial: Optional[List[QuestionnaireItemInitial]] = empty_list()
-    item: Optional[List[QuestionnaireItem]] = empty_list()
+    item: Optional[List["QuestionnaireItem"]] = empty_list()
 
     def elementProperties(self):
         js = super(QuestionnaireItem, self).elementProperties()

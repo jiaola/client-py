@@ -5,13 +5,13 @@ import json
 import os.path
 import logging
 import unittest
-import models.questionnaire as questionnaire
-import models.medication as medication
-import models.resource as resource
-import models.valueset as valueset
-import models.patient as patient
-import models.bundle as bundle
-import server
+import fhirclient.models.questionnaire as questionnaire
+import fhirclient.models.medication as medication
+import fhirclient.models.resource as resource
+import fhirclient.models.valueset as valueset
+import fhirclient.models.patient as patient
+import fhirclient. models.bundle as bundle
+from . import server
 
 
 logging.basicConfig(level=logging.CRITICAL)
