@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Composition) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Composition) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -99,7 +99,7 @@ class CompositionSection(BackboneElement):
     orderedBy: Optional[CodeableConcept] = None
     entry: Optional[List[FHIRReference]] = empty_list()
     emptyReason: Optional[CodeableConcept] = None
-    section: Optional[List[CompositionSection]] = empty_list()
+    section: Optional[List["CompositionSection"]] = empty_list()
 
     def elementProperties(self):
         js = super(CompositionSection, self).elementProperties()

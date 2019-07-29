@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Parameters) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Parameters) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -101,7 +101,7 @@ class ParametersParameter(BackboneElement):
     valueUsageContext: Optional[UsageContext] = None
     valueDosage: Optional[Dosage] = None
     resource: Optional[Resource] = None
-    part: Optional[List[ParametersParameter]] = empty_list()
+    part: Optional[List["ParametersParameter"]] = empty_list()
 
     def elementProperties(self):
         js = super(ParametersParameter, self).elementProperties()

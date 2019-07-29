@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ExampleScenario) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ExampleScenario) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -30,8 +30,8 @@ class ExampleScenarioProcessStepOperation(BackboneElement):
     description: Optional[str] = None
     initiatorActive: Optional[bool] = None
     receiverActive: Optional[bool] = None
-    request: Optional[ExampleScenarioInstanceContainedInstance] = None
-    response: Optional[ExampleScenarioInstanceContainedInstance] = None
+    request: Optional["ExampleScenarioInstanceContainedInstance"] = None
+    response: Optional["ExampleScenarioInstanceContainedInstance"] = None
 
     def elementProperties(self):
         js = super(ExampleScenarioProcessStepOperation, self).elementProperties()
@@ -60,7 +60,7 @@ class ExampleScenarioProcessStepAlternative(BackboneElement):
     resource_type: ClassVar[str] = "ExampleScenarioProcessStepAlternative"
     title: str = None
     description: Optional[str] = None
-    step: Optional[List[ExampleScenarioProcessStep]] = empty_list()
+    step: Optional[List["ExampleScenarioProcessStep"]] = empty_list()
 
     def elementProperties(self):
         js = super(ExampleScenarioProcessStepAlternative, self).elementProperties()
@@ -77,7 +77,7 @@ class ExampleScenarioProcessStep(BackboneElement):
     """ Each step of the process.
     """
     resource_type: ClassVar[str] = "ExampleScenarioProcessStep"
-    process: Optional[List[ExampleScenarioProcess]] = empty_list()
+    process: Optional[List["ExampleScenarioProcess"]] = empty_list()
     pause: Optional[bool] = None
     operation: Optional[ExampleScenarioProcessStepOperation] = None
     alternative: Optional[List[ExampleScenarioProcessStepAlternative]] = empty_list()

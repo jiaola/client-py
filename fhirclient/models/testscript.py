@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TestScript) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TestScript) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -26,7 +26,7 @@ class TestScriptTeardownAction(BackboneElement):
     The teardown action will only contain an operation.
     """
     resource_type: ClassVar[str] = "TestScriptTeardownAction"
-    operation: TestScriptSetupActionOperation = None
+    operation: "TestScriptSetupActionOperation" = None
 
     def elementProperties(self):
         js = super(TestScriptTeardownAction, self).elementProperties()
@@ -43,8 +43,8 @@ class TestScriptTestAction(BackboneElement):
     Action would contain either an operation or an assertion.
     """
     resource_type: ClassVar[str] = "TestScriptTestAction"
-    operation: Optional[TestScriptSetupActionOperation] = None
-    assert_fhir: Optional[TestScriptSetupActionAssert] = None
+    operation: Optional["TestScriptSetupActionOperation"] = None
+    assert_fhir: Optional["TestScriptSetupActionAssert"] = None
 
     def elementProperties(self):
         js = super(TestScriptTestAction, self).elementProperties()

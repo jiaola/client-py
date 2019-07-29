@@ -61,7 +61,7 @@ class FHIRAbstractResource(fhirabstractbase.FHIRAbstractBase):
     def origin_server(self):
         """ Walks the owner hierarchy until it finds an owner with a server.
         """
-        server = self._server
+        server = getattr(self, '_server', None)
         owner = self._owner
         while server is None and owner is not None:
             server = getattr(owner, '_server', None)

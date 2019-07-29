@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -63,7 +63,7 @@ class ExplanationOfBenefitAddItemDetailSubDetail(BackboneElement):
     factor: Optional[float] = None
     net: Optional[Money] = None
     noteNumber: Optional[List[int]] = empty_list()
-    adjudication: Optional[List[ExplanationOfBenefitItemAdjudication]] = empty_list()
+    adjudication: Optional[List["ExplanationOfBenefitItemAdjudication"]] = empty_list()
 
     def elementProperties(self):
         js = super(ExplanationOfBenefitAddItemDetailSubDetail, self).elementProperties()
@@ -94,7 +94,7 @@ class ExplanationOfBenefitAddItemDetail(BackboneElement):
     factor: Optional[float] = None
     net: Optional[Money] = None
     noteNumber: Optional[List[int]] = empty_list()
-    adjudication: Optional[List[ExplanationOfBenefitItemAdjudication]] = empty_list()
+    adjudication: Optional[List["ExplanationOfBenefitItemAdjudication"]] = empty_list()
     subDetail: Optional[List[ExplanationOfBenefitAddItemDetailSubDetail]] = empty_list()
 
     def elementProperties(self):
@@ -132,7 +132,7 @@ class ExplanationOfBenefitItemDetailSubDetail(BackboneElement):
     net: Optional[Money] = None
     udi: Optional[List[FHIRReference]] = empty_list()
     noteNumber: Optional[List[int]] = empty_list()
-    adjudication: Optional[List[ExplanationOfBenefitItemAdjudication]] = empty_list()
+    adjudication: Optional[List["ExplanationOfBenefitItemAdjudication"]] = empty_list()
 
     def elementProperties(self):
         js = super(ExplanationOfBenefitItemDetailSubDetail, self).elementProperties()

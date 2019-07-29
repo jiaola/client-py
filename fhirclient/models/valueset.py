@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -64,8 +64,8 @@ class ValueSetExpansionContains(BackboneElement):
     version: Optional[str] = None
     code: Optional[str] = None
     display: Optional[str] = None
-    designation: Optional[List[ValueSetComposeIncludeConceptDesignation]] = empty_list()
-    contains: Optional[List[ValueSetExpansionContains]] = empty_list()
+    designation: Optional[List["ValueSetComposeIncludeConceptDesignation"]] = empty_list()
+    contains: Optional[List["ValueSetExpansionContains"]] = empty_list()
 
     def elementProperties(self):
         js = super(ValueSetExpansionContains, self).elementProperties()

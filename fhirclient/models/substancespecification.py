@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceSpecification) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SubstanceSpecification) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -223,8 +223,8 @@ class SubstanceSpecificationName(BackboneElement):
     language: Optional[List[CodeableConcept]] = empty_list()
     domain: Optional[List[CodeableConcept]] = empty_list()
     jurisdiction: Optional[List[CodeableConcept]] = empty_list()
-    synonym: Optional[List[SubstanceSpecificationName]] = empty_list()
-    translation: Optional[List[SubstanceSpecificationName]] = empty_list()
+    synonym: Optional[List["SubstanceSpecificationName"]] = empty_list()
+    translation: Optional[List["SubstanceSpecificationName"]] = empty_list()
     official: Optional[List[SubstanceSpecificationNameOfficial]] = empty_list()
     source: Optional[List[FHIRReference]] = empty_list()
 

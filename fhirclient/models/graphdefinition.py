@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -48,7 +48,7 @@ class GraphDefinitionLinkTarget(BackboneElement):
     params: Optional[str] = None
     profile: Optional[str] = None
     compartment: Optional[List[GraphDefinitionLinkTargetCompartment]] = empty_list()
-    link: Optional[List[GraphDefinitionLink]] = empty_list()
+    link: Optional[List["GraphDefinitionLink"]] = empty_list()
 
     def elementProperties(self):
         js = super(GraphDefinitionLinkTarget, self).elementProperties()

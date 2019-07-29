@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Contract) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Contract) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -370,7 +370,7 @@ class ContractTerm(BackboneElement):
     offer: ContractTermOffer = None
     asset: Optional[List[ContractTermAsset]] = empty_list()
     action: Optional[List[ContractTermAction]] = empty_list()
-    group: Optional[List[ContractTerm]] = empty_list()
+    group: Optional[List["ContractTerm"]] = empty_list()
 
     def elementProperties(self):
         js = super(ContractTerm, self).elementProperties()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductPackaged) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicinalProductPackaged) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -49,7 +49,7 @@ class MedicinalProductPackagedPackageItem(BackboneElement):
     alternateMaterial: Optional[List[CodeableConcept]] = empty_list()
     device: Optional[List[FHIRReference]] = empty_list()
     manufacturedItem: Optional[List[FHIRReference]] = empty_list()
-    packageItem: Optional[List[MedicinalProductPackagedPackageItem]] = empty_list()
+    packageItem: Optional[List["MedicinalProductPackagedPackageItem"]] = empty_list()
     physicalCharacteristics: Optional[ProdCharacteristic] = None
     otherCharacteristics: Optional[List[CodeableConcept]] = empty_list()
     shelfLifeStorage: Optional[List[ProductShelfLife]] = empty_list()

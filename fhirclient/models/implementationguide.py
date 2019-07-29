@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -128,7 +128,7 @@ class ImplementationGuideDefinitionPage(BackboneElement):
     nameReference: FHIRReference = None
     title: str = None
     generation: str = None
-    page: Optional[List[ImplementationGuideDefinitionPage]] = empty_list()
+    page: Optional[List["ImplementationGuideDefinitionPage"]] = empty_list()
 
     def elementProperties(self):
         js = super(ImplementationGuideDefinitionPage, self).elementProperties()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-07-22.
+#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -37,7 +37,7 @@ class QuestionnaireResponseItemAnswer(BackboneElement):
     valueCoding: Optional[Coding] = None
     valueQuantity: Optional[Quantity] = None
     valueReference: Optional[FHIRReference] = None
-    item: Optional[List[QuestionnaireResponseItem]] = empty_list()
+    item: Optional[List["QuestionnaireResponseItem"]] = empty_list()
 
     def elementProperties(self):
         js = super(QuestionnaireResponseItemAnswer, self).elementProperties()
@@ -71,7 +71,7 @@ class QuestionnaireResponseItem(BackboneElement):
     definition: Optional[str] = None
     text: Optional[str] = None
     answer: Optional[List[QuestionnaireResponseItemAnswer]] = empty_list()
-    item: Optional[List[QuestionnaireResponseItem]] = empty_list()
+    item: Optional[List["QuestionnaireResponseItem"]] = empty_list()
 
     def elementProperties(self):
         js = super(QuestionnaireResponseItem, self).elementProperties()
