@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -71,7 +71,7 @@ class CommunicationRequestTests(unittest.TestCase):
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
         self.assertEqual(inst.occurrenceDateTime.date, FHIRDate("2016-06-10T11:01:10-08:00").date)
         self.assertEqual(inst.occurrenceDateTime.as_json(), "2016-06-10T11:01:10-08:00")
-        self.assertEqual(inst.payload[0].contentString, "Please provide the accident report and any associated pictures to support your Claim# DEF5647.")
+        self.assertEqual(inst.payload[0].contentCodeableConcept.text, "Please provide the accident report and any associated pictures to support your Claim# DEF5647.")
         self.assertEqual(inst.priority, "routine")
         self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Request for Accident Report</div>")

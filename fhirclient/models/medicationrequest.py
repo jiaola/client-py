@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -118,8 +118,8 @@ class MedicationRequest(DomainResource):
     category: Optional[List[CodeableConcept]] = empty_list()
     priority: Optional[str] = None
     doNotPerform: Optional[bool] = None
-    reportedBoolean: Optional[bool] = None
-    reportedReference: Optional[FHIRReference] = None
+    reported: Optional[bool] = None
+    informationSource: Optional[FHIRReference] = None
     medicationCodeableConcept: CodeableConcept = None
     medicationReference: FHIRReference = None
     subject: FHIRReference = None
@@ -156,8 +156,8 @@ class MedicationRequest(DomainResource):
             ("category", "category", CodeableConcept, True, None, False),
             ("priority", "priority", str, False, None, False),
             ("doNotPerform", "doNotPerform", bool, False, None, False),
-            ("reportedBoolean", "reportedBoolean", bool, False, "reported", False),
-            ("reportedReference", "reportedReference", FHIRReference, False, "reported", False),
+            ("reported", "reported", bool, False, None, False),
+            ("informationSource", "informationSource", FHIRReference, False, None, False),
             ("medicationCodeableConcept", "medicationCodeableConcept", CodeableConcept, False, "medication", True),
             ("medicationReference", "medicationReference", FHIRReference, False, "medication", True),
             ("subject", "subject", FHIRReference, False, None, True),

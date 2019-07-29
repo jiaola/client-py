@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Encounter) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -176,6 +176,7 @@ class Encounter(DomainResource):
     serviceType: Optional[CodeableConcept] = None
     priority: Optional[CodeableConcept] = None
     subject: Optional[FHIRReference] = None
+    subjectStatus: Optional[CodeableConcept] = None
     episodeOfCare: Optional[List[FHIRReference]] = empty_list()
     basedOn: Optional[List[FHIRReference]] = empty_list()
     participant: Optional[List[EncounterParticipant]] = empty_list()
@@ -203,6 +204,7 @@ class Encounter(DomainResource):
             ("serviceType", "serviceType", CodeableConcept, False, None, False),
             ("priority", "priority", CodeableConcept, False, None, False),
             ("subject", "subject", FHIRReference, False, None, False),
+            ("subjectStatus", "subjectStatus", CodeableConcept, False, None, False),
             ("episodeOfCare", "episodeOfCare", FHIRReference, True, None, False),
             ("basedOn", "basedOn", FHIRReference, True, None, False),
             ("participant", "participant", EncounterParticipant, True, None, False),

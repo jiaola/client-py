@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -21,18 +21,16 @@ class AdverseEventSuspectEntityCausality(BackboneElement):
     """ Information on the possible cause of the event.
     """
     resource_type: ClassVar[str] = "AdverseEventSuspectEntityCausality"
-    assessment: Optional[CodeableConcept] = None
-    productRelatedness: Optional[str] = None
+    assessmentMethod: Optional[CodeableConcept] = None
+    entityRelatedness: Optional[CodeableConcept] = None
     author: Optional[FHIRReference] = None
-    method: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(AdverseEventSuspectEntityCausality, self).elementProperties()
         js.extend([
-            ("assessment", "assessment", CodeableConcept, False, None, False),
-            ("productRelatedness", "productRelatedness", str, False, None, False),
+            ("assessmentMethod", "assessmentMethod", CodeableConcept, False, None, False),
+            ("entityRelatedness", "entityRelatedness", CodeableConcept, False, None, False),
             ("author", "author", FHIRReference, False, None, False),
-            ("method", "method", CodeableConcept, False, None, False),
         ])
         return js
 
@@ -44,14 +42,33 @@ class AdverseEventSuspectEntity(BackboneElement):
     Describes the entity that is suspected to have caused the adverse event.
     """
     resource_type: ClassVar[str] = "AdverseEventSuspectEntity"
-    instance: FHIRReference = None
+    instanceCodeableConcept: CodeableConcept = None
+    instanceReference: FHIRReference = None
     causality: Optional[List[AdverseEventSuspectEntityCausality]] = empty_list()
 
     def elementProperties(self):
         js = super(AdverseEventSuspectEntity, self).elementProperties()
         js.extend([
-            ("instance", "instance", FHIRReference, False, None, True),
+            ("instanceCodeableConcept", "instanceCodeableConcept", CodeableConcept, False, "instance", True),
+            ("instanceReference", "instanceReference", FHIRReference, False, "instance", True),
             ("causality", "causality", AdverseEventSuspectEntityCausality, True, None, False),
+        ])
+        return js
+
+
+@dataclass
+class AdverseEventSupportingInfo(BackboneElement):
+    """ Supporting information relevant to the event.
+    """
+    resource_type: ClassVar[str] = "AdverseEventSupportingInfo"
+    item: FHIRReference = None
+    contributingFactor: Optional[bool] = None
+
+    def elementProperties(self):
+        js = super(AdverseEventSupportingInfo, self).elementProperties()
+        js.extend([
+            ("item", "item", FHIRReference, False, None, True),
+            ("contributingFactor", "contributingFactor", bool, False, None, False),
         ])
         return js
 
@@ -61,16 +78,17 @@ class AdverseEvent(DomainResource):
     """ Medical care, research study or other healthcare event causing physical
     injury.
 
-    Actual or  potential/avoided event causing unintended physical injury
-    resulting from or contributed to by medical care, a research study or other
-    healthcare setting factors that requires additional monitoring, treatment,
-    or hospitalization, or that results in death.
+    An event (i.e. any change to current patient status) that may be related to
+    unintended effects on a patient or research subject.  The unintended
+    effects may require additional monitoring, treatment or hospitalization or
+    may result in death.  The AdverseEvent resource also extends to potential
+    or avoided events that could have had such effects.
     """
     resource_type: ClassVar[str] = "AdverseEvent"
-    identifier: Optional[Identifier] = None
+    identifier: Optional[List[Identifier]] = empty_list()
     actuality: str = None
     category: Optional[List[CodeableConcept]] = empty_list()
-    event: Optional[CodeableConcept] = None
+    code: Optional[CodeableConcept] = None
     subject: FHIRReference = None
     encounter: Optional[FHIRReference] = None
     date: Optional[FHIRDate] = None
@@ -83,18 +101,18 @@ class AdverseEvent(DomainResource):
     outcome: Optional[CodeableConcept] = None
     recorder: Optional[FHIRReference] = None
     contributor: Optional[List[FHIRReference]] = empty_list()
+    detector: Optional[List[FHIRReference]] = empty_list()
     suspectEntity: Optional[List[AdverseEventSuspectEntity]] = empty_list()
-    subjectMedicalHistory: Optional[List[FHIRReference]] = empty_list()
-    referenceDocument: Optional[List[FHIRReference]] = empty_list()
+    supportingInfo: Optional[List[AdverseEventSupportingInfo]] = empty_list()
     study: Optional[List[FHIRReference]] = empty_list()
 
     def elementProperties(self):
         js = super(AdverseEvent, self).elementProperties()
         js.extend([
-            ("identifier", "identifier", Identifier, False, None, False),
+            ("identifier", "identifier", Identifier, True, None, False),
             ("actuality", "actuality", str, False, None, True),
             ("category", "category", CodeableConcept, True, None, False),
-            ("event", "event", CodeableConcept, False, None, False),
+            ("code", "code", CodeableConcept, False, None, False),
             ("subject", "subject", FHIRReference, False, None, True),
             ("encounter", "encounter", FHIRReference, False, None, False),
             ("date", "date", FHIRDate, False, None, False),
@@ -107,9 +125,9 @@ class AdverseEvent(DomainResource):
             ("outcome", "outcome", CodeableConcept, False, None, False),
             ("recorder", "recorder", FHIRReference, False, None, False),
             ("contributor", "contributor", FHIRReference, True, None, False),
+            ("detector", "detector", FHIRReference, True, None, False),
             ("suspectEntity", "suspectEntity", AdverseEventSuspectEntity, True, None, False),
-            ("subjectMedicalHistory", "subjectMedicalHistory", FHIRReference, True, None, False),
-            ("referenceDocument", "referenceDocument", FHIRReference, True, None, False),
+            ("supportingInfo", "supportingInfo", AdverseEventSupportingInfo, True, None, False),
             ("study", "study", FHIRReference, True, None, False),
         ])
         return js

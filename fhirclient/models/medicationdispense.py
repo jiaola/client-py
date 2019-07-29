@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -52,7 +52,7 @@ class MedicationDispenseSubstitution(BackboneElement):
     wasSubstituted: bool = None
     type: Optional[CodeableConcept] = None
     reason: Optional[List[CodeableConcept]] = empty_list()
-    responsibleParty: Optional[List[FHIRReference]] = empty_list()
+    responsibleParty: Optional[FHIRReference] = None
 
     def elementProperties(self):
         js = super(MedicationDispenseSubstitution, self).elementProperties()
@@ -60,7 +60,7 @@ class MedicationDispenseSubstitution(BackboneElement):
             ("wasSubstituted", "wasSubstituted", bool, False, None, True),
             ("type", "type", CodeableConcept, False, None, False),
             ("reason", "reason", CodeableConcept, True, None, False),
-            ("responsibleParty", "responsibleParty", FHIRReference, True, None, False),
+            ("responsibleParty", "responsibleParty", FHIRReference, False, None, False),
         ])
         return js
 
@@ -81,11 +81,11 @@ class MedicationDispense(DomainResource):
     status: str = None
     statusReasonCodeableConcept: Optional[CodeableConcept] = None
     statusReasonReference: Optional[FHIRReference] = None
-    category: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
     medicationCodeableConcept: CodeableConcept = None
     medicationReference: FHIRReference = None
     subject: Optional[FHIRReference] = None
-    context: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
     supportingInformation: Optional[List[FHIRReference]] = empty_list()
     performer: Optional[List[MedicationDispensePerformer]] = empty_list()
     location: Optional[FHIRReference] = None
@@ -111,11 +111,11 @@ class MedicationDispense(DomainResource):
             ("status", "status", str, False, None, True),
             ("statusReasonCodeableConcept", "statusReasonCodeableConcept", CodeableConcept, False, "statusReason", False),
             ("statusReasonReference", "statusReasonReference", FHIRReference, False, "statusReason", False),
-            ("category", "category", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
             ("medicationCodeableConcept", "medicationCodeableConcept", CodeableConcept, False, "medication", True),
             ("medicationReference", "medicationReference", FHIRReference, False, "medication", True),
             ("subject", "subject", FHIRReference, False, None, False),
-            ("context", "context", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
             ("supportingInformation", "supportingInformation", FHIRReference, True, None, False),
             ("performer", "performer", MedicationDispensePerformer, True, None, False),
             ("location", "location", FHIRReference, False, None, False),

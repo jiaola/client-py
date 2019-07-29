@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -18,6 +18,7 @@ from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .period import Period
 from .range import Range
+from .timing import Timing
 
 
 @dataclass
@@ -78,17 +79,20 @@ class Procedure(DomainResource):
     partOf: Optional[List[FHIRReference]] = empty_list()
     status: str = None
     statusReason: Optional[CodeableConcept] = None
-    category: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
     code: Optional[CodeableConcept] = None
     subject: FHIRReference = None
     encounter: Optional[FHIRReference] = None
-    performedDateTime: Optional[FHIRDate] = None
-    performedPeriod: Optional[Period] = None
-    performedString: Optional[str] = None
-    performedAge: Optional[Age] = None
-    performedRange: Optional[Range] = None
+    occurrenceDateTime: Optional[FHIRDate] = None
+    occurrencePeriod: Optional[Period] = None
+    occurrenceString: Optional[str] = None
+    occurrenceAge: Optional[Age] = None
+    occurrenceRange: Optional[Range] = None
+    occurrenceTiming: Optional[Timing] = None
+    recorded: Optional[FHIRDate] = None
     recorder: Optional[FHIRReference] = None
-    asserter: Optional[FHIRReference] = None
+    reportedBoolean: Optional[bool] = None
+    reportedReference: Optional[FHIRReference] = None
     performer: Optional[List[ProcedurePerformer]] = empty_list()
     location: Optional[FHIRReference] = None
     reasonCode: Optional[List[CodeableConcept]] = empty_list()
@@ -114,17 +118,20 @@ class Procedure(DomainResource):
             ("partOf", "partOf", FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
             ("statusReason", "statusReason", CodeableConcept, False, None, False),
-            ("category", "category", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
             ("code", "code", CodeableConcept, False, None, False),
             ("subject", "subject", FHIRReference, False, None, True),
             ("encounter", "encounter", FHIRReference, False, None, False),
-            ("performedDateTime", "performedDateTime", FHIRDate, False, "performed", False),
-            ("performedPeriod", "performedPeriod", Period, False, "performed", False),
-            ("performedString", "performedString", str, False, "performed", False),
-            ("performedAge", "performedAge", Age, False, "performed", False),
-            ("performedRange", "performedRange", Range, False, "performed", False),
+            ("occurrenceDateTime", "occurrenceDateTime", FHIRDate, False, "occurrence", False),
+            ("occurrencePeriod", "occurrencePeriod", Period, False, "occurrence", False),
+            ("occurrenceString", "occurrenceString", str, False, "occurrence", False),
+            ("occurrenceAge", "occurrenceAge", Age, False, "occurrence", False),
+            ("occurrenceRange", "occurrenceRange", Range, False, "occurrence", False),
+            ("occurrenceTiming", "occurrenceTiming", Timing, False, "occurrence", False),
+            ("recorded", "recorded", FHIRDate, False, None, False),
             ("recorder", "recorder", FHIRReference, False, None, False),
-            ("asserter", "asserter", FHIRReference, False, None, False),
+            ("reportedBoolean", "reportedBoolean", bool, False, "reported", False),
+            ("reportedReference", "reportedReference", FHIRReference, False, "reported", False),
             ("performer", "performer", ProcedurePerformer, True, None, False),
             ("location", "location", FHIRReference, False, None, False),
             ("reasonCode", "reasonCode", CodeableConcept, True, None, False),

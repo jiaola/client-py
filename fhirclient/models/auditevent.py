@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -151,11 +151,10 @@ class AuditEventEntity(BackboneElement):
 
 @dataclass
 class AuditEvent(DomainResource):
-    """ Event record kept for security purposes.
+    """ Record of an event.
 
-    A record of an event made for purposes of maintaining a security log.
-    Typical uses include detection of intrusion attempts and monitoring for
-    inappropriate usage.
+    A record of an event relevant for purposes such as operations, privacy,
+    security, maintenance, and performance analysis.
     """
     resource_type: ClassVar[str] = "AuditEvent"
     type: Coding = None

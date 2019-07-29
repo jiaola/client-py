@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -16,29 +16,6 @@ from .fhirdate import FHIRDate
 from .fhirreference import FHIRReference
 from .identifier import Identifier
 from .period import Period
-
-
-@dataclass
-class ClinicalImpressionInvestigation(BackboneElement):
-    """ One or more sets of investigations (signs, symptoms, etc.).
-
-    One or more sets of investigations (signs, symptoms, etc.). The actual
-    grouping of investigations varies greatly depending on the type and context
-    of the assessment. These investigations may include data generated during
-    the assessment process, or data previously generated and recorded that is
-    pertinent to the outcomes.
-    """
-    resource_type: ClassVar[str] = "ClinicalImpressionInvestigation"
-    code: CodeableConcept = None
-    item: Optional[List[FHIRReference]] = empty_list()
-
-    def elementProperties(self):
-        js = super(ClinicalImpressionInvestigation, self).elementProperties()
-        js.extend([
-            ("code", "code", CodeableConcept, False, None, True),
-            ("item", "item", FHIRReference, True, None, False),
-        ])
-        return js
 
 
 @dataclass
@@ -87,10 +64,9 @@ class ClinicalImpression(DomainResource):
     effectiveDateTime: Optional[FHIRDate] = None
     effectivePeriod: Optional[Period] = None
     date: Optional[FHIRDate] = None
-    assessor: Optional[FHIRReference] = None
+    performer: Optional[FHIRReference] = None
     previous: Optional[FHIRReference] = None
     problem: Optional[List[FHIRReference]] = empty_list()
-    investigation: Optional[List[ClinicalImpressionInvestigation]] = empty_list()
     protocol: Optional[List[str]] = empty_list()
     summary: Optional[str] = None
     finding: Optional[List[ClinicalImpressionFinding]] = empty_list()
@@ -112,10 +88,9 @@ class ClinicalImpression(DomainResource):
             ("effectiveDateTime", "effectiveDateTime", FHIRDate, False, "effective", False),
             ("effectivePeriod", "effectivePeriod", Period, False, "effective", False),
             ("date", "date", FHIRDate, False, None, False),
-            ("assessor", "assessor", FHIRReference, False, None, False),
+            ("performer", "performer", FHIRReference, False, None, False),
             ("previous", "previous", FHIRReference, False, None, False),
             ("problem", "problem", FHIRReference, True, None, False),
-            ("investigation", "investigation", ClinicalImpressionInvestigation, True, None, False),
             ("protocol", "protocol", str, True, None, False),
             ("summary", "summary", str, False, None, False),
             ("finding", "finding", ClinicalImpressionFinding, True, None, False),

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -34,6 +34,7 @@ class GoalTests(unittest.TestCase):
     def implGoal1(self, inst):
         self.assertEqual(inst.category[0].coding[0].code, "dietary")
         self.assertEqual(inst.category[0].coding[0].system, "http://terminology.hl7.org/CodeSystem/goal-category")
+        self.assertTrue(inst.continuous)
         self.assertEqual(inst.description.text, "Target weight is 160 to 180 lbs.")
         self.assertEqual(inst.id, "example")
         self.assertEqual(inst.identifier[0].value, "123")

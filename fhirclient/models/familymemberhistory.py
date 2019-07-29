@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -55,6 +55,42 @@ class FamilyMemberHistoryCondition(BackboneElement):
 
 
 @dataclass
+class FamilyMemberHistoryProcedure(BackboneElement):
+    """ Procedures that the related person had.
+
+    The significant Procedures (or procedure) that the family member had. This
+    is a repeating section to allow a system to represent more than one
+    procedure per resource, though there is nothing stopping multiple resources
+    - one per procedure.
+    """
+    resource_type: ClassVar[str] = "FamilyMemberHistoryProcedure"
+    code: CodeableConcept = None
+    outcome: Optional[CodeableConcept] = None
+    contributedToDeath: Optional[bool] = None
+    performedAge: Optional[Age] = None
+    performedRange: Optional[Range] = None
+    performedPeriod: Optional[Period] = None
+    performedString: Optional[str] = None
+    performedDateTime: Optional[FHIRDate] = None
+    note: Optional[List[Annotation]] = empty_list()
+
+    def elementProperties(self):
+        js = super(FamilyMemberHistoryProcedure, self).elementProperties()
+        js.extend([
+            ("code", "code", CodeableConcept, False, None, True),
+            ("outcome", "outcome", CodeableConcept, False, None, False),
+            ("contributedToDeath", "contributedToDeath", bool, False, None, False),
+            ("performedAge", "performedAge", Age, False, "performed", False),
+            ("performedRange", "performedRange", Range, False, "performed", False),
+            ("performedPeriod", "performedPeriod", Period, False, "performed", False),
+            ("performedString", "performedString", str, False, "performed", False),
+            ("performedDateTime", "performedDateTime", FHIRDate, False, "performed", False),
+            ("note", "note", Annotation, True, None, False),
+        ])
+        return js
+
+
+@dataclass
 class FamilyMemberHistory(DomainResource):
     """ Information about patient's relatives, relevant for patient.
 
@@ -88,6 +124,7 @@ class FamilyMemberHistory(DomainResource):
     reasonReference: Optional[List[FHIRReference]] = empty_list()
     note: Optional[List[Annotation]] = empty_list()
     condition: Optional[List[FamilyMemberHistoryCondition]] = empty_list()
+    procedure: Optional[List[FamilyMemberHistoryProcedure]] = empty_list()
 
     def elementProperties(self):
         js = super(FamilyMemberHistory, self).elementProperties()
@@ -118,5 +155,6 @@ class FamilyMemberHistory(DomainResource):
             ("reasonReference", "reasonReference", FHIRReference, True, None, False),
             ("note", "note", Annotation, True, None, False),
             ("condition", "condition", FamilyMemberHistoryCondition, True, None, False),
+            ("procedure", "procedure", FamilyMemberHistoryProcedure, True, None, False),
         ])
         return js

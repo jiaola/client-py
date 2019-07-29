@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Immunization) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -131,7 +131,8 @@ class Immunization(DomainResource):
     occurrenceString: str = None
     recorded: Optional[FHIRDate] = None
     primarySource: Optional[bool] = None
-    reportOrigin: Optional[CodeableConcept] = None
+    informationSourceCodeableConcept: Optional[CodeableConcept] = None
+    informationSourceReference: Optional[FHIRReference] = None
     location: Optional[FHIRReference] = None
     manufacturer: Optional[FHIRReference] = None
     lotNumber: Optional[str] = None
@@ -164,7 +165,8 @@ class Immunization(DomainResource):
             ("occurrenceString", "occurrenceString", str, False, "occurrence", True),
             ("recorded", "recorded", FHIRDate, False, None, False),
             ("primarySource", "primarySource", bool, False, None, False),
-            ("reportOrigin", "reportOrigin", CodeableConcept, False, None, False),
+            ("informationSourceCodeableConcept", "informationSourceCodeableConcept", CodeableConcept, False, "informationSource", False),
+            ("informationSourceReference", "informationSourceReference", FHIRReference, False, "informationSource", False),
             ("location", "location", FHIRReference, False, None, False),
             ("manufacturer", "manufacturer", FHIRReference, False, None, False),
             ("lotNumber", "lotNumber", str, False, None, False),

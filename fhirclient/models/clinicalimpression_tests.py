@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -43,7 +43,6 @@ class ClinicalImpressionTests(unittest.TestCase):
         self.assertEqual(inst.finding[0].itemCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-9")
         self.assertEqual(inst.id, "example")
         self.assertEqual(inst.identifier[0].value, "12345")
-        self.assertEqual(inst.investigation[0].code.text, "Initial Examination")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")

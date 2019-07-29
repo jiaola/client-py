@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -61,7 +61,7 @@ class FamilyMemberHistoryTests(unittest.TestCase):
         self.assertEqual(inst.text.status, "generated")
     
     def testFamilyMemberHistory2(self):
-        inst = self.instantiate_from("familymemberhistory-example-mother.json")
+        inst = self.instantiate_from("familymemberhistory-example-negation.json")
         self.assertIsNotNone(inst, "Must have instantiated a FamilyMemberHistory instance")
         self.implFamilyMemberHistory2(inst)
         
@@ -71,6 +71,32 @@ class FamilyMemberHistoryTests(unittest.TestCase):
         self.implFamilyMemberHistory2(inst2)
     
     def implFamilyMemberHistory2(self, inst):
+        self.assertEqual(inst.condition[0].code.coding[0].code, "700146008")
+        self.assertEqual(inst.condition[0].code.coding[0].display, "No history of malignant neoplasm of breast")
+        self.assertEqual(inst.condition[0].code.coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.condition[0].code.text, "No history of malignant tumor of breast")
+        self.assertEqual(inst.id, "negation")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.relationship.coding[0].code, "MTH")
+        self.assertEqual(inst.relationship.coding[0].display, "mother")
+        self.assertEqual(inst.relationship.coding[0].system, "http://terminology.hl7.org/CodeSystem/v3-RoleCode")
+        self.assertEqual(inst.status, "completed")
+        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mother has no history of malignant tumor of breast</div>")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testFamilyMemberHistory3(self):
+        inst = self.instantiate_from("familymemberhistory-example-mother.json")
+        self.assertIsNotNone(inst, "Must have instantiated a FamilyMemberHistory instance")
+        self.implFamilyMemberHistory3(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("FamilyMemberHistory", js["resourceType"])
+        inst2 = familymemberhistory.FamilyMemberHistory(js)
+        self.implFamilyMemberHistory3(inst2)
+    
+    def implFamilyMemberHistory3(self, inst):
         self.assertEqual(inst.condition[0].code.coding[0].code, "371041009")
         self.assertEqual(inst.condition[0].code.coding[0].display, "Embolic Stroke")
         self.assertEqual(inst.condition[0].code.coding[0].system, "http://snomed.info/sct")

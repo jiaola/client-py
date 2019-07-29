@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -32,14 +32,20 @@ class CatalogEntryTests(unittest.TestCase):
         self.implCatalogEntry1(inst2)
     
     def implCatalogEntry1(self, inst):
+        self.assertEqual(inst.effectivePeriod.start.date, FHIRDate("2018-12-16").date)
+        self.assertEqual(inst.effectivePeriod.start.as_json(), "2018-12-16")
         self.assertEqual(inst.id, "example")
         self.assertEqual(inst.identifier[0].system, "http://example.com/identifier")
-        self.assertEqual(inst.identifier[0].value, "123")
+        self.assertEqual(inst.identifier[0].value, "456")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.name, "Serum electrolyte panel")
+        self.assertEqual(inst.note[0].authorString, "Adam Man")
+        self.assertEqual(inst.note[0].text, "created as an example")
         self.assertTrue(inst.orderable)
-        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
+        self.assertEqual(inst.status, "active")
+        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\"> </div>")
         self.assertEqual(inst.text.status, "generated")
-        self.assertEqual(inst.type.text, "Medication")
+        self.assertEqual(inst.type, "ActivityDefinition")
 

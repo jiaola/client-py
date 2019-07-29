@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -34,12 +34,12 @@ class MedicationKnowledgeTests(unittest.TestCase):
     def implMedicationKnowledge1(self, inst):
         self.assertEqual(inst.amount.unit, "mg/ml")
         self.assertEqual(inst.amount.value, 50)
-        self.assertEqual(inst.code.coding[0].code, "0069-2587-10")
+        self.assertEqual(inst.code.coding[0].code, "0409-6531-02")
         self.assertEqual(inst.code.coding[0].display, "Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)")
         self.assertEqual(inst.code.coding[0].system, "http://hl7.org/fhir/sid/ndc")
         self.assertEqual(inst.contained[0].id, "org4")
-        self.assertEqual(inst.doseForm.coding[0].code, "385219001")
-        self.assertEqual(inst.doseForm.coding[0].display, "Injection Solution (qualifier value)")
+        self.assertEqual(inst.doseForm.coding[0].code, "385268001")
+        self.assertEqual(inst.doseForm.coding[0].display, "Oral Dose Form (qualifier value)")
         self.assertEqual(inst.doseForm.coding[0].system, "http://snomed.info/sct")
         self.assertEqual(inst.id, "example")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")

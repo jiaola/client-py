@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -44,11 +44,10 @@ class CareTeamParticipant(BackboneElement):
 
 @dataclass
 class CareTeam(DomainResource):
-    """ Planned participants in the coordination and delivery of care for a patient
-    or group.
+    """ Planned participants in the coordination and delivery of care.
 
     The Care Team includes all the people and organizations who plan to
-    participate in the coordination and delivery of care for a patient.
+    participate in the coordination and delivery of care.
     """
     resource_type: ClassVar[str] = "CareTeam"
     identifier: Optional[List[Identifier]] = empty_list()

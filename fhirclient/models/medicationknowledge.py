@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationKnowledge) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/MedicationKnowledge) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -14,6 +14,7 @@ from .domainresource import DomainResource
 from .dosage import Dosage
 from .duration import Duration
 from .fhirreference import FHIRReference
+from .identifier import Identifier
 from .money import Money
 from .quantity import Quantity
 from .ratio import Ratio
@@ -71,15 +72,15 @@ class MedicationKnowledgeRegulatoryMaxDispense(BackboneElement):
 
 
 @dataclass
-class MedicationKnowledgeAdministrationGuidelinesDosage(BackboneElement):
+class MedicationKnowledgeAdministrationGuidelineDosage(BackboneElement):
     """ Dosage for the medication for the specific guidelines.
     """
-    resource_type: ClassVar[str] = "MedicationKnowledgeAdministrationGuidelinesDosage"
+    resource_type: ClassVar[str] = "MedicationKnowledgeAdministrationGuidelineDosage"
     type: CodeableConcept = None
     dosage: List[Dosage] = empty_list()
 
     def elementProperties(self):
-        js = super(MedicationKnowledgeAdministrationGuidelinesDosage, self).elementProperties()
+        js = super(MedicationKnowledgeAdministrationGuidelineDosage, self).elementProperties()
         js.extend([
             ("type", "type", CodeableConcept, False, None, True),
             ("dosage", "dosage", Dosage, True, None, True),
@@ -88,20 +89,20 @@ class MedicationKnowledgeAdministrationGuidelinesDosage(BackboneElement):
 
 
 @dataclass
-class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics(BackboneElement):
+class MedicationKnowledgeAdministrationGuidelinePatientCharacteristic(BackboneElement):
     """ Characteristics of the patient that are relevant to the administration
     guidelines.
 
     Characteristics of the patient that are relevant to the administration
     guidelines (for example, height, weight, gender, etc.).
     """
-    resource_type: ClassVar[str] = "MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics"
+    resource_type: ClassVar[str] = "MedicationKnowledgeAdministrationGuidelinePatientCharacteristic"
     characteristicCodeableConcept: CodeableConcept = None
     characteristicQuantity: Quantity = None
     value: Optional[List[str]] = empty_list()
 
     def elementProperties(self):
-        js = super(MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics, self).elementProperties()
+        js = super(MedicationKnowledgeAdministrationGuidelinePatientCharacteristic, self).elementProperties()
         js.extend([
             ("characteristicCodeableConcept", "characteristicCodeableConcept", CodeableConcept, False, "characteristic", True),
             ("characteristicQuantity", "characteristicQuantity", Quantity, False, "characteristic", True),
@@ -210,24 +211,25 @@ class MedicationKnowledgeMonitoringProgram(BackboneElement):
 
 
 @dataclass
-class MedicationKnowledgeAdministrationGuidelines(BackboneElement):
-    """ Guidelines for administration of the medication.
+class MedicationKnowledgeAdministrationGuideline(BackboneElement):
+    """ Guidelines or protocols for administration of the medication.
 
-    Guidelines for the administration of the medication.
+    Guidelines or protocols that are applicable for the administration of the
+    medication.
     """
-    resource_type: ClassVar[str] = "MedicationKnowledgeAdministrationGuidelines"
-    dosage: Optional[List[MedicationKnowledgeAdministrationGuidelinesDosage]] = empty_list()
+    resource_type: ClassVar[str] = "MedicationKnowledgeAdministrationGuideline"
+    dosage: Optional[List[MedicationKnowledgeAdministrationGuidelineDosage]] = empty_list()
     indicationCodeableConcept: Optional[CodeableConcept] = None
     indicationReference: Optional[FHIRReference] = None
-    patientCharacteristics: Optional[List[MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics]] = empty_list()
+    patientCharacteristic: Optional[List[MedicationKnowledgeAdministrationGuidelinePatientCharacteristic]] = empty_list()
 
     def elementProperties(self):
-        js = super(MedicationKnowledgeAdministrationGuidelines, self).elementProperties()
+        js = super(MedicationKnowledgeAdministrationGuideline, self).elementProperties()
         js.extend([
-            ("dosage", "dosage", MedicationKnowledgeAdministrationGuidelinesDosage, True, None, False),
+            ("dosage", "dosage", MedicationKnowledgeAdministrationGuidelineDosage, True, None, False),
             ("indicationCodeableConcept", "indicationCodeableConcept", CodeableConcept, False, "indication", False),
             ("indicationReference", "indicationReference", FHIRReference, False, "indication", False),
-            ("patientCharacteristics", "patientCharacteristics", MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics, True, None, False),
+            ("patientCharacteristic", "patientCharacteristic", MedicationKnowledgeAdministrationGuidelinePatientCharacteristic, True, None, False),
         ])
         return js
 
@@ -259,12 +261,18 @@ class MedicationKnowledgePackaging(BackboneElement):
     resource_type: ClassVar[str] = "MedicationKnowledgePackaging"
     type: Optional[CodeableConcept] = None
     quantity: Optional[Quantity] = None
+    device: Optional[FHIRReference] = None
+    material: Optional[CodeableConcept] = None
+    packaging: Optional[List["MedicationKnowledgePackaging"]] = empty_list()
 
     def elementProperties(self):
         js = super(MedicationKnowledgePackaging, self).elementProperties()
         js.extend([
             ("type", "type", CodeableConcept, False, None, False),
             ("quantity", "quantity", Quantity, False, None, False),
+            ("device", "device", FHIRReference, False, None, False),
+            ("material", "material", CodeableConcept, False, None, False),
+            ("packaging", "packaging", MedicationKnowledgePackaging, True, None, False),
         ])
         return js
 
@@ -317,21 +325,21 @@ class MedicationKnowledgeRegulatory(BackboneElement):
 
 
 @dataclass
-class MedicationKnowledgeKinetics(BackboneElement):
+class MedicationKnowledgeKineticCharacteristic(BackboneElement):
     """ The time course of drug absorption, distribution, metabolism and excretion
     of a medication from the body.
     """
-    resource_type: ClassVar[str] = "MedicationKnowledgeKinetics"
-    areaUnderCurve: Optional[List[Quantity]] = empty_list()
-    lethalDose50: Optional[List[Quantity]] = empty_list()
-    halfLifePeriod: Optional[Duration] = None
+    resource_type: ClassVar[str] = "MedicationKnowledgeKineticCharacteristic"
+    type: Optional[CodeableConcept] = None
+    valueQuantity: Optional[Quantity] = None
+    valueDuration: Optional[Duration] = None
 
     def elementProperties(self):
-        js = super(MedicationKnowledgeKinetics, self).elementProperties()
+        js = super(MedicationKnowledgeKineticCharacteristic, self).elementProperties()
         js.extend([
-            ("areaUnderCurve", "areaUnderCurve", Quantity, True, None, False),
-            ("lethalDose50", "lethalDose50", Quantity, True, None, False),
-            ("halfLifePeriod", "halfLifePeriod", Duration, False, None, False),
+            ("type", "type", CodeableConcept, False, None, False),
+            ("valueQuantity", "valueQuantity", Quantity, False, "value", False),
+            ("valueDuration", "valueDuration", Duration, False, "value", False),
         ])
         return js
 
@@ -343,6 +351,7 @@ class MedicationKnowledge(DomainResource):
     Information about a medication that is used to support knowledge.
     """
     resource_type: ClassVar[str] = "MedicationKnowledge"
+    identifier: Optional[List[Identifier]] = empty_list()
     code: Optional[CodeableConcept] = None
     status: Optional[str] = None
     manufacturer: Optional[FHIRReference] = None
@@ -354,21 +363,23 @@ class MedicationKnowledge(DomainResource):
     productType: Optional[List[CodeableConcept]] = empty_list()
     monograph: Optional[List[MedicationKnowledgeMonograph]] = empty_list()
     ingredient: Optional[List[MedicationKnowledgeIngredient]] = empty_list()
+    device: Optional[List[FHIRReference]] = empty_list()
     preparationInstruction: Optional[str] = None
     intendedRoute: Optional[List[CodeableConcept]] = empty_list()
     cost: Optional[List[MedicationKnowledgeCost]] = empty_list()
     monitoringProgram: Optional[List[MedicationKnowledgeMonitoringProgram]] = empty_list()
-    administrationGuidelines: Optional[List[MedicationKnowledgeAdministrationGuidelines]] = empty_list()
+    administrationGuideline: Optional[List[MedicationKnowledgeAdministrationGuideline]] = empty_list()
     medicineClassification: Optional[List[MedicationKnowledgeMedicineClassification]] = empty_list()
     packaging: Optional[MedicationKnowledgePackaging] = None
     drugCharacteristic: Optional[List[MedicationKnowledgeDrugCharacteristic]] = empty_list()
-    contraindication: Optional[List[FHIRReference]] = empty_list()
+    clinicalUseIssue: Optional[List[FHIRReference]] = empty_list()
     regulatory: Optional[List[MedicationKnowledgeRegulatory]] = empty_list()
-    kinetics: Optional[List[MedicationKnowledgeKinetics]] = empty_list()
+    kineticCharacteristic: Optional[List[MedicationKnowledgeKineticCharacteristic]] = empty_list()
 
     def elementProperties(self):
         js = super(MedicationKnowledge, self).elementProperties()
         js.extend([
+            ("identifier", "identifier", Identifier, True, None, False),
             ("code", "code", CodeableConcept, False, None, False),
             ("status", "status", str, False, None, False),
             ("manufacturer", "manufacturer", FHIRReference, False, None, False),
@@ -380,16 +391,17 @@ class MedicationKnowledge(DomainResource):
             ("productType", "productType", CodeableConcept, True, None, False),
             ("monograph", "monograph", MedicationKnowledgeMonograph, True, None, False),
             ("ingredient", "ingredient", MedicationKnowledgeIngredient, True, None, False),
+            ("device", "device", FHIRReference, True, None, False),
             ("preparationInstruction", "preparationInstruction", str, False, None, False),
             ("intendedRoute", "intendedRoute", CodeableConcept, True, None, False),
             ("cost", "cost", MedicationKnowledgeCost, True, None, False),
             ("monitoringProgram", "monitoringProgram", MedicationKnowledgeMonitoringProgram, True, None, False),
-            ("administrationGuidelines", "administrationGuidelines", MedicationKnowledgeAdministrationGuidelines, True, None, False),
+            ("administrationGuideline", "administrationGuideline", MedicationKnowledgeAdministrationGuideline, True, None, False),
             ("medicineClassification", "medicineClassification", MedicationKnowledgeMedicineClassification, True, None, False),
             ("packaging", "packaging", MedicationKnowledgePackaging, False, None, False),
             ("drugCharacteristic", "drugCharacteristic", MedicationKnowledgeDrugCharacteristic, True, None, False),
-            ("contraindication", "contraindication", FHIRReference, True, None, False),
+            ("clinicalUseIssue", "clinicalUseIssue", FHIRReference, True, None, False),
             ("regulatory", "regulatory", MedicationKnowledgeRegulatory, True, None, False),
-            ("kinetics", "kinetics", MedicationKnowledgeKinetics, True, None, False),
+            ("kineticCharacteristic", "kineticCharacteristic", MedicationKnowledgeKineticCharacteristic, True, None, False),
         ])
         return js

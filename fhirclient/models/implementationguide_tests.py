@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -56,7 +56,7 @@ class ImplementationGuideTests(unittest.TestCase):
         self.assertEqual(inst.definition.resource[0].name, "Test Example")
         self.assertEqual(inst.dependsOn[0].uri, "http://hl7.org/fhir/ImplementationGuide/uscore")
         self.assertFalse(inst.experimental)
-        self.assertEqual(inst.fhirVersion[0], "4.0.0")
+        self.assertEqual(inst.fhirVersion[0], "4.1.0")
         self.assertEqual(inst.global_fhir[0].profile, "http://hl7.org/fhir/us/core/StructureDefinition/patient")
         self.assertEqual(inst.global_fhir[0].type, "Patient")
         self.assertEqual(inst.id, "example")

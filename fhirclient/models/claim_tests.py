@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -584,7 +584,7 @@ class ClaimTests(unittest.TestCase):
         self.assertEqual(inst.careTeam[0].sequence, 1)
         self.assertEqual(inst.created.date, FHIRDate("2015-03-16").date)
         self.assertEqual(inst.created.as_json(), "2015-03-16")
-        self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].code, "123457")
+        self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].code, "K07.3")
         self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10")
         self.assertEqual(inst.diagnosis[0].sequence, 1)
         self.assertEqual(inst.fundsReserve.coding[0].code, "provider")
@@ -706,20 +706,20 @@ class ClaimTests(unittest.TestCase):
         self.assertEqual(inst.created.date, FHIRDate("2015-10-16T00:00:00-07:00").date)
         self.assertEqual(inst.created.as_json(), "2015-10-16T00:00:00-07:00")
         self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].code, "M96.1")
-        self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].display, "Postlaminectomy syndrome")
-        self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10")
+        self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].display, "Postlaminectomy syndrome, not elsewhere classified")
+        self.assertEqual(inst.diagnosis[0].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10-cm")
         self.assertEqual(inst.diagnosis[0].sequence, 1)
         self.assertEqual(inst.diagnosis[1].diagnosisCodeableConcept.coding[0].code, "G89.4")
         self.assertEqual(inst.diagnosis[1].diagnosisCodeableConcept.coding[0].display, "Chronic pain syndrome")
-        self.assertEqual(inst.diagnosis[1].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10")
+        self.assertEqual(inst.diagnosis[1].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10-cm")
         self.assertEqual(inst.diagnosis[1].sequence, 2)
         self.assertEqual(inst.diagnosis[2].diagnosisCodeableConcept.coding[0].code, "M53.88")
         self.assertEqual(inst.diagnosis[2].diagnosisCodeableConcept.coding[0].display, "Other specified dorsopathies, sacral and sacrococcygeal region")
-        self.assertEqual(inst.diagnosis[2].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10")
+        self.assertEqual(inst.diagnosis[2].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10-cm")
         self.assertEqual(inst.diagnosis[2].sequence, 3)
         self.assertEqual(inst.diagnosis[3].diagnosisCodeableConcept.coding[0].code, "M47.816")
         self.assertEqual(inst.diagnosis[3].diagnosisCodeableConcept.coding[0].display, "Spondylosis without myelopathy or radiculopathy, lumbar region")
-        self.assertEqual(inst.diagnosis[3].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10")
+        self.assertEqual(inst.diagnosis[3].diagnosisCodeableConcept.coding[0].system, "http://hl7.org/fhir/sid/icd-10-cm")
         self.assertEqual(inst.diagnosis[3].sequence, 4)
         self.assertEqual(inst.id, "MED-00050")
         self.assertEqual(inst.identifier[0].system, "http://CedarArmsMedicalCenter.com/claim")

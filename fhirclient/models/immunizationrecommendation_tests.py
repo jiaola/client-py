@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -105,8 +105,8 @@ class ImmunizationRecommendationTests(unittest.TestCase):
         self.assertEqual(inst.recommendation[0].forecastStatus.text, "Not Complete")
         self.assertEqual(inst.recommendation[0].series, "Vaccination Series 1")
         self.assertEqual(inst.recommendation[0].seriesDosesPositiveInt, 3)
-        self.assertEqual(inst.recommendation[0].targetDisease.coding[0].code, "40468003")
-        self.assertEqual(inst.recommendation[0].targetDisease.coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.recommendation[0].targetDisease[0].coding[0].code, "40468003")
+        self.assertEqual(inst.recommendation[0].targetDisease[0].coding[0].system, "http://snomed.info/sct")
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Authored by Joginder Madra</div>")
         self.assertEqual(inst.text.status, "generated")
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -43,6 +43,8 @@ class CarePlanActivityDetail(BackboneElement):
     scheduledPeriod: Optional[Period] = None
     scheduledString: Optional[str] = None
     location: Optional[FHIRReference] = None
+    reportedBoolean: Optional[bool] = None
+    reportedReference: Optional[FHIRReference] = None
     performer: Optional[List[FHIRReference]] = empty_list()
     productCodeableConcept: Optional[CodeableConcept] = None
     productReference: Optional[FHIRReference] = None
@@ -67,6 +69,8 @@ class CarePlanActivityDetail(BackboneElement):
             ("scheduledPeriod", "scheduledPeriod", Period, False, "scheduled", False),
             ("scheduledString", "scheduledString", str, False, "scheduled", False),
             ("location", "location", FHIRReference, False, None, False),
+            ("reportedBoolean", "reportedBoolean", bool, False, "reported", False),
+            ("reportedReference", "reportedReference", FHIRReference, False, "reported", False),
             ("performer", "performer", FHIRReference, True, None, False),
             ("productCodeableConcept", "productCodeableConcept", CodeableConcept, False, "product", False),
             ("productReference", "productReference", FHIRReference, False, "product", False),
@@ -79,11 +83,11 @@ class CarePlanActivityDetail(BackboneElement):
 
 @dataclass
 class CarePlanActivity(BackboneElement):
-    """ Action to occur as part of plan.
+    """ Action to occur or has occurred as part of plan.
 
-    Identifies a planned action to occur as part of the plan.  For example, a
-    medication to be used, lab tests to perform, self-monitoring, education,
-    etc.
+    Identifies an action that has occurred or is a planned action to occur as
+    part of the plan. For example, a medication to be used, lab tests to
+    perform, self-monitoring that has occurred, education etc.
     """
     resource_type: ClassVar[str] = "CarePlanActivity"
     outcomeCodeableConcept: Optional[List[CodeableConcept]] = empty_list()
@@ -131,7 +135,8 @@ class CarePlan(DomainResource):
     author: Optional[FHIRReference] = None
     contributor: Optional[List[FHIRReference]] = empty_list()
     careTeam: Optional[List[FHIRReference]] = empty_list()
-    addresses: Optional[List[FHIRReference]] = empty_list()
+    addressesCode: Optional[List[CodeableConcept]] = empty_list()
+    addressesReference: Optional[List[FHIRReference]] = empty_list()
     supportingInfo: Optional[List[FHIRReference]] = empty_list()
     goal: Optional[List[FHIRReference]] = empty_list()
     activity: Optional[List[CarePlanActivity]] = empty_list()
@@ -158,7 +163,8 @@ class CarePlan(DomainResource):
             ("author", "author", FHIRReference, False, None, False),
             ("contributor", "contributor", FHIRReference, True, None, False),
             ("careTeam", "careTeam", FHIRReference, True, None, False),
-            ("addresses", "addresses", FHIRReference, True, None, False),
+            ("addressesCode", "addressesCode", CodeableConcept, True, None, False),
+            ("addressesReference", "addressesReference", FHIRReference, True, None, False),
             ("supportingInfo", "supportingInfo", FHIRReference, True, None, False),
             ("goal", "goal", FHIRReference, True, None, False),
             ("activity", "activity", CarePlanActivity, True, None, False),

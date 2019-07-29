@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Goal) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/Goal) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -70,6 +70,7 @@ class Goal(DomainResource):
     lifecycleStatus: str = None
     achievementStatus: Optional[CodeableConcept] = None
     category: Optional[List[CodeableConcept]] = empty_list()
+    continuous: Optional[bool] = None
     priority: Optional[CodeableConcept] = None
     description: CodeableConcept = None
     subject: FHIRReference = None
@@ -91,6 +92,7 @@ class Goal(DomainResource):
             ("lifecycleStatus", "lifecycleStatus", str, False, None, True),
             ("achievementStatus", "achievementStatus", CodeableConcept, False, None, False),
             ("category", "category", CodeableConcept, True, None, False),
+            ("continuous", "continuous", bool, False, None, False),
             ("priority", "priority", CodeableConcept, False, None, False),
             ("description", "description", CodeableConcept, False, None, True),
             ("subject", "subject", FHIRReference, False, None, True),

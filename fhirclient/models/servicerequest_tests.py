@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -36,7 +36,7 @@ class ServiceRequestTests(unittest.TestCase):
         self.assertEqual(inst.authoredOn.date, FHIRDate("2017-02-01T17:23:07Z").date)
         self.assertEqual(inst.authoredOn.as_json(), "2017-02-01T17:23:07Z")
         self.assertEqual(inst.code.coding[0].code, "34431008")
-        self.assertEqual(inst.code.coding[0].display, "Physiotherapy of chest (regime/therapy) ")
+        self.assertEqual(inst.code.coding[0].display, "Physiotherapy of chest (regime/therapy)")
         self.assertEqual(inst.code.coding[0].system, "http://snomed.info/sct")
         self.assertEqual(inst.contained[0].id, "signature")
         self.assertEqual(inst.contained[1].id, "cystic-fibrosis")

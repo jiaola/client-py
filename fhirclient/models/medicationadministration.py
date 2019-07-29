@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -82,18 +82,20 @@ class MedicationAdministration(DomainResource):
     """
     resource_type: ClassVar[str] = "MedicationAdministration"
     identifier: Optional[List[Identifier]] = empty_list()
-    instantiates: Optional[List[str]] = empty_list()
+    instantiatesCanonical: Optional[List[str]] = empty_list()
+    instantiatesUri: Optional[List[str]] = empty_list()
     partOf: Optional[List[FHIRReference]] = empty_list()
     status: str = None
     statusReason: Optional[List[CodeableConcept]] = empty_list()
-    category: Optional[CodeableConcept] = None
+    category: Optional[List[CodeableConcept]] = empty_list()
     medicationCodeableConcept: CodeableConcept = None
     medicationReference: FHIRReference = None
     subject: FHIRReference = None
-    context: Optional[FHIRReference] = None
+    encounter: Optional[FHIRReference] = None
     supportingInformation: Optional[List[FHIRReference]] = empty_list()
-    effectiveDateTime: FHIRDate = None
-    effectivePeriod: Period = None
+    occurenceDateTime: FHIRDate = None
+    occurencePeriod: Period = None
+    recorded: Optional[FHIRDate] = None
     performer: Optional[List[MedicationAdministrationPerformer]] = empty_list()
     reasonCode: Optional[List[CodeableConcept]] = empty_list()
     reasonReference: Optional[List[FHIRReference]] = empty_list()
@@ -107,18 +109,20 @@ class MedicationAdministration(DomainResource):
         js = super(MedicationAdministration, self).elementProperties()
         js.extend([
             ("identifier", "identifier", Identifier, True, None, False),
-            ("instantiates", "instantiates", str, True, None, False),
+            ("instantiatesCanonical", "instantiatesCanonical", str, True, None, False),
+            ("instantiatesUri", "instantiatesUri", str, True, None, False),
             ("partOf", "partOf", FHIRReference, True, None, False),
             ("status", "status", str, False, None, True),
             ("statusReason", "statusReason", CodeableConcept, True, None, False),
-            ("category", "category", CodeableConcept, False, None, False),
+            ("category", "category", CodeableConcept, True, None, False),
             ("medicationCodeableConcept", "medicationCodeableConcept", CodeableConcept, False, "medication", True),
             ("medicationReference", "medicationReference", FHIRReference, False, "medication", True),
             ("subject", "subject", FHIRReference, False, None, True),
-            ("context", "context", FHIRReference, False, None, False),
+            ("encounter", "encounter", FHIRReference, False, None, False),
             ("supportingInformation", "supportingInformation", FHIRReference, True, None, False),
-            ("effectiveDateTime", "effectiveDateTime", FHIRDate, False, "effective", True),
-            ("effectivePeriod", "effectivePeriod", Period, False, "effective", True),
+            ("occurenceDateTime", "occurenceDateTime", FHIRDate, False, "occurence", True),
+            ("occurencePeriod", "occurencePeriod", Period, False, "occurence", True),
+            ("recorded", "recorded", FHIRDate, False, None, False),
             ("performer", "performer", MedicationAdministrationPerformer, True, None, False),
             ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
             ("reasonReference", "reasonReference", FHIRReference, True, None, False),

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -36,19 +36,19 @@ class AdverseEventTests(unittest.TestCase):
         self.assertEqual(inst.category[0].coding[0].code, "product-use-error")
         self.assertEqual(inst.category[0].coding[0].display, "Product Use Error")
         self.assertEqual(inst.category[0].coding[0].system, "http://terminology.hl7.org/CodeSystem/adverse-event-category")
+        self.assertEqual(inst.code.coding[0].code, "304386008")
+        self.assertEqual(inst.code.coding[0].display, "O/E - itchy rash")
+        self.assertEqual(inst.code.coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.code.text, "This was a mild rash on the left forearm")
         self.assertEqual(inst.date.date, FHIRDate("2017-01-29T12:34:56+00:00").date)
         self.assertEqual(inst.date.as_json(), "2017-01-29T12:34:56+00:00")
-        self.assertEqual(inst.event.coding[0].code, "304386008")
-        self.assertEqual(inst.event.coding[0].display, "O/E - itchy rash")
-        self.assertEqual(inst.event.coding[0].system, "http://snomed.info/sct")
-        self.assertEqual(inst.event.text, "This was a mild rash on the left forearm")
         self.assertEqual(inst.id, "example")
-        self.assertEqual(inst.identifier.system, "http://acme.com/ids/patients/risks")
-        self.assertEqual(inst.identifier.value, "49476534")
+        self.assertEqual(inst.identifier[0].system, "http://acme.com/ids/patients/risks")
+        self.assertEqual(inst.identifier[0].value, "49476534")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.seriousness.coding[0].code, "Non-serious")
+        self.assertEqual(inst.seriousness.coding[0].code, "non-serious")
         self.assertEqual(inst.seriousness.coding[0].display, "Non-serious")
         self.assertEqual(inst.seriousness.coding[0].system, "http://terminology.hl7.org/CodeSystem/adverse-event-seriousness")
         self.assertEqual(inst.severity.coding[0].code, "mild")

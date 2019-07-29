@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -32,12 +32,34 @@ class ObservationDefinitionTests(unittest.TestCase):
         self.implObservationDefinition1(inst2)
     
     def implObservationDefinition1(self, inst):
-        self.assertEqual(inst.code.coding[0].code, "15074-8")
-        self.assertEqual(inst.code.coding[0].display, "Glucose [Moles/volume] in Blood")
+        self.assertEqual(inst.category[0].coding[0].code, "laboratory")
+        self.assertEqual(inst.category[0].coding[0].system, "http://terminology.hl7.org/CodeSystem/observation-category")
+        self.assertEqual(inst.code.coding[0].code, "13980-8")
+        self.assertEqual(inst.code.coding[0].display, "Albumin/Protein.total in Serum or Plasma by Electrophoresis")
         self.assertEqual(inst.code.coding[0].system, "http://loinc.org")
         self.assertEqual(inst.id, "example")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.method.coding[0].code, "115341008")
+        self.assertEqual(inst.method.coding[0].display, "Total measurement")
+        self.assertEqual(inst.method.coding[0].system, "http://snomed.info/sct")
+        self.assertFalse(inst.multipleResultsAllowed)
+        self.assertEqual(inst.permittedDataType[0], "Quantity")
+        self.assertEqual(inst.qualifiedInterval[0].category, "reference")
+        self.assertEqual(inst.qualifiedInterval[0].context.coding[0].code, "normal")
+        self.assertEqual(inst.qualifiedInterval[0].context.coding[0].display, "Normal Range")
+        self.assertEqual(inst.qualifiedInterval[0].context.coding[0].system, "http://terminology.hl7.org/CodeSystem/referencerange-meaning")
+        self.assertEqual(inst.qualifiedInterval[0].range.low.value, 50)
+        self.assertEqual(inst.qualifiedInterval[1].category, "critical")
+        self.assertEqual(inst.qualifiedInterval[1].context.coding[0].code, "normal")
+        self.assertEqual(inst.qualifiedInterval[1].context.coding[0].display, "Normal Range")
+        self.assertEqual(inst.qualifiedInterval[1].context.coding[0].system, "http://terminology.hl7.org/CodeSystem/referencerange-meaning")
+        self.assertEqual(inst.qualifiedInterval[1].range.high.value, 40)
+        self.assertEqual(inst.quantitativeDetails.decimalPrecision, 0)
+        self.assertEqual(inst.quantitativeDetails.unit.coding[0].code, "%")
+        self.assertEqual(inst.quantitativeDetails.unit.coding[0].display, "%")
+        self.assertEqual(inst.quantitativeDetails.unit.coding[0].system, "http://unitsofmeasure.org")
+        self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.status, "generated")
 

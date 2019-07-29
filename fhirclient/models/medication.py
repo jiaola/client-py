@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Medication) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/Medication) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -27,7 +27,8 @@ class MedicationIngredient(BackboneElement):
     itemCodeableConcept: CodeableConcept = None
     itemReference: FHIRReference = None
     isActive: Optional[bool] = None
-    strength: Optional[Ratio] = None
+    strengthRatio: Optional[Ratio] = None
+    strengthCodeableConcept: Optional[CodeableConcept] = None
 
     def elementProperties(self):
         js = super(MedicationIngredient, self).elementProperties()
@@ -35,7 +36,8 @@ class MedicationIngredient(BackboneElement):
             ("itemCodeableConcept", "itemCodeableConcept", CodeableConcept, False, "item", True),
             ("itemReference", "itemReference", FHIRReference, False, "item", True),
             ("isActive", "isActive", bool, False, None, False),
-            ("strength", "strength", Ratio, False, None, False),
+            ("strengthRatio", "strengthRatio", Ratio, False, "strength", False),
+            ("strengthCodeableConcept", "strengthCodeableConcept", CodeableConcept, False, "strength", False),
         ])
         return js
 
@@ -72,7 +74,7 @@ class Medication(DomainResource):
     code: Optional[CodeableConcept] = None
     status: Optional[str] = None
     manufacturer: Optional[FHIRReference] = None
-    form: Optional[CodeableConcept] = None
+    doseForm: Optional[CodeableConcept] = None
     amount: Optional[Ratio] = None
     ingredient: Optional[List[MedicationIngredient]] = empty_list()
     batch: Optional[MedicationBatch] = None
@@ -84,7 +86,7 @@ class Medication(DomainResource):
             ("code", "code", CodeableConcept, False, None, False),
             ("status", "status", str, False, None, False),
             ("manufacturer", "manufacturer", FHIRReference, False, None, False),
-            ("form", "form", CodeableConcept, False, None, False),
+            ("doseForm", "doseForm", CodeableConcept, False, None, False),
             ("amount", "amount", Ratio, False, None, False),
             ("ingredient", "ingredient", MedicationIngredient, True, None, False),
             ("batch", "batch", MedicationBatch, False, None, False),

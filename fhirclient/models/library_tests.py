@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -106,7 +106,7 @@ class LibraryTests(unittest.TestCase):
         self.assertEqual(inst.dataRequirement[7].codeFilter[0].path, "status")
         self.assertEqual(inst.dataRequirement[7].codeFilter[1].path, "medication.code")
         self.assertEqual(inst.dataRequirement[7].codeFilter[1].valueSet, "urn:oid:2.16.840.1.113883.3.464.1003.196.12.1001")
-        self.assertEqual(inst.dataRequirement[7].type, "MedicationStatement")
+        self.assertEqual(inst.dataRequirement[7].type, "MedicationUsage")
         self.assertEqual(inst.date.date, FHIRDate("2015-07-22").date)
         self.assertEqual(inst.date.as_json(), "2015-07-22")
         self.assertEqual(inst.description, "Logic for CMS 146: Appropriate Testing for Children with Pharyngitis")

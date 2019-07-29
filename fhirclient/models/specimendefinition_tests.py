@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -40,6 +40,7 @@ class SpecimenDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.patientPreparation[1].coding[0].code, "263678003")
         self.assertEqual(inst.patientPreparation[1].coding[0].display, "At rest")
         self.assertEqual(inst.patientPreparation[1].coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.timeAspect, "preferrably morning time")
         self.assertEqual(inst.typeCollected.coding[0].code, "122555007")
@@ -98,8 +99,8 @@ class SpecimenDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.typeTested[1].container.minimumVolumeQuantity.system, "http://unitsofmeasure.org")
         self.assertEqual(inst.typeTested[1].container.minimumVolumeQuantity.unit, "ml")
         self.assertEqual(inst.typeTested[1].container.minimumVolumeQuantity.value, 2)
-        self.assertEqual(inst.typeTested[1].container.type.coding[0].code, "767390000")
-        self.assertEqual(inst.typeTested[1].container.type.coding[0].display, "Evacuated blood collection tube with heparin lithium and gel separator")
+        self.assertEqual(inst.typeTested[1].container.type.coding[0].code, "702281005")
+        self.assertEqual(inst.typeTested[1].container.type.coding[0].display, "Evacuated blood collection tube, thrombin/clot activator/gel separator")
         self.assertEqual(inst.typeTested[1].container.type.coding[0].system, "http://snomed.info/sct")
         self.assertEqual(inst.typeTested[1].handling[0].maxDuration.code, "min")
         self.assertEqual(inst.typeTested[1].handling[0].maxDuration.system, "http://unitsofmeasure.org")

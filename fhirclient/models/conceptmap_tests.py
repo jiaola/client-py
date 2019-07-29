@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -83,7 +83,7 @@ class ConceptMapTests(unittest.TestCase):
         self.assertEqual(inst.useContext[0].code.code, "venue")
         self.assertEqual(inst.useContext[0].code.system, "http://terminology.hl7.org/CodeSystem/usage-context-type")
         self.assertEqual(inst.useContext[0].valueCodeableConcept.text, "for CCDA Usage")
-        self.assertEqual(inst.version, "4.0.0")
+        self.assertEqual(inst.version, "4.1.0")
     
     def testConceptMap2(self):
         inst = self.instantiate_from("conceptmap-example-2.json")
@@ -126,7 +126,7 @@ class ConceptMapTests(unittest.TestCase):
         self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.title, "FHIR Example 2")
         self.assertEqual(inst.url, "http://hl7.org/fhir/ConceptMap/example2")
-        self.assertEqual(inst.version, "4.0.0")
+        self.assertEqual(inst.version, "4.1.0")
     
     def testConceptMap3(self):
         inst = self.instantiate_from("conceptmap-example-specimen-type.json")
@@ -201,5 +201,5 @@ class ConceptMapTests(unittest.TestCase):
         self.assertEqual(inst.targetCanonical, "http://snomed.info/id?fhir_vs")
         self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.url, "http://hl7.org/fhir/ConceptMap/102")
-        self.assertEqual(inst.version, "4.0.0")
+        self.assertEqual(inst.version, "4.1.0")
 

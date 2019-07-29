@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -124,6 +124,7 @@ class CarePlanTests(unittest.TestCase):
         self.assertEqual(inst.activity[0].detail.code.coding[1].display, "Body weight")
         self.assertEqual(inst.activity[0].detail.code.coding[1].system, "http://snomed.info/sct")
         self.assertFalse(inst.activity[0].detail.doNotPerform)
+        self.assertFalse(inst.activity[0].detail.reportedBoolean)
         self.assertEqual(inst.activity[0].detail.scheduledTiming.repeat.frequency, 1)
         self.assertEqual(inst.activity[0].detail.scheduledTiming.repeat.period, 1)
         self.assertEqual(inst.activity[0].detail.scheduledTiming.repeat.periodUnit, "d")

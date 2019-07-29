@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -42,7 +42,7 @@ class ImmunizationRecommendationRecommendation(BackboneElement):
     """
     resource_type: ClassVar[str] = "ImmunizationRecommendationRecommendation"
     vaccineCode: Optional[List[CodeableConcept]] = empty_list()
-    targetDisease: Optional[CodeableConcept] = None
+    targetDisease: Optional[List[CodeableConcept]] = empty_list()
     contraindicatedVaccineCode: Optional[List[CodeableConcept]] = empty_list()
     forecastStatus: CodeableConcept = None
     forecastReason: Optional[List[CodeableConcept]] = empty_list()
@@ -60,7 +60,7 @@ class ImmunizationRecommendationRecommendation(BackboneElement):
         js = super(ImmunizationRecommendationRecommendation, self).elementProperties()
         js.extend([
             ("vaccineCode", "vaccineCode", CodeableConcept, True, None, False),
-            ("targetDisease", "targetDisease", CodeableConcept, False, None, False),
+            ("targetDisease", "targetDisease", CodeableConcept, True, None, False),
             ("contraindicatedVaccineCode", "contraindicatedVaccineCode", CodeableConcept, True, None, False),
             ("forecastStatus", "forecastStatus", CodeableConcept, False, None, True),
             ("forecastReason", "forecastReason", CodeableConcept, True, None, False),

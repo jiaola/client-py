@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -61,8 +61,8 @@ class ChargeItemTests(unittest.TestCase):
         self.assertEqual(inst.priceOverride.currency, "EUR")
         self.assertEqual(inst.priceOverride.value, 40)
         self.assertEqual(inst.quantity.value, 1)
-        self.assertEqual(inst.reason[0].coding[0].code, "123456")
-        self.assertEqual(inst.reason[0].coding[0].display, "DIAG-1")
+        self.assertEqual(inst.reason[0].coding[0].code, "I51.6")
+        self.assertEqual(inst.reason[0].coding[0].display, "Cardiovascular disease, unspecified")
         self.assertEqual(inst.reason[0].coding[0].system, "http://hl7.org/fhir/sid/icd-10")
         self.assertEqual(inst.status, "billable")
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Example of ChargeItem Usage in Context of the German EBM Billing code system</div>")

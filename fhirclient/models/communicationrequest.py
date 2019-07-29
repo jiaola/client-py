@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2019-07-29.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -26,16 +26,16 @@ class CommunicationRequestPayload(BackboneElement):
     Text, attachment(s), or resource(s) to be communicated to the recipient.
     """
     resource_type: ClassVar[str] = "CommunicationRequestPayload"
-    contentString: str = None
     contentAttachment: Attachment = None
     contentReference: FHIRReference = None
+    contentCodeableConcept: CodeableConcept = None
 
     def elementProperties(self):
         js = super(CommunicationRequestPayload, self).elementProperties()
         js.extend([
-            ("contentString", "contentString", str, False, "content", True),
             ("contentAttachment", "contentAttachment", Attachment, False, "content", True),
             ("contentReference", "contentReference", FHIRReference, False, "content", True),
+            ("contentCodeableConcept", "contentCodeableConcept", CodeableConcept, False, "content", True),
         ])
         return js
 
@@ -68,7 +68,7 @@ class CommunicationRequest(DomainResource):
     authoredOn: Optional[FHIRDate] = None
     requester: Optional[FHIRReference] = None
     recipient: Optional[List[FHIRReference]] = empty_list()
-    sender: Optional[FHIRReference] = None
+    informationProvider: Optional[FHIRReference] = None
     reasonCode: Optional[List[CodeableConcept]] = empty_list()
     reasonReference: Optional[List[FHIRReference]] = empty_list()
     note: Optional[List[Annotation]] = empty_list()
@@ -95,7 +95,7 @@ class CommunicationRequest(DomainResource):
             ("authoredOn", "authoredOn", FHIRDate, False, None, False),
             ("requester", "requester", FHIRReference, False, None, False),
             ("recipient", "recipient", FHIRReference, True, None, False),
-            ("sender", "sender", FHIRReference, False, None, False),
+            ("informationProvider", "informationProvider", FHIRReference, False, None, False),
             ("reasonCode", "reasonCode", CodeableConcept, True, None, False),
             ("reasonReference", "reasonReference", FHIRReference, True, None, False),
             ("note", "note", Annotation, True, None, False),

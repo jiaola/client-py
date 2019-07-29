@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -90,15 +90,15 @@ class ImmunizationTests(unittest.TestCase):
         self.assertEqual(inst.id, "historical")
         self.assertEqual(inst.identifier[0].system, "urn:ietf:rfc:3986")
         self.assertEqual(inst.identifier[0].value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234")
+        self.assertEqual(inst.informationSourceCodeableConcept.coding[0].code, "record")
+        self.assertEqual(inst.informationSourceCodeableConcept.coding[0].system, "http://terminology.hl7.org/CodeSystem/immunization-origin")
+        self.assertEqual(inst.informationSourceCodeableConcept.text, "Written Record")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
         self.assertEqual(inst.note[0].text, "Notes on adminstration of a historical vaccine")
         self.assertEqual(inst.occurrenceString, "January 2012")
         self.assertFalse(inst.primarySource)
-        self.assertEqual(inst.reportOrigin.coding[0].code, "record")
-        self.assertEqual(inst.reportOrigin.coding[0].system, "http://terminology.hl7.org/CodeSystem/immunization-origin")
-        self.assertEqual(inst.reportOrigin.text, "Written Record")
         self.assertEqual(inst.status, "completed")
         self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.vaccineCode.coding[0].code, "GNFLU")

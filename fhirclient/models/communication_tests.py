@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-07-29.
+#  Generated from FHIR 4.1.0-0931132380 on 2019-07-29.
 #  2019, SMART Health IT.
 
 
@@ -122,7 +122,7 @@ class CommunicationTests(unittest.TestCase):
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.payload[0].contentString, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
+        self.assertEqual(inst.payload[0].contentCodeableConcept.text, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
         self.assertEqual(inst.received.date, FHIRDate("2014-12-12T18:01:11-08:00").date)
         self.assertEqual(inst.received.as_json(), "2014-12-12T18:01:11-08:00")
         self.assertEqual(inst.sent.date, FHIRDate("2014-12-12T18:01:10-08:00").date)
