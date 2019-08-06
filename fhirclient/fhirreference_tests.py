@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
+import sys
+import os.path
+sys.path.append(os.path.dirname(__file__))
 
 import json
-import os.path
 import logging
 import unittest
-import fhirclient.models.questionnaire as questionnaire
-import fhirclient.models.medication as medication
-import fhirclient.models.resource as resource
-import fhirclient.models.valueset as valueset
-import fhirclient.models.patient as patient
-import fhirclient. models.bundle as bundle
-from . import server
+from models import questionnaire
+from models import medication
+from models import resource
+from models import valueset
+from models import patient
+from models import bundle
+import server
 
 
 logging.basicConfig(level=logging.CRITICAL)
