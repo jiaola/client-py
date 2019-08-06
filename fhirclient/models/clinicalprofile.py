@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/ClinicalProfile) on 2019-08-05.
+#  Generated from FHIR 4.1.0-0931132380 (http://hl7.org/fhir/StructureDefinition/ClinicalProfile) on 2019-08-06.
 #  2019, SMART Health IT.
 import sys
 from dataclasses import dataclass
@@ -201,7 +201,7 @@ class ClinicalProfileLabScalarDistributionCorrelatedDiagnoses(BackboneElement):
     resource_type: ClassVar[str] = "ClinicalProfileLabScalarDistributionCorrelatedDiagnoses"
     topn: Optional[int] = None
     abscorrelation: Optional[float] = None
-    entry: Optional[List[ClinicalProfileLabScalarDistributionCorrelatedDiagnosesEntry]] = None
+    entry: Optional[List[ClinicalProfileLabScalarDistributionCorrelatedDiagnosesEntry]] = empty_list()
 
     def elementProperties(self):
         js = super(ClinicalProfileLabScalarDistributionCorrelatedDiagnoses, self).elementProperties()
