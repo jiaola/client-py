@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ ! -e fhir-parser ]; then
+# If the fhir-parser directory is empty, refresh it
+if [ ! "$(ls -A fhir-parser)" ]; then
 	git submodule update --init --recursive
 fi
 
