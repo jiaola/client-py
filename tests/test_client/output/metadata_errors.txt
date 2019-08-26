@@ -1,0 +1,14 @@
+{root}:
+  date:
+    Wrong type <class 'list'> for property "date" on <class 'fhirclient.models.capabilitystatement.CapabilityStatement'>, expecting <class 'fhirclient.models.fhirdate.FHIRDate'>
+  format:
+    Wrong type <class 'int'> for list property "format" on <class 'fhirclient.models.capabilitystatement.CapabilityStatement'>, expecting a list of <class 'str'>
+  rest.0:
+    security:
+      service.0:
+        coding.0:
+          Superfluous entry "systems" in data for Coding(id=None, extension=None, system=None, version=None, code='OAuth2', display=None, userSelected=None)
+    operation.1:
+      definition:
+        Wrong type <class 'dict'> for property "definition" on <class 'fhirclient.models.capabilitystatement.CapabilityStatementRestResourceOperation'>, expecting <class 'str'>
+  Superfluous entry "formats" in data for CapabilityStatement(id=None, meta=None, implicitRules=None, language=None, text=Narrative(id=None, extension=None, status='generated', div='<div>Generated CapabilityStatement -- see structured representation.</div>'), contained=None, extension=None, modifierExtension=None, url='https://fhir-api.smarthealthit.org/metadata', version='0.0.82.????', name='SMART on FHIR CapabilityStatement', title=None, status='draft', experimental=None, date=None, publisher='SMART on FHIR', contact=None, description='Describes capabilities of this SMART on FHIR server', useContext=None, jurisdiction=None, purpose=None, copyright=None, kind='instance', instantiates=None, imports=None, software=None, implementation=None, fhirVersion='0.0.82', format=66, patchFormat=None, implementationGuide=None, rest=None, messaging=None, document=None)

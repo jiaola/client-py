@@ -21,8 +21,8 @@ tpl_factory_target = '../fhirclient/models/fhirelementfactory.py'    # where to 
 
 # unit tests
 write_unittests = True
-tpl_unittest_target = '../fhirclient/models'    # target directory to write the generated unit test files to
-
+tpl_unittest_target = '../tests/test_models'    # target directory to write the generated unit test files to
+tpl_unittest_target_ptrn = 'test_{}.py'        # target file name pattern for unit tests; the one placeholder (`{}`) will be the class name
 
 # all these files should be copied to dirname(`tpl_resource_target_ptrn`): tuples of (path/to/file, module, array-of-class-names)
 manual_profiles = [
@@ -37,4 +37,5 @@ manual_profiles = [
     ('../fhir-parser-resources/fhirreference.py', 'fhirreference', ['FHIRReference']),
     ('../fhir-parser-resources/fhirdate.py', 'fhirdate', ['date', 'dateTime', 'instant', 'time']),
     ('../fhir-parser-resources/fhirsearch.py', 'fhirsearch', ['FHIRSearch']),
+    ('../fhir-parser-resources/fhirelementproperty.py', 'fhirelementproperty', []),
 ]

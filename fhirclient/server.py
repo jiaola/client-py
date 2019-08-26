@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import json
-import requests
-import urllib
 import logging
+
+import requests
+
 try:                                # Python 2.x
     import urlparse
 except ImportError as e:            # Python 3
     import urllib.parse as urlparse
 
-from auth import FHIRAuth
+from fhirclient.auth import FHIRAuth
 
 FHIRJSONMimeType = 'application/fhir+json'
 
@@ -60,13 +61,13 @@ class FHIRServer(object):
         if state is not None:
             self.from_state(state)
         if not self.base_uri or len(self.base_uri) <= 10:
-            raise Exception("FHIRServer must be initialized with `base_uri` or `state` containing the base-URI, but neither happened")
+            raise Exception("FHIRServer must be initialized with `base_uri` or `state` "
+                            "containing the base-URI, but neither happened")
     
     def should_save_state(self):
         if self.client is not None:
             self.client.save_state()
-    
-    
+
     # MARK: Server CapabilityStatement
     
     @property
@@ -80,7 +81,7 @@ class FHIRServer(object):
         """
         if self._capability is None or force:
             logger.info('Fetching CapabilityStatement from {0}'.format(self.base_uri))
-            from models import capabilitystatement
+            from fhirclient.models import capabilitystatement
             conf = capabilitystatement.CapabilityStatement.read_from('metadata', self)
             self._capability = conf
             
@@ -98,8 +99,7 @@ class FHIRServer(object):
             }
             self.auth = FHIRAuth.from_capability_security(security, settings)
             self.should_save_state()
-    
-    
+
     # MARK: Authorization
     
     @property
@@ -164,7 +164,7 @@ class FHIRServer(object):
         
         return res.json()
     
-    def request_data(self, path, headers={}, nosign=False):
+    def request_data(self, path, headers=None, nosign=False):
         """ Perform a data request data against the server's base with the
         given relative path.
         """
@@ -288,8 +288,7 @@ class FHIRServer(object):
             raise FHIRNotFoundException(response)
         else:
             response.raise_for_status()
-    
-    
+
     # MARK: State Handling
     
     @property
@@ -308,4 +307,3 @@ class FHIRServer(object):
         assert state
         self.base_uri = state.get('base_uri') or self.base_uri
         self.auth = FHIRAuth.create(state.get('auth_type'), state=state.get('auth'))
-    
