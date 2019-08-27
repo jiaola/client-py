@@ -112,7 +112,5 @@ venv.bak/
 .DS_Store
 
 # Generated files
-/fhirclient/models/*
-/tests/test_models/*
 /tests/test_client/server/*
 /fhir-parser/*
