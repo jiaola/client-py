@@ -10,6 +10,7 @@ bumpversion = ">=0.3"
 isodate = ">=0.5"
 requests = ">=2.4"
 jinja2 = "*"
+dataclasses = "*"
 
 [requires]
-python_version = "3.7"
+python_version = ">=3.6"

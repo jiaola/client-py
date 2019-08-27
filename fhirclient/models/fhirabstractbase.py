@@ -4,13 +4,15 @@
 #  Base class for all FHIR elements.
 
 import logging
+import sys
+
 from dataclasses import field, InitVar, dataclass
 
 # The following import is required for the all_types metnod.  Do not remove!
 # from .extension import Extension
 from typing import Optional
 
-from .fhirelementproperty import elementProperties
+from .fhirelementproperty import elementProperties, is_union
 
 logger = logging.getLogger(__name__)
 
@@ -303,6 +305,15 @@ class FHIRAbstractBase:
     def _matches_type(self, value, typ):
         if value is None:
             return True
+
+        # isinstance didn't start working on generic types until python 3.7
+        if sys.version_info < (3, 7):
+            if is_union(typ):
+                return any(self._matches_type(value, t) for t in typ.__args__)
+            elif getattr(typ, '__origin__', None) is not None:
+                return isinstance(value, typ.__origin__)
+            else:
+                return isinstance(value, typ)
         if isinstance(value, typ):
             return True
         if int == typ or float == typ:
